@@ -1,0 +1,11 @@
+inputSpec: https://api.redocly.com/registry/bundle/curvegrid/multibaas/v0/openapi.yaml
+outputDir: .
+generatorName: go
+gitUserId: curvegrid
+gitRepoId: multibaas-sdk-go
+packageVersion: 1.0.0-beta1
+packageName: multibaas
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: true
+  useOneOfDiscriminatorLookup: true
+  generateInterfaces: true
