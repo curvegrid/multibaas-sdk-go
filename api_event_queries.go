@@ -19,7 +19,7 @@ import (
 	"strings"
 )
 
-type EventQueriesApi interface {
+type EventQueriesAPI interface {
 
 	/*
 		CountEventQueryRecords Count event query records
@@ -48,8 +48,8 @@ type EventQueriesApi interface {
 	DeleteEventQuery(ctx context.Context, eventQuery string) ApiDeleteEventQueryRequest
 
 	// DeleteEventQueryExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	DeleteEventQueryExecute(r ApiDeleteEventQueryRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
+	//  @return BaseResponse
+	DeleteEventQueryExecute(r ApiDeleteEventQueryRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		ExecuteArbitraryEventQuery Execute arbitrary event query
@@ -121,16 +121,16 @@ type EventQueriesApi interface {
 	SetEventQuery(ctx context.Context, eventQuery string) ApiSetEventQueryRequest
 
 	// SetEventQueryExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	SetEventQueryExecute(r ApiSetEventQueryRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
+	//  @return BaseResponse
+	SetEventQueryExecute(r ApiSetEventQueryRequest) (*BaseResponse, *http.Response, error)
 }
 
-// EventQueriesApiService EventQueriesApi service
-type EventQueriesApiService service
+// EventQueriesAPIService EventQueriesAPI service
+type EventQueriesAPIService service
 
 type ApiCountEventQueryRecordsRequest struct {
 	ctx        context.Context
-	ApiService EventQueriesApi
+	ApiService EventQueriesAPI
 	eventQuery string
 }
 
@@ -147,7 +147,7 @@ Returns the record count of the given saved event query.
 	@param eventQuery An event query label.
 	@return ApiCountEventQueryRecordsRequest
 */
-func (a *EventQueriesApiService) CountEventQueryRecords(ctx context.Context, eventQuery string) ApiCountEventQueryRecordsRequest {
+func (a *EventQueriesAPIService) CountEventQueryRecords(ctx context.Context, eventQuery string) ApiCountEventQueryRecordsRequest {
 	return ApiCountEventQueryRecordsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -158,7 +158,7 @@ func (a *EventQueriesApiService) CountEventQueryRecords(ctx context.Context, eve
 // Execute executes the request
 //
 //	@return CountEventQueryRecords200Response
-func (a *EventQueriesApiService) CountEventQueryRecordsExecute(r ApiCountEventQueryRecordsRequest) (*CountEventQueryRecords200Response, *http.Response, error) {
+func (a *EventQueriesAPIService) CountEventQueryRecordsExecute(r ApiCountEventQueryRecordsRequest) (*CountEventQueryRecords200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -166,7 +166,7 @@ func (a *EventQueriesApiService) CountEventQueryRecordsExecute(r ApiCountEventQu
 		localVarReturnValue *CountEventQueryRecords200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesApiService.CountEventQueryRecords")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesAPIService.CountEventQueryRecords")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -255,11 +255,11 @@ func (a *EventQueriesApiService) CountEventQueryRecordsExecute(r ApiCountEventQu
 
 type ApiDeleteEventQueryRequest struct {
 	ctx        context.Context
-	ApiService EventQueriesApi
+	ApiService EventQueriesAPI
 	eventQuery string
 }
 
-func (r ApiDeleteEventQueryRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
+func (r ApiDeleteEventQueryRequest) Execute() (*BaseResponse, *http.Response, error) {
 	return r.ApiService.DeleteEventQueryExecute(r)
 }
 
@@ -272,7 +272,7 @@ Deletes the given saved event query.
 	@param eventQuery An event query label.
 	@return ApiDeleteEventQueryRequest
 */
-func (a *EventQueriesApiService) DeleteEventQuery(ctx context.Context, eventQuery string) ApiDeleteEventQueryRequest {
+func (a *EventQueriesAPIService) DeleteEventQuery(ctx context.Context, eventQuery string) ApiDeleteEventQueryRequest {
 	return ApiDeleteEventQueryRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -282,16 +282,16 @@ func (a *EventQueriesApiService) DeleteEventQuery(ctx context.Context, eventQuer
 
 // Execute executes the request
 //
-//	@return SubmitSignedTransaction200Response
-func (a *EventQueriesApiService) DeleteEventQueryExecute(r ApiDeleteEventQueryRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
+//	@return BaseResponse
+func (a *EventQueriesAPIService) DeleteEventQueryExecute(r ApiDeleteEventQueryRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
+		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesApiService.DeleteEventQuery")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesAPIService.DeleteEventQuery")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -380,7 +380,7 @@ func (a *EventQueriesApiService) DeleteEventQueryExecute(r ApiDeleteEventQueryRe
 
 type ApiExecuteArbitraryEventQueryRequest struct {
 	ctx        context.Context
-	ApiService EventQueriesApi
+	ApiService EventQueriesAPI
 	offset     *int64
 	limit      *int64
 	eventQuery *EventQuery
@@ -413,7 +413,7 @@ Executes an arbitrary event query.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiExecuteArbitraryEventQueryRequest
 */
-func (a *EventQueriesApiService) ExecuteArbitraryEventQuery(ctx context.Context) ApiExecuteArbitraryEventQueryRequest {
+func (a *EventQueriesAPIService) ExecuteArbitraryEventQuery(ctx context.Context) ApiExecuteArbitraryEventQueryRequest {
 	return ApiExecuteArbitraryEventQueryRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -423,7 +423,7 @@ func (a *EventQueriesApiService) ExecuteArbitraryEventQuery(ctx context.Context)
 // Execute executes the request
 //
 //	@return ExecuteArbitraryEventQuery200Response
-func (a *EventQueriesApiService) ExecuteArbitraryEventQueryExecute(r ApiExecuteArbitraryEventQueryRequest) (*ExecuteArbitraryEventQuery200Response, *http.Response, error) {
+func (a *EventQueriesAPIService) ExecuteArbitraryEventQueryExecute(r ApiExecuteArbitraryEventQueryRequest) (*ExecuteArbitraryEventQuery200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -431,7 +431,7 @@ func (a *EventQueriesApiService) ExecuteArbitraryEventQueryExecute(r ApiExecuteA
 		localVarReturnValue *ExecuteArbitraryEventQuery200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesApiService.ExecuteArbitraryEventQuery")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesAPIService.ExecuteArbitraryEventQuery")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -527,7 +527,7 @@ func (a *EventQueriesApiService) ExecuteArbitraryEventQueryExecute(r ApiExecuteA
 
 type ApiExecuteEventQueryRequest struct {
 	ctx        context.Context
-	ApiService EventQueriesApi
+	ApiService EventQueriesAPI
 	eventQuery string
 	offset     *int64
 	limit      *int64
@@ -556,7 +556,7 @@ Executes the given saved event query.
 	@param eventQuery An event query label.
 	@return ApiExecuteEventQueryRequest
 */
-func (a *EventQueriesApiService) ExecuteEventQuery(ctx context.Context, eventQuery string) ApiExecuteEventQueryRequest {
+func (a *EventQueriesAPIService) ExecuteEventQuery(ctx context.Context, eventQuery string) ApiExecuteEventQueryRequest {
 	return ApiExecuteEventQueryRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -567,7 +567,7 @@ func (a *EventQueriesApiService) ExecuteEventQuery(ctx context.Context, eventQue
 // Execute executes the request
 //
 //	@return ExecuteArbitraryEventQuery200Response
-func (a *EventQueriesApiService) ExecuteEventQueryExecute(r ApiExecuteEventQueryRequest) (*ExecuteArbitraryEventQuery200Response, *http.Response, error) {
+func (a *EventQueriesAPIService) ExecuteEventQueryExecute(r ApiExecuteEventQueryRequest) (*ExecuteArbitraryEventQuery200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -575,7 +575,7 @@ func (a *EventQueriesApiService) ExecuteEventQueryExecute(r ApiExecuteEventQuery
 		localVarReturnValue *ExecuteArbitraryEventQuery200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesApiService.ExecuteEventQuery")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesAPIService.ExecuteEventQuery")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -670,7 +670,7 @@ func (a *EventQueriesApiService) ExecuteEventQueryExecute(r ApiExecuteEventQuery
 
 type ApiGetEventQueryRequest struct {
 	ctx        context.Context
-	ApiService EventQueriesApi
+	ApiService EventQueriesAPI
 	eventQuery string
 }
 
@@ -687,7 +687,7 @@ Returns the given saved event query.
 	@param eventQuery An event query label.
 	@return ApiGetEventQueryRequest
 */
-func (a *EventQueriesApiService) GetEventQuery(ctx context.Context, eventQuery string) ApiGetEventQueryRequest {
+func (a *EventQueriesAPIService) GetEventQuery(ctx context.Context, eventQuery string) ApiGetEventQueryRequest {
 	return ApiGetEventQueryRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -698,7 +698,7 @@ func (a *EventQueriesApiService) GetEventQuery(ctx context.Context, eventQuery s
 // Execute executes the request
 //
 //	@return GetEventQuery200Response
-func (a *EventQueriesApiService) GetEventQueryExecute(r ApiGetEventQueryRequest) (*GetEventQuery200Response, *http.Response, error) {
+func (a *EventQueriesAPIService) GetEventQueryExecute(r ApiGetEventQueryRequest) (*GetEventQuery200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -706,7 +706,7 @@ func (a *EventQueriesApiService) GetEventQueryExecute(r ApiGetEventQueryRequest)
 		localVarReturnValue *GetEventQuery200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesApiService.GetEventQuery")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesAPIService.GetEventQuery")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -795,7 +795,7 @@ func (a *EventQueriesApiService) GetEventQueryExecute(r ApiGetEventQueryRequest)
 
 type ApiListEventQueriesRequest struct {
 	ctx        context.Context
-	ApiService EventQueriesApi
+	ApiService EventQueriesAPI
 }
 
 func (r ApiListEventQueriesRequest) Execute() (*ListEventQueries200Response, *http.Response, error) {
@@ -810,7 +810,7 @@ Returns a list of saved event queries.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListEventQueriesRequest
 */
-func (a *EventQueriesApiService) ListEventQueries(ctx context.Context) ApiListEventQueriesRequest {
+func (a *EventQueriesAPIService) ListEventQueries(ctx context.Context) ApiListEventQueriesRequest {
 	return ApiListEventQueriesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -820,7 +820,7 @@ func (a *EventQueriesApiService) ListEventQueries(ctx context.Context) ApiListEv
 // Execute executes the request
 //
 //	@return ListEventQueries200Response
-func (a *EventQueriesApiService) ListEventQueriesExecute(r ApiListEventQueriesRequest) (*ListEventQueries200Response, *http.Response, error) {
+func (a *EventQueriesAPIService) ListEventQueriesExecute(r ApiListEventQueriesRequest) (*ListEventQueries200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -828,7 +828,7 @@ func (a *EventQueriesApiService) ListEventQueriesExecute(r ApiListEventQueriesRe
 		localVarReturnValue *ListEventQueries200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesApiService.ListEventQueries")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesAPIService.ListEventQueries")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -916,7 +916,7 @@ func (a *EventQueriesApiService) ListEventQueriesExecute(r ApiListEventQueriesRe
 
 type ApiSetEventQueryRequest struct {
 	ctx         context.Context
-	ApiService  EventQueriesApi
+	ApiService  EventQueriesAPI
 	eventQuery  string
 	eventQuery2 *EventQuery
 }
@@ -926,7 +926,7 @@ func (r ApiSetEventQueryRequest) EventQuery2(eventQuery2 EventQuery) ApiSetEvent
 	return r
 }
 
-func (r ApiSetEventQueryRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
+func (r ApiSetEventQueryRequest) Execute() (*BaseResponse, *http.Response, error) {
 	return r.ApiService.SetEventQueryExecute(r)
 }
 
@@ -939,7 +939,7 @@ Creates or updates the given saved event query.
 	@param eventQuery An event query label.
 	@return ApiSetEventQueryRequest
 */
-func (a *EventQueriesApiService) SetEventQuery(ctx context.Context, eventQuery string) ApiSetEventQueryRequest {
+func (a *EventQueriesAPIService) SetEventQuery(ctx context.Context, eventQuery string) ApiSetEventQueryRequest {
 	return ApiSetEventQueryRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -949,16 +949,16 @@ func (a *EventQueriesApiService) SetEventQuery(ctx context.Context, eventQuery s
 
 // Execute executes the request
 //
-//	@return SubmitSignedTransaction200Response
-func (a *EventQueriesApiService) SetEventQueryExecute(r ApiSetEventQueryRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
+//	@return BaseResponse
+func (a *EventQueriesAPIService) SetEventQueryExecute(r ApiSetEventQueryRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
+		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesApiService.SetEventQuery")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventQueriesAPIService.SetEventQuery")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

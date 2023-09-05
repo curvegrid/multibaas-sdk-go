@@ -25,8 +25,9 @@ type StandaloneWallet struct {
 	BaseGroupName string `json:"baseGroupName"`
 	// The name given to the vault your key is stored in.
 	VaultName *string `json:"vaultName,omitempty"`
-	KeyName   string  `json:"keyName"`
-	// The current version of your key.
+	// The name of the key.
+	KeyName string `json:"keyName"`
+	// The version of the key.
 	KeyVersion *string `json:"keyVersion,omitempty"`
 	// An ethereum address.
 	PublicAddress string `json:"publicAddress"`

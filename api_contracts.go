@@ -19,7 +19,7 @@ import (
 	"strings"
 )
 
-type ContractsApi interface {
+type ContractsAPI interface {
 
 	/*
 		CallContractFunction Call a contract function
@@ -65,8 +65,8 @@ type ContractsApi interface {
 	CreateContracts(ctx context.Context) ApiCreateContractsRequest
 
 	// CreateContractsExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	CreateContractsExecute(r ApiCreateContractsRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
+	//  @return BaseResponse
+	CreateContractsExecute(r ApiCreateContractsRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		DeleteContract Delete a contract
@@ -324,12 +324,12 @@ type ContractsApi interface {
 	UnlinkAddressContractExecute(r ApiUnlinkAddressContractRequest) (*SetAddress201Response, *http.Response, error)
 }
 
-// ContractsApiService ContractsApi service
-type ContractsApiService service
+// ContractsAPIService ContractsAPI service
+type ContractsAPIService service
 
 type ApiCallContractFunctionRequest struct {
 	ctx            context.Context
-	ApiService     ContractsApi
+	ApiService     ContractsAPI
 	chain          ChainName
 	addressOrLabel string
 	contract       string
@@ -358,7 +358,7 @@ Builds a transaction to call the given contract function. Returns a transaction 
 	@param method Contract function.
 	@return ApiCallContractFunctionRequest
 */
-func (a *ContractsApiService) CallContractFunction(ctx context.Context, chain ChainName, addressOrLabel string, contract string, method string) ApiCallContractFunctionRequest {
+func (a *ContractsAPIService) CallContractFunction(ctx context.Context, chain ChainName, addressOrLabel string, contract string, method string) ApiCallContractFunctionRequest {
 	return ApiCallContractFunctionRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -372,7 +372,7 @@ func (a *ContractsApiService) CallContractFunction(ctx context.Context, chain Ch
 // Execute executes the request
 //
 //	@return CallContractFunction200Response
-func (a *ContractsApiService) CallContractFunctionExecute(r ApiCallContractFunctionRequest) (*CallContractFunction200Response, *http.Response, error) {
+func (a *ContractsAPIService) CallContractFunctionExecute(r ApiCallContractFunctionRequest) (*CallContractFunction200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -380,7 +380,7 @@ func (a *ContractsApiService) CallContractFunctionExecute(r ApiCallContractFunct
 		localVarReturnValue *CallContractFunction200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.CallContractFunction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.CallContractFunction")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -480,7 +480,7 @@ func (a *ContractsApiService) CallContractFunctionExecute(r ApiCallContractFunct
 
 type ApiCreateContractRequest struct {
 	ctx          context.Context
-	ApiService   ContractsApi
+	ApiService   ContractsAPI
 	contract     string
 	baseContract *BaseContract
 }
@@ -503,7 +503,7 @@ Adds a contract.
 	@param contract
 	@return ApiCreateContractRequest
 */
-func (a *ContractsApiService) CreateContract(ctx context.Context, contract string) ApiCreateContractRequest {
+func (a *ContractsAPIService) CreateContract(ctx context.Context, contract string) ApiCreateContractRequest {
 	return ApiCreateContractRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -514,7 +514,7 @@ func (a *ContractsApiService) CreateContract(ctx context.Context, contract strin
 // Execute executes the request
 //
 //	@return GetContract200Response
-func (a *ContractsApiService) CreateContractExecute(r ApiCreateContractRequest) (*GetContract200Response, *http.Response, error) {
+func (a *ContractsAPIService) CreateContractExecute(r ApiCreateContractRequest) (*GetContract200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -522,7 +522,7 @@ func (a *ContractsApiService) CreateContractExecute(r ApiCreateContractRequest) 
 		localVarReturnValue *GetContract200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.CreateContract")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.CreateContract")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -613,7 +613,7 @@ func (a *ContractsApiService) CreateContractExecute(r ApiCreateContractRequest) 
 
 type ApiCreateContractsRequest struct {
 	ctx          context.Context
-	ApiService   ContractsApi
+	ApiService   ContractsAPI
 	baseContract *[]BaseContract
 }
 
@@ -622,7 +622,7 @@ func (r ApiCreateContractsRequest) BaseContract(baseContract []BaseContract) Api
 	return r
 }
 
-func (r ApiCreateContractsRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
+func (r ApiCreateContractsRequest) Execute() (*BaseResponse, *http.Response, error) {
 	return r.ApiService.CreateContractsExecute(r)
 }
 
@@ -634,7 +634,7 @@ Adds multiple contracts.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateContractsRequest
 */
-func (a *ContractsApiService) CreateContracts(ctx context.Context) ApiCreateContractsRequest {
+func (a *ContractsAPIService) CreateContracts(ctx context.Context) ApiCreateContractsRequest {
 	return ApiCreateContractsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -643,16 +643,16 @@ func (a *ContractsApiService) CreateContracts(ctx context.Context) ApiCreateCont
 
 // Execute executes the request
 //
-//	@return SubmitSignedTransaction200Response
-func (a *ContractsApiService) CreateContractsExecute(r ApiCreateContractsRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
+//	@return BaseResponse
+func (a *ContractsAPIService) CreateContractsExecute(r ApiCreateContractsRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
+		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.CreateContracts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.CreateContracts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -742,7 +742,7 @@ func (a *ContractsApiService) CreateContractsExecute(r ApiCreateContractsRequest
 
 type ApiDeleteContractRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 	contract   string
 }
 
@@ -759,7 +759,7 @@ Deletes a contract and all its versions.
 	@param contract
 	@return ApiDeleteContractRequest
 */
-func (a *ContractsApiService) DeleteContract(ctx context.Context, contract string) ApiDeleteContractRequest {
+func (a *ContractsAPIService) DeleteContract(ctx context.Context, contract string) ApiDeleteContractRequest {
 	return ApiDeleteContractRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -770,7 +770,7 @@ func (a *ContractsApiService) DeleteContract(ctx context.Context, contract strin
 // Execute executes the request
 //
 //	@return BaseResponse
-func (a *ContractsApiService) DeleteContractExecute(r ApiDeleteContractRequest) (*BaseResponse, *http.Response, error) {
+func (a *ContractsAPIService) DeleteContractExecute(r ApiDeleteContractRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -778,7 +778,7 @@ func (a *ContractsApiService) DeleteContractExecute(r ApiDeleteContractRequest) 
 		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.DeleteContract")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.DeleteContract")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -867,7 +867,7 @@ func (a *ContractsApiService) DeleteContractExecute(r ApiDeleteContractRequest) 
 
 type ApiDeleteContractVersionRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 	contract   string
 	version    string
 }
@@ -886,7 +886,7 @@ Deletes a specific contract version.
 	@param version Contract Version.
 	@return ApiDeleteContractVersionRequest
 */
-func (a *ContractsApiService) DeleteContractVersion(ctx context.Context, contract string, version string) ApiDeleteContractVersionRequest {
+func (a *ContractsAPIService) DeleteContractVersion(ctx context.Context, contract string, version string) ApiDeleteContractVersionRequest {
 	return ApiDeleteContractVersionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -898,7 +898,7 @@ func (a *ContractsApiService) DeleteContractVersion(ctx context.Context, contrac
 // Execute executes the request
 //
 //	@return BaseResponse
-func (a *ContractsApiService) DeleteContractVersionExecute(r ApiDeleteContractVersionRequest) (*BaseResponse, *http.Response, error) {
+func (a *ContractsAPIService) DeleteContractVersionExecute(r ApiDeleteContractVersionRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -906,7 +906,7 @@ func (a *ContractsApiService) DeleteContractVersionExecute(r ApiDeleteContractVe
 		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.DeleteContractVersion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.DeleteContractVersion")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -999,7 +999,7 @@ func (a *ContractsApiService) DeleteContractVersionExecute(r ApiDeleteContractVe
 
 type ApiDeployContractRequest struct {
 	ctx            context.Context
-	ApiService     ContractsApi
+	ApiService     ContractsAPI
 	contract       string
 	postMethodArgs *PostMethodArgs
 }
@@ -1022,7 +1022,7 @@ Returns a transaction to deploy the given contract to the blockchain.
 	@param contract
 	@return ApiDeployContractRequest
 */
-func (a *ContractsApiService) DeployContract(ctx context.Context, contract string) ApiDeployContractRequest {
+func (a *ContractsAPIService) DeployContract(ctx context.Context, contract string) ApiDeployContractRequest {
 	return ApiDeployContractRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1033,7 +1033,7 @@ func (a *ContractsApiService) DeployContract(ctx context.Context, contract strin
 // Execute executes the request
 //
 //	@return DeployContract200Response
-func (a *ContractsApiService) DeployContractExecute(r ApiDeployContractRequest) (*DeployContract200Response, *http.Response, error) {
+func (a *ContractsAPIService) DeployContractExecute(r ApiDeployContractRequest) (*DeployContract200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1041,7 +1041,7 @@ func (a *ContractsApiService) DeployContractExecute(r ApiDeployContractRequest) 
 		localVarReturnValue *DeployContract200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.DeployContract")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.DeployContract")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1132,7 +1132,7 @@ func (a *ContractsApiService) DeployContractExecute(r ApiDeployContractRequest) 
 
 type ApiDeployContractVersionRequest struct {
 	ctx            context.Context
-	ApiService     ContractsApi
+	ApiService     ContractsAPI
 	contract       string
 	version        string
 	postMethodArgs *PostMethodArgs
@@ -1157,7 +1157,7 @@ Returns a transaction to deploy the given contract version to the blockchain.
 	@param version Contract Version.
 	@return ApiDeployContractVersionRequest
 */
-func (a *ContractsApiService) DeployContractVersion(ctx context.Context, contract string, version string) ApiDeployContractVersionRequest {
+func (a *ContractsAPIService) DeployContractVersion(ctx context.Context, contract string, version string) ApiDeployContractVersionRequest {
 	return ApiDeployContractVersionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1169,7 +1169,7 @@ func (a *ContractsApiService) DeployContractVersion(ctx context.Context, contrac
 // Execute executes the request
 //
 //	@return DeployContract200Response
-func (a *ContractsApiService) DeployContractVersionExecute(r ApiDeployContractVersionRequest) (*DeployContract200Response, *http.Response, error) {
+func (a *ContractsAPIService) DeployContractVersionExecute(r ApiDeployContractVersionRequest) (*DeployContract200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1177,7 +1177,7 @@ func (a *ContractsApiService) DeployContractVersionExecute(r ApiDeployContractVe
 		localVarReturnValue *DeployContract200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.DeployContractVersion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.DeployContractVersion")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1272,7 +1272,7 @@ func (a *ContractsApiService) DeployContractVersionExecute(r ApiDeployContractVe
 
 type ApiGetContractRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 	contract   string
 }
 
@@ -1289,7 +1289,7 @@ Returns the given contract.
 	@param contract
 	@return ApiGetContractRequest
 */
-func (a *ContractsApiService) GetContract(ctx context.Context, contract string) ApiGetContractRequest {
+func (a *ContractsAPIService) GetContract(ctx context.Context, contract string) ApiGetContractRequest {
 	return ApiGetContractRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1300,7 +1300,7 @@ func (a *ContractsApiService) GetContract(ctx context.Context, contract string) 
 // Execute executes the request
 //
 //	@return GetContract200Response
-func (a *ContractsApiService) GetContractExecute(r ApiGetContractRequest) (*GetContract200Response, *http.Response, error) {
+func (a *ContractsAPIService) GetContractExecute(r ApiGetContractRequest) (*GetContract200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1308,7 +1308,7 @@ func (a *ContractsApiService) GetContractExecute(r ApiGetContractRequest) (*GetC
 		localVarReturnValue *GetContract200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.GetContract")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetContract")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1397,7 +1397,7 @@ func (a *ContractsApiService) GetContractExecute(r ApiGetContractRequest) (*GetC
 
 type ApiGetContractVersionRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 	contract   string
 	version    string
 }
@@ -1416,7 +1416,7 @@ Returns a specific contract version.
 	@param version Contract Version.
 	@return ApiGetContractVersionRequest
 */
-func (a *ContractsApiService) GetContractVersion(ctx context.Context, contract string, version string) ApiGetContractVersionRequest {
+func (a *ContractsAPIService) GetContractVersion(ctx context.Context, contract string, version string) ApiGetContractVersionRequest {
 	return ApiGetContractVersionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1428,7 +1428,7 @@ func (a *ContractsApiService) GetContractVersion(ctx context.Context, contract s
 // Execute executes the request
 //
 //	@return GetContract200Response
-func (a *ContractsApiService) GetContractVersionExecute(r ApiGetContractVersionRequest) (*GetContract200Response, *http.Response, error) {
+func (a *ContractsAPIService) GetContractVersionExecute(r ApiGetContractVersionRequest) (*GetContract200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1436,7 +1436,7 @@ func (a *ContractsApiService) GetContractVersionExecute(r ApiGetContractVersionR
 		localVarReturnValue *GetContract200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.GetContractVersion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetContractVersion")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1529,7 +1529,7 @@ func (a *ContractsApiService) GetContractVersionExecute(r ApiGetContractVersionR
 
 type ApiGetContractVersionsRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 	contract   string
 }
 
@@ -1546,7 +1546,7 @@ Returns all the versions of a contract.
 	@param contract
 	@return ApiGetContractVersionsRequest
 */
-func (a *ContractsApiService) GetContractVersions(ctx context.Context, contract string) ApiGetContractVersionsRequest {
+func (a *ContractsAPIService) GetContractVersions(ctx context.Context, contract string) ApiGetContractVersionsRequest {
 	return ApiGetContractVersionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1557,7 +1557,7 @@ func (a *ContractsApiService) GetContractVersions(ctx context.Context, contract 
 // Execute executes the request
 //
 //	@return GetContractVersions200Response
-func (a *ContractsApiService) GetContractVersionsExecute(r ApiGetContractVersionsRequest) (*GetContractVersions200Response, *http.Response, error) {
+func (a *ContractsAPIService) GetContractVersionsExecute(r ApiGetContractVersionsRequest) (*GetContractVersions200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1565,7 +1565,7 @@ func (a *ContractsApiService) GetContractVersionsExecute(r ApiGetContractVersion
 		localVarReturnValue *GetContractVersions200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.GetContractVersions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetContractVersions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1654,7 +1654,7 @@ func (a *ContractsApiService) GetContractVersionsExecute(r ApiGetContractVersion
 
 type ApiGetEventMonitorStatusRequest struct {
 	ctx            context.Context
-	ApiService     ContractsApi
+	ApiService     ContractsAPI
 	chain          ChainName
 	addressOrLabel string
 	contract       string
@@ -1675,7 +1675,7 @@ Returns the event monitor status for a given address and contract.
 	@param contract
 	@return ApiGetEventMonitorStatusRequest
 */
-func (a *ContractsApiService) GetEventMonitorStatus(ctx context.Context, chain ChainName, addressOrLabel string, contract string) ApiGetEventMonitorStatusRequest {
+func (a *ContractsAPIService) GetEventMonitorStatus(ctx context.Context, chain ChainName, addressOrLabel string, contract string) ApiGetEventMonitorStatusRequest {
 	return ApiGetEventMonitorStatusRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -1688,7 +1688,7 @@ func (a *ContractsApiService) GetEventMonitorStatus(ctx context.Context, chain C
 // Execute executes the request
 //
 //	@return GetEventMonitorStatus200Response
-func (a *ContractsApiService) GetEventMonitorStatusExecute(r ApiGetEventMonitorStatusRequest) (*GetEventMonitorStatus200Response, *http.Response, error) {
+func (a *ContractsAPIService) GetEventMonitorStatusExecute(r ApiGetEventMonitorStatusRequest) (*GetEventMonitorStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1696,7 +1696,7 @@ func (a *ContractsApiService) GetEventMonitorStatusExecute(r ApiGetEventMonitorS
 		localVarReturnValue *GetEventMonitorStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.GetEventMonitorStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetEventMonitorStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1790,7 +1790,7 @@ func (a *ContractsApiService) GetEventMonitorStatusExecute(r ApiGetEventMonitorS
 
 type ApiGetEventTypeConversionsRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 	contract   string
 	version    string
 	event      string
@@ -1811,7 +1811,7 @@ Returns the type conversion options for a given contract and event signature.
 	@param event Contract Event.
 	@return ApiGetEventTypeConversionsRequest
 */
-func (a *ContractsApiService) GetEventTypeConversions(ctx context.Context, contract string, version string, event string) ApiGetEventTypeConversionsRequest {
+func (a *ContractsAPIService) GetEventTypeConversions(ctx context.Context, contract string, version string, event string) ApiGetEventTypeConversionsRequest {
 	return ApiGetEventTypeConversionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1824,7 +1824,7 @@ func (a *ContractsApiService) GetEventTypeConversions(ctx context.Context, contr
 // Execute executes the request
 //
 //	@return GetEventTypeConversions200Response
-func (a *ContractsApiService) GetEventTypeConversionsExecute(r ApiGetEventTypeConversionsRequest) (*GetEventTypeConversions200Response, *http.Response, error) {
+func (a *ContractsAPIService) GetEventTypeConversionsExecute(r ApiGetEventTypeConversionsRequest) (*GetEventTypeConversions200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1832,7 +1832,7 @@ func (a *ContractsApiService) GetEventTypeConversionsExecute(r ApiGetEventTypeCo
 		localVarReturnValue *GetEventTypeConversions200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.GetEventTypeConversions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetEventTypeConversions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1929,7 +1929,7 @@ func (a *ContractsApiService) GetEventTypeConversionsExecute(r ApiGetEventTypeCo
 
 type ApiGetFunctionTypeConversionsRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 	contract   string
 	version    string
 	method     string
@@ -1950,7 +1950,7 @@ Returns the type conversion options for a given contract and function signature.
 	@param method Contract function.
 	@return ApiGetFunctionTypeConversionsRequest
 */
-func (a *ContractsApiService) GetFunctionTypeConversions(ctx context.Context, contract string, version string, method string) ApiGetFunctionTypeConversionsRequest {
+func (a *ContractsAPIService) GetFunctionTypeConversions(ctx context.Context, contract string, version string, method string) ApiGetFunctionTypeConversionsRequest {
 	return ApiGetFunctionTypeConversionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1963,7 +1963,7 @@ func (a *ContractsApiService) GetFunctionTypeConversions(ctx context.Context, co
 // Execute executes the request
 //
 //	@return GetFunctionTypeConversions200Response
-func (a *ContractsApiService) GetFunctionTypeConversionsExecute(r ApiGetFunctionTypeConversionsRequest) (*GetFunctionTypeConversions200Response, *http.Response, error) {
+func (a *ContractsAPIService) GetFunctionTypeConversionsExecute(r ApiGetFunctionTypeConversionsRequest) (*GetFunctionTypeConversions200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1971,7 +1971,7 @@ func (a *ContractsApiService) GetFunctionTypeConversionsExecute(r ApiGetFunction
 		localVarReturnValue *GetFunctionTypeConversions200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.GetFunctionTypeConversions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetFunctionTypeConversions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2068,7 +2068,7 @@ func (a *ContractsApiService) GetFunctionTypeConversionsExecute(r ApiGetFunction
 
 type ApiLinkAddressContractRequest struct {
 	ctx                        context.Context
-	ApiService                 ContractsApi
+	ApiService                 ContractsAPI
 	chain                      ChainName
 	addressOrLabel             string
 	linkAddressContractRequest *LinkAddressContractRequest
@@ -2093,7 +2093,7 @@ Links an address to a contract.
 	@param addressOrLabel An address or the label of an address.
 	@return ApiLinkAddressContractRequest
 */
-func (a *ContractsApiService) LinkAddressContract(ctx context.Context, chain ChainName, addressOrLabel string) ApiLinkAddressContractRequest {
+func (a *ContractsAPIService) LinkAddressContract(ctx context.Context, chain ChainName, addressOrLabel string) ApiLinkAddressContractRequest {
 	return ApiLinkAddressContractRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -2105,7 +2105,7 @@ func (a *ContractsApiService) LinkAddressContract(ctx context.Context, chain Cha
 // Execute executes the request
 //
 //	@return SetAddress201Response
-func (a *ContractsApiService) LinkAddressContractExecute(r ApiLinkAddressContractRequest) (*SetAddress201Response, *http.Response, error) {
+func (a *ContractsAPIService) LinkAddressContractExecute(r ApiLinkAddressContractRequest) (*SetAddress201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -2113,7 +2113,7 @@ func (a *ContractsApiService) LinkAddressContractExecute(r ApiLinkAddressContrac
 		localVarReturnValue *SetAddress201Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.LinkAddressContract")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.LinkAddressContract")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2208,7 +2208,7 @@ func (a *ContractsApiService) LinkAddressContractExecute(r ApiLinkAddressContrac
 
 type ApiListContractVersionsRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 	contract   string
 }
 
@@ -2225,7 +2225,7 @@ Returns a list of the versions of a contract.
 	@param contract
 	@return ApiListContractVersionsRequest
 */
-func (a *ContractsApiService) ListContractVersions(ctx context.Context, contract string) ApiListContractVersionsRequest {
+func (a *ContractsAPIService) ListContractVersions(ctx context.Context, contract string) ApiListContractVersionsRequest {
 	return ApiListContractVersionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2236,7 +2236,7 @@ func (a *ContractsApiService) ListContractVersions(ctx context.Context, contract
 // Execute executes the request
 //
 //	@return ListContractVersions200Response
-func (a *ContractsApiService) ListContractVersionsExecute(r ApiListContractVersionsRequest) (*ListContractVersions200Response, *http.Response, error) {
+func (a *ContractsAPIService) ListContractVersionsExecute(r ApiListContractVersionsRequest) (*ListContractVersions200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -2244,7 +2244,7 @@ func (a *ContractsApiService) ListContractVersionsExecute(r ApiListContractVersi
 		localVarReturnValue *ListContractVersions200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.ListContractVersions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.ListContractVersions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2333,7 +2333,7 @@ func (a *ContractsApiService) ListContractVersionsExecute(r ApiListContractVersi
 
 type ApiListContractsRequest struct {
 	ctx        context.Context
-	ApiService ContractsApi
+	ApiService ContractsAPI
 }
 
 func (r ApiListContractsRequest) Execute() (*ListContracts200Response, *http.Response, error) {
@@ -2348,7 +2348,7 @@ Returns a list of contracts.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListContractsRequest
 */
-func (a *ContractsApiService) ListContracts(ctx context.Context) ApiListContractsRequest {
+func (a *ContractsAPIService) ListContracts(ctx context.Context) ApiListContractsRequest {
 	return ApiListContractsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2358,7 +2358,7 @@ func (a *ContractsApiService) ListContracts(ctx context.Context) ApiListContract
 // Execute executes the request
 //
 //	@return ListContracts200Response
-func (a *ContractsApiService) ListContractsExecute(r ApiListContractsRequest) (*ListContracts200Response, *http.Response, error) {
+func (a *ContractsAPIService) ListContractsExecute(r ApiListContractsRequest) (*ListContracts200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -2366,7 +2366,7 @@ func (a *ContractsApiService) ListContractsExecute(r ApiListContractsRequest) (*
 		localVarReturnValue *ListContracts200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.ListContracts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.ListContracts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2454,7 +2454,7 @@ func (a *ContractsApiService) ListContractsExecute(r ApiListContractsRequest) (*
 
 type ApiSetEventTypeConversionsRequest struct {
 	ctx                  context.Context
-	ApiService           ContractsApi
+	ApiService           ContractsAPI
 	contract             string
 	version              string
 	event                string
@@ -2481,7 +2481,7 @@ Sets the type conversion options for a given contract and event signature.
 	@param event Contract Event.
 	@return ApiSetEventTypeConversionsRequest
 */
-func (a *ContractsApiService) SetEventTypeConversions(ctx context.Context, contract string, version string, event string) ApiSetEventTypeConversionsRequest {
+func (a *ContractsAPIService) SetEventTypeConversions(ctx context.Context, contract string, version string, event string) ApiSetEventTypeConversionsRequest {
 	return ApiSetEventTypeConversionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2494,7 +2494,7 @@ func (a *ContractsApiService) SetEventTypeConversions(ctx context.Context, contr
 // Execute executes the request
 //
 //	@return BaseResponse
-func (a *ContractsApiService) SetEventTypeConversionsExecute(r ApiSetEventTypeConversionsRequest) (*BaseResponse, *http.Response, error) {
+func (a *ContractsAPIService) SetEventTypeConversionsExecute(r ApiSetEventTypeConversionsRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -2502,7 +2502,7 @@ func (a *ContractsApiService) SetEventTypeConversionsExecute(r ApiSetEventTypeCo
 		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.SetEventTypeConversions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.SetEventTypeConversions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2601,7 +2601,7 @@ func (a *ContractsApiService) SetEventTypeConversionsExecute(r ApiSetEventTypeCo
 
 type ApiSetFunctionTypeConversionsRequest struct {
 	ctx                   context.Context
-	ApiService            ContractsApi
+	ApiService            ContractsAPI
 	contract              string
 	version               string
 	method                string
@@ -2628,7 +2628,7 @@ Sets the type conversion options for a given contract and function signature.
 	@param method Contract function.
 	@return ApiSetFunctionTypeConversionsRequest
 */
-func (a *ContractsApiService) SetFunctionTypeConversions(ctx context.Context, contract string, version string, method string) ApiSetFunctionTypeConversionsRequest {
+func (a *ContractsAPIService) SetFunctionTypeConversions(ctx context.Context, contract string, version string, method string) ApiSetFunctionTypeConversionsRequest {
 	return ApiSetFunctionTypeConversionsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2641,7 +2641,7 @@ func (a *ContractsApiService) SetFunctionTypeConversions(ctx context.Context, co
 // Execute executes the request
 //
 //	@return BaseResponse
-func (a *ContractsApiService) SetFunctionTypeConversionsExecute(r ApiSetFunctionTypeConversionsRequest) (*BaseResponse, *http.Response, error) {
+func (a *ContractsAPIService) SetFunctionTypeConversionsExecute(r ApiSetFunctionTypeConversionsRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -2649,7 +2649,7 @@ func (a *ContractsApiService) SetFunctionTypeConversionsExecute(r ApiSetFunction
 		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.SetFunctionTypeConversions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.SetFunctionTypeConversions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2748,7 +2748,7 @@ func (a *ContractsApiService) SetFunctionTypeConversionsExecute(r ApiSetFunction
 
 type ApiUnlinkAddressContractRequest struct {
 	ctx            context.Context
-	ApiService     ContractsApi
+	ApiService     ContractsAPI
 	chain          ChainName
 	addressOrLabel string
 	contract       string
@@ -2769,7 +2769,7 @@ Unlinks an address from a contract.
 	@param contract
 	@return ApiUnlinkAddressContractRequest
 */
-func (a *ContractsApiService) UnlinkAddressContract(ctx context.Context, chain ChainName, addressOrLabel string, contract string) ApiUnlinkAddressContractRequest {
+func (a *ContractsAPIService) UnlinkAddressContract(ctx context.Context, chain ChainName, addressOrLabel string, contract string) ApiUnlinkAddressContractRequest {
 	return ApiUnlinkAddressContractRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -2782,7 +2782,7 @@ func (a *ContractsApiService) UnlinkAddressContract(ctx context.Context, chain C
 // Execute executes the request
 //
 //	@return SetAddress201Response
-func (a *ContractsApiService) UnlinkAddressContractExecute(r ApiUnlinkAddressContractRequest) (*SetAddress201Response, *http.Response, error) {
+func (a *ContractsAPIService) UnlinkAddressContractExecute(r ApiUnlinkAddressContractRequest) (*SetAddress201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -2790,7 +2790,7 @@ func (a *ContractsApiService) UnlinkAddressContractExecute(r ApiUnlinkAddressCon
 		localVarReturnValue *SetAddress201Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsApiService.UnlinkAddressContract")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.UnlinkAddressContract")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

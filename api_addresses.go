@@ -20,7 +20,7 @@ import (
 	"strings"
 )
 
-type AddressesApi interface {
+type AddressesAPI interface {
 
 	/*
 		DeleteAddress Delete address
@@ -35,8 +35,8 @@ type AddressesApi interface {
 	DeleteAddress(ctx context.Context, chain ChainName, addressOrLabel string) ApiDeleteAddressRequest
 
 	// DeleteAddressExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	DeleteAddressExecute(r ApiDeleteAddressRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
+	//  @return BaseResponse
+	DeleteAddressExecute(r ApiDeleteAddressRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		GetAddress Get address
@@ -85,17 +85,17 @@ type AddressesApi interface {
 	SetAddressExecute(r ApiSetAddressRequest) (*SetAddress201Response, *http.Response, error)
 }
 
-// AddressesApiService AddressesApi service
-type AddressesApiService service
+// AddressesAPIService AddressesAPI service
+type AddressesAPIService service
 
 type ApiDeleteAddressRequest struct {
 	ctx            context.Context
-	ApiService     AddressesApi
+	ApiService     AddressesAPI
 	chain          ChainName
 	addressOrLabel string
 }
 
-func (r ApiDeleteAddressRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
+func (r ApiDeleteAddressRequest) Execute() (*BaseResponse, *http.Response, error) {
 	return r.ApiService.DeleteAddressExecute(r)
 }
 
@@ -109,7 +109,7 @@ Deletes an address label.
 	@param addressOrLabel An address or the label of an address.
 	@return ApiDeleteAddressRequest
 */
-func (a *AddressesApiService) DeleteAddress(ctx context.Context, chain ChainName, addressOrLabel string) ApiDeleteAddressRequest {
+func (a *AddressesAPIService) DeleteAddress(ctx context.Context, chain ChainName, addressOrLabel string) ApiDeleteAddressRequest {
 	return ApiDeleteAddressRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -120,16 +120,16 @@ func (a *AddressesApiService) DeleteAddress(ctx context.Context, chain ChainName
 
 // Execute executes the request
 //
-//	@return SubmitSignedTransaction200Response
-func (a *AddressesApiService) DeleteAddressExecute(r ApiDeleteAddressRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
+//	@return BaseResponse
+func (a *AddressesAPIService) DeleteAddressExecute(r ApiDeleteAddressRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
+		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesApiService.DeleteAddress")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.DeleteAddress")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -222,7 +222,7 @@ func (a *AddressesApiService) DeleteAddressExecute(r ApiDeleteAddressRequest) (*
 
 type ApiGetAddressRequest struct {
 	ctx            context.Context
-	ApiService     AddressesApi
+	ApiService     AddressesAPI
 	chain          ChainName
 	addressOrLabel string
 	include        *[]string
@@ -248,7 +248,7 @@ Returns details about an address.
 	@param addressOrLabel An address or the label of an address.
 	@return ApiGetAddressRequest
 */
-func (a *AddressesApiService) GetAddress(ctx context.Context, chain ChainName, addressOrLabel string) ApiGetAddressRequest {
+func (a *AddressesAPIService) GetAddress(ctx context.Context, chain ChainName, addressOrLabel string) ApiGetAddressRequest {
 	return ApiGetAddressRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -260,7 +260,7 @@ func (a *AddressesApiService) GetAddress(ctx context.Context, chain ChainName, a
 // Execute executes the request
 //
 //	@return SetAddress201Response
-func (a *AddressesApiService) GetAddressExecute(r ApiGetAddressRequest) (*SetAddress201Response, *http.Response, error) {
+func (a *AddressesAPIService) GetAddressExecute(r ApiGetAddressRequest) (*SetAddress201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -268,7 +268,7 @@ func (a *AddressesApiService) GetAddressExecute(r ApiGetAddressRequest) (*SetAdd
 		localVarReturnValue *SetAddress201Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesApiService.GetAddress")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.GetAddress")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -289,7 +289,7 @@ func (a *AddressesApiService) GetAddressExecute(r ApiGetAddressRequest) (*SetAdd
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "include", s.Index(i), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include", s.Index(i).Interface(), "multi")
 			}
 		} else {
 			parameterAddToHeaderOrQuery(localVarQueryParams, "include", t, "multi")
@@ -372,7 +372,7 @@ func (a *AddressesApiService) GetAddressExecute(r ApiGetAddressRequest) (*SetAdd
 
 type ApiListAddressesRequest struct {
 	ctx        context.Context
-	ApiService AddressesApi
+	ApiService AddressesAPI
 	chain      ChainName
 }
 
@@ -389,7 +389,7 @@ Returns all the labeled addresses.
 	@param chain The blockchain chain label.
 	@return ApiListAddressesRequest
 */
-func (a *AddressesApiService) ListAddresses(ctx context.Context, chain ChainName) ApiListAddressesRequest {
+func (a *AddressesAPIService) ListAddresses(ctx context.Context, chain ChainName) ApiListAddressesRequest {
 	return ApiListAddressesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -400,7 +400,7 @@ func (a *AddressesApiService) ListAddresses(ctx context.Context, chain ChainName
 // Execute executes the request
 //
 //	@return ListAddresses200Response
-func (a *AddressesApiService) ListAddressesExecute(r ApiListAddressesRequest) (*ListAddresses200Response, *http.Response, error) {
+func (a *AddressesAPIService) ListAddressesExecute(r ApiListAddressesRequest) (*ListAddresses200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -408,7 +408,7 @@ func (a *AddressesApiService) ListAddressesExecute(r ApiListAddressesRequest) (*
 		localVarReturnValue *ListAddresses200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesApiService.ListAddresses")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.ListAddresses")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -497,7 +497,7 @@ func (a *AddressesApiService) ListAddressesExecute(r ApiListAddressesRequest) (*
 
 type ApiSetAddressRequest struct {
 	ctx          context.Context
-	ApiService   AddressesApi
+	ApiService   AddressesAPI
 	chain        ChainName
 	addressLabel *AddressLabel
 }
@@ -520,7 +520,7 @@ Associates an address with a label.
 	@param chain The blockchain chain label.
 	@return ApiSetAddressRequest
 */
-func (a *AddressesApiService) SetAddress(ctx context.Context, chain ChainName) ApiSetAddressRequest {
+func (a *AddressesAPIService) SetAddress(ctx context.Context, chain ChainName) ApiSetAddressRequest {
 	return ApiSetAddressRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -531,7 +531,7 @@ func (a *AddressesApiService) SetAddress(ctx context.Context, chain ChainName) A
 // Execute executes the request
 //
 //	@return SetAddress201Response
-func (a *AddressesApiService) SetAddressExecute(r ApiSetAddressRequest) (*SetAddress201Response, *http.Response, error) {
+func (a *AddressesAPIService) SetAddressExecute(r ApiSetAddressRequest) (*SetAddress201Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -539,7 +539,7 @@ func (a *AddressesApiService) SetAddressExecute(r ApiSetAddressRequest) (*SetAdd
 		localVarReturnValue *SetAddress201Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesApiService.SetAddress")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesAPIService.SetAddress")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

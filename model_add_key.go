@@ -21,8 +21,9 @@ var _ MappedNullable = &AddKey{}
 type AddKey struct {
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
-	KeyName  string `json:"keyName"`
-	// The current version of your key.
+	// The name of the key.
+	KeyName string `json:"keyName"`
+	// The version of the key.
 	KeyVersion string `json:"keyVersion"`
 	// The name given to the vault your key is stored in.
 	VaultName string `json:"vaultName"`

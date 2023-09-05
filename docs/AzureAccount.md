@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
-**ClientID** | **string** | The Application ID accesses the Key Vault. | 
+**Label** | **string** | A label. | 
+**ClientID** | **string** | The Application ID that will be accessing the Key Vault. | 
 **ClientSecret** | **string** | The application’s secret key that you generate when you first register the application in Azure. | 
 **TenantID** | **string** | Also known as Directory ID. | 
 **SubscriptionID** | **string** | The ID linked to your subscription to Azure services. | 
 **BaseGroupName** | **string** | The Resource Group Name for the resource being accessed. | 
-**DeletedAt** | Pointer to **NullableString** |  | [optional] 
+**Id** | **int64** |  | 
 
 ## Methods
 
 ### NewAzureAccount
 
-`func NewAzureAccount(id int64, clientID string, clientSecret string, tenantID string, subscriptionID string, baseGroupName string, ) *AzureAccount`
+`func NewAzureAccount(label string, clientID string, clientSecret string, tenantID string, subscriptionID string, baseGroupName string, id int64, ) *AzureAccount`
 
 NewAzureAccount instantiates a new AzureAccount object
 This constructor will assign default values to properties that have it defined,
@@ -31,24 +31,24 @@ NewAzureAccountWithDefaults instantiates a new AzureAccount object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetId
+### GetLabel
 
-`func (o *AzureAccount) GetId() int64`
+`func (o *AzureAccount) GetLabel() string`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetLabel returns the Label field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetLabelOk
 
-`func (o *AzureAccount) GetIdOk() (*int64, bool)`
+`func (o *AzureAccount) GetLabelOk() (*string, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetLabel
 
-`func (o *AzureAccount) SetId(v int64)`
+`func (o *AzureAccount) SetLabel(v string)`
 
-SetId sets Id field to given value.
+SetLabel sets Label field to given value.
 
 
 ### GetClientID
@@ -151,41 +151,26 @@ and a boolean to check if the value has been set.
 SetBaseGroupName sets BaseGroupName field to given value.
 
 
-### GetDeletedAt
+### GetId
 
-`func (o *AzureAccount) GetDeletedAt() string`
+`func (o *AzureAccount) GetId() int64`
 
-GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetDeletedAtOk
+### GetIdOk
 
-`func (o *AzureAccount) GetDeletedAtOk() (*string, bool)`
+`func (o *AzureAccount) GetIdOk() (*int64, bool)`
 
-GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeletedAt
+### SetId
 
-`func (o *AzureAccount) SetDeletedAt(v string)`
+`func (o *AzureAccount) SetId(v int64)`
 
-SetDeletedAt sets DeletedAt field to given value.
+SetId sets Id field to given value.
 
-### HasDeletedAt
 
-`func (o *AzureAccount) HasDeletedAt() bool`
-
-HasDeletedAt returns a boolean if a field has been set.
-
-### SetDeletedAtNil
-
-`func (o *AzureAccount) SetDeletedAtNil(b bool)`
-
- SetDeletedAtNil sets the value for DeletedAt to be an explicit nil
-
-### UnsetDeletedAt
-`func (o *AzureAccount) UnsetDeletedAt()`
-
-UnsetDeletedAt ensures that no value is present for DeletedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

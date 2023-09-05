@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **ClientID** | Pointer to **string** | The Application ID that accesses the Key Vault. | [optional] 
 **BaseGroupName** | **string** | The Resource Group Name for the resource being accessed. | 
 **VaultName** | Pointer to **string** | The name given to the vault your key is stored in. | [optional] 
-**KeyName** | **string** |  | 
-**KeyVersion** | Pointer to **string** | The current version of your key. | [optional] 
+**KeyName** | **string** | The name of the key. | 
+**KeyVersion** | Pointer to **string** | The version of the key. | [optional] 
 **PublicAddress** | **string** | An ethereum address. | 
 
 ## Methods

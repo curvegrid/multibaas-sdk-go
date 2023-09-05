@@ -23,8 +23,9 @@ type AzureHardwareWallet struct {
 	AzureAccountID int64 `json:"azureAccountID"`
 	// The name given to the vault your key is stored in.
 	VaultName string `json:"vaultName"`
-	KeyName   string `json:"keyName"`
-	// The current version of your key.
+	// The name of the key.
+	KeyName string `json:"keyName"`
+	// The version of the key.
 	KeyVersion string `json:"keyVersion"`
 	// An ethereum address.
 	PublicAddress string `json:"publicAddress"`

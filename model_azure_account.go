@@ -17,10 +17,11 @@ import (
 // checks if the AzureAccount type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AzureAccount{}
 
-// AzureAccount An object representing an HSM account.
+// AzureAccount An Azure account.
 type AzureAccount struct {
-	Id int64 `json:"id"`
-	// The Application ID accesses the Key Vault.
+	// A label.
+	Label string `json:"label"`
+	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The application’s secret key that you generate when you first register the application in Azure.
 	ClientSecret string `json:"clientSecret"`
@@ -29,22 +30,23 @@ type AzureAccount struct {
 	// The ID linked to your subscription to Azure services.
 	SubscriptionID string `json:"subscriptionID"`
 	// The Resource Group Name for the resource being accessed.
-	BaseGroupName string         `json:"baseGroupName"`
-	DeletedAt     NullableString `json:"deletedAt,omitempty"`
+	BaseGroupName string `json:"baseGroupName"`
+	Id            int64  `json:"id"`
 }
 
 // NewAzureAccount instantiates a new AzureAccount object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzureAccount(id int64, clientID string, clientSecret string, tenantID string, subscriptionID string, baseGroupName string) *AzureAccount {
+func NewAzureAccount(label string, clientID string, clientSecret string, tenantID string, subscriptionID string, baseGroupName string, id int64) *AzureAccount {
 	this := AzureAccount{}
-	this.Id = id
+	this.Label = label
 	this.ClientID = clientID
 	this.ClientSecret = clientSecret
 	this.TenantID = tenantID
 	this.SubscriptionID = subscriptionID
 	this.BaseGroupName = baseGroupName
+	this.Id = id
 	return &this
 }
 
@@ -56,28 +58,28 @@ func NewAzureAccountWithDefaults() *AzureAccount {
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *AzureAccount) GetId() int64 {
+// GetLabel returns the Label field value
+func (o *AzureAccount) GetLabel() string {
 	if o == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 
-	return o.Id
+	return o.Label
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *AzureAccount) GetIdOk() (*int64, bool) {
+func (o *AzureAccount) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return &o.Label, true
 }
 
-// SetId sets field value
-func (o *AzureAccount) SetId(v int64) {
-	o.Id = v
+// SetLabel sets field value
+func (o *AzureAccount) SetLabel(v string) {
+	o.Label = v
 }
 
 // GetClientID returns the ClientID field value
@@ -200,47 +202,28 @@ func (o *AzureAccount) SetBaseGroupName(v string) {
 	o.BaseGroupName = v
 }
 
-// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureAccount) GetDeletedAt() string {
-	if o == nil || IsNil(o.DeletedAt.Get()) {
-		var ret string
+// GetId returns the Id field value
+func (o *AzureAccount) GetId() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
-	return *o.DeletedAt.Get()
+
+	return o.Id
 }
 
-// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureAccount) GetDeletedAtOk() (*string, bool) {
+func (o *AzureAccount) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DeletedAt.Get(), o.DeletedAt.IsSet()
+	return &o.Id, true
 }
 
-// HasDeletedAt returns a boolean if a field has been set.
-func (o *AzureAccount) HasDeletedAt() bool {
-	if o != nil && o.DeletedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDeletedAt gets a reference to the given NullableString and assigns it to the DeletedAt field.
-func (o *AzureAccount) SetDeletedAt(v string) {
-	o.DeletedAt.Set(&v)
-}
-
-// SetDeletedAtNil sets the value for DeletedAt to be an explicit nil
-func (o *AzureAccount) SetDeletedAtNil() {
-	o.DeletedAt.Set(nil)
-}
-
-// UnsetDeletedAt ensures that no value is present for DeletedAt, not even an explicit nil
-func (o *AzureAccount) UnsetDeletedAt() {
-	o.DeletedAt.Unset()
+// SetId sets field value
+func (o *AzureAccount) SetId(v int64) {
+	o.Id = v
 }
 
 func (o AzureAccount) MarshalJSON() ([]byte, error) {
@@ -253,15 +236,13 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 
 func (o AzureAccount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	toSerialize["label"] = o.Label
 	toSerialize["clientID"] = o.ClientID
 	toSerialize["clientSecret"] = o.ClientSecret
 	toSerialize["tenantID"] = o.TenantID
 	toSerialize["subscriptionID"] = o.SubscriptionID
 	toSerialize["baseGroupName"] = o.BaseGroupName
-	if o.DeletedAt.IsSet() {
-		toSerialize["deletedAt"] = o.DeletedAt.Get()
-	}
+	toSerialize["id"] = o.Id
 	return toSerialize, nil
 }
 

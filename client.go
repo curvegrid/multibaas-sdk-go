@@ -48,19 +48,21 @@ type APIClient struct {
 
 	// API Services
 
-	AddressesApi AddressesApi
+	AddressesAPI AddressesAPI
 
-	ChainsApi ChainsApi
+	AdminAPI AdminAPI
 
-	ContractsApi ContractsApi
+	ChainsAPI ChainsAPI
 
-	EventQueriesApi EventQueriesApi
+	ContractsAPI ContractsAPI
 
-	EventsApi EventsApi
+	EventQueriesAPI EventQueriesAPI
 
-	HsmApi HsmApi
+	EventsAPI EventsAPI
 
-	TxmApi TxmApi
+	HsmAPI HsmAPI
+
+	TxmAPI TxmAPI
 }
 
 type service struct {
@@ -79,13 +81,14 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AddressesApi = (*AddressesApiService)(&c.common)
-	c.ChainsApi = (*ChainsApiService)(&c.common)
-	c.ContractsApi = (*ContractsApiService)(&c.common)
-	c.EventQueriesApi = (*EventQueriesApiService)(&c.common)
-	c.EventsApi = (*EventsApiService)(&c.common)
-	c.HsmApi = (*HsmApiService)(&c.common)
-	c.TxmApi = (*TxmApiService)(&c.common)
+	c.AddressesAPI = (*AddressesAPIService)(&c.common)
+	c.AdminAPI = (*AdminAPIService)(&c.common)
+	c.ChainsAPI = (*ChainsAPIService)(&c.common)
+	c.ContractsAPI = (*ContractsAPIService)(&c.common)
+	c.EventQueriesAPI = (*EventQueriesAPIService)(&c.common)
+	c.EventsAPI = (*EventsAPIService)(&c.common)
+	c.HsmAPI = (*HsmAPIService)(&c.common)
+	c.TxmAPI = (*TxmAPIService)(&c.common)
 
 	return c
 }
@@ -458,6 +461,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = f.Seek(0, io.SeekStart)
+		err = os.Remove(f.Name())
 		return
 	}
 	if f, ok := v.(**os.File); ok {
@@ -470,6 +474,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = (*f).Seek(0, io.SeekStart)
+		err = os.Remove((*f).Name())
 		return
 	}
 	if xmlCheck.MatchString(contentType) {
@@ -546,7 +551,11 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	} else if jsonCheck.MatchString(contentType) {
 		err = json.NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
-		err = xml.NewEncoder(bodyBuf).Encode(body)
+		var bs []byte
+		bs, err = xml.Marshal(body)
+		if err == nil {
+			bodyBuf.Write(bs)
+		}
 	}
 
 	if err != nil {
@@ -662,16 +671,17 @@ func formatErrorMessage(status string, v interface{}) string {
 	str := ""
 	metaValue := reflect.ValueOf(v).Elem()
 
-	field := metaValue.FieldByName("Title")
-	if field != (reflect.Value{}) {
-		str = fmt.Sprintf("%s", field.Interface())
+	if metaValue.Kind() == reflect.Struct {
+		field := metaValue.FieldByName("Title")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s", field.Interface())
+		}
+
+		field = metaValue.FieldByName("Detail")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s (%s)", str, field.Interface())
+		}
 	}
 
-	field = metaValue.FieldByName("Detail")
-	if field != (reflect.Value{}) {
-		str = fmt.Sprintf("%s (%s)", str, field.Interface())
-	}
-
-	// status title (detail)
 	return strings.TrimSpace(fmt.Sprintf("%s %s", status, str))
 }

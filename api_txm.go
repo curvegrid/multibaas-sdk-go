@@ -19,7 +19,7 @@ import (
 	"strings"
 )
 
-type TxmApi interface {
+type TxmAPI interface {
 
 	/*
 		CancelTransaction Cancel transaction
@@ -88,12 +88,12 @@ type TxmApi interface {
 	SpeedUpTransactionExecute(r ApiSpeedUpTransactionRequest) (*TransferEth200Response, *http.Response, error)
 }
 
-// TxmApiService TxmApi service
-type TxmApiService service
+// TxmAPIService TxmAPI service
+type TxmAPIService service
 
 type ApiCancelTransactionRequest struct {
 	ctx           context.Context
-	ApiService    TxmApi
+	ApiService    TxmAPI
 	chain         ChainName
 	walletAddress string
 	nonce         int64
@@ -120,7 +120,7 @@ Cancels a transaction by resubmitting it as no-op transaction and with a higher 
 	@param nonce Transaction nonce.
 	@return ApiCancelTransactionRequest
 */
-func (a *TxmApiService) CancelTransaction(ctx context.Context, chain ChainName, walletAddress string, nonce int64) ApiCancelTransactionRequest {
+func (a *TxmAPIService) CancelTransaction(ctx context.Context, chain ChainName, walletAddress string, nonce int64) ApiCancelTransactionRequest {
 	return ApiCancelTransactionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -133,7 +133,7 @@ func (a *TxmApiService) CancelTransaction(ctx context.Context, chain ChainName, 
 // Execute executes the request
 //
 //	@return TransferEth200Response
-func (a *TxmApiService) CancelTransactionExecute(r ApiCancelTransactionRequest) (*TransferEth200Response, *http.Response, error) {
+func (a *TxmAPIService) CancelTransactionExecute(r ApiCancelTransactionRequest) (*TransferEth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -141,7 +141,7 @@ func (a *TxmApiService) CancelTransactionExecute(r ApiCancelTransactionRequest) 
 		localVarReturnValue *TransferEth200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TxmApiService.CancelTransaction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TxmAPIService.CancelTransaction")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -234,7 +234,7 @@ func (a *TxmApiService) CancelTransactionExecute(r ApiCancelTransactionRequest) 
 
 type ApiCountWalletTransactionsRequest struct {
 	ctx           context.Context
-	ApiService    TxmApi
+	ApiService    TxmAPI
 	chain         ChainName
 	walletAddress string
 }
@@ -253,7 +253,7 @@ Count all transactions for the given wallet address.
 	@param walletAddress An HSM ethereum address.
 	@return ApiCountWalletTransactionsRequest
 */
-func (a *TxmApiService) CountWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiCountWalletTransactionsRequest {
+func (a *TxmAPIService) CountWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiCountWalletTransactionsRequest {
 	return ApiCountWalletTransactionsRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -265,7 +265,7 @@ func (a *TxmApiService) CountWalletTransactions(ctx context.Context, chain Chain
 // Execute executes the request
 //
 //	@return CountWalletTransactions200Response
-func (a *TxmApiService) CountWalletTransactionsExecute(r ApiCountWalletTransactionsRequest) (*CountWalletTransactions200Response, *http.Response, error) {
+func (a *TxmAPIService) CountWalletTransactionsExecute(r ApiCountWalletTransactionsRequest) (*CountWalletTransactions200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -273,7 +273,7 @@ func (a *TxmApiService) CountWalletTransactionsExecute(r ApiCountWalletTransacti
 		localVarReturnValue *CountWalletTransactions200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TxmApiService.CountWalletTransactions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TxmAPIService.CountWalletTransactions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -363,7 +363,7 @@ func (a *TxmApiService) CountWalletTransactionsExecute(r ApiCountWalletTransacti
 
 type ApiListWalletTransactionsRequest struct {
 	ctx           context.Context
-	ApiService    TxmApi
+	ApiService    TxmAPI
 	chain         ChainName
 	walletAddress string
 	hash          *string
@@ -415,7 +415,7 @@ List the transactions submitted by the given wallet address.
 	@param walletAddress An HSM ethereum address.
 	@return ApiListWalletTransactionsRequest
 */
-func (a *TxmApiService) ListWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiListWalletTransactionsRequest {
+func (a *TxmAPIService) ListWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiListWalletTransactionsRequest {
 	return ApiListWalletTransactionsRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -427,7 +427,7 @@ func (a *TxmApiService) ListWalletTransactions(ctx context.Context, chain ChainN
 // Execute executes the request
 //
 //	@return ListWalletTransactions200Response
-func (a *TxmApiService) ListWalletTransactionsExecute(r ApiListWalletTransactionsRequest) (*ListWalletTransactions200Response, *http.Response, error) {
+func (a *TxmAPIService) ListWalletTransactionsExecute(r ApiListWalletTransactionsRequest) (*ListWalletTransactions200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -435,7 +435,7 @@ func (a *TxmApiService) ListWalletTransactionsExecute(r ApiListWalletTransaction
 		localVarReturnValue *ListWalletTransactions200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TxmApiService.ListWalletTransactions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TxmAPIService.ListWalletTransactions")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -540,7 +540,7 @@ func (a *TxmApiService) ListWalletTransactionsExecute(r ApiListWalletTransaction
 
 type ApiSpeedUpTransactionRequest struct {
 	ctx           context.Context
-	ApiService    TxmApi
+	ApiService    TxmAPI
 	chain         ChainName
 	walletAddress string
 	nonce         int64
@@ -567,7 +567,7 @@ Speeds up a transaction by resubmitting it with a higher gas price.
 	@param nonce Transaction nonce.
 	@return ApiSpeedUpTransactionRequest
 */
-func (a *TxmApiService) SpeedUpTransaction(ctx context.Context, chain ChainName, walletAddress string, nonce int64) ApiSpeedUpTransactionRequest {
+func (a *TxmAPIService) SpeedUpTransaction(ctx context.Context, chain ChainName, walletAddress string, nonce int64) ApiSpeedUpTransactionRequest {
 	return ApiSpeedUpTransactionRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -580,7 +580,7 @@ func (a *TxmApiService) SpeedUpTransaction(ctx context.Context, chain ChainName,
 // Execute executes the request
 //
 //	@return TransferEth200Response
-func (a *TxmApiService) SpeedUpTransactionExecute(r ApiSpeedUpTransactionRequest) (*TransferEth200Response, *http.Response, error) {
+func (a *TxmAPIService) SpeedUpTransactionExecute(r ApiSpeedUpTransactionRequest) (*TransferEth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -588,7 +588,7 @@ func (a *TxmApiService) SpeedUpTransactionExecute(r ApiSpeedUpTransactionRequest
 		localVarReturnValue *TransferEth200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TxmApiService.SpeedUpTransaction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TxmAPIService.SpeedUpTransaction")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

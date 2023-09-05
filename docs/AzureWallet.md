@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KeyName** | **string** |  | 
-**KeyVersion** | **string** | The current version of your key. | 
+**KeyName** | **string** | The name of the key. | 
+**KeyVersion** | **string** | The version of the key. | 
 **PublicAddress** | **string** | An ethereum address. | 
 
 ## Methods

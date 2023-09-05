@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientID** | **string** | The Application ID that will be accessing the Key Vault. | 
-**KeyName** | **string** |  | 
+**KeyName** | **string** | The name of the key. | 
 **VaultName** | **string** | The name given to the vault your key is stored in. | 
 **UseHardwareModule** | **bool** |  | 
 

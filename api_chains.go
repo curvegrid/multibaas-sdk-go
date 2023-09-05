@@ -19,7 +19,7 @@ import (
 	"strings"
 )
 
-type ChainsApi interface {
+type ChainsAPI interface {
 
 	/*
 		GetBlock Get a block
@@ -96,8 +96,8 @@ type ChainsApi interface {
 	SubmitSignedTransaction(ctx context.Context, chain ChainName) ApiSubmitSignedTransactionRequest
 
 	// SubmitSignedTransactionExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	SubmitSignedTransactionExecute(r ApiSubmitSignedTransactionRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
+	//  @return BaseResponse
+	SubmitSignedTransactionExecute(r ApiSubmitSignedTransactionRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		TransferEth Transfer ETH
@@ -115,12 +115,12 @@ type ChainsApi interface {
 	TransferEthExecute(r ApiTransferEthRequest) (*TransferEth200Response, *http.Response, error)
 }
 
-// ChainsApiService ChainsApi service
-type ChainsApiService service
+// ChainsAPIService ChainsAPI service
+type ChainsAPIService service
 
 type ApiGetBlockRequest struct {
 	ctx        context.Context
-	ApiService ChainsApi
+	ApiService ChainsAPI
 	chain      ChainName
 	block      string
 }
@@ -139,7 +139,7 @@ Returns a block.
 	@param block A block number, hash or 'latest' for the latest block.
 	@return ApiGetBlockRequest
 */
-func (a *ChainsApiService) GetBlock(ctx context.Context, chain ChainName, block string) ApiGetBlockRequest {
+func (a *ChainsAPIService) GetBlock(ctx context.Context, chain ChainName, block string) ApiGetBlockRequest {
 	return ApiGetBlockRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -151,7 +151,7 @@ func (a *ChainsApiService) GetBlock(ctx context.Context, chain ChainName, block 
 // Execute executes the request
 //
 //	@return GetBlock200Response
-func (a *ChainsApiService) GetBlockExecute(r ApiGetBlockRequest) (*GetBlock200Response, *http.Response, error) {
+func (a *ChainsAPIService) GetBlockExecute(r ApiGetBlockRequest) (*GetBlock200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -159,7 +159,7 @@ func (a *ChainsApiService) GetBlockExecute(r ApiGetBlockRequest) (*GetBlock200Re
 		localVarReturnValue *GetBlock200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsApiService.GetBlock")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsAPIService.GetBlock")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -249,7 +249,7 @@ func (a *ChainsApiService) GetBlockExecute(r ApiGetBlockRequest) (*GetBlock200Re
 
 type ApiGetChainStatusRequest struct {
 	ctx        context.Context
-	ApiService ChainsApi
+	ApiService ChainsAPI
 	chain      ChainName
 }
 
@@ -266,7 +266,7 @@ Returns the chain status.
 	@param chain The blockchain chain label.
 	@return ApiGetChainStatusRequest
 */
-func (a *ChainsApiService) GetChainStatus(ctx context.Context, chain ChainName) ApiGetChainStatusRequest {
+func (a *ChainsAPIService) GetChainStatus(ctx context.Context, chain ChainName) ApiGetChainStatusRequest {
 	return ApiGetChainStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -277,7 +277,7 @@ func (a *ChainsApiService) GetChainStatus(ctx context.Context, chain ChainName) 
 // Execute executes the request
 //
 //	@return GetChainStatus200Response
-func (a *ChainsApiService) GetChainStatusExecute(r ApiGetChainStatusRequest) (*GetChainStatus200Response, *http.Response, error) {
+func (a *ChainsAPIService) GetChainStatusExecute(r ApiGetChainStatusRequest) (*GetChainStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -285,7 +285,7 @@ func (a *ChainsApiService) GetChainStatusExecute(r ApiGetChainStatusRequest) (*G
 		localVarReturnValue *GetChainStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsApiService.GetChainStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsAPIService.GetChainStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -374,7 +374,7 @@ func (a *ChainsApiService) GetChainStatusExecute(r ApiGetChainStatusRequest) (*G
 
 type ApiGetTransactionRequest struct {
 	ctx        context.Context
-	ApiService ChainsApi
+	ApiService ChainsAPI
 	chain      ChainName
 	hash       string
 	include    *string
@@ -400,7 +400,7 @@ Returns a transaction.
 	@param hash Transaction hash.
 	@return ApiGetTransactionRequest
 */
-func (a *ChainsApiService) GetTransaction(ctx context.Context, chain ChainName, hash string) ApiGetTransactionRequest {
+func (a *ChainsAPIService) GetTransaction(ctx context.Context, chain ChainName, hash string) ApiGetTransactionRequest {
 	return ApiGetTransactionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -412,7 +412,7 @@ func (a *ChainsApiService) GetTransaction(ctx context.Context, chain ChainName, 
 // Execute executes the request
 //
 //	@return GetTransaction200Response
-func (a *ChainsApiService) GetTransactionExecute(r ApiGetTransactionRequest) (*GetTransaction200Response, *http.Response, error) {
+func (a *ChainsAPIService) GetTransactionExecute(r ApiGetTransactionRequest) (*GetTransaction200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -420,7 +420,7 @@ func (a *ChainsApiService) GetTransactionExecute(r ApiGetTransactionRequest) (*G
 		localVarReturnValue *GetTransaction200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsApiService.GetTransaction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsAPIService.GetTransaction")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -513,7 +513,7 @@ func (a *ChainsApiService) GetTransactionExecute(r ApiGetTransactionRequest) (*G
 
 type ApiGetTransactionReceiptRequest struct {
 	ctx        context.Context
-	ApiService ChainsApi
+	ApiService ChainsAPI
 	chain      ChainName
 	hash       string
 	include    *string
@@ -539,7 +539,7 @@ Returns the receipt of a transaction that's been successfully added to the block
 	@param hash Transaction hash.
 	@return ApiGetTransactionReceiptRequest
 */
-func (a *ChainsApiService) GetTransactionReceipt(ctx context.Context, chain ChainName, hash string) ApiGetTransactionReceiptRequest {
+func (a *ChainsAPIService) GetTransactionReceipt(ctx context.Context, chain ChainName, hash string) ApiGetTransactionReceiptRequest {
 	return ApiGetTransactionReceiptRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -551,7 +551,7 @@ func (a *ChainsApiService) GetTransactionReceipt(ctx context.Context, chain Chai
 // Execute executes the request
 //
 //	@return GetTransactionReceipt200Response
-func (a *ChainsApiService) GetTransactionReceiptExecute(r ApiGetTransactionReceiptRequest) (*GetTransactionReceipt200Response, *http.Response, error) {
+func (a *ChainsAPIService) GetTransactionReceiptExecute(r ApiGetTransactionReceiptRequest) (*GetTransactionReceipt200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -559,7 +559,7 @@ func (a *ChainsApiService) GetTransactionReceiptExecute(r ApiGetTransactionRecei
 		localVarReturnValue *GetTransactionReceipt200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsApiService.GetTransactionReceipt")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsAPIService.GetTransactionReceipt")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -652,7 +652,7 @@ func (a *ChainsApiService) GetTransactionReceiptExecute(r ApiGetTransactionRecei
 
 type ApiSubmitSignedTransactionRequest struct {
 	ctx                         context.Context
-	ApiService                  ChainsApi
+	ApiService                  ChainsAPI
 	chain                       ChainName
 	signedTransactionSubmission *SignedTransactionSubmission
 }
@@ -662,7 +662,7 @@ func (r ApiSubmitSignedTransactionRequest) SignedTransactionSubmission(signedTra
 	return r
 }
 
-func (r ApiSubmitSignedTransactionRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
+func (r ApiSubmitSignedTransactionRequest) Execute() (*BaseResponse, *http.Response, error) {
 	return r.ApiService.SubmitSignedTransactionExecute(r)
 }
 
@@ -675,7 +675,7 @@ Receives a pre-signed raw transaction and submits it to the blockchain.
 	@param chain The blockchain chain label.
 	@return ApiSubmitSignedTransactionRequest
 */
-func (a *ChainsApiService) SubmitSignedTransaction(ctx context.Context, chain ChainName) ApiSubmitSignedTransactionRequest {
+func (a *ChainsAPIService) SubmitSignedTransaction(ctx context.Context, chain ChainName) ApiSubmitSignedTransactionRequest {
 	return ApiSubmitSignedTransactionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -685,16 +685,16 @@ func (a *ChainsApiService) SubmitSignedTransaction(ctx context.Context, chain Ch
 
 // Execute executes the request
 //
-//	@return SubmitSignedTransaction200Response
-func (a *ChainsApiService) SubmitSignedTransactionExecute(r ApiSubmitSignedTransactionRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
+//	@return BaseResponse
+func (a *ChainsAPIService) SubmitSignedTransactionExecute(r ApiSubmitSignedTransactionRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
+		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsApiService.SubmitSignedTransaction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsAPIService.SubmitSignedTransaction")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -785,7 +785,7 @@ func (a *ChainsApiService) SubmitSignedTransactionExecute(r ApiSubmitSignedTrans
 
 type ApiTransferEthRequest struct {
 	ctx            context.Context
-	ApiService     ChainsApi
+	ApiService     ChainsAPI
 	chain          ChainName
 	postMethodArgs *PostMethodArgs
 }
@@ -808,7 +808,7 @@ Returns a transaction for sending the native token between addresses.
 	@param chain The blockchain chain label.
 	@return ApiTransferEthRequest
 */
-func (a *ChainsApiService) TransferEth(ctx context.Context, chain ChainName) ApiTransferEthRequest {
+func (a *ChainsAPIService) TransferEth(ctx context.Context, chain ChainName) ApiTransferEthRequest {
 	return ApiTransferEthRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -819,7 +819,7 @@ func (a *ChainsApiService) TransferEth(ctx context.Context, chain ChainName) Api
 // Execute executes the request
 //
 //	@return TransferEth200Response
-func (a *ChainsApiService) TransferEthExecute(r ApiTransferEthRequest) (*TransferEth200Response, *http.Response, error) {
+func (a *ChainsAPIService) TransferEthExecute(r ApiTransferEthRequest) (*TransferEth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -827,7 +827,7 @@ func (a *ChainsApiService) TransferEthExecute(r ApiTransferEthRequest) (*Transfe
 		localVarReturnValue *TransferEth200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsApiService.TransferEth")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsAPIService.TransferEth")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

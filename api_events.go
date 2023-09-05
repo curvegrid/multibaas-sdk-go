@@ -18,21 +18,7 @@ import (
 	"net/url"
 )
 
-type EventsApi interface {
-
-	/*
-		GetAllEvents Get all events
-
-		Gets all events stored in the database.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiGetAllEventsRequest
-	*/
-	GetAllEvents(ctx context.Context) ApiGetAllEventsRequest
-
-	// GetAllEventsExecute executes the request
-	//  @return GetAllEvents200Response
-	GetAllEventsExecute(r ApiGetAllEventsRequest) (*GetAllEvents200Response, *http.Response, error)
+type EventsAPI interface {
 
 	/*
 		GetEventCount Get event count
@@ -47,14 +33,28 @@ type EventsApi interface {
 	// GetEventCountExecute executes the request
 	//  @return GetEventCount200Response
 	GetEventCountExecute(r ApiGetEventCountRequest) (*GetEventCount200Response, *http.Response, error)
+
+	/*
+		ListEvents List events
+
+		Returns all events stored in the database.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListEventsRequest
+	*/
+	ListEvents(ctx context.Context) ApiListEventsRequest
+
+	// ListEventsExecute executes the request
+	//  @return ListEvents200Response
+	ListEventsExecute(r ApiListEventsRequest) (*ListEvents200Response, *http.Response, error)
 }
 
-// EventsApiService EventsApi service
-type EventsApiService service
+// EventsAPIService EventsAPI service
+type EventsAPIService service
 
-type ApiGetAllEventsRequest struct {
+type ApiGetEventCountRequest struct {
 	ctx             context.Context
-	ApiService      EventsApi
+	ApiService      EventsAPI
 	blockHash       *string
 	blockNumber     *int64
 	txIndexInBlock  *int64
@@ -70,89 +70,89 @@ type ApiGetAllEventsRequest struct {
 }
 
 // Filter events by a block hash.
-func (r ApiGetAllEventsRequest) BlockHash(blockHash string) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) BlockHash(blockHash string) ApiGetEventCountRequest {
 	r.blockHash = &blockHash
 	return r
 }
 
 // Filter events by a block number.
-func (r ApiGetAllEventsRequest) BlockNumber(blockNumber int64) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) BlockNumber(blockNumber int64) ApiGetEventCountRequest {
 	r.blockNumber = &blockNumber
 	return r
 }
 
 // Filter events by a transaction&#39;s index in the block.
-func (r ApiGetAllEventsRequest) TxIndexInBlock(txIndexInBlock int64) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) TxIndexInBlock(txIndexInBlock int64) ApiGetEventCountRequest {
 	r.txIndexInBlock = &txIndexInBlock
 	return r
 }
 
 // Filter events by index in the log.
-func (r ApiGetAllEventsRequest) EventIndexInLog(eventIndexInLog int64) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) EventIndexInLog(eventIndexInLog int64) ApiGetEventCountRequest {
 	r.eventIndexInLog = &eventIndexInLog
 	return r
 }
 
 // Filter events by a transaction hash.
-func (r ApiGetAllEventsRequest) TxHash(txHash string) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) TxHash(txHash string) ApiGetEventCountRequest {
 	r.txHash = &txHash
 	return r
 }
 
 // Filter events by whether they were emitted from the constructor function.
-func (r ApiGetAllEventsRequest) FromConstructor(fromConstructor bool) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) FromConstructor(fromConstructor bool) ApiGetEventCountRequest {
 	r.fromConstructor = &fromConstructor
 	return r
 }
 
 // Filter events by a chain name.
-func (r ApiGetAllEventsRequest) Chain(chain ChainName) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) Chain(chain ChainName) ApiGetEventCountRequest {
 	r.chain = &chain
 	return r
 }
 
 // Filter events by a contract address.
-func (r ApiGetAllEventsRequest) ContractAddress(contractAddress string) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) ContractAddress(contractAddress string) ApiGetEventCountRequest {
 	r.contractAddress = &contractAddress
 	return r
 }
 
 // Filter events by a contract label.
-func (r ApiGetAllEventsRequest) ContractLabel(contractLabel string) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) ContractLabel(contractLabel string) ApiGetEventCountRequest {
 	r.contractLabel = &contractLabel
 	return r
 }
 
 // Filter events by the signature.
-func (r ApiGetAllEventsRequest) EventSignature(eventSignature string) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) EventSignature(eventSignature string) ApiGetEventCountRequest {
 	r.eventSignature = &eventSignature
 	return r
 }
 
-func (r ApiGetAllEventsRequest) Limit(limit int64) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) Limit(limit int64) ApiGetEventCountRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetAllEventsRequest) Offset(offset int64) ApiGetAllEventsRequest {
+func (r ApiGetEventCountRequest) Offset(offset int64) ApiGetEventCountRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiGetAllEventsRequest) Execute() (*GetAllEvents200Response, *http.Response, error) {
-	return r.ApiService.GetAllEventsExecute(r)
+func (r ApiGetEventCountRequest) Execute() (*GetEventCount200Response, *http.Response, error) {
+	return r.ApiService.GetEventCountExecute(r)
 }
 
 /*
-GetAllEvents Get all events
+GetEventCount Get event count
 
-Gets all events stored in the database.
+Gets the number of events stored in the database.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAllEventsRequest
+	@return ApiGetEventCountRequest
 */
-func (a *EventsApiService) GetAllEvents(ctx context.Context) ApiGetAllEventsRequest {
-	return ApiGetAllEventsRequest{
+func (a *EventsAPIService) GetEventCount(ctx context.Context) ApiGetEventCountRequest {
+	return ApiGetEventCountRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -160,21 +160,21 @@ func (a *EventsApiService) GetAllEvents(ctx context.Context) ApiGetAllEventsRequ
 
 // Execute executes the request
 //
-//	@return GetAllEvents200Response
-func (a *EventsApiService) GetAllEventsExecute(r ApiGetAllEventsRequest) (*GetAllEvents200Response, *http.Response, error) {
+//	@return GetEventCount200Response
+func (a *EventsAPIService) GetEventCountExecute(r ApiGetEventCountRequest) (*GetEventCount200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetAllEvents200Response
+		localVarReturnValue *GetEventCount200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.GetAllEvents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.GetEventCount")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/events"
+	localVarPath := localBasePath + "/events/count"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -291,9 +291,9 @@ func (a *EventsApiService) GetAllEventsExecute(r ApiGetAllEventsRequest) (*GetAl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetEventCountRequest struct {
+type ApiListEventsRequest struct {
 	ctx             context.Context
-	ApiService      EventsApi
+	ApiService      EventsAPI
 	blockHash       *string
 	blockNumber     *int64
 	txIndexInBlock  *int64
@@ -309,89 +309,89 @@ type ApiGetEventCountRequest struct {
 }
 
 // Filter events by a block hash.
-func (r ApiGetEventCountRequest) BlockHash(blockHash string) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) BlockHash(blockHash string) ApiListEventsRequest {
 	r.blockHash = &blockHash
 	return r
 }
 
 // Filter events by a block number.
-func (r ApiGetEventCountRequest) BlockNumber(blockNumber int64) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) BlockNumber(blockNumber int64) ApiListEventsRequest {
 	r.blockNumber = &blockNumber
 	return r
 }
 
 // Filter events by a transaction&#39;s index in the block.
-func (r ApiGetEventCountRequest) TxIndexInBlock(txIndexInBlock int64) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) TxIndexInBlock(txIndexInBlock int64) ApiListEventsRequest {
 	r.txIndexInBlock = &txIndexInBlock
 	return r
 }
 
 // Filter events by index in the log.
-func (r ApiGetEventCountRequest) EventIndexInLog(eventIndexInLog int64) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) EventIndexInLog(eventIndexInLog int64) ApiListEventsRequest {
 	r.eventIndexInLog = &eventIndexInLog
 	return r
 }
 
 // Filter events by a transaction hash.
-func (r ApiGetEventCountRequest) TxHash(txHash string) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) TxHash(txHash string) ApiListEventsRequest {
 	r.txHash = &txHash
 	return r
 }
 
 // Filter events by whether they were emitted from the constructor function.
-func (r ApiGetEventCountRequest) FromConstructor(fromConstructor bool) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) FromConstructor(fromConstructor bool) ApiListEventsRequest {
 	r.fromConstructor = &fromConstructor
 	return r
 }
 
 // Filter events by a chain name.
-func (r ApiGetEventCountRequest) Chain(chain ChainName) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) Chain(chain ChainName) ApiListEventsRequest {
 	r.chain = &chain
 	return r
 }
 
 // Filter events by a contract address.
-func (r ApiGetEventCountRequest) ContractAddress(contractAddress string) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) ContractAddress(contractAddress string) ApiListEventsRequest {
 	r.contractAddress = &contractAddress
 	return r
 }
 
 // Filter events by a contract label.
-func (r ApiGetEventCountRequest) ContractLabel(contractLabel string) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) ContractLabel(contractLabel string) ApiListEventsRequest {
 	r.contractLabel = &contractLabel
 	return r
 }
 
 // Filter events by the signature.
-func (r ApiGetEventCountRequest) EventSignature(eventSignature string) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) EventSignature(eventSignature string) ApiListEventsRequest {
 	r.eventSignature = &eventSignature
 	return r
 }
 
-func (r ApiGetEventCountRequest) Limit(limit int64) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) Limit(limit int64) ApiListEventsRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetEventCountRequest) Offset(offset int64) ApiGetEventCountRequest {
+func (r ApiListEventsRequest) Offset(offset int64) ApiListEventsRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiGetEventCountRequest) Execute() (*GetEventCount200Response, *http.Response, error) {
-	return r.ApiService.GetEventCountExecute(r)
+func (r ApiListEventsRequest) Execute() (*ListEvents200Response, *http.Response, error) {
+	return r.ApiService.ListEventsExecute(r)
 }
 
 /*
-GetEventCount Get event count
+ListEvents List events
 
-Gets the number of events stored in the database.
+Returns all events stored in the database.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetEventCountRequest
+	@return ApiListEventsRequest
 */
-func (a *EventsApiService) GetEventCount(ctx context.Context) ApiGetEventCountRequest {
-	return ApiGetEventCountRequest{
+func (a *EventsAPIService) ListEvents(ctx context.Context) ApiListEventsRequest {
+	return ApiListEventsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -399,21 +399,21 @@ func (a *EventsApiService) GetEventCount(ctx context.Context) ApiGetEventCountRe
 
 // Execute executes the request
 //
-//	@return GetEventCount200Response
-func (a *EventsApiService) GetEventCountExecute(r ApiGetEventCountRequest) (*GetEventCount200Response, *http.Response, error) {
+//	@return ListEvents200Response
+func (a *EventsAPIService) ListEventsExecute(r ApiListEventsRequest) (*ListEvents200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetEventCount200Response
+		localVarReturnValue *ListEvents200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.GetEventCount")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.ListEvents")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/events/count"
+	localVarPath := localBasePath + "/events"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

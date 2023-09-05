@@ -19,7 +19,7 @@ import (
 	"strings"
 )
 
-type HsmApi interface {
+type HsmAPI interface {
 
 	/*
 		AddHsmConfig Add HSM config
@@ -32,8 +32,8 @@ type HsmApi interface {
 	AddHsmConfig(ctx context.Context) ApiAddHsmConfigRequest
 
 	// AddHsmConfigExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	AddHsmConfigExecute(r ApiAddHsmConfigRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
+	//  @return BaseResponse
+	AddHsmConfigExecute(r ApiAddHsmConfigRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		AddHsmKey Add HSM key
@@ -46,8 +46,8 @@ type HsmApi interface {
 	AddHsmKey(ctx context.Context) ApiAddHsmKeyRequest
 
 	// AddHsmKeyExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	AddHsmKeyExecute(r ApiAddHsmKeyRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
+	//  @return BaseResponse
+	AddHsmKeyExecute(r ApiAddHsmKeyRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		CreateHsmKey Create HSM key
@@ -62,36 +62,6 @@ type HsmApi interface {
 	// CreateHsmKeyExecute executes the request
 	//  @return CreateHsmKey200Response
 	CreateHsmKeyExecute(r ApiCreateHsmKeyRequest) (*CreateHsmKey200Response, *http.Response, error)
-
-	/*
-		DeleteHsmConfig Delete HSM config
-
-		Deletes the specified Azure account configuration and its associated keys.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param clientId The HSM client ID.
-		@return ApiDeleteHsmConfigRequest
-	*/
-	DeleteHsmConfig(ctx context.Context, clientId string) ApiDeleteHsmConfigRequest
-
-	// DeleteHsmConfigExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	DeleteHsmConfigExecute(r ApiDeleteHsmConfigRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
-
-	/*
-		DeleteHsmKey Delete HSM key
-
-		Deletes the specified key configuration.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param walletAddress An HSM ethereum address.
-		@return ApiDeleteHsmKeyRequest
-	*/
-	DeleteHsmKey(ctx context.Context, walletAddress string) ApiDeleteHsmKeyRequest
-
-	// DeleteHsmKeyExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	DeleteHsmKeyExecute(r ApiDeleteHsmKeyRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
 
 	/*
 		ListHsm List HSM configs and wallets
@@ -122,6 +92,36 @@ type HsmApi interface {
 	ListHsmWalletsExecute(r ApiListHsmWalletsRequest) (*ListHsmWallets200Response, *http.Response, error)
 
 	/*
+		RemoveHsmConfig Remove HSM config
+
+		Removes the specified Azure account configuration and its associated keys.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param clientId The HSM client ID.
+		@return ApiRemoveHsmConfigRequest
+	*/
+	RemoveHsmConfig(ctx context.Context, clientId string) ApiRemoveHsmConfigRequest
+
+	// RemoveHsmConfigExecute executes the request
+	//  @return BaseResponse
+	RemoveHsmConfigExecute(r ApiRemoveHsmConfigRequest) (*BaseResponse, *http.Response, error)
+
+	/*
+		RemoveHsmKey Remove HSM key
+
+		Removes the specified key configuration.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param walletAddress An HSM ethereum address.
+		@return ApiRemoveHsmKeyRequest
+	*/
+	RemoveHsmKey(ctx context.Context, walletAddress string) ApiRemoveHsmKeyRequest
+
+	// RemoveHsmKeyExecute executes the request
+	//  @return BaseResponse
+	RemoveHsmKeyExecute(r ApiRemoveHsmKeyRequest) (*BaseResponse, *http.Response, error)
+
+	/*
 		SetLocalNonce Set local nonce
 
 		Sets the next transaction nonce for the given HSM address that will be used with the nonce management feature.
@@ -134,8 +134,8 @@ type HsmApi interface {
 	SetLocalNonce(ctx context.Context, chain ChainName, walletAddress string) ApiSetLocalNonceRequest
 
 	// SetLocalNonceExecute executes the request
-	//  @return SubmitSignedTransaction200Response
-	SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
+	//  @return BaseResponse
+	SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		SignAndSubmitTransaction Sign and submit transaction
@@ -168,21 +168,21 @@ type HsmApi interface {
 	SignDataExecute(r ApiSignDataRequest) (*SignData200Response, *http.Response, error)
 }
 
-// HsmApiService HsmApi service
-type HsmApiService service
+// HsmAPIService HsmAPI service
+type HsmAPIService service
 
 type ApiAddHsmConfigRequest struct {
-	ctx                context.Context
-	ApiService         HsmApi
-	azureAccountConfig *AzureAccountConfig
+	ctx              context.Context
+	ApiService       HsmAPI
+	baseAzureAccount *BaseAzureAccount
 }
 
-func (r ApiAddHsmConfigRequest) AzureAccountConfig(azureAccountConfig AzureAccountConfig) ApiAddHsmConfigRequest {
-	r.azureAccountConfig = &azureAccountConfig
+func (r ApiAddHsmConfigRequest) BaseAzureAccount(baseAzureAccount BaseAzureAccount) ApiAddHsmConfigRequest {
+	r.baseAzureAccount = &baseAzureAccount
 	return r
 }
 
-func (r ApiAddHsmConfigRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
+func (r ApiAddHsmConfigRequest) Execute() (*BaseResponse, *http.Response, error) {
 	return r.ApiService.AddHsmConfigExecute(r)
 }
 
@@ -194,7 +194,7 @@ Adds a new Azure account configuration.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiAddHsmConfigRequest
 */
-func (a *HsmApiService) AddHsmConfig(ctx context.Context) ApiAddHsmConfigRequest {
+func (a *HsmAPIService) AddHsmConfig(ctx context.Context) ApiAddHsmConfigRequest {
 	return ApiAddHsmConfigRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -203,16 +203,16 @@ func (a *HsmApiService) AddHsmConfig(ctx context.Context) ApiAddHsmConfigRequest
 
 // Execute executes the request
 //
-//	@return SubmitSignedTransaction200Response
-func (a *HsmApiService) AddHsmConfigExecute(r ApiAddHsmConfigRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
+//	@return BaseResponse
+func (a *HsmAPIService) AddHsmConfigExecute(r ApiAddHsmConfigRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
+		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.AddHsmConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.AddHsmConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -241,7 +241,7 @@ func (a *HsmApiService) AddHsmConfigExecute(r ApiAddHsmConfigRequest) (*SubmitSi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.azureAccountConfig
+	localVarPostBody = r.baseAzureAccount
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -302,7 +302,7 @@ func (a *HsmApiService) AddHsmConfigExecute(r ApiAddHsmConfigRequest) (*SubmitSi
 
 type ApiAddHsmKeyRequest struct {
 	ctx        context.Context
-	ApiService HsmApi
+	ApiService HsmAPI
 	addKey     *AddKey
 }
 
@@ -311,7 +311,7 @@ func (r ApiAddHsmKeyRequest) AddKey(addKey AddKey) ApiAddHsmKeyRequest {
 	return r
 }
 
-func (r ApiAddHsmKeyRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
+func (r ApiAddHsmKeyRequest) Execute() (*BaseResponse, *http.Response, error) {
 	return r.ApiService.AddHsmKeyExecute(r)
 }
 
@@ -323,7 +323,7 @@ Adds an existing key configuration.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiAddHsmKeyRequest
 */
-func (a *HsmApiService) AddHsmKey(ctx context.Context) ApiAddHsmKeyRequest {
+func (a *HsmAPIService) AddHsmKey(ctx context.Context) ApiAddHsmKeyRequest {
 	return ApiAddHsmKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -332,16 +332,16 @@ func (a *HsmApiService) AddHsmKey(ctx context.Context) ApiAddHsmKeyRequest {
 
 // Execute executes the request
 //
-//	@return SubmitSignedTransaction200Response
-func (a *HsmApiService) AddHsmKeyExecute(r ApiAddHsmKeyRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
+//	@return BaseResponse
+func (a *HsmAPIService) AddHsmKeyExecute(r ApiAddHsmKeyRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
+		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.AddHsmKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.AddHsmKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -431,7 +431,7 @@ func (a *HsmApiService) AddHsmKeyExecute(r ApiAddHsmKeyRequest) (*SubmitSignedTr
 
 type ApiCreateHsmKeyRequest struct {
 	ctx        context.Context
-	ApiService HsmApi
+	ApiService HsmAPI
 	createKey  *CreateKey
 }
 
@@ -452,7 +452,7 @@ Creates a new key in the Azure KeyVault.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateHsmKeyRequest
 */
-func (a *HsmApiService) CreateHsmKey(ctx context.Context) ApiCreateHsmKeyRequest {
+func (a *HsmAPIService) CreateHsmKey(ctx context.Context) ApiCreateHsmKeyRequest {
 	return ApiCreateHsmKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -462,7 +462,7 @@ func (a *HsmApiService) CreateHsmKey(ctx context.Context) ApiCreateHsmKeyRequest
 // Execute executes the request
 //
 //	@return CreateHsmKey200Response
-func (a *HsmApiService) CreateHsmKeyExecute(r ApiCreateHsmKeyRequest) (*CreateHsmKey200Response, *http.Response, error) {
+func (a *HsmAPIService) CreateHsmKeyExecute(r ApiCreateHsmKeyRequest) (*CreateHsmKey200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -470,7 +470,7 @@ func (a *HsmApiService) CreateHsmKeyExecute(r ApiCreateHsmKeyRequest) (*CreateHs
 		localVarReturnValue *CreateHsmKey200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.CreateHsmKey")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.CreateHsmKey")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -558,259 +558,9 @@ func (a *HsmApiService) CreateHsmKeyExecute(r ApiCreateHsmKeyRequest) (*CreateHs
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteHsmConfigRequest struct {
-	ctx        context.Context
-	ApiService HsmApi
-	clientId   string
-}
-
-func (r ApiDeleteHsmConfigRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
-	return r.ApiService.DeleteHsmConfigExecute(r)
-}
-
-/*
-DeleteHsmConfig Delete HSM config
-
-Deletes the specified Azure account configuration and its associated keys.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param clientId The HSM client ID.
-	@return ApiDeleteHsmConfigRequest
-*/
-func (a *HsmApiService) DeleteHsmConfig(ctx context.Context, clientId string) ApiDeleteHsmConfigRequest {
-	return ApiDeleteHsmConfigRequest{
-		ApiService: a,
-		ctx:        ctx,
-		clientId:   clientId,
-	}
-}
-
-// Execute executes the request
-//
-//	@return SubmitSignedTransaction200Response
-func (a *HsmApiService) DeleteHsmConfigExecute(r ApiDeleteHsmConfigRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.DeleteHsmConfig")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/hsm/config/{client_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"client_id"+"}", url.PathEscape(parameterValueToString(r.clientId, "clientId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode >= 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiDeleteHsmKeyRequest struct {
-	ctx           context.Context
-	ApiService    HsmApi
-	walletAddress string
-}
-
-func (r ApiDeleteHsmKeyRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
-	return r.ApiService.DeleteHsmKeyExecute(r)
-}
-
-/*
-DeleteHsmKey Delete HSM key
-
-Deletes the specified key configuration.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param walletAddress An HSM ethereum address.
-	@return ApiDeleteHsmKeyRequest
-*/
-func (a *HsmApiService) DeleteHsmKey(ctx context.Context, walletAddress string) ApiDeleteHsmKeyRequest {
-	return ApiDeleteHsmKeyRequest{
-		ApiService:    a,
-		ctx:           ctx,
-		walletAddress: walletAddress,
-	}
-}
-
-// Execute executes the request
-//
-//	@return SubmitSignedTransaction200Response
-func (a *HsmApiService) DeleteHsmKeyExecute(r ApiDeleteHsmKeyRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.DeleteHsmKey")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/hsm/key/{wallet_address}"
-	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode >= 500 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiListHsmRequest struct {
 	ctx        context.Context
-	ApiService HsmApi
+	ApiService HsmAPI
 }
 
 func (r ApiListHsmRequest) Execute() (*ListHsm200Response, *http.Response, error) {
@@ -825,7 +575,7 @@ Returns a list of HSM configs and their associated wallets.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListHsmRequest
 */
-func (a *HsmApiService) ListHsm(ctx context.Context) ApiListHsmRequest {
+func (a *HsmAPIService) ListHsm(ctx context.Context) ApiListHsmRequest {
 	return ApiListHsmRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -835,7 +585,7 @@ func (a *HsmApiService) ListHsm(ctx context.Context) ApiListHsmRequest {
 // Execute executes the request
 //
 //	@return ListHsm200Response
-func (a *HsmApiService) ListHsmExecute(r ApiListHsmRequest) (*ListHsm200Response, *http.Response, error) {
+func (a *HsmAPIService) ListHsmExecute(r ApiListHsmRequest) (*ListHsm200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -843,7 +593,7 @@ func (a *HsmApiService) ListHsmExecute(r ApiListHsmRequest) (*ListHsm200Response
 		localVarReturnValue *ListHsm200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.ListHsm")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.ListHsm")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -931,7 +681,7 @@ func (a *HsmApiService) ListHsmExecute(r ApiListHsmRequest) (*ListHsm200Response
 
 type ApiListHsmWalletsRequest struct {
 	ctx           context.Context
-	ApiService    HsmApi
+	ApiService    HsmAPI
 	keyName       *string
 	keyVersion    *string
 	vaultName     *string
@@ -1000,7 +750,7 @@ Returns a list of HSM wallets.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListHsmWalletsRequest
 */
-func (a *HsmApiService) ListHsmWallets(ctx context.Context) ApiListHsmWalletsRequest {
+func (a *HsmAPIService) ListHsmWallets(ctx context.Context) ApiListHsmWalletsRequest {
 	return ApiListHsmWalletsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1010,7 +760,7 @@ func (a *HsmApiService) ListHsmWallets(ctx context.Context) ApiListHsmWalletsReq
 // Execute executes the request
 //
 //	@return ListHsmWallets200Response
-func (a *HsmApiService) ListHsmWalletsExecute(r ApiListHsmWalletsRequest) (*ListHsmWallets200Response, *http.Response, error) {
+func (a *HsmAPIService) ListHsmWalletsExecute(r ApiListHsmWalletsRequest) (*ListHsmWallets200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1018,7 +768,7 @@ func (a *HsmApiService) ListHsmWalletsExecute(r ApiListHsmWalletsRequest) (*List
 		localVarReturnValue *ListHsmWallets200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.ListHsmWallets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.ListHsmWallets")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1128,9 +878,259 @@ func (a *HsmApiService) ListHsmWalletsExecute(r ApiListHsmWalletsRequest) (*List
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiRemoveHsmConfigRequest struct {
+	ctx        context.Context
+	ApiService HsmAPI
+	clientId   string
+}
+
+func (r ApiRemoveHsmConfigRequest) Execute() (*BaseResponse, *http.Response, error) {
+	return r.ApiService.RemoveHsmConfigExecute(r)
+}
+
+/*
+RemoveHsmConfig Remove HSM config
+
+Removes the specified Azure account configuration and its associated keys.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param clientId The HSM client ID.
+	@return ApiRemoveHsmConfigRequest
+*/
+func (a *HsmAPIService) RemoveHsmConfig(ctx context.Context, clientId string) ApiRemoveHsmConfigRequest {
+	return ApiRemoveHsmConfigRequest{
+		ApiService: a,
+		ctx:        ctx,
+		clientId:   clientId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BaseResponse
+func (a *HsmAPIService) RemoveHsmConfigExecute(r ApiRemoveHsmConfigRequest) (*BaseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BaseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.RemoveHsmConfig")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/hsm/config/{client_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"client_id"+"}", url.PathEscape(parameterValueToString(r.clientId, "clientId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiRemoveHsmKeyRequest struct {
+	ctx           context.Context
+	ApiService    HsmAPI
+	walletAddress string
+}
+
+func (r ApiRemoveHsmKeyRequest) Execute() (*BaseResponse, *http.Response, error) {
+	return r.ApiService.RemoveHsmKeyExecute(r)
+}
+
+/*
+RemoveHsmKey Remove HSM key
+
+Removes the specified key configuration.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param walletAddress An HSM ethereum address.
+	@return ApiRemoveHsmKeyRequest
+*/
+func (a *HsmAPIService) RemoveHsmKey(ctx context.Context, walletAddress string) ApiRemoveHsmKeyRequest {
+	return ApiRemoveHsmKeyRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		walletAddress: walletAddress,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BaseResponse
+func (a *HsmAPIService) RemoveHsmKeyExecute(r ApiRemoveHsmKeyRequest) (*BaseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BaseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.RemoveHsmKey")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/hsm/key/{wallet_address}"
+	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiSetLocalNonceRequest struct {
 	ctx             context.Context
-	ApiService      HsmApi
+	ApiService      HsmAPI
 	chain           ChainName
 	walletAddress   string
 	setNonceRequest *SetNonceRequest
@@ -1141,7 +1141,7 @@ func (r ApiSetLocalNonceRequest) SetNonceRequest(setNonceRequest SetNonceRequest
 	return r
 }
 
-func (r ApiSetLocalNonceRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
+func (r ApiSetLocalNonceRequest) Execute() (*BaseResponse, *http.Response, error) {
 	return r.ApiService.SetLocalNonceExecute(r)
 }
 
@@ -1155,7 +1155,7 @@ Sets the next transaction nonce for the given HSM address that will be used with
 	@param walletAddress An HSM ethereum address.
 	@return ApiSetLocalNonceRequest
 */
-func (a *HsmApiService) SetLocalNonce(ctx context.Context, chain ChainName, walletAddress string) ApiSetLocalNonceRequest {
+func (a *HsmAPIService) SetLocalNonce(ctx context.Context, chain ChainName, walletAddress string) ApiSetLocalNonceRequest {
 	return ApiSetLocalNonceRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -1166,16 +1166,16 @@ func (a *HsmApiService) SetLocalNonce(ctx context.Context, chain ChainName, wall
 
 // Execute executes the request
 //
-//	@return SubmitSignedTransaction200Response
-func (a *HsmApiService) SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
+//	@return BaseResponse
+func (a *HsmAPIService) SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*BaseResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *SubmitSignedTransaction200Response
+		localVarReturnValue *BaseResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.SetLocalNonce")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.SetLocalNonce")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1267,7 +1267,7 @@ func (a *HsmApiService) SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*Submit
 
 type ApiSignAndSubmitTransactionRequest struct {
 	ctx                   context.Context
-	ApiService            HsmApi
+	ApiService            HsmAPI
 	chain                 ChainName
 	baseTransactionToSign *BaseTransactionToSign
 }
@@ -1290,7 +1290,7 @@ Signs and submits the given transaction using an HSM address.
 	@param chain The blockchain chain label.
 	@return ApiSignAndSubmitTransactionRequest
 */
-func (a *HsmApiService) SignAndSubmitTransaction(ctx context.Context, chain ChainName) ApiSignAndSubmitTransactionRequest {
+func (a *HsmAPIService) SignAndSubmitTransaction(ctx context.Context, chain ChainName) ApiSignAndSubmitTransactionRequest {
 	return ApiSignAndSubmitTransactionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1301,7 +1301,7 @@ func (a *HsmApiService) SignAndSubmitTransaction(ctx context.Context, chain Chai
 // Execute executes the request
 //
 //	@return TransferEth200Response
-func (a *HsmApiService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransactionRequest) (*TransferEth200Response, *http.Response, error) {
+func (a *HsmAPIService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransactionRequest) (*TransferEth200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1309,7 +1309,7 @@ func (a *HsmApiService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransa
 		localVarReturnValue *TransferEth200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.SignAndSubmitTransaction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.SignAndSubmitTransaction")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1400,7 +1400,7 @@ func (a *HsmApiService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransa
 
 type ApiSignDataRequest struct {
 	ctx            context.Context
-	ApiService     HsmApi
+	ApiService     HsmAPI
 	chain          ChainName
 	hSMSignRequest *HSMSignRequest
 }
@@ -1423,7 +1423,7 @@ Signs the given data using the given HSM address.
 	@param chain The blockchain chain label.
 	@return ApiSignDataRequest
 */
-func (a *HsmApiService) SignData(ctx context.Context, chain ChainName) ApiSignDataRequest {
+func (a *HsmAPIService) SignData(ctx context.Context, chain ChainName) ApiSignDataRequest {
 	return ApiSignDataRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1434,7 +1434,7 @@ func (a *HsmApiService) SignData(ctx context.Context, chain ChainName) ApiSignDa
 // Execute executes the request
 //
 //	@return SignData200Response
-func (a *HsmApiService) SignDataExecute(r ApiSignDataRequest) (*SignData200Response, *http.Response, error) {
+func (a *HsmAPIService) SignDataExecute(r ApiSignDataRequest) (*SignData200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1442,7 +1442,7 @@ func (a *HsmApiService) SignDataExecute(r ApiSignDataRequest) (*SignData200Respo
 		localVarReturnValue *SignData200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmApiService.SignData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HsmAPIService.SignData")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

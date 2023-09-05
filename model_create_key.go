@@ -21,7 +21,8 @@ var _ MappedNullable = &CreateKey{}
 type CreateKey struct {
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
-	KeyName  string `json:"keyName"`
+	// The name of the key.
+	KeyName string `json:"keyName"`
 	// The name given to the vault your key is stored in.
 	VaultName         string `json:"vaultName"`
 	UseHardwareModule bool   `json:"useHardwareModule"`

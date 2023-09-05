@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClientID** | **string** | The Application ID that will be accessing the Key Vault. | 
-**KeyName** | **string** |  | 
-**KeyVersion** | **string** | The current version of your key. | 
+**KeyName** | **string** | The name of the key. | 
+**KeyVersion** | **string** | The version of the key. | 
 **VaultName** | **string** | The name given to the vault your key is stored in. | 
 
 ## Methods
