@@ -2820,6 +2820,218 @@ paths:
       summary: Delete user
       tags:
       - admin
+  /users/{userID}/signers:
+    get:
+      description: Returns all the signers for a user.
+      operationId: list-user-signers
+      parameters:
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SignerWallet'
+                type: array
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: List user signers
+      tags:
+      - admin
+  /users/{userID}/web3wallets/{wallet_address}:
+    delete:
+      description: Removes a web3 wallet signer from a user.
+      operationId: remove-user-signer-web3-wallet
+      parameters:
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An HSM ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Remove user web3 wallet signer
+      tags:
+      - admin
+    put:
+      description: Adds or updates a user's web3 wallet signer.
+      operationId: set-user-signer-web3-wallet
+      parameters:
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An HSM ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignerLabel'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Add or update user web3 wallet signer
+      tags:
+      - admin
+  /users/{userID}/cloudwallets/{wallet_address}:
+    delete:
+      description: Removes a cloud wallet signer from a user.
+      operationId: remove-user-signer-cloud-wallet
+      parameters:
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An HSM ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Remove user cloud wallet signer
+      tags:
+      - admin
+    put:
+      description: Adds or updates a user's cloud wallet signer.
+      operationId: set-user-signer-cloud-wallet
+      parameters:
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An HSM ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Add or update user cloud wallet signer
+      tags:
+      - admin
   /groups:
     get:
       description: Returns all the groups.
@@ -5656,6 +5868,44 @@ components:
         type: object
       description: A user.
       title: User
+    SignerWallet:
+      description: A signer wallet.
+      example:
+        wallet: wallet
+        label: label
+        type: web3
+        signer: signer
+      properties:
+        type:
+          description: The type of the signer.
+          enum:
+          - web3
+          - cloud
+          - multisig
+          type: string
+        wallet:
+          description: An ethereum address.
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddress
+          type: string
+        signer:
+          description: An ethereum address.
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddress
+          type: string
+        label:
+          description: The label of the signer.
+          type: string
+      title: Signer Wallet
+    SignerLabel:
+      description: A signer label.
+      example:
+        label: label
+      properties:
+        label:
+          description: The label of the signer.
+          type: string
+      title: Signer Label
     Group:
       description: A group.
       properties:

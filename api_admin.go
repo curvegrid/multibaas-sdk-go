@@ -199,6 +199,21 @@ type AdminAPI interface {
 	ListGroupsExecute(r ApiListGroupsRequest) (*ListGroups200Response, *http.Response, error)
 
 	/*
+		ListUserSigners List user signers
+
+		Returns all the signers for a user.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param userID
+		@return ApiListUserSignersRequest
+	*/
+	ListUserSigners(ctx context.Context, userID int64) ApiListUserSignersRequest
+
+	// ListUserSignersExecute executes the request
+	//  @return []SignerWallet
+	ListUserSignersExecute(r ApiListUserSignersRequest) ([]SignerWallet, *http.Response, error)
+
+	/*
 		ListUsers List users
 
 		Returns all the users.
@@ -274,6 +289,70 @@ type AdminAPI interface {
 	// RemoveGroupUserExecute executes the request
 	//  @return BaseResponse
 	RemoveGroupUserExecute(r ApiRemoveGroupUserRequest) (*BaseResponse, *http.Response, error)
+
+	/*
+		RemoveUserSignerCloudWallet Remove user cloud wallet signer
+
+		Removes a cloud wallet signer from a user.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param userID
+		@param walletAddress An HSM ethereum address.
+		@return ApiRemoveUserSignerCloudWalletRequest
+	*/
+	RemoveUserSignerCloudWallet(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerCloudWalletRequest
+
+	// RemoveUserSignerCloudWalletExecute executes the request
+	//  @return BaseResponse
+	RemoveUserSignerCloudWalletExecute(r ApiRemoveUserSignerCloudWalletRequest) (*BaseResponse, *http.Response, error)
+
+	/*
+		RemoveUserSignerWeb3Wallet Remove user web3 wallet signer
+
+		Removes a web3 wallet signer from a user.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param userID
+		@param walletAddress An HSM ethereum address.
+		@return ApiRemoveUserSignerWeb3WalletRequest
+	*/
+	RemoveUserSignerWeb3Wallet(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerWeb3WalletRequest
+
+	// RemoveUserSignerWeb3WalletExecute executes the request
+	//  @return BaseResponse
+	RemoveUserSignerWeb3WalletExecute(r ApiRemoveUserSignerWeb3WalletRequest) (*BaseResponse, *http.Response, error)
+
+	/*
+		SetUserSignerCloudWallet Add or update user cloud wallet signer
+
+		Adds or updates a user's cloud wallet signer.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param userID
+		@param walletAddress An HSM ethereum address.
+		@return ApiSetUserSignerCloudWalletRequest
+	*/
+	SetUserSignerCloudWallet(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerCloudWalletRequest
+
+	// SetUserSignerCloudWalletExecute executes the request
+	//  @return BaseResponse
+	SetUserSignerCloudWalletExecute(r ApiSetUserSignerCloudWalletRequest) (*BaseResponse, *http.Response, error)
+
+	/*
+		SetUserSignerWeb3Wallet Add or update user web3 wallet signer
+
+		Adds or updates a user's web3 wallet signer.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param userID
+		@param walletAddress An HSM ethereum address.
+		@return ApiSetUserSignerWeb3WalletRequest
+	*/
+	SetUserSignerWeb3Wallet(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerWeb3WalletRequest
+
+	// SetUserSignerWeb3WalletExecute executes the request
+	//  @return BaseResponse
+	SetUserSignerWeb3WalletExecute(r ApiSetUserSignerWeb3WalletRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		UpdateApiKey Update API key
@@ -1835,6 +1914,131 @@ func (a *AdminAPIService) ListGroupsExecute(r ApiListGroupsRequest) (*ListGroups
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiListUserSignersRequest struct {
+	ctx        context.Context
+	ApiService AdminAPI
+	userID     int64
+}
+
+func (r ApiListUserSignersRequest) Execute() ([]SignerWallet, *http.Response, error) {
+	return r.ApiService.ListUserSignersExecute(r)
+}
+
+/*
+ListUserSigners List user signers
+
+Returns all the signers for a user.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userID
+	@return ApiListUserSignersRequest
+*/
+func (a *AdminAPIService) ListUserSigners(ctx context.Context, userID int64) ApiListUserSignersRequest {
+	return ApiListUserSignersRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userID:     userID,
+	}
+}
+
+// Execute executes the request
+//
+//	@return []SignerWallet
+func (a *AdminAPIService) ListUserSignersExecute(r ApiListUserSignersRequest) ([]SignerWallet, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []SignerWallet
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.ListUserSigners")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/users/{userID}/signers"
+	localVarPath = strings.Replace(localVarPath, "{"+"userID"+"}", url.PathEscape(parameterValueToString(r.userID, "userID")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiListUsersRequest struct {
 	ctx        context.Context
 	ApiService AdminAPI
@@ -2419,6 +2623,530 @@ func (a *AdminAPIService) RemoveGroupUserExecute(r ApiRemoveGroupUserRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiRemoveUserSignerCloudWalletRequest struct {
+	ctx           context.Context
+	ApiService    AdminAPI
+	userID        int64
+	walletAddress string
+}
+
+func (r ApiRemoveUserSignerCloudWalletRequest) Execute() (*BaseResponse, *http.Response, error) {
+	return r.ApiService.RemoveUserSignerCloudWalletExecute(r)
+}
+
+/*
+RemoveUserSignerCloudWallet Remove user cloud wallet signer
+
+Removes a cloud wallet signer from a user.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userID
+	@param walletAddress An HSM ethereum address.
+	@return ApiRemoveUserSignerCloudWalletRequest
+*/
+func (a *AdminAPIService) RemoveUserSignerCloudWallet(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerCloudWalletRequest {
+	return ApiRemoveUserSignerCloudWalletRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		userID:        userID,
+		walletAddress: walletAddress,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BaseResponse
+func (a *AdminAPIService) RemoveUserSignerCloudWalletExecute(r ApiRemoveUserSignerCloudWalletRequest) (*BaseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BaseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.RemoveUserSignerCloudWallet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/users/{userID}/cloudwallets/{wallet_address}"
+	localVarPath = strings.Replace(localVarPath, "{"+"userID"+"}", url.PathEscape(parameterValueToString(r.userID, "userID")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiRemoveUserSignerWeb3WalletRequest struct {
+	ctx           context.Context
+	ApiService    AdminAPI
+	userID        int64
+	walletAddress string
+}
+
+func (r ApiRemoveUserSignerWeb3WalletRequest) Execute() (*BaseResponse, *http.Response, error) {
+	return r.ApiService.RemoveUserSignerWeb3WalletExecute(r)
+}
+
+/*
+RemoveUserSignerWeb3Wallet Remove user web3 wallet signer
+
+Removes a web3 wallet signer from a user.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userID
+	@param walletAddress An HSM ethereum address.
+	@return ApiRemoveUserSignerWeb3WalletRequest
+*/
+func (a *AdminAPIService) RemoveUserSignerWeb3Wallet(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerWeb3WalletRequest {
+	return ApiRemoveUserSignerWeb3WalletRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		userID:        userID,
+		walletAddress: walletAddress,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BaseResponse
+func (a *AdminAPIService) RemoveUserSignerWeb3WalletExecute(r ApiRemoveUserSignerWeb3WalletRequest) (*BaseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BaseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.RemoveUserSignerWeb3Wallet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/users/{userID}/web3wallets/{wallet_address}"
+	localVarPath = strings.Replace(localVarPath, "{"+"userID"+"}", url.PathEscape(parameterValueToString(r.userID, "userID")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSetUserSignerCloudWalletRequest struct {
+	ctx           context.Context
+	ApiService    AdminAPI
+	userID        int64
+	walletAddress string
+}
+
+func (r ApiSetUserSignerCloudWalletRequest) Execute() (*BaseResponse, *http.Response, error) {
+	return r.ApiService.SetUserSignerCloudWalletExecute(r)
+}
+
+/*
+SetUserSignerCloudWallet Add or update user cloud wallet signer
+
+Adds or updates a user's cloud wallet signer.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userID
+	@param walletAddress An HSM ethereum address.
+	@return ApiSetUserSignerCloudWalletRequest
+*/
+func (a *AdminAPIService) SetUserSignerCloudWallet(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerCloudWalletRequest {
+	return ApiSetUserSignerCloudWalletRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		userID:        userID,
+		walletAddress: walletAddress,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BaseResponse
+func (a *AdminAPIService) SetUserSignerCloudWalletExecute(r ApiSetUserSignerCloudWalletRequest) (*BaseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BaseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.SetUserSignerCloudWallet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/users/{userID}/cloudwallets/{wallet_address}"
+	localVarPath = strings.Replace(localVarPath, "{"+"userID"+"}", url.PathEscape(parameterValueToString(r.userID, "userID")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSetUserSignerWeb3WalletRequest struct {
+	ctx           context.Context
+	ApiService    AdminAPI
+	userID        int64
+	walletAddress string
+	signerLabel   *SignerLabel
+}
+
+func (r ApiSetUserSignerWeb3WalletRequest) SignerLabel(signerLabel SignerLabel) ApiSetUserSignerWeb3WalletRequest {
+	r.signerLabel = &signerLabel
+	return r
+}
+
+func (r ApiSetUserSignerWeb3WalletRequest) Execute() (*BaseResponse, *http.Response, error) {
+	return r.ApiService.SetUserSignerWeb3WalletExecute(r)
+}
+
+/*
+SetUserSignerWeb3Wallet Add or update user web3 wallet signer
+
+Adds or updates a user's web3 wallet signer.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userID
+	@param walletAddress An HSM ethereum address.
+	@return ApiSetUserSignerWeb3WalletRequest
+*/
+func (a *AdminAPIService) SetUserSignerWeb3Wallet(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerWeb3WalletRequest {
+	return ApiSetUserSignerWeb3WalletRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		userID:        userID,
+		walletAddress: walletAddress,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BaseResponse
+func (a *AdminAPIService) SetUserSignerWeb3WalletExecute(r ApiSetUserSignerWeb3WalletRequest) (*BaseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BaseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.SetUserSignerWeb3Wallet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/users/{userID}/web3wallets/{wallet_address}"
+	localVarPath = strings.Replace(localVarPath, "{"+"userID"+"}", url.PathEscape(parameterValueToString(r.userID, "userID")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.signerLabel
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

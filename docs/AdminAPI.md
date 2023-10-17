@@ -16,11 +16,16 @@ Method | HTTP request | Description
 [**ListAuditLogs**](AdminAPI.md#ListAuditLogs) | **Get** /systemactivities | List audit logs
 [**ListCorsOrigins**](AdminAPI.md#ListCorsOrigins) | **Get** /cors | List CORS origins
 [**ListGroups**](AdminAPI.md#ListGroups) | **Get** /groups | List groups
+[**ListUserSigners**](AdminAPI.md#ListUserSigners) | **Get** /users/{userID}/signers | List user signers
 [**ListUsers**](AdminAPI.md#ListUsers) | **Get** /users | List users
 [**RemoveCorsOrigin**](AdminAPI.md#RemoveCorsOrigin) | **Delete** /cors/{originID} | Remove CORS Origin
 [**RemoveGroupApiKey**](AdminAPI.md#RemoveGroupApiKey) | **Delete** /groups/{groupID}/api_keys/{apiKeyID} | Remove API key from group
 [**RemoveGroupRole**](AdminAPI.md#RemoveGroupRole) | **Delete** /groups/{groupID}/roles/{roleShortName} | Remove role from group
 [**RemoveGroupUser**](AdminAPI.md#RemoveGroupUser) | **Delete** /groups/{groupID}/users/{userID} | Remove user from group
+[**RemoveUserSignerCloudWallet**](AdminAPI.md#RemoveUserSignerCloudWallet) | **Delete** /users/{userID}/cloudwallets/{wallet_address} | Remove user cloud wallet signer
+[**RemoveUserSignerWeb3Wallet**](AdminAPI.md#RemoveUserSignerWeb3Wallet) | **Delete** /users/{userID}/web3wallets/{wallet_address} | Remove user web3 wallet signer
+[**SetUserSignerCloudWallet**](AdminAPI.md#SetUserSignerCloudWallet) | **Put** /users/{userID}/cloudwallets/{wallet_address} | Add or update user cloud wallet signer
+[**SetUserSignerWeb3Wallet**](AdminAPI.md#SetUserSignerWeb3Wallet) | **Put** /users/{userID}/web3wallets/{wallet_address} | Add or update user web3 wallet signer
 [**UpdateApiKey**](AdminAPI.md#UpdateApiKey) | **Put** /api_keys/{apiKeyID} | Update API key
 
 
@@ -844,6 +849,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListUserSigners
+
+> []SignerWallet ListUserSigners(ctx, userID).Execute()
+
+List user signers
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+    userID := int64(789) // int64 | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminAPI.ListUserSigners(context.Background(), userID).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListUserSigners``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUserSigners`: []SignerWallet
+    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListUserSigners`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userID** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUserSignersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**[]SignerWallet**](SignerWallet.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListUsers
 
 > ListUsers200Response ListUsers(ctx).GroupID(groupID).Execute()
@@ -1192,6 +1267,300 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveUserSignerCloudWallet
+
+> BaseResponse RemoveUserSignerCloudWallet(ctx, userID, walletAddress).Execute()
+
+Remove user cloud wallet signer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+    userID := int64(789) // int64 | 
+    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminAPI.RemoveUserSignerCloudWallet(context.Background(), userID, walletAddress).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveUserSignerCloudWallet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RemoveUserSignerCloudWallet`: BaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveUserSignerCloudWallet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userID** | **int64** |  | 
+**walletAddress** | **string** | An HSM ethereum address. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveUserSignerCloudWalletRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RemoveUserSignerWeb3Wallet
+
+> BaseResponse RemoveUserSignerWeb3Wallet(ctx, userID, walletAddress).Execute()
+
+Remove user web3 wallet signer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+    userID := int64(789) // int64 | 
+    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminAPI.RemoveUserSignerWeb3Wallet(context.Background(), userID, walletAddress).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveUserSignerWeb3Wallet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RemoveUserSignerWeb3Wallet`: BaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveUserSignerWeb3Wallet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userID** | **int64** |  | 
+**walletAddress** | **string** | An HSM ethereum address. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveUserSignerWeb3WalletRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetUserSignerCloudWallet
+
+> BaseResponse SetUserSignerCloudWallet(ctx, userID, walletAddress).Execute()
+
+Add or update user cloud wallet signer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+    userID := int64(789) // int64 | 
+    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminAPI.SetUserSignerCloudWallet(context.Background(), userID, walletAddress).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.SetUserSignerCloudWallet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SetUserSignerCloudWallet`: BaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.SetUserSignerCloudWallet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userID** | **int64** |  | 
+**walletAddress** | **string** | An HSM ethereum address. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetUserSignerCloudWalletRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetUserSignerWeb3Wallet
+
+> BaseResponse SetUserSignerWeb3Wallet(ctx, userID, walletAddress).SignerLabel(signerLabel).Execute()
+
+Add or update user web3 wallet signer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+    userID := int64(789) // int64 | 
+    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+    signerLabel := *openapiclient.NewSignerLabel() // SignerLabel |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminAPI.SetUserSignerWeb3Wallet(context.Background(), userID, walletAddress).SignerLabel(signerLabel).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.SetUserSignerWeb3Wallet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SetUserSignerWeb3Wallet`: BaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.SetUserSignerWeb3Wallet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userID** | **int64** |  | 
+**walletAddress** | **string** | An HSM ethereum address. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetUserSignerWeb3WalletRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **signerLabel** | [**SignerLabel**](SignerLabel.md) |  | 
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
