@@ -63,6 +63,8 @@ type APIClient struct {
 	HsmAPI HsmAPI
 
 	TxmAPI TxmAPI
+
+	WebhooksAPI WebhooksAPI
 }
 
 type service struct {
@@ -89,6 +91,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.EventsAPI = (*EventsAPIService)(&c.common)
 	c.HsmAPI = (*HsmAPIService)(&c.common)
 	c.TxmAPI = (*TxmAPIService)(&c.common)
+	c.WebhooksAPI = (*WebhooksAPIService)(&c.common)
 
 	return c
 }

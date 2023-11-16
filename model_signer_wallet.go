@@ -20,21 +20,25 @@ var _ MappedNullable = &SignerWallet{}
 // SignerWallet A signer wallet.
 type SignerWallet struct {
 	// The type of the signer.
-	Type *string `json:"type,omitempty"`
+	Type string `json:"type"`
 	// An ethereum address.
-	Wallet *string `json:"wallet,omitempty"`
+	Wallet string `json:"wallet"`
 	// An ethereum address.
-	Signer *string `json:"signer,omitempty"`
+	Signer string `json:"signer"`
 	// The label of the signer.
-	Label *string `json:"label,omitempty"`
+	Label string `json:"label"`
 }
 
 // NewSignerWallet instantiates a new SignerWallet object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSignerWallet() *SignerWallet {
+func NewSignerWallet(type_ string, wallet string, signer string, label string) *SignerWallet {
 	this := SignerWallet{}
+	this.Type = type_
+	this.Wallet = wallet
+	this.Signer = signer
+	this.Label = label
 	return &this
 }
 
@@ -46,132 +50,100 @@ func NewSignerWalletWithDefaults() *SignerWallet {
 	return &this
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *SignerWallet) GetType() string {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SignerWallet) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *SignerWallet) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value
 func (o *SignerWallet) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
-// GetWallet returns the Wallet field value if set, zero value otherwise.
+// GetWallet returns the Wallet field value
 func (o *SignerWallet) GetWallet() string {
-	if o == nil || IsNil(o.Wallet) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Wallet
+
+	return o.Wallet
 }
 
-// GetWalletOk returns a tuple with the Wallet field value if set, nil otherwise
+// GetWalletOk returns a tuple with the Wallet field value
 // and a boolean to check if the value has been set.
 func (o *SignerWallet) GetWalletOk() (*string, bool) {
-	if o == nil || IsNil(o.Wallet) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Wallet, true
+	return &o.Wallet, true
 }
 
-// HasWallet returns a boolean if a field has been set.
-func (o *SignerWallet) HasWallet() bool {
-	if o != nil && !IsNil(o.Wallet) {
-		return true
-	}
-
-	return false
-}
-
-// SetWallet gets a reference to the given string and assigns it to the Wallet field.
+// SetWallet sets field value
 func (o *SignerWallet) SetWallet(v string) {
-	o.Wallet = &v
+	o.Wallet = v
 }
 
-// GetSigner returns the Signer field value if set, zero value otherwise.
+// GetSigner returns the Signer field value
 func (o *SignerWallet) GetSigner() string {
-	if o == nil || IsNil(o.Signer) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Signer
+
+	return o.Signer
 }
 
-// GetSignerOk returns a tuple with the Signer field value if set, nil otherwise
+// GetSignerOk returns a tuple with the Signer field value
 // and a boolean to check if the value has been set.
 func (o *SignerWallet) GetSignerOk() (*string, bool) {
-	if o == nil || IsNil(o.Signer) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Signer, true
+	return &o.Signer, true
 }
 
-// HasSigner returns a boolean if a field has been set.
-func (o *SignerWallet) HasSigner() bool {
-	if o != nil && !IsNil(o.Signer) {
-		return true
-	}
-
-	return false
-}
-
-// SetSigner gets a reference to the given string and assigns it to the Signer field.
+// SetSigner sets field value
 func (o *SignerWallet) SetSigner(v string) {
-	o.Signer = &v
+	o.Signer = v
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *SignerWallet) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *SignerWallet) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *SignerWallet) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *SignerWallet) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 func (o SignerWallet) MarshalJSON() ([]byte, error) {
@@ -184,18 +156,10 @@ func (o SignerWallet) MarshalJSON() ([]byte, error) {
 
 func (o SignerWallet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !IsNil(o.Wallet) {
-		toSerialize["wallet"] = o.Wallet
-	}
-	if !IsNil(o.Signer) {
-		toSerialize["signer"] = o.Signer
-	}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["wallet"] = o.Wallet
+	toSerialize["signer"] = o.Signer
+	toSerialize["label"] = o.Label
 	return toSerialize, nil
 }
 

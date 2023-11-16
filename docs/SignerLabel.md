@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | Pointer to **string** | The label of the signer. | [optional] 
+**Label** | **string** | The label of the signer. | 
 
 ## Methods
 
 ### NewSignerLabel
 
-`func NewSignerLabel() *SignerLabel`
+`func NewSignerLabel(label string, ) *SignerLabel`
 
 NewSignerLabel instantiates a new SignerLabel object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *SignerLabel) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

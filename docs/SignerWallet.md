@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** | The type of the signer. | [optional] 
-**Wallet** | Pointer to **string** | An ethereum address. | [optional] 
-**Signer** | Pointer to **string** | An ethereum address. | [optional] 
-**Label** | Pointer to **string** | The label of the signer. | [optional] 
+**Type** | **string** | The type of the signer. | 
+**Wallet** | **string** | An ethereum address. | 
+**Signer** | **string** | An ethereum address. | 
+**Label** | **string** | The label of the signer. | 
 
 ## Methods
 
 ### NewSignerWallet
 
-`func NewSignerWallet() *SignerWallet`
+`func NewSignerWallet(type_ string, wallet string, signer string, label string, ) *SignerWallet`
 
 NewSignerWallet instantiates a new SignerWallet object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *SignerWallet) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetWallet
 
@@ -72,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetWallet sets Wallet field to given value.
 
-### HasWallet
-
-`func (o *SignerWallet) HasWallet() bool`
-
-HasWallet returns a boolean if a field has been set.
 
 ### GetSigner
 
@@ -97,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetSigner sets Signer field to given value.
 
-### HasSigner
-
-`func (o *SignerWallet) HasSigner() bool`
-
-HasSigner returns a boolean if a field has been set.
 
 ### GetLabel
 
@@ -122,11 +107,6 @@ and a boolean to check if the value has been set.
 
 SetLabel sets Label field to given value.
 
-### HasLabel
-
-`func (o *SignerWallet) HasLabel() bool`
-
-HasLabel returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,6 +22,21 @@ import (
 type AdminAPI interface {
 
 	/*
+		AcceptInvite Accept invite
+
+		Accepts a user invite.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param inviteID
+		@return ApiAcceptInviteRequest
+	*/
+	AcceptInvite(ctx context.Context, inviteID string) ApiAcceptInviteRequest
+
+	// AcceptInviteExecute executes the request
+	//  @return AcceptInvite200Response
+	AcceptInviteExecute(r ApiAcceptInviteRequest) (*AcceptInvite200Response, *http.Response, error)
+
+	/*
 		AddCorsOrigin Add CORS origin
 
 		Adds a CORS origin.
@@ -84,6 +99,21 @@ type AdminAPI interface {
 	AddGroupUserExecute(r ApiAddGroupUserRequest) (*BaseResponse, *http.Response, error)
 
 	/*
+		CheckInvite Check invite
+
+		Checks if a user invite is valid.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param inviteID
+		@return ApiCheckInviteRequest
+	*/
+	CheckInvite(ctx context.Context, inviteID string) ApiCheckInviteRequest
+
+	// CheckInviteExecute executes the request
+	//  @return BaseResponse
+	CheckInviteExecute(r ApiCheckInviteRequest) (*BaseResponse, *http.Response, error)
+
+	/*
 		CreateApiKey Create API key
 
 		Creates an API key and adds it to group IDs.
@@ -141,6 +171,20 @@ type AdminAPI interface {
 	// GetApiKeyExecute executes the request
 	//  @return CreateApiKey200Response
 	GetApiKeyExecute(r ApiGetApiKeyRequest) (*CreateApiKey200Response, *http.Response, error)
+
+	/*
+		InviteUser Invite user
+
+		Invites a new user.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiInviteUserRequest
+	*/
+	InviteUser(ctx context.Context) ApiInviteUserRequest
+
+	// InviteUserExecute executes the request
+	//  @return BaseResponse
+	InviteUserExecute(r ApiInviteUserRequest) (*BaseResponse, *http.Response, error)
 
 	/*
 		ListApiKeys List API keys
@@ -210,8 +254,8 @@ type AdminAPI interface {
 	ListUserSigners(ctx context.Context, userID int64) ApiListUserSignersRequest
 
 	// ListUserSignersExecute executes the request
-	//  @return []SignerWallet
-	ListUserSignersExecute(r ApiListUserSignersRequest) ([]SignerWallet, *http.Response, error)
+	//  @return ListUserSigners200Response
+	ListUserSignersExecute(r ApiListUserSignersRequest) (*ListUserSigners200Response, *http.Response, error)
 
 	/*
 		ListUsers List users
@@ -372,6 +416,139 @@ type AdminAPI interface {
 
 // AdminAPIService AdminAPI service
 type AdminAPIService service
+
+type ApiAcceptInviteRequest struct {
+	ctx                 context.Context
+	ApiService          AdminAPI
+	inviteID            string
+	acceptInviteRequest *AcceptInviteRequest
+}
+
+func (r ApiAcceptInviteRequest) AcceptInviteRequest(acceptInviteRequest AcceptInviteRequest) ApiAcceptInviteRequest {
+	r.acceptInviteRequest = &acceptInviteRequest
+	return r
+}
+
+func (r ApiAcceptInviteRequest) Execute() (*AcceptInvite200Response, *http.Response, error) {
+	return r.ApiService.AcceptInviteExecute(r)
+}
+
+/*
+AcceptInvite Accept invite
+
+Accepts a user invite.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param inviteID
+	@return ApiAcceptInviteRequest
+*/
+func (a *AdminAPIService) AcceptInvite(ctx context.Context, inviteID string) ApiAcceptInviteRequest {
+	return ApiAcceptInviteRequest{
+		ApiService: a,
+		ctx:        ctx,
+		inviteID:   inviteID,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AcceptInvite200Response
+func (a *AdminAPIService) AcceptInviteExecute(r ApiAcceptInviteRequest) (*AcceptInvite200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AcceptInvite200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.AcceptInvite")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/invites/{inviteID}"
+	localVarPath = strings.Replace(localVarPath, "{"+"inviteID"+"}", url.PathEscape(parameterValueToString(r.inviteID, "inviteID")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.acceptInviteRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiAddCorsOriginRequest struct {
 	ctx        context.Context
@@ -809,6 +986,131 @@ func (a *AdminAPIService) AddGroupUserExecute(r ApiAddGroupUserRequest) (*BaseRe
 	localVarPath := localBasePath + "/groups/{groupID}/users/{userID}"
 	localVarPath = strings.Replace(localVarPath, "{"+"groupID"+"}", url.PathEscape(parameterValueToString(r.groupID, "groupID")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"userID"+"}", url.PathEscape(parameterValueToString(r.userID, "userID")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCheckInviteRequest struct {
+	ctx        context.Context
+	ApiService AdminAPI
+	inviteID   string
+}
+
+func (r ApiCheckInviteRequest) Execute() (*BaseResponse, *http.Response, error) {
+	return r.ApiService.CheckInviteExecute(r)
+}
+
+/*
+CheckInvite Check invite
+
+Checks if a user invite is valid.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param inviteID
+	@return ApiCheckInviteRequest
+*/
+func (a *AdminAPIService) CheckInvite(ctx context.Context, inviteID string) ApiCheckInviteRequest {
+	return ApiCheckInviteRequest{
+		ApiService: a,
+		ctx:        ctx,
+		inviteID:   inviteID,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BaseResponse
+func (a *AdminAPIService) CheckInviteExecute(r ApiCheckInviteRequest) (*BaseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BaseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.CheckInvite")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/invites/{inviteID}"
+	localVarPath = strings.Replace(localVarPath, "{"+"inviteID"+"}", url.PathEscape(parameterValueToString(r.inviteID, "inviteID")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1335,6 +1637,135 @@ func (a *AdminAPIService) GetApiKeyExecute(r ApiGetApiKeyRequest) (*CreateApiKey
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode >= 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiInviteUserRequest struct {
+	ctx        context.Context
+	ApiService AdminAPI
+	invite     *Invite
+}
+
+func (r ApiInviteUserRequest) Invite(invite Invite) ApiInviteUserRequest {
+	r.invite = &invite
+	return r
+}
+
+func (r ApiInviteUserRequest) Execute() (*BaseResponse, *http.Response, error) {
+	return r.ApiService.InviteUserExecute(r)
+}
+
+/*
+InviteUser Invite user
+
+Invites a new user.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInviteUserRequest
+*/
+func (a *AdminAPIService) InviteUser(ctx context.Context) ApiInviteUserRequest {
+	return ApiInviteUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return BaseResponse
+func (a *AdminAPIService) InviteUserExecute(r ApiInviteUserRequest) (*BaseResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BaseResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.InviteUser")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/invites"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.invite
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1920,7 +2351,7 @@ type ApiListUserSignersRequest struct {
 	userID     int64
 }
 
-func (r ApiListUserSignersRequest) Execute() ([]SignerWallet, *http.Response, error) {
+func (r ApiListUserSignersRequest) Execute() (*ListUserSigners200Response, *http.Response, error) {
 	return r.ApiService.ListUserSignersExecute(r)
 }
 
@@ -1943,13 +2374,13 @@ func (a *AdminAPIService) ListUserSigners(ctx context.Context, userID int64) Api
 
 // Execute executes the request
 //
-//	@return []SignerWallet
-func (a *AdminAPIService) ListUserSignersExecute(r ApiListUserSignersRequest) ([]SignerWallet, *http.Response, error) {
+//	@return ListUserSigners200Response
+func (a *AdminAPIService) ListUserSignersExecute(r ApiListUserSignersRequest) (*ListUserSigners200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []SignerWallet
+		localVarReturnValue *ListUserSigners200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.ListUserSigners")

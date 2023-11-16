@@ -4,14 +4,17 @@ All URIs are relative to *https://your_deployment.multibaas.com/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AcceptInvite**](AdminAPI.md#AcceptInvite) | **Post** /invites/{inviteID} | Accept invite
 [**AddCorsOrigin**](AdminAPI.md#AddCorsOrigin) | **Post** /cors | Add CORS origin
 [**AddGroupApiKey**](AdminAPI.md#AddGroupApiKey) | **Put** /groups/{groupID}/api_keys/{apiKeyID} | Add API key to group
 [**AddGroupRole**](AdminAPI.md#AddGroupRole) | **Put** /groups/{groupID}/roles/{roleShortName} | Add role to group
 [**AddGroupUser**](AdminAPI.md#AddGroupUser) | **Put** /groups/{groupID}/users/{userID} | Add user to group
+[**CheckInvite**](AdminAPI.md#CheckInvite) | **Get** /invites/{inviteID} | Check invite
 [**CreateApiKey**](AdminAPI.md#CreateApiKey) | **Post** /api_keys | Create API key
 [**DeleteApiKey**](AdminAPI.md#DeleteApiKey) | **Delete** /api_keys/{apiKeyID} | Delete API key
 [**DeleteUser**](AdminAPI.md#DeleteUser) | **Delete** /users/{userID} | Delete user
 [**GetApiKey**](AdminAPI.md#GetApiKey) | **Get** /api_keys/{apiKeyID} | Get API Key
+[**InviteUser**](AdminAPI.md#InviteUser) | **Post** /invites | Invite user
 [**ListApiKeys**](AdminAPI.md#ListApiKeys) | **Get** /api_keys | List API keys
 [**ListAuditLogs**](AdminAPI.md#ListAuditLogs) | **Get** /systemactivities | List audit logs
 [**ListCorsOrigins**](AdminAPI.md#ListCorsOrigins) | **Get** /cors | List CORS origins
@@ -28,6 +31,78 @@ Method | HTTP request | Description
 [**SetUserSignerWeb3Wallet**](AdminAPI.md#SetUserSignerWeb3Wallet) | **Put** /users/{userID}/web3wallets/{wallet_address} | Add or update user web3 wallet signer
 [**UpdateApiKey**](AdminAPI.md#UpdateApiKey) | **Put** /api_keys/{apiKeyID} | Update API key
 
+
+
+## AcceptInvite
+
+> AcceptInvite200Response AcceptInvite(ctx, inviteID).AcceptInviteRequest(acceptInviteRequest).Execute()
+
+Accept invite
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+    inviteID := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+    acceptInviteRequest := *openapiclient.NewAcceptInviteRequest() // AcceptInviteRequest |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminAPI.AcceptInvite(context.Background(), inviteID).AcceptInviteRequest(acceptInviteRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AcceptInvite``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AcceptInvite`: AcceptInvite200Response
+    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AcceptInvite`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**inviteID** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAcceptInviteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **acceptInviteRequest** | [**AcceptInviteRequest**](AcceptInviteRequest.md) |  | 
+
+### Return type
+
+[**AcceptInvite200Response**](AcceptInvite200Response.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## AddCorsOrigin
@@ -315,6 +390,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CheckInvite
+
+> BaseResponse CheckInvite(ctx, inviteID).Execute()
+
+Check invite
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+    inviteID := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminAPI.CheckInvite(context.Background(), inviteID).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.CheckInvite``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CheckInvite`: BaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.CheckInvite`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**inviteID** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCheckInviteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateApiKey
 
 > CreateApiKey200Response CreateApiKey(ctx).CreateApiKeyRequest(createApiKeyRequest).Execute()
@@ -591,6 +736,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## InviteUser
+
+> BaseResponse InviteUser(ctx).Invite(invite).Execute()
+
+Invite user
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+    invite := *openapiclient.NewInvite("Email_example") // Invite |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AdminAPI.InviteUser(context.Background()).Invite(invite).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.InviteUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `InviteUser`: BaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.InviteUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInviteUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **invite** | [**Invite**](Invite.md) |  | 
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListApiKeys
 
 > ListApiKeys200Response ListApiKeys(ctx).All(all).Execute()
@@ -851,7 +1062,7 @@ Name | Type | Description  | Notes
 
 ## ListUserSigners
 
-> []SignerWallet ListUserSigners(ctx, userID).Execute()
+> ListUserSigners200Response ListUserSigners(ctx, userID).Execute()
 
 List user signers
 
@@ -879,7 +1090,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListUserSigners``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListUserSigners`: []SignerWallet
+    // response from `ListUserSigners`: ListUserSigners200Response
     fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListUserSigners`: %v\n", resp)
 }
 ```
@@ -903,7 +1114,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]SignerWallet**](SignerWallet.md)
+[**ListUserSigners200Response**](ListUserSigners200Response.md)
 
 ### Authorization
 
@@ -1516,7 +1727,7 @@ import (
 func main() {
     userID := int64(789) // int64 | 
     walletAddress := "walletAddress_example" // string | An HSM ethereum address.
-    signerLabel := *openapiclient.NewSignerLabel() // SignerLabel |  (optional)
+    signerLabel := *openapiclient.NewSignerLabel("Label_example") // SignerLabel |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

@@ -23,6 +23,7 @@ tags:
 - name: events
 - name: event queries
 - name: txm
+- name: webhooks
 paths:
   /api_keys:
     get:
@@ -196,6 +197,114 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Server error.
       summary: Update API key
+      tags:
+      - admin
+  /invites:
+    post:
+      description: Invites a new user.
+      operationId: invite-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invite'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Invite user
+      tags:
+      - admin
+  /invites/{inviteID}:
+    get:
+      description: Checks if a user invite is valid.
+      operationId: check-invite
+      parameters:
+      - explode: false
+        in: path
+        name: inviteID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      security: []
+      summary: Check invite
+      tags:
+      - admin
+    post:
+      description: Accepts a user invite.
+      operationId: accept-invite
+      parameters:
+      - explode: false
+        in: path
+        name: inviteID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/accept_invite_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accept_invite_200_response'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      security:
+      - bearer: []
+      summary: Accept invite
       tags:
       - admin
   /chains/{chain}/transfers:
@@ -2750,6 +2859,271 @@ paths:
       summary: Speed up transaction
       tags:
       - txm
+  /webhooks:
+    get:
+      description: List all webhook endpoints.
+      operationId: list-webhooks
+      parameters:
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_webhooks_200_response'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: List webhooks
+      tags:
+      - webhooks
+    post:
+      description: Create a webhook.
+      operationId: create-webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseWebhookEndpoint'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_webhook_200_response'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Create webhook
+      tags:
+      - webhooks
+  /webhooks/count:
+    get:
+      description: Count all webhook endpoints.
+      operationId: count-webhooks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/count_webhooks_200_response'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Count webhooks
+      tags:
+      - webhooks
+  /webhooks/{webhookID}:
+    delete:
+      description: Delete a webhook endpoint.
+      operationId: delete-webhook
+      parameters:
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Delete webhook
+      tags:
+      - webhooks
+    get:
+      description: Get a webhook endpoint.
+      operationId: get-webhook
+      parameters:
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_webhook_200_response'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Get webhook
+      tags:
+      - webhooks
+    put:
+      description: Update a webhook endpoint.
+      operationId: update-webhook
+      parameters:
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseWebhookEndpoint'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/create_webhook_200_response'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Update webhook
+      tags:
+      - webhooks
+  /webhooks/{webhookID}/events:
+    get:
+      description: List events for the given webhook endpoint.
+      operationId: list-webhook-events
+      parameters:
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list_webhook_events_200_response'
+          description: OK
+      summary: List webhook events
+      tags:
+      - webhooks
+  /webhooks/{webhookID}/events/count:
+    get:
+      description: Count the events for the given webhook endpoint.
+      operationId: count-webhook-events
+      parameters:
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/count_webhook_events_200_response'
+          description: OK
+      summary: Count webhook events
+      tags:
+      - webhooks
   /users:
     get:
       description: Returns all the users.
@@ -2838,9 +3212,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/SignerWallet'
-                type: array
+                $ref: '#/components/schemas/list_user_signers_200_response'
           description: OK
         "4XX":
           content:
@@ -3571,6 +3943,24 @@ components:
       schema:
         type: boolean
       style: form
+    InviteID:
+      explode: false
+      in: path
+      name: inviteID
+      required: true
+      schema:
+        format: uuid
+        type: string
+      style: simple
+    WebhookID:
+      explode: false
+      in: path
+      name: webhookID
+      required: true
+      schema:
+        format: int64
+        type: integer
+      style: simple
   responses:
     ClientError:
       content:
@@ -5242,7 +5632,7 @@ components:
         data:
           $ref: '#/components/schemas/Transaction'
         isPending:
-          description: Whether the transaction has been mined yet.
+          description: Whether the transaction has been included yet.
           type: boolean
         from:
           description: An ethereum address.
@@ -5728,6 +6118,109 @@ components:
       - updatedAt
       title: WalletTransaction
       type: object
+    BaseWebhookEndpoint:
+      example:
+        subscriptions:
+        - null
+        - null
+        label: label
+        url: url
+      properties:
+        url:
+          description: The URL to send the webhook to.
+          type: string
+        label:
+          description: A label.
+          pattern: "^[a-z0-9_-]+$"
+          title: Label
+          type: string
+        subscriptions:
+          description: The events to subscribe to.
+          items:
+            $ref: '#/components/schemas/WebhookEventsType'
+          type: array
+      required:
+      - label
+      - subscriptions
+      - url
+      title: BaseWebhookEndpoint
+      type: object
+    WebhookEndpoint:
+      allOf:
+      - $ref: '#/components/schemas/BaseWebhookEndpoint'
+      - properties:
+          id:
+            format: int64
+            type: integer
+          nextAttempt:
+            description: The time the next attempt will be made.
+            format: date-time
+            type: string
+          lastAttempt:
+            description: The time the last attempt was made.
+            format: date-time
+            type: string
+          failedCalls:
+            description: The number of failed webhook endpoint calls since the last
+              successful call.
+            format: int64
+            type: integer
+          lastError:
+            description: The last error received from the webhook endpoint.
+            type: string
+          createdAt:
+            description: The time the webhook was created.
+            format: date-time
+            type: string
+          updatedAt:
+            description: The time the webhook was last updated.
+            format: date-time
+            type: string
+          secret:
+            description: The secret key used to sign the webhook.
+            type: string
+        required:
+        - createdAt
+        - failedCalls
+        - id
+        - secret
+        - updatedAt
+        type: object
+      title: WebhookEndpoint
+      type: object
+    WebhookEvent:
+      properties:
+        id:
+          description: The ID of the webhook event.
+          format: int64
+          type: integer
+        eventType:
+          $ref: '#/components/schemas/WebhookEventsType'
+        data:
+          description: The data associated with the event.
+          type: object
+        createdAt:
+          description: The time the webhook event was created.
+          format: date-time
+          type: string
+        deliveredAt:
+          description: The time the webhook event was last updated.
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - data
+      - eventType
+      - id
+      title: WebhookEvent
+      type: object
+    WebhookEventsType:
+      description: The type of the webhook event.
+      enum:
+      - transaction.included
+      - event.emitted
+      title: WebhookEventsType
+      type: string
     BaseResponse:
       description: Standard response.
       example:
@@ -5865,16 +6358,30 @@ components:
             type: integer
         required:
         - id
+        - name
         type: object
       description: A user.
       title: User
+    Invite:
+      allOf:
+      - properties:
+          email:
+            description: The invitee's email address.
+            format: email
+            type: string
+          groupIDs:
+            items:
+              description: The group IDs to add the invited user to.
+              format: int64
+              type: integer
+            type: array
+        required:
+        - email
+      description: An invite with groups.
+      title: Invite
+      type: object
     SignerWallet:
       description: A signer wallet.
-      example:
-        wallet: wallet
-        label: label
-        type: web3
-        signer: signer
       properties:
         type:
           description: The type of the signer.
@@ -5896,6 +6403,11 @@ components:
         label:
           description: The label of the signer.
           type: string
+      required:
+      - label
+      - signer
+      - type
+      - wallet
       title: Signer Wallet
     SignerLabel:
       description: A signer label.
@@ -5905,6 +6417,8 @@ components:
         label:
           description: The label of the signer.
           type: string
+      required:
+      - label
       title: Signer Label
     Group:
       description: A group.
@@ -6021,6 +6535,20 @@ components:
       - properties:
           result:
             $ref: '#/components/schemas/APIKey'
+        required:
+        - result
+    accept_invite_request:
+      properties:
+        idToken:
+          description: The user ID Token
+          format: JWT
+          type: string
+    accept_invite_200_response:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - properties:
+          result:
+            $ref: '#/components/schemas/User'
         required:
         - result
     transfer_eth_200_response:
@@ -6321,6 +6849,54 @@ components:
             type: integer
         required:
         - result
+    list_webhooks_200_response:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - properties:
+          result:
+            items:
+              $ref: '#/components/schemas/WebhookEndpoint'
+            type: array
+        required:
+        - result
+    create_webhook_200_response:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - properties:
+          result:
+            $ref: '#/components/schemas/WebhookEndpoint'
+        required:
+        - result
+    count_webhooks_200_response:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - properties:
+          result:
+            description: The webhook count.
+            format: int64
+            type: integer
+        required:
+        - result
+    list_webhook_events_200_response:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - properties:
+          result:
+            items:
+              $ref: '#/components/schemas/WebhookEvent'
+            type: array
+        required:
+        - result
+    count_webhook_events_200_response:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - properties:
+          result:
+            description: The number of webhook events.
+            format: int64
+            type: integer
+        required:
+        - result
     list_users_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -6328,6 +6904,16 @@ components:
           result:
             items:
               $ref: '#/components/schemas/User'
+            type: array
+        required:
+        - result
+    list_user_signers_200_response:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - properties:
+          result:
+            items:
+              $ref: '#/components/schemas/SignerWallet'
             type: array
         required:
         - result

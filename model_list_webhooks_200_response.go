@@ -14,40 +14,40 @@ import (
 	"encoding/json"
 )
 
-// checks if the CreateApiKey200Response type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateApiKey200Response{}
+// checks if the ListWebhooks200Response type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListWebhooks200Response{}
 
-// CreateApiKey200Response struct for CreateApiKey200Response
-type CreateApiKey200Response struct {
+// ListWebhooks200Response struct for ListWebhooks200Response
+type ListWebhooks200Response struct {
 	// The status code.
 	Status int64 `json:"status"`
 	// The human-readable status message.
-	Message string `json:"message"`
-	Result  APIKey_ `json:"result"`
+	Message string            `json:"message"`
+	Result  []WebhookEndpoint `json:"result"`
 }
 
-// NewCreateApiKey200Response instantiates a new CreateApiKey200Response object
+// NewListWebhooks200Response instantiates a new ListWebhooks200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateApiKey200Response(status int64, message string, result APIKey_) *CreateApiKey200Response {
-	this := CreateApiKey200Response{}
+func NewListWebhooks200Response(status int64, message string, result []WebhookEndpoint) *ListWebhooks200Response {
+	this := ListWebhooks200Response{}
 	this.Status = status
 	this.Message = message
 	this.Result = result
 	return &this
 }
 
-// NewCreateApiKey200ResponseWithDefaults instantiates a new CreateApiKey200Response object
+// NewListWebhooks200ResponseWithDefaults instantiates a new ListWebhooks200Response object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateApiKey200ResponseWithDefaults() *CreateApiKey200Response {
-	this := CreateApiKey200Response{}
+func NewListWebhooks200ResponseWithDefaults() *ListWebhooks200Response {
+	this := ListWebhooks200Response{}
 	return &this
 }
 
 // GetStatus returns the Status field value
-func (o *CreateApiKey200Response) GetStatus() int64 {
+func (o *ListWebhooks200Response) GetStatus() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -58,7 +58,7 @@ func (o *CreateApiKey200Response) GetStatus() int64 {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *CreateApiKey200Response) GetStatusOk() (*int64, bool) {
+func (o *ListWebhooks200Response) GetStatusOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *CreateApiKey200Response) GetStatusOk() (*int64, bool) {
 }
 
 // SetStatus sets field value
-func (o *CreateApiKey200Response) SetStatus(v int64) {
+func (o *ListWebhooks200Response) SetStatus(v int64) {
 	o.Status = v
 }
 
 // GetMessage returns the Message field value
-func (o *CreateApiKey200Response) GetMessage() string {
+func (o *ListWebhooks200Response) GetMessage() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -82,7 +82,7 @@ func (o *CreateApiKey200Response) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *CreateApiKey200Response) GetMessageOk() (*string, bool) {
+func (o *ListWebhooks200Response) GetMessageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,14 +90,14 @@ func (o *CreateApiKey200Response) GetMessageOk() (*string, bool) {
 }
 
 // SetMessage sets field value
-func (o *CreateApiKey200Response) SetMessage(v string) {
+func (o *ListWebhooks200Response) SetMessage(v string) {
 	o.Message = v
 }
 
 // GetResult returns the Result field value
-func (o *CreateApiKey200Response) GetResult() APIKey_ {
+func (o *ListWebhooks200Response) GetResult() []WebhookEndpoint {
 	if o == nil {
-		var ret APIKey_
+		var ret []WebhookEndpoint
 		return ret
 	}
 
@@ -106,19 +106,19 @@ func (o *CreateApiKey200Response) GetResult() APIKey_ {
 
 // GetResultOk returns a tuple with the Result field value
 // and a boolean to check if the value has been set.
-func (o *CreateApiKey200Response) GetResultOk() (*APIKey_, bool) {
+func (o *ListWebhooks200Response) GetResultOk() ([]WebhookEndpoint, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Result, true
+	return o.Result, true
 }
 
 // SetResult sets field value
-func (o *CreateApiKey200Response) SetResult(v APIKey_) {
+func (o *ListWebhooks200Response) SetResult(v []WebhookEndpoint) {
 	o.Result = v
 }
 
-func (o CreateApiKey200Response) MarshalJSON() ([]byte, error) {
+func (o ListWebhooks200Response) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -126,7 +126,7 @@ func (o CreateApiKey200Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateApiKey200Response) ToMap() (map[string]interface{}, error) {
+func (o ListWebhooks200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["status"] = o.Status
 	toSerialize["message"] = o.Message
@@ -134,38 +134,38 @@ func (o CreateApiKey200Response) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableCreateApiKey200Response struct {
-	value *CreateApiKey200Response
+type NullableListWebhooks200Response struct {
+	value *ListWebhooks200Response
 	isSet bool
 }
 
-func (v NullableCreateApiKey200Response) Get() *CreateApiKey200Response {
+func (v NullableListWebhooks200Response) Get() *ListWebhooks200Response {
 	return v.value
 }
 
-func (v *NullableCreateApiKey200Response) Set(val *CreateApiKey200Response) {
+func (v *NullableListWebhooks200Response) Set(val *ListWebhooks200Response) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateApiKey200Response) IsSet() bool {
+func (v NullableListWebhooks200Response) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateApiKey200Response) Unset() {
+func (v *NullableListWebhooks200Response) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateApiKey200Response(val *CreateApiKey200Response) *NullableCreateApiKey200Response {
-	return &NullableCreateApiKey200Response{value: val, isSet: true}
+func NewNullableListWebhooks200Response(val *ListWebhooks200Response) *NullableListWebhooks200Response {
+	return &NullableListWebhooks200Response{value: val, isSet: true}
 }
 
-func (v NullableCreateApiKey200Response) MarshalJSON() ([]byte, error) {
+func (v NullableListWebhooks200Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateApiKey200Response) UnmarshalJSON(src []byte) error {
+func (v *NullableListWebhooks200Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

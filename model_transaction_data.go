@@ -20,7 +20,7 @@ var _ MappedNullable = &TransactionData{}
 // TransactionData The transaction data returned from a call to get transaction by hash.
 type TransactionData struct {
 	Data Transaction `json:"data"`
-	// Whether the transaction has been mined yet.
+	// Whether the transaction has been included yet.
 	IsPending bool `json:"isPending"`
 	// An ethereum address.
 	From string `json:"from"`

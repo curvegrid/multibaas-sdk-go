@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Data** | [**Transaction**](Transaction.md) |  | 
-**IsPending** | **bool** | Whether the transaction has been mined yet. | 
+**IsPending** | **bool** | Whether the transaction has been included yet. | 
 **From** | **string** | An ethereum address. | 
 **BlockHash** | Pointer to **string** | The keccak256 hash as a hex string of 256 bits. | [optional] 
 **BlockNumber** | Pointer to **string** | The transaction block number. | [optional] 

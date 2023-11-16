@@ -39,7 +39,7 @@ func main() {
 	/* Example 1: getting blockchain details */
 
 	// First let's get the chain ID of the blockchain MultiBaas is connected to
-	resp1, _, err := client.ChainsApi.GetChainStatus(ctx, chain).Execute()
+	resp1, _, err := client.ChainsAPI.GetChainStatus(ctx, chain).Execute()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -69,7 +69,7 @@ func main() {
 		ContractOverride: &contractOverride,
 	}
 
-	resp2, _, err := client.ContractsApi.CallContractFunction(ctx, chain, contractAddr, contractLabel, contractMethod).PostMethodArgs(payload).Execute()
+	resp2, _, err := client.ContractsAPI.CallContractFunction(ctx, chain, contractAddr, contractLabel, contractMethod).PostMethodArgs(payload).Execute()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -80,7 +80,7 @@ func main() {
 	/* Example 3: handling errors */
 
 	// Intentionally calling a contract method that doesn't exist to trigger an error
-	_, _, err = client.ContractsApi.CallContractFunction(ctx, chain, contractAddr, contractLabel, "thisMethodDoNotExist").PostMethodArgs(payload).Execute()
+	_, _, err = client.ContractsAPI.CallContractFunction(ctx, chain, contractAddr, contractLabel, "thisMethodDoNotExist").PostMethodArgs(payload).Execute()
 	if err != nil {
 		if mbErr, ok := multibaas.IsMultiBaasErr(err); ok {
 			fmt.Printf("Example 3: MultiBaas returned an error with status '%d' and message: '%s'\n", mbErr.Status, mbErr.Message)

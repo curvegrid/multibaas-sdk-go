@@ -20,15 +20,16 @@ var _ MappedNullable = &SignerLabel{}
 // SignerLabel A signer label.
 type SignerLabel struct {
 	// The label of the signer.
-	Label *string `json:"label,omitempty"`
+	Label string `json:"label"`
 }
 
 // NewSignerLabel instantiates a new SignerLabel object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSignerLabel() *SignerLabel {
+func NewSignerLabel(label string) *SignerLabel {
 	this := SignerLabel{}
+	this.Label = label
 	return &this
 }
 
@@ -40,36 +41,28 @@ func NewSignerLabelWithDefaults() *SignerLabel {
 	return &this
 }
 
-// GetLabel returns the Label field value if set, zero value otherwise.
+// GetLabel returns the Label field value
 func (o *SignerLabel) GetLabel() string {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Label
+
+	return o.Label
 }
 
-// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
 func (o *SignerLabel) GetLabelOk() (*string, bool) {
-	if o == nil || IsNil(o.Label) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Label, true
+	return &o.Label, true
 }
 
-// HasLabel returns a boolean if a field has been set.
-func (o *SignerLabel) HasLabel() bool {
-	if o != nil && !IsNil(o.Label) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabel gets a reference to the given string and assigns it to the Label field.
+// SetLabel sets field value
 func (o *SignerLabel) SetLabel(v string) {
-	o.Label = &v
+	o.Label = v
 }
 
 func (o SignerLabel) MarshalJSON() ([]byte, error) {
@@ -82,9 +75,7 @@ func (o SignerLabel) MarshalJSON() ([]byte, error) {
 
 func (o SignerLabel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Label) {
-		toSerialize["label"] = o.Label
-	}
+	toSerialize["label"] = o.Label
 	return toSerialize, nil
 }
 
