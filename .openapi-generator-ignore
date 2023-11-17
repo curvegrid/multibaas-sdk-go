@@ -28,3 +28,4 @@ git_push.sh
 example/*
 errors.go
 go.work
+LICENSE
