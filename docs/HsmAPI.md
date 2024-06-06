@@ -31,24 +31,24 @@ Add HSM config
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    baseAzureAccount := *openapiclient.NewBaseAzureAccount("Label_example", "ClientID_example", "ClientSecret_example", "TenantID_example", "SubscriptionID_example", "BaseGroupName_example") // BaseAzureAccount |  (optional)
+	baseAzureAccount := *openapiclient.NewBaseAzureAccount("Label_example", "ClientID_example", "ClientSecret_example", "TenantID_example", "SubscriptionID_example", "BaseGroupName_example") // BaseAzureAccount |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.AddHsmConfig(context.Background()).BaseAzureAccount(baseAzureAccount).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.AddHsmConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AddHsmConfig`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.AddHsmConfig`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.AddHsmConfig(context.Background()).BaseAzureAccount(baseAzureAccount).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.AddHsmConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddHsmConfig`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.AddHsmConfig`: %v\n", resp)
 }
 ```
 
@@ -97,24 +97,24 @@ Add HSM key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    addKey := *openapiclient.NewAddKey("ClientID_example", "KeyName_example", "KeyVersion_example", "VaultName_example") // AddKey |  (optional)
+	addKey := *openapiclient.NewAddKey("ClientID_example", "KeyName_example", "KeyVersion_example", "VaultName_example") // AddKey |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.AddHsmKey(context.Background()).AddKey(addKey).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.AddHsmKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AddHsmKey`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.AddHsmKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.AddHsmKey(context.Background()).AddKey(addKey).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.AddHsmKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddHsmKey`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.AddHsmKey`: %v\n", resp)
 }
 ```
 
@@ -163,24 +163,24 @@ Create HSM key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    createKey := *openapiclient.NewCreateKey("ClientID_example", "KeyName_example", "VaultName_example", false) // CreateKey |  (optional)
+	createKey := *openapiclient.NewCreateKey("ClientID_example", "KeyName_example", "VaultName_example", false) // CreateKey |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.CreateHsmKey(context.Background()).CreateKey(createKey).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.CreateHsmKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateHsmKey`: CreateHsmKey200Response
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.CreateHsmKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.CreateHsmKey(context.Background()).CreateKey(createKey).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.CreateHsmKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateHsmKey`: CreateHsmKey200Response
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.CreateHsmKey`: %v\n", resp)
 }
 ```
 
@@ -229,23 +229,23 @@ List HSM configs and wallets
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.ListHsm(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.ListHsm``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListHsm`: ListHsm200Response
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.ListHsm`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.ListHsm(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.ListHsm``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListHsm`: ListHsm200Response
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.ListHsm`: %v\n", resp)
 }
 ```
 
@@ -290,31 +290,31 @@ List HSM wallets
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    keyName := "keyName_example" // string | Filter wallets by a key name. (optional)
-    keyVersion := "keyVersion_example" // string | Filter wallets by a key version. (optional)
-    vaultName := "vaultName_example" // string | Filter wallets by a vault name. (optional)
-    baseGroupName := "baseGroupName_example" // string | Filter wallets by a base group name. (optional)
-    clientId := "clientId_example" // string | Filter wallets by a client ID. (optional)
-    publicAddress := "publicAddress_example" // string | Filter wallets by a public address. (optional)
-    limit := int64(789) // int64 |  (optional)
-    offset := int64(789) // int64 |  (optional)
+	keyName := "keyName_example" // string | Filter wallets by a key name. (optional)
+	keyVersion := "keyVersion_example" // string | Filter wallets by a key version. (optional)
+	vaultName := "vaultName_example" // string | Filter wallets by a vault name. (optional)
+	baseGroupName := "baseGroupName_example" // string | Filter wallets by a base group name. (optional)
+	clientId := "clientId_example" // string | Filter wallets by a client ID. (optional)
+	publicAddress := "publicAddress_example" // string | Filter wallets by a public address. (optional)
+	limit := int64(789) // int64 |  (optional)
+	offset := int64(789) // int64 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.ListHsmWallets(context.Background()).KeyName(keyName).KeyVersion(keyVersion).VaultName(vaultName).BaseGroupName(baseGroupName).ClientId(clientId).PublicAddress(publicAddress).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.ListHsmWallets``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListHsmWallets`: ListHsmWallets200Response
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.ListHsmWallets`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.ListHsmWallets(context.Background()).KeyName(keyName).KeyVersion(keyVersion).VaultName(vaultName).BaseGroupName(baseGroupName).ClientId(clientId).PublicAddress(publicAddress).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.ListHsmWallets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListHsmWallets`: ListHsmWallets200Response
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.ListHsmWallets`: %v\n", resp)
 }
 ```
 
@@ -370,24 +370,24 @@ Remove HSM config
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    clientId := "clientId_example" // string | The HSM client ID.
+	clientId := "clientId_example" // string | The HSM client ID.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.RemoveHsmConfig(context.Background(), clientId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.RemoveHsmConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemoveHsmConfig`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.RemoveHsmConfig`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.RemoveHsmConfig(context.Background(), clientId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.RemoveHsmConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveHsmConfig`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.RemoveHsmConfig`: %v\n", resp)
 }
 ```
 
@@ -440,24 +440,24 @@ Remove HSM key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.RemoveHsmKey(context.Background(), walletAddress).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.RemoveHsmKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemoveHsmKey`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.RemoveHsmKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.RemoveHsmKey(context.Background(), walletAddress).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.RemoveHsmKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveHsmKey`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.RemoveHsmKey`: %v\n", resp)
 }
 ```
 
@@ -510,26 +510,26 @@ Set local nonce
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
-    setNonceRequest := *openapiclient.NewSetNonceRequest() // SetNonceRequest |  (optional)
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	setNonceRequest := *openapiclient.NewSetNonceRequest() // SetNonceRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.SetLocalNonce(context.Background(), chain, walletAddress).SetNonceRequest(setNonceRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SetLocalNonce``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetLocalNonce`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.SetLocalNonce`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.SetLocalNonce(context.Background(), chain, walletAddress).SetNonceRequest(setNonceRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SetLocalNonce``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetLocalNonce`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.SetLocalNonce`: %v\n", resp)
 }
 ```
 
@@ -585,25 +585,25 @@ Sign and submit transaction
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    baseTransactionToSign := *openapiclient.NewBaseTransactionToSign(*openapiclient.NewBaseTransactionToSignTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))) // BaseTransactionToSign |  (optional)
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	baseTransactionToSign := *openapiclient.NewBaseTransactionToSign(*openapiclient.NewBaseTransactionToSignTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))) // BaseTransactionToSign |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.SignAndSubmitTransaction(context.Background(), chain).BaseTransactionToSign(baseTransactionToSign).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SignAndSubmitTransaction``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SignAndSubmitTransaction`: TransferEth200Response
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.SignAndSubmitTransaction`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.SignAndSubmitTransaction(context.Background(), chain).BaseTransactionToSign(baseTransactionToSign).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SignAndSubmitTransaction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SignAndSubmitTransaction`: TransferEth200Response
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.SignAndSubmitTransaction`: %v\n", resp)
 }
 ```
 
@@ -657,25 +657,25 @@ Sign data
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    hSMSignRequest := *openapiclient.NewHSMSignRequest("Address_example", "Data_example") // HSMSignRequest |  (optional)
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	hSMSignRequest := *openapiclient.NewHSMSignRequest("Address_example", "Data_example") // HSMSignRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HsmAPI.SignData(context.Background(), chain).HSMSignRequest(hSMSignRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SignData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SignData`: SignData200Response
-    fmt.Fprintf(os.Stdout, "Response from `HsmAPI.SignData`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.HsmAPI.SignData(context.Background(), chain).HSMSignRequest(hSMSignRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SignData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SignData`: SignData200Response
+	fmt.Fprintf(os.Stdout, "Response from `HsmAPI.SignData`: %v\n", resp)
 }
 ```
 

@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BaseTransactionToSign type satisfies the MappedNullable interface at compile time
@@ -21,6 +23,8 @@ var _ MappedNullable = &BaseTransactionToSign{}
 type BaseTransactionToSign struct {
 	Tx BaseTransactionToSignTx `json:"tx"`
 }
+
+type _BaseTransactionToSign BaseTransactionToSign
 
 // NewBaseTransactionToSign instantiates a new BaseTransactionToSign object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +80,43 @@ func (o BaseTransactionToSign) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tx"] = o.Tx
 	return toSerialize, nil
+}
+
+func (o *BaseTransactionToSign) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"tx",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBaseTransactionToSign := _BaseTransactionToSign{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBaseTransactionToSign)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BaseTransactionToSign(varBaseTransactionToSign)
+
+	return err
 }
 
 type NullableBaseTransactionToSign struct {

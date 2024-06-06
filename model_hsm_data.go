@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the HSMData type satisfies the MappedNullable interface at compile time
@@ -23,6 +25,8 @@ type HSMData struct {
 	// An array of Azure Hardware Wallets.
 	Wallets []AzureHardwareWallet `json:"wallets"`
 }
+
+type _HSMData HSMData
 
 // NewHSMData instantiates a new HSMData object
 // This constructor will assign default values to properties that have it defined,
@@ -104,6 +108,44 @@ func (o HSMData) ToMap() (map[string]interface{}, error) {
 	toSerialize["configuration"] = o.Configuration
 	toSerialize["wallets"] = o.Wallets
 	return toSerialize, nil
+}
+
+func (o *HSMData) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"configuration",
+		"wallets",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varHSMData := _HSMData{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varHSMData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HSMData(varHSMData)
+
+	return err
 }
 
 type NullableHSMData struct {

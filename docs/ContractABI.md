@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Constructor** | [**NullableContractABIMethod1**](ContractABIMethod1.md) |  | 
 **Methods** | [**map[string]ContractABIMethod**](ContractABIMethod.md) |  | 
 **Events** | [**map[string]ContractABIEvent**](ContractABIEvent.md) |  | 
+**Errors** | Pointer to [**map[string]ContractABIError**](ContractABIError.md) |  | [optional] 
 **Fallback** | [**NullableContractABIMethod**](ContractABIMethod.md) |  | 
 **Receive** | [**NullableContractABIMethod**](ContractABIMethod.md) |  | 
 
@@ -98,6 +99,31 @@ and a boolean to check if the value has been set.
 
 SetEvents sets Events field to given value.
 
+
+### GetErrors
+
+`func (o *ContractABI) GetErrors() map[string]ContractABIError`
+
+GetErrors returns the Errors field if non-nil, zero value otherwise.
+
+### GetErrorsOk
+
+`func (o *ContractABI) GetErrorsOk() (*map[string]ContractABIError, bool)`
+
+GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetErrors
+
+`func (o *ContractABI) SetErrors(v map[string]ContractABIError)`
+
+SetErrors sets Errors field to given value.
+
+### HasErrors
+
+`func (o *ContractABI) HasErrors() bool`
+
+HasErrors returns a boolean if a field has been set.
 
 ### GetFallback
 

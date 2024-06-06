@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **GasTipCap** | Pointer to **int64** | Gas priority fee cap to use for the 1559 transaction execution. | [optional] 
 **Gas** | Pointer to **int64** | Gas limit to set for the transaction execution. | [optional] 
 **To** | Pointer to **string** | An ethereum address. | [optional] 
-**Value** | Pointer to **int64** |  | [optional] 
+**Value** | Pointer to **string** | Amount (in wei) to send with the transaction. | [optional] 
 **SignAndSubmit** | Pointer to **bool** | If the &#x60;from&#x60; address is an HSM address and this flag is set to &#x60;true&#x60;, the transaction will be automatically signed and submitted to the blockchain. | [optional] [default to false]
 **NonceManagement** | Pointer to **bool** | If the &#x60;from&#x60; address is an HSM address and this flag is set to &#x60;true&#x60;, MultiBaas will keep track of the nonce and set it accordingly. This is particularly useful when submitting multiple transactions concurrently or in a very short period of time. If this flag is set to &#x60;true&#x60; and a &#x60;nonce&#x60; is provided, it will reset the nonce tracker to the given nonce (useful if the nonce tracker is out of sync). | [optional] [default to false]
 **PreEIP1559** | Pointer to **bool** | If set to &#x60;true&#x60;, forces a legacy type transaction. Otherwise an EIP-1559 transaction will created if the network supports it. | [optional] [default to false]
@@ -270,20 +270,20 @@ HasTo returns a boolean if a field has been set.
 
 ### GetValue
 
-`func (o *PostMethodArgs) GetValue() int64`
+`func (o *PostMethodArgs) GetValue() string`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *PostMethodArgs) GetValueOk() (*int64, bool)`
+`func (o *PostMethodArgs) GetValueOk() (*string, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *PostMethodArgs) SetValue(v int64)`
+`func (o *PostMethodArgs) SetValue(v string)`
 
 SetValue sets Value field to given value.
 

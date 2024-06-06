@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ContractABIEvent type satisfies the MappedNullable interface at compile time
@@ -19,6 +21,8 @@ var _ MappedNullable = &ContractABIEvent{}
 
 // ContractABIEvent A contract event.
 type ContractABIEvent struct {
+	// The keccak256 hash as a hex string of 256 bits.
+	Id        string `json:"id"`
 	Name      string `json:"name"`
 	Signature string `json:"signature"`
 	Anonymous bool   `json:"anonymous"`
@@ -26,12 +30,15 @@ type ContractABIEvent struct {
 	Inputs []ContractABIEventArgument `json:"inputs"`
 }
 
+type _ContractABIEvent ContractABIEvent
+
 // NewContractABIEvent instantiates a new ContractABIEvent object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIEvent(name string, signature string, anonymous bool, inputs []ContractABIEventArgument) *ContractABIEvent {
+func NewContractABIEvent(id string, name string, signature string, anonymous bool, inputs []ContractABIEventArgument) *ContractABIEvent {
 	this := ContractABIEvent{}
+	this.Id = id
 	this.Name = name
 	this.Signature = signature
 	this.Anonymous = anonymous
@@ -45,6 +52,30 @@ func NewContractABIEvent(name string, signature string, anonymous bool, inputs [
 func NewContractABIEventWithDefaults() *ContractABIEvent {
 	this := ContractABIEvent{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *ContractABIEvent) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ContractABIEvent) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ContractABIEvent) SetId(v string) {
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -153,11 +184,53 @@ func (o ContractABIEvent) MarshalJSON() ([]byte, error) {
 
 func (o ContractABIEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["signature"] = o.Signature
 	toSerialize["anonymous"] = o.Anonymous
 	toSerialize["inputs"] = o.Inputs
 	return toSerialize, nil
+}
+
+func (o *ContractABIEvent) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"signature",
+		"anonymous",
+		"inputs",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varContractABIEvent := _ContractABIEvent{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varContractABIEvent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ContractABIEvent(varContractABIEvent)
+
+	return err
 }
 
 type NullableContractABIEvent struct {

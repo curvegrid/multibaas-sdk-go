@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ListEventQueries200Response type satisfies the MappedNullable interface at compile time
@@ -25,6 +27,8 @@ type ListEventQueries200Response struct {
 	Message string            `json:"message"`
 	Result  []SavedEventQuery `json:"result"`
 }
+
+type _ListEventQueries200Response ListEventQueries200Response
 
 // NewListEventQueries200Response instantiates a new ListEventQueries200Response object
 // This constructor will assign default values to properties that have it defined,
@@ -132,6 +136,45 @@ func (o ListEventQueries200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize["message"] = o.Message
 	toSerialize["result"] = o.Result
 	return toSerialize, nil
+}
+
+func (o *ListEventQueries200Response) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"status",
+		"message",
+		"result",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListEventQueries200Response := _ListEventQueries200Response{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListEventQueries200Response)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListEventQueries200Response(varListEventQueries200Response)
+
+	return err
 }
 
 type NullableListEventQueries200Response struct {

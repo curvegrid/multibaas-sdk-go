@@ -169,8 +169,8 @@ type AdminAPI interface {
 	GetApiKey(ctx context.Context, apiKeyID int64) ApiGetApiKeyRequest
 
 	// GetApiKeyExecute executes the request
-	//  @return CreateApiKey200Response
-	GetApiKeyExecute(r ApiGetApiKeyRequest) (*CreateApiKey200Response, *http.Response, error)
+	//  @return GetApiKey200Response
+	GetApiKeyExecute(r ApiGetApiKeyRequest) (*GetApiKey200Response, *http.Response, error)
 
 	/*
 		InviteUser Invite user
@@ -1576,7 +1576,7 @@ type ApiGetApiKeyRequest struct {
 	apiKeyID   int64
 }
 
-func (r ApiGetApiKeyRequest) Execute() (*CreateApiKey200Response, *http.Response, error) {
+func (r ApiGetApiKeyRequest) Execute() (*GetApiKey200Response, *http.Response, error) {
 	return r.ApiService.GetApiKeyExecute(r)
 }
 
@@ -1599,13 +1599,13 @@ func (a *AdminAPIService) GetApiKey(ctx context.Context, apiKeyID int64) ApiGetA
 
 // Execute executes the request
 //
-//	@return CreateApiKey200Response
-func (a *AdminAPIService) GetApiKeyExecute(r ApiGetApiKeyRequest) (*CreateApiKey200Response, *http.Response, error) {
+//	@return GetApiKey200Response
+func (a *AdminAPIService) GetApiKeyExecute(r ApiGetApiKeyRequest) (*GetApiKey200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateApiKey200Response
+		localVarReturnValue *GetApiKey200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AdminAPIService.GetApiKey")

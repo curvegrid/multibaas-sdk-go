@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ContractOverview type satisfies the MappedNullable interface at compile time
@@ -26,19 +28,23 @@ type ContractOverview struct {
 	// The contract version.
 	Version    string `json:"version"`
 	IsFavorite *bool  `json:"isFavorite,omitempty"`
+	Deployable bool   `json:"deployable"`
 	// List of contract instances.
 	Instances []ContractInstance `json:"instances"`
 }
+
+type _ContractOverview ContractOverview
 
 // NewContractOverview instantiates a new ContractOverview object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractOverview(label string, contractName string, version string, instances []ContractInstance) *ContractOverview {
+func NewContractOverview(label string, contractName string, version string, deployable bool, instances []ContractInstance) *ContractOverview {
 	this := ContractOverview{}
 	this.Label = label
 	this.ContractName = contractName
 	this.Version = version
+	this.Deployable = deployable
 	this.Instances = instances
 	return &this
 }
@@ -155,6 +161,30 @@ func (o *ContractOverview) SetIsFavorite(v bool) {
 	o.IsFavorite = &v
 }
 
+// GetDeployable returns the Deployable field value
+func (o *ContractOverview) GetDeployable() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Deployable
+}
+
+// GetDeployableOk returns a tuple with the Deployable field value
+// and a boolean to check if the value has been set.
+func (o *ContractOverview) GetDeployableOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Deployable, true
+}
+
+// SetDeployable sets field value
+func (o *ContractOverview) SetDeployable(v bool) {
+	o.Deployable = v
+}
+
 // GetInstances returns the Instances field value
 func (o *ContractOverview) GetInstances() []ContractInstance {
 	if o == nil {
@@ -195,8 +225,50 @@ func (o ContractOverview) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsFavorite) {
 		toSerialize["isFavorite"] = o.IsFavorite
 	}
+	toSerialize["deployable"] = o.Deployable
 	toSerialize["instances"] = o.Instances
 	return toSerialize, nil
+}
+
+func (o *ContractOverview) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+		"contractName",
+		"version",
+		"deployable",
+		"instances",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varContractOverview := _ContractOverview{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varContractOverview)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ContractOverview(varContractOverview)
+
+	return err
 }
 
 type NullableContractOverview struct {

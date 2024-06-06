@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Gas** | **int64** | Gas limit of the transaction | 
 **From** | **string** | An ethereum address. | 
 **To** | Pointer to **NullableString** | An ethereum address. | [optional] 
-**Value** | **string** | Ether amount of the transaction | 
+**Value** | **string** | Amount (in wei) to send with the transaction. | 
 **Data** | **string** | A hex string. | 
 **Hash** | Pointer to **string** | The keccak256 hash as a hex string of 256 bits. | [optional] 
 **Type** | **int64** | Transaction type | 

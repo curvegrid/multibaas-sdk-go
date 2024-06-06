@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BaseTransactionToSignTx type satisfies the MappedNullable interface at compile time
@@ -33,7 +35,7 @@ type BaseTransactionToSignTx struct {
 	From string `json:"from"`
 	// An ethereum address.
 	To NullableString `json:"to,omitempty"`
-	// Ether amount of the transaction
+	// Amount (in wei) to send with the transaction.
 	Value string `json:"value"`
 	// A hex string.
 	Data string `json:"data"`
@@ -42,6 +44,8 @@ type BaseTransactionToSignTx struct {
 	// Transaction type
 	Type int64 `json:"type"`
 }
+
+type _BaseTransactionToSignTx BaseTransactionToSignTx
 
 // NewBaseTransactionToSignTx instantiates a new BaseTransactionToSignTx object
 // This constructor will assign default values to properties that have it defined,
@@ -422,6 +426,47 @@ func (o BaseTransactionToSignTx) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
+}
+
+func (o *BaseTransactionToSignTx) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"gas",
+		"from",
+		"value",
+		"data",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBaseTransactionToSignTx := _BaseTransactionToSignTx{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBaseTransactionToSignTx)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BaseTransactionToSignTx(varBaseTransactionToSignTx)
+
+	return err
 }
 
 type NullableBaseTransactionToSignTx struct {

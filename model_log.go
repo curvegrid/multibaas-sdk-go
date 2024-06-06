@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Log type satisfies the MappedNullable interface at compile time
@@ -38,6 +40,8 @@ type Log struct {
 	// True if this log was reverted due to a chain reorganization.
 	Removed bool `json:"removed"`
 }
+
+type _Log Log
 
 // NewLog instantiates a new Log object
 // This constructor will assign default values to properties that have it defined,
@@ -301,6 +305,51 @@ func (o Log) ToMap() (map[string]interface{}, error) {
 	toSerialize["logIndex"] = o.LogIndex
 	toSerialize["removed"] = o.Removed
 	return toSerialize, nil
+}
+
+func (o *Log) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"address",
+		"topics",
+		"data",
+		"blockNumber",
+		"transactionHash",
+		"transactionIndex",
+		"blockHash",
+		"logIndex",
+		"removed",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varLog := _Log{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varLog)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Log(varLog)
+
+	return err
 }
 
 type NullableLog struct {

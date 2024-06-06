@@ -8,13 +8,14 @@ Name | Type | Description | Notes
 **ContractName** | **string** | The name of the contract. | 
 **Version** | **string** | The contract version. | 
 **IsFavorite** | Pointer to **bool** |  | [optional] 
+**Deployable** | **bool** |  | 
 **Instances** | [**[]ContractInstance**](ContractInstance.md) | List of contract instances. | 
 
 ## Methods
 
 ### NewContractOverview
 
-`func NewContractOverview(label string, contractName string, version string, instances []ContractInstance, ) *ContractOverview`
+`func NewContractOverview(label string, contractName string, version string, deployable bool, instances []ContractInstance, ) *ContractOverview`
 
 NewContractOverview instantiates a new ContractOverview object
 This constructor will assign default values to properties that have it defined,
@@ -113,6 +114,26 @@ SetIsFavorite sets IsFavorite field to given value.
 `func (o *ContractOverview) HasIsFavorite() bool`
 
 HasIsFavorite returns a boolean if a field has been set.
+
+### GetDeployable
+
+`func (o *ContractOverview) GetDeployable() bool`
+
+GetDeployable returns the Deployable field if non-nil, zero value otherwise.
+
+### GetDeployableOk
+
+`func (o *ContractOverview) GetDeployableOk() (*bool, bool)`
+
+GetDeployableOk returns a tuple with the Deployable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeployable
+
+`func (o *ContractOverview) SetDeployable(v bool)`
+
+SetDeployable sets Deployable field to given value.
+
 
 ### GetInstances
 

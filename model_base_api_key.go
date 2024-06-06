@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BaseAPIKey type satisfies the MappedNullable interface at compile time
@@ -22,6 +24,8 @@ type BaseAPIKey struct {
 	// A label.
 	Label string `json:"label"`
 }
+
+type _BaseAPIKey BaseAPIKey
 
 // NewBaseAPIKey instantiates a new BaseAPIKey object
 // This constructor will assign default values to properties that have it defined,
@@ -77,6 +81,43 @@ func (o BaseAPIKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	return toSerialize, nil
+}
+
+func (o *BaseAPIKey) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBaseAPIKey := _BaseAPIKey{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBaseAPIKey)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BaseAPIKey(varBaseAPIKey)
+
+	return err
 }
 
 type NullableBaseAPIKey struct {

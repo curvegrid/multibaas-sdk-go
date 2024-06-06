@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **int64** | The status code. | 
 **Message** | **string** | The human-readable status message. | 
-**Result** | [**APIKey**](APIKey.md) |  | 
+**Result** | [**APIKeyWithSecret**](APIKeyWithSecret.md) |  | 
 
 ## Methods
 
 ### NewCreateApiKey200Response
 
-`func NewCreateApiKey200Response(status int64, message string, result APIKey, ) *CreateApiKey200Response`
+`func NewCreateApiKey200Response(status int64, message string, result APIKeyWithSecret, ) *CreateApiKey200Response`
 
 NewCreateApiKey200Response instantiates a new CreateApiKey200Response object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetMessage sets Message field to given value.
 
 ### GetResult
 
-`func (o *CreateApiKey200Response) GetResult() APIKey`
+`func (o *CreateApiKey200Response) GetResult() APIKeyWithSecret`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *CreateApiKey200Response) GetResultOk() (*APIKey, bool)`
+`func (o *CreateApiKey200Response) GetResultOk() (*APIKeyWithSecret, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *CreateApiKey200Response) SetResult(v APIKey)`
+`func (o *CreateApiKey200Response) SetResult(v APIKeyWithSecret)`
 
 SetResult sets Result field to given value.
 

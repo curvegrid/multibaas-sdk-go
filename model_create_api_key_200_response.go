@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateApiKey200Response type satisfies the MappedNullable interface at compile time
@@ -22,15 +24,17 @@ type CreateApiKey200Response struct {
 	// The status code.
 	Status int64 `json:"status"`
 	// The human-readable status message.
-	Message string `json:"message"`
-	Result  APIKey_ `json:"result"`
+	Message string           `json:"message"`
+	Result  APIKeyWithSecret `json:"result"`
 }
+
+type _CreateApiKey200Response CreateApiKey200Response
 
 // NewCreateApiKey200Response instantiates a new CreateApiKey200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateApiKey200Response(status int64, message string, result APIKey_) *CreateApiKey200Response {
+func NewCreateApiKey200Response(status int64, message string, result APIKeyWithSecret) *CreateApiKey200Response {
 	this := CreateApiKey200Response{}
 	this.Status = status
 	this.Message = message
@@ -95,9 +99,9 @@ func (o *CreateApiKey200Response) SetMessage(v string) {
 }
 
 // GetResult returns the Result field value
-func (o *CreateApiKey200Response) GetResult() APIKey_ {
+func (o *CreateApiKey200Response) GetResult() APIKeyWithSecret {
 	if o == nil {
-		var ret APIKey_
+		var ret APIKeyWithSecret
 		return ret
 	}
 
@@ -106,7 +110,7 @@ func (o *CreateApiKey200Response) GetResult() APIKey_ {
 
 // GetResultOk returns a tuple with the Result field value
 // and a boolean to check if the value has been set.
-func (o *CreateApiKey200Response) GetResultOk() (*APIKey_, bool) {
+func (o *CreateApiKey200Response) GetResultOk() (*APIKeyWithSecret, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,7 +118,7 @@ func (o *CreateApiKey200Response) GetResultOk() (*APIKey_, bool) {
 }
 
 // SetResult sets field value
-func (o *CreateApiKey200Response) SetResult(v APIKey_) {
+func (o *CreateApiKey200Response) SetResult(v APIKeyWithSecret) {
 	o.Result = v
 }
 
@@ -132,6 +136,45 @@ func (o CreateApiKey200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize["message"] = o.Message
 	toSerialize["result"] = o.Result
 	return toSerialize, nil
+}
+
+func (o *CreateApiKey200Response) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"status",
+		"message",
+		"result",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateApiKey200Response := _CreateApiKey200Response{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateApiKey200Response)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateApiKey200Response(varCreateApiKey200Response)
+
+	return err
 }
 
 type NullableCreateApiKey200Response struct {

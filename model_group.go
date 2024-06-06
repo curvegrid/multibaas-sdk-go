@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Group type satisfies the MappedNullable interface at compile time
@@ -30,6 +32,8 @@ type Group struct {
 	// The group roles.
 	Roles []Role `json:"roles"`
 }
+
+type _Group Group
 
 // NewGroup instantiates a new Group object
 // This constructor will assign default values to properties that have it defined,
@@ -189,6 +193,47 @@ func (o Group) ToMap() (map[string]interface{}, error) {
 	toSerialize["description"] = o.Description
 	toSerialize["roles"] = o.Roles
 	return toSerialize, nil
+}
+
+func (o *Group) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"shortName",
+		"description",
+		"roles",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGroup := _Group{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varGroup)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Group(varGroup)
+
+	return err
 }
 
 type NullableGroup struct {

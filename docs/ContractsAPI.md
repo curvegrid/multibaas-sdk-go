@@ -40,28 +40,28 @@ Call a contract function
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
-    contract := "contract_example" // string | 
-    method := "method_example" // string | Contract function.
-    postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
+	contract := "contract_example" // string | 
+	method := "method_example" // string | Contract function.
+	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.CallContractFunction(context.Background(), chain, addressOrLabel, contract, method).PostMethodArgs(postMethodArgs).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.CallContractFunction``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CallContractFunction`: CallContractFunction200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.CallContractFunction`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.CallContractFunction(context.Background(), chain, addressOrLabel, contract, method).PostMethodArgs(postMethodArgs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.CallContractFunction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CallContractFunction`: CallContractFunction200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.CallContractFunction`: %v\n", resp)
 }
 ```
 
@@ -121,25 +121,25 @@ Create a contract
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    baseContract := *openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example", "UserDoc_example", "DeveloperDoc_example") // BaseContract |  (optional)
+	contract := "contract_example" // string | 
+	baseContract := *openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example", "UserDoc_example", "DeveloperDoc_example") // BaseContract |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.CreateContract(context.Background(), contract).BaseContract(baseContract).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.CreateContract``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateContract`: GetContract200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.CreateContract`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.CreateContract(context.Background(), contract).BaseContract(baseContract).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.CreateContract``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateContract`: GetContract200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.CreateContract`: %v\n", resp)
 }
 ```
 
@@ -193,24 +193,24 @@ Create multiple contracts
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    baseContract := []openapiclient.BaseContract{*openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example", "UserDoc_example", "DeveloperDoc_example")} // []BaseContract |  (optional)
+	baseContract := []openapiclient.BaseContract{*openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example", "UserDoc_example", "DeveloperDoc_example")} // []BaseContract |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.CreateContracts(context.Background()).BaseContract(baseContract).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.CreateContracts``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateContracts`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.CreateContracts`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.CreateContracts(context.Background()).BaseContract(baseContract).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.CreateContracts``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateContracts`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.CreateContracts`: %v\n", resp)
 }
 ```
 
@@ -259,24 +259,24 @@ Delete a contract
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
+	contract := "contract_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.DeleteContract(context.Background(), contract).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.DeleteContract``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteContract`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.DeleteContract`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.DeleteContract(context.Background(), contract).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.DeleteContract``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteContract`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.DeleteContract`: %v\n", resp)
 }
 ```
 
@@ -329,25 +329,25 @@ Delete a contract version
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | 
+	version := "version_example" // string | Contract Version.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.DeleteContractVersion(context.Background(), contract, version).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.DeleteContractVersion``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteContractVersion`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.DeleteContractVersion`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.DeleteContractVersion(context.Background(), contract, version).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.DeleteContractVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteContractVersion`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.DeleteContractVersion`: %v\n", resp)
 }
 ```
 
@@ -402,25 +402,25 @@ Deploy a contract
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
+	contract := "contract_example" // string | 
+	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.DeployContract(context.Background(), contract).PostMethodArgs(postMethodArgs).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.DeployContract``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeployContract`: DeployContract200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.DeployContract`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.DeployContract(context.Background(), contract).PostMethodArgs(postMethodArgs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.DeployContract``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeployContract`: DeployContract200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.DeployContract`: %v\n", resp)
 }
 ```
 
@@ -474,26 +474,26 @@ Deploy a contract version
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    version := "version_example" // string | Contract Version.
-    postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
+	contract := "contract_example" // string | 
+	version := "version_example" // string | Contract Version.
+	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.DeployContractVersion(context.Background(), contract, version).PostMethodArgs(postMethodArgs).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.DeployContractVersion``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeployContractVersion`: DeployContract200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.DeployContractVersion`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.DeployContractVersion(context.Background(), contract, version).PostMethodArgs(postMethodArgs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.DeployContractVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeployContractVersion`: DeployContract200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.DeployContractVersion`: %v\n", resp)
 }
 ```
 
@@ -549,24 +549,24 @@ Get a contract
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
+	contract := "contract_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.GetContract(context.Background(), contract).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetContract``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetContract`: GetContract200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetContract`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.GetContract(context.Background(), contract).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetContract``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetContract`: GetContract200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetContract`: %v\n", resp)
 }
 ```
 
@@ -619,25 +619,25 @@ Get a contract version
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | 
+	version := "version_example" // string | Contract Version.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.GetContractVersion(context.Background(), contract, version).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetContractVersion``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetContractVersion`: GetContract200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetContractVersion`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.GetContractVersion(context.Background(), contract, version).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetContractVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetContractVersion`: GetContract200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetContractVersion`: %v\n", resp)
 }
 ```
 
@@ -692,24 +692,24 @@ Get all contract versions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
+	contract := "contract_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.GetContractVersions(context.Background(), contract).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetContractVersions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetContractVersions`: GetContractVersions200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetContractVersions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.GetContractVersions(context.Background(), contract).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetContractVersions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetContractVersions`: GetContractVersions200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetContractVersions`: %v\n", resp)
 }
 ```
 
@@ -762,26 +762,26 @@ Get event monitor status
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
-    contract := "contract_example" // string | 
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
+	contract := "contract_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.GetEventMonitorStatus(context.Background(), chain, addressOrLabel, contract).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetEventMonitorStatus``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEventMonitorStatus`: GetEventMonitorStatus200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetEventMonitorStatus`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.GetEventMonitorStatus(context.Background(), chain, addressOrLabel, contract).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetEventMonitorStatus``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEventMonitorStatus`: GetEventMonitorStatus200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetEventMonitorStatus`: %v\n", resp)
 }
 ```
 
@@ -838,26 +838,26 @@ Get event type conversions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    version := "version_example" // string | Contract Version.
-    event := "event_example" // string | Contract Event.
+	contract := "contract_example" // string | 
+	version := "version_example" // string | Contract Version.
+	event := "event_example" // string | Contract Event.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.GetEventTypeConversions(context.Background(), contract, version, event).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetEventTypeConversions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEventTypeConversions`: GetEventTypeConversions200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetEventTypeConversions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.GetEventTypeConversions(context.Background(), contract, version, event).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetEventTypeConversions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEventTypeConversions`: GetEventTypeConversions200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetEventTypeConversions`: %v\n", resp)
 }
 ```
 
@@ -914,26 +914,26 @@ Get function type conversions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    version := "version_example" // string | Contract Version.
-    method := "method_example" // string | Contract function.
+	contract := "contract_example" // string | 
+	version := "version_example" // string | Contract Version.
+	method := "method_example" // string | Contract function.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.GetFunctionTypeConversions(context.Background(), contract, version, method).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetFunctionTypeConversions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetFunctionTypeConversions`: GetFunctionTypeConversions200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetFunctionTypeConversions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.GetFunctionTypeConversions(context.Background(), contract, version, method).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetFunctionTypeConversions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetFunctionTypeConversions`: GetFunctionTypeConversions200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetFunctionTypeConversions`: %v\n", resp)
 }
 ```
 
@@ -990,26 +990,26 @@ Link address and contract
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
-    linkAddressContractRequest := *openapiclient.NewLinkAddressContractRequest("Label_example") // LinkAddressContractRequest |  (optional)
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
+	linkAddressContractRequest := *openapiclient.NewLinkAddressContractRequest("Label_example") // LinkAddressContractRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.LinkAddressContract(context.Background(), chain, addressOrLabel).LinkAddressContractRequest(linkAddressContractRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.LinkAddressContract``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `LinkAddressContract`: SetAddress201Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.LinkAddressContract`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.LinkAddressContract(context.Background(), chain, addressOrLabel).LinkAddressContractRequest(linkAddressContractRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.LinkAddressContract``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `LinkAddressContract`: SetAddress201Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.LinkAddressContract`: %v\n", resp)
 }
 ```
 
@@ -1065,24 +1065,24 @@ List all contract versions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
+	contract := "contract_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.ListContractVersions(context.Background(), contract).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.ListContractVersions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListContractVersions`: ListContractVersions200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.ListContractVersions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.ListContractVersions(context.Background(), contract).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.ListContractVersions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListContractVersions`: ListContractVersions200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.ListContractVersions`: %v\n", resp)
 }
 ```
 
@@ -1135,23 +1135,23 @@ List contracts
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.ListContracts(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.ListContracts``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListContracts`: ListContracts200Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.ListContracts`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.ListContracts(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.ListContracts``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListContracts`: ListContracts200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.ListContracts`: %v\n", resp)
 }
 ```
 
@@ -1196,27 +1196,27 @@ Set event type conversions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    version := "version_example" // string | Contract Version.
-    event := "event_example" // string | Contract Event.
-    contractEventOptions := *openapiclient.NewContractEventOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractEventOptions |  (optional)
+	contract := "contract_example" // string | 
+	version := "version_example" // string | Contract Version.
+	event := "event_example" // string | Contract Event.
+	contractEventOptions := *openapiclient.NewContractEventOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractEventOptions |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.SetEventTypeConversions(context.Background(), contract, version, event).ContractEventOptions(contractEventOptions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.SetEventTypeConversions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetEventTypeConversions`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.SetEventTypeConversions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.SetEventTypeConversions(context.Background(), contract, version, event).ContractEventOptions(contractEventOptions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.SetEventTypeConversions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetEventTypeConversions`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.SetEventTypeConversions`: %v\n", resp)
 }
 ```
 
@@ -1274,27 +1274,27 @@ Set function type conversions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    contract := "contract_example" // string | 
-    version := "version_example" // string | Contract Version.
-    method := "method_example" // string | Contract function.
-    contractMethodOptions := *openapiclient.NewContractMethodOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractMethodOptions |  (optional)
+	contract := "contract_example" // string | 
+	version := "version_example" // string | Contract Version.
+	method := "method_example" // string | Contract function.
+	contractMethodOptions := *openapiclient.NewContractMethodOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractMethodOptions |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.SetFunctionTypeConversions(context.Background(), contract, version, method).ContractMethodOptions(contractMethodOptions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.SetFunctionTypeConversions``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetFunctionTypeConversions`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.SetFunctionTypeConversions`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.SetFunctionTypeConversions(context.Background(), contract, version, method).ContractMethodOptions(contractMethodOptions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.SetFunctionTypeConversions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetFunctionTypeConversions`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.SetFunctionTypeConversions`: %v\n", resp)
 }
 ```
 
@@ -1352,26 +1352,26 @@ Unlink address and contract
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
-    contract := "contract_example" // string | 
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
+	contract := "contract_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ContractsAPI.UnlinkAddressContract(context.Background(), chain, addressOrLabel, contract).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.UnlinkAddressContract``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UnlinkAddressContract`: SetAddress201Response
-    fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.UnlinkAddressContract`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ContractsAPI.UnlinkAddressContract(context.Background(), chain, addressOrLabel, contract).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.UnlinkAddressContract``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UnlinkAddressContract`: SetAddress201Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.UnlinkAddressContract`: %v\n", resp)
 }
 ```
 

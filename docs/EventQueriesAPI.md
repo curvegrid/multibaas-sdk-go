@@ -28,24 +28,24 @@ Count event query records
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    eventQuery := "eventQuery_example" // string | An event query label.
+	eventQuery := "eventQuery_example" // string | An event query label.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventQueriesAPI.CountEventQueryRecords(context.Background(), eventQuery).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.CountEventQueryRecords``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CountEventQueryRecords`: CountEventQueryRecords200Response
-    fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.CountEventQueryRecords`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventQueriesAPI.CountEventQueryRecords(context.Background(), eventQuery).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.CountEventQueryRecords``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CountEventQueryRecords`: CountEventQueryRecords200Response
+	fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.CountEventQueryRecords`: %v\n", resp)
 }
 ```
 
@@ -98,24 +98,24 @@ Delete event query
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    eventQuery := "eventQuery_example" // string | An event query label.
+	eventQuery := "eventQuery_example" // string | An event query label.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventQueriesAPI.DeleteEventQuery(context.Background(), eventQuery).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.DeleteEventQuery``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteEventQuery`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.DeleteEventQuery`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventQueriesAPI.DeleteEventQuery(context.Background(), eventQuery).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.DeleteEventQuery``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteEventQuery`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.DeleteEventQuery`: %v\n", resp)
 }
 ```
 
@@ -168,26 +168,26 @@ Execute arbitrary event query
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    offset := int64(789) // int64 |  (optional)
-    limit := int64(789) // int64 |  (optional)
-    eventQuery := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery |  (optional)
+	offset := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional)
+	eventQuery := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventQueriesAPI.ExecuteArbitraryEventQuery(context.Background()).Offset(offset).Limit(limit).EventQuery(eventQuery).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.ExecuteArbitraryEventQuery``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExecuteArbitraryEventQuery`: ExecuteArbitraryEventQuery200Response
-    fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.ExecuteArbitraryEventQuery`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventQueriesAPI.ExecuteArbitraryEventQuery(context.Background()).Offset(offset).Limit(limit).EventQuery(eventQuery).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.ExecuteArbitraryEventQuery``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExecuteArbitraryEventQuery`: ExecuteArbitraryEventQuery200Response
+	fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.ExecuteArbitraryEventQuery`: %v\n", resp)
 }
 ```
 
@@ -238,26 +238,26 @@ Execute event query
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    eventQuery := "eventQuery_example" // string | An event query label.
-    offset := int64(789) // int64 |  (optional)
-    limit := int64(789) // int64 |  (optional)
+	eventQuery := "eventQuery_example" // string | An event query label.
+	offset := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventQueriesAPI.ExecuteEventQuery(context.Background(), eventQuery).Offset(offset).Limit(limit).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.ExecuteEventQuery``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ExecuteEventQuery`: ExecuteArbitraryEventQuery200Response
-    fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.ExecuteEventQuery`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventQueriesAPI.ExecuteEventQuery(context.Background(), eventQuery).Offset(offset).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.ExecuteEventQuery``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExecuteEventQuery`: ExecuteArbitraryEventQuery200Response
+	fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.ExecuteEventQuery`: %v\n", resp)
 }
 ```
 
@@ -312,24 +312,24 @@ Get event query
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    eventQuery := "eventQuery_example" // string | An event query label.
+	eventQuery := "eventQuery_example" // string | An event query label.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventQueriesAPI.GetEventQuery(context.Background(), eventQuery).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.GetEventQuery``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetEventQuery`: GetEventQuery200Response
-    fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.GetEventQuery`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventQueriesAPI.GetEventQuery(context.Background(), eventQuery).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.GetEventQuery``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetEventQuery`: GetEventQuery200Response
+	fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.GetEventQuery`: %v\n", resp)
 }
 ```
 
@@ -382,23 +382,23 @@ List event queries
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventQueriesAPI.ListEventQueries(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.ListEventQueries``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListEventQueries`: ListEventQueries200Response
-    fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.ListEventQueries`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventQueriesAPI.ListEventQueries(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.ListEventQueries``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListEventQueries`: ListEventQueries200Response
+	fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.ListEventQueries`: %v\n", resp)
 }
 ```
 
@@ -443,25 +443,25 @@ Create or update event query
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    eventQuery := "eventQuery_example" // string | An event query label.
-    eventQuery2 := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery |  (optional)
+	eventQuery := "eventQuery_example" // string | An event query label.
+	eventQuery2 := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.EventQueriesAPI.SetEventQuery(context.Background(), eventQuery).EventQuery2(eventQuery2).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.SetEventQuery``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetEventQuery`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.SetEventQuery`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventQueriesAPI.SetEventQuery(context.Background(), eventQuery).EventQuery2(eventQuery2).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.SetEventQuery``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetEventQuery`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventQueriesAPI.SetEventQuery`: %v\n", resp)
 }
 ```
 

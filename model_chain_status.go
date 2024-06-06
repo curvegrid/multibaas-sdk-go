@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ChainStatus type satisfies the MappedNullable interface at compile time
@@ -27,6 +29,8 @@ type ChainStatus struct {
 	// The current base fee (only available for chains that support EIP-1559).
 	BaseFee *string `json:"baseFee,omitempty"`
 }
+
+type _ChainStatus ChainStatus
 
 // NewChainStatus instantiates a new ChainStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -195,6 +199,46 @@ func (o ChainStatus) ToMap() (map[string]interface{}, error) {
 		toSerialize["baseFee"] = o.BaseFee
 	}
 	return toSerialize, nil
+}
+
+func (o *ChainStatus) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"blockNumber",
+		"version",
+		"chainID",
+		"networkID",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varChainStatus := _ChainStatus{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varChainStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ChainStatus(varChainStatus)
+
+	return err
 }
 
 type NullableChainStatus struct {

@@ -35,8 +35,9 @@ type PostMethodArgs struct {
 	// Gas limit to set for the transaction execution.
 	Gas *int64 `json:"gas,omitempty"`
 	// An ethereum address.
-	To    *string `json:"to,omitempty"`
-	Value *int64  `json:"value,omitempty"`
+	To *string `json:"to,omitempty"`
+	// Amount (in wei) to send with the transaction.
+	Value *string `json:"value,omitempty"`
 	// If the `from` address is an HSM address and this flag is set to `true`, the transaction will be automatically signed and submitted to the blockchain.
 	SignAndSubmit *bool `json:"signAndSubmit,omitempty"`
 	// If the `from` address is an HSM address and this flag is set to `true`, MultiBaas will keep track of the nonce and set it accordingly. This is particularly useful when submitting multiple transactions concurrently or in a very short period of time. If this flag is set to `true` and a `nonce` is provided, it will reset the nonce tracker to the given nonce (useful if the nonce tracker is out of sync).
@@ -378,9 +379,9 @@ func (o *PostMethodArgs) SetTo(v string) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *PostMethodArgs) GetValue() int64 {
+func (o *PostMethodArgs) GetValue() string {
 	if o == nil || IsNil(o.Value) {
-		var ret int64
+		var ret string
 		return ret
 	}
 	return *o.Value
@@ -388,7 +389,7 @@ func (o *PostMethodArgs) GetValue() int64 {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostMethodArgs) GetValueOk() (*int64, bool) {
+func (o *PostMethodArgs) GetValueOk() (*string, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -404,8 +405,8 @@ func (o *PostMethodArgs) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given int64 and assigns it to the Value field.
-func (o *PostMethodArgs) SetValue(v int64) {
+// SetValue gets a reference to the given string and assigns it to the Value field.
+func (o *PostMethodArgs) SetValue(v string) {
 	o.Value = &v
 }
 

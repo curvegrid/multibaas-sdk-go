@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | **string** | A hex string. | 
 **Name** | **string** | Name of the function. | 
 **Signature** | **string** | The function signature. | 
 **Const** | **bool** |  | 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewContractABIMethod1
 
-`func NewContractABIMethod1(name string, signature string, const_ bool, payable bool, inputs []ContractABIMethodArgument, outputs []ContractABIMethodArgument, author string, notes string, returns string, description string, ) *ContractABIMethod1`
+`func NewContractABIMethod1(id string, name string, signature string, const_ bool, payable bool, inputs []ContractABIMethodArgument, outputs []ContractABIMethodArgument, author string, notes string, returns string, description string, ) *ContractABIMethod1`
 
 NewContractABIMethod1 instantiates a new ContractABIMethod1 object
 This constructor will assign default values to properties that have it defined,
@@ -33,6 +34,26 @@ will change when the set of required properties is changed
 NewContractABIMethod1WithDefaults instantiates a new ContractABIMethod1 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *ContractABIMethod1) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ContractABIMethod1) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ContractABIMethod1) SetId(v string)`
+
+SetId sets Id field to given value.
+
 
 ### GetName
 

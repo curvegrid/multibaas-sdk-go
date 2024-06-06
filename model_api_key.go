@@ -11,15 +11,17 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the APIKey type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &APIKey_{}
+var _ MappedNullable = &APIKey{}
 
 // APIKey An API key.
-type APIKey_ struct {
+type APIKey struct {
 	// A label.
 	Label string `json:"label"`
 	Id    int64  `json:"id"`
@@ -33,12 +35,14 @@ type APIKey_ struct {
 	Signature string `json:"signature"`
 }
 
+type _APIKey APIKey
+
 // NewAPIKey instantiates a new APIKey object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAPIKey(label string, id int64, createdAt time.Time, createdBy int64, signature string) *APIKey_ {
-	this := APIKey_{}
+func NewAPIKey(label string, id int64, createdAt time.Time, createdBy int64, signature string) *APIKey {
+	this := APIKey{}
 	this.Label = label
 	this.Id = id
 	this.CreatedAt = createdAt
@@ -50,13 +54,13 @@ func NewAPIKey(label string, id int64, createdAt time.Time, createdBy int64, sig
 // NewAPIKeyWithDefaults instantiates a new APIKey object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAPIKeyWithDefaults() *APIKey_ {
-	this := APIKey_{}
+func NewAPIKeyWithDefaults() *APIKey {
+	this := APIKey{}
 	return &this
 }
 
 // GetLabel returns the Label field value
-func (o *APIKey_) GetLabel() string {
+func (o *APIKey) GetLabel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -67,7 +71,7 @@ func (o *APIKey_) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field value
 // and a boolean to check if the value has been set.
-func (o *APIKey_) GetLabelOk() (*string, bool) {
+func (o *APIKey) GetLabelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,12 +79,12 @@ func (o *APIKey_) GetLabelOk() (*string, bool) {
 }
 
 // SetLabel sets field value
-func (o *APIKey_) SetLabel(v string) {
+func (o *APIKey) SetLabel(v string) {
 	o.Label = v
 }
 
 // GetId returns the Id field value
-func (o *APIKey_) GetId() int64 {
+func (o *APIKey) GetId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -91,7 +95,7 @@ func (o *APIKey_) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *APIKey_) GetIdOk() (*int64, bool) {
+func (o *APIKey) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,12 +103,12 @@ func (o *APIKey_) GetIdOk() (*int64, bool) {
 }
 
 // SetId sets field value
-func (o *APIKey_) SetId(v int64) {
+func (o *APIKey) SetId(v int64) {
 	o.Id = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *APIKey_) GetCreatedAt() time.Time {
+func (o *APIKey) GetCreatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -115,7 +119,7 @@ func (o *APIKey_) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *APIKey_) GetCreatedAtOk() (*time.Time, bool) {
+func (o *APIKey) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,12 +127,12 @@ func (o *APIKey_) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *APIKey_) SetCreatedAt(v time.Time) {
+func (o *APIKey) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
 // GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise.
-func (o *APIKey_) GetLastUsedAt() time.Time {
+func (o *APIKey) GetLastUsedAt() time.Time {
 	if o == nil || IsNil(o.LastUsedAt) {
 		var ret time.Time
 		return ret
@@ -138,7 +142,7 @@ func (o *APIKey_) GetLastUsedAt() time.Time {
 
 // GetLastUsedAtOk returns a tuple with the LastUsedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *APIKey_) GetLastUsedAtOk() (*time.Time, bool) {
+func (o *APIKey) GetLastUsedAtOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.LastUsedAt) {
 		return nil, false
 	}
@@ -146,7 +150,7 @@ func (o *APIKey_) GetLastUsedAtOk() (*time.Time, bool) {
 }
 
 // HasLastUsedAt returns a boolean if a field has been set.
-func (o *APIKey_) HasLastUsedAt() bool {
+func (o *APIKey) HasLastUsedAt() bool {
 	if o != nil && !IsNil(o.LastUsedAt) {
 		return true
 	}
@@ -155,12 +159,12 @@ func (o *APIKey_) HasLastUsedAt() bool {
 }
 
 // SetLastUsedAt gets a reference to the given time.Time and assigns it to the LastUsedAt field.
-func (o *APIKey_) SetLastUsedAt(v time.Time) {
+func (o *APIKey) SetLastUsedAt(v time.Time) {
 	o.LastUsedAt = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *APIKey_) GetCreatedBy() int64 {
+func (o *APIKey) GetCreatedBy() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -171,7 +175,7 @@ func (o *APIKey_) GetCreatedBy() int64 {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value
 // and a boolean to check if the value has been set.
-func (o *APIKey_) GetCreatedByOk() (*int64, bool) {
+func (o *APIKey) GetCreatedByOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,12 +183,12 @@ func (o *APIKey_) GetCreatedByOk() (*int64, bool) {
 }
 
 // SetCreatedBy sets field value
-func (o *APIKey_) SetCreatedBy(v int64) {
+func (o *APIKey) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
 // GetSignature returns the Signature field value
-func (o *APIKey_) GetSignature() string {
+func (o *APIKey) GetSignature() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -195,7 +199,7 @@ func (o *APIKey_) GetSignature() string {
 
 // GetSignatureOk returns a tuple with the Signature field value
 // and a boolean to check if the value has been set.
-func (o *APIKey_) GetSignatureOk() (*string, bool) {
+func (o *APIKey) GetSignatureOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -203,11 +207,11 @@ func (o *APIKey_) GetSignatureOk() (*string, bool) {
 }
 
 // SetSignature sets field value
-func (o *APIKey_) SetSignature(v string) {
+func (o *APIKey) SetSignature(v string) {
 	o.Signature = v
 }
 
-func (o APIKey_) MarshalJSON() ([]byte, error) {
+func (o APIKey) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -215,7 +219,7 @@ func (o APIKey_) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o APIKey_) ToMap() (map[string]interface{}, error) {
+func (o APIKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["label"] = o.Label
 	toSerialize["id"] = o.Id
@@ -228,16 +232,57 @@ func (o APIKey_) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+func (o *APIKey) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+		"id",
+		"createdAt",
+		"createdBy",
+		"signature",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAPIKey := _APIKey{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAPIKey)
+
+	if err != nil {
+		return err
+	}
+
+	*o = APIKey(varAPIKey)
+
+	return err
+}
+
 type NullableAPIKey struct {
-	value *APIKey_
+	value *APIKey
 	isSet bool
 }
 
-func (v NullableAPIKey) Get() *APIKey_ {
+func (v NullableAPIKey) Get() *APIKey {
 	return v.value
 }
 
-func (v *NullableAPIKey) Set(val *APIKey_) {
+func (v *NullableAPIKey) Set(val *APIKey) {
 	v.value = val
 	v.isSet = true
 }
@@ -251,7 +296,7 @@ func (v *NullableAPIKey) Unset() {
 	v.isSet = false
 }
 
-func NewNullableAPIKey(val *APIKey_) *NullableAPIKey {
+func NewNullableAPIKey(val *APIKey) *NullableAPIKey {
 	return &NullableAPIKey{value: val, isSet: true}
 }
 

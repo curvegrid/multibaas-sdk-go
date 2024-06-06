@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the MethodCallResponse type satisfies the MappedNullable interface at compile time
@@ -23,6 +25,8 @@ type MethodCallResponse struct {
 	// The function call output.
 	Output interface{} `json:"output"`
 }
+
+type _MethodCallResponse MethodCallResponse
 
 // NewMethodCallResponse instantiates a new MethodCallResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -91,6 +95,44 @@ func (o MethodCallResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["output"] = o.Output
 	}
 	return toSerialize, nil
+}
+
+func (o *MethodCallResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"output",
+		"kind",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMethodCallResponse := _MethodCallResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMethodCallResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MethodCallResponse(varMethodCallResponse)
+
+	return err
 }
 
 type NullableMethodCallResponse struct {

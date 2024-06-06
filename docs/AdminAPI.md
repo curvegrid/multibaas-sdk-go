@@ -47,25 +47,25 @@ Accept invite
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    inviteID := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-    acceptInviteRequest := *openapiclient.NewAcceptInviteRequest() // AcceptInviteRequest |  (optional)
+	inviteID := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	acceptInviteRequest := *openapiclient.NewAcceptInviteRequest() // AcceptInviteRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.AcceptInvite(context.Background(), inviteID).AcceptInviteRequest(acceptInviteRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AcceptInvite``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AcceptInvite`: AcceptInvite200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AcceptInvite`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AcceptInvite(context.Background(), inviteID).AcceptInviteRequest(acceptInviteRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AcceptInvite``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AcceptInvite`: AcceptInvite200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AcceptInvite`: %v\n", resp)
 }
 ```
 
@@ -119,24 +119,24 @@ Add CORS origin
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    cORSOrigin := *openapiclient.NewCORSOrigin() // CORSOrigin |  (optional)
+	cORSOrigin := *openapiclient.NewCORSOrigin() // CORSOrigin |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.AddCorsOrigin(context.Background()).CORSOrigin(cORSOrigin).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AddCorsOrigin``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AddCorsOrigin`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AddCorsOrigin`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AddCorsOrigin(context.Background()).CORSOrigin(cORSOrigin).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AddCorsOrigin``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddCorsOrigin`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AddCorsOrigin`: %v\n", resp)
 }
 ```
 
@@ -185,25 +185,25 @@ Add API key to group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    groupID := int64(789) // int64 | 
-    apiKeyID := int64(789) // int64 | 
+	groupID := int64(789) // int64 | 
+	apiKeyID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.AddGroupApiKey(context.Background(), groupID, apiKeyID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AddGroupApiKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AddGroupApiKey`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AddGroupApiKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AddGroupApiKey(context.Background(), groupID, apiKeyID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AddGroupApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddGroupApiKey`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AddGroupApiKey`: %v\n", resp)
 }
 ```
 
@@ -258,25 +258,25 @@ Add role to group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    groupID := int64(789) // int64 | 
-    roleShortName := "roleShortName_example" // string | 
+	groupID := int64(789) // int64 | 
+	roleShortName := "roleShortName_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.AddGroupRole(context.Background(), groupID, roleShortName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AddGroupRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AddGroupRole`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AddGroupRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AddGroupRole(context.Background(), groupID, roleShortName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AddGroupRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddGroupRole`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AddGroupRole`: %v\n", resp)
 }
 ```
 
@@ -331,25 +331,25 @@ Add user to group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    groupID := int64(789) // int64 | 
-    userID := int64(789) // int64 | 
+	groupID := int64(789) // int64 | 
+	userID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.AddGroupUser(context.Background(), groupID, userID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AddGroupUser``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AddGroupUser`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AddGroupUser`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.AddGroupUser(context.Background(), groupID, userID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.AddGroupUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddGroupUser`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.AddGroupUser`: %v\n", resp)
 }
 ```
 
@@ -404,24 +404,24 @@ Check invite
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    inviteID := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	inviteID := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.CheckInvite(context.Background(), inviteID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.CheckInvite``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CheckInvite`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.CheckInvite`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.CheckInvite(context.Background(), inviteID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.CheckInvite``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CheckInvite`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.CheckInvite`: %v\n", resp)
 }
 ```
 
@@ -474,24 +474,24 @@ Create API key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    createApiKeyRequest := *openapiclient.NewCreateApiKeyRequest("Label_example") // CreateApiKeyRequest |  (optional)
+	createApiKeyRequest := *openapiclient.NewCreateApiKeyRequest("Label_example") // CreateApiKeyRequest |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.CreateApiKey(context.Background()).CreateApiKeyRequest(createApiKeyRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.CreateApiKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `CreateApiKey`: CreateApiKey200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.CreateApiKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.CreateApiKey(context.Background()).CreateApiKeyRequest(createApiKeyRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.CreateApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateApiKey`: CreateApiKey200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.CreateApiKey`: %v\n", resp)
 }
 ```
 
@@ -540,24 +540,24 @@ Delete API key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    apiKeyID := int64(789) // int64 | 
+	apiKeyID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.DeleteApiKey(context.Background(), apiKeyID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.DeleteApiKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteApiKey`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.DeleteApiKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.DeleteApiKey(context.Background(), apiKeyID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.DeleteApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteApiKey`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.DeleteApiKey`: %v\n", resp)
 }
 ```
 
@@ -610,24 +610,24 @@ Delete user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    userID := int64(789) // int64 | 
+	userID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.DeleteUser(context.Background(), userID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.DeleteUser``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteUser`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.DeleteUser`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.DeleteUser(context.Background(), userID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.DeleteUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteUser`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.DeleteUser`: %v\n", resp)
 }
 ```
 
@@ -668,7 +668,7 @@ Name | Type | Description  | Notes
 
 ## GetApiKey
 
-> CreateApiKey200Response GetApiKey(ctx, apiKeyID).Execute()
+> GetApiKey200Response GetApiKey(ctx, apiKeyID).Execute()
 
 Get API Key
 
@@ -680,24 +680,24 @@ Get API Key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    apiKeyID := int64(789) // int64 | 
+	apiKeyID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.GetApiKey(context.Background(), apiKeyID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.GetApiKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetApiKey`: CreateApiKey200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.GetApiKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.GetApiKey(context.Background(), apiKeyID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.GetApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetApiKey`: GetApiKey200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.GetApiKey`: %v\n", resp)
 }
 ```
 
@@ -720,7 +720,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateApiKey200Response**](CreateApiKey200Response.md)
+[**GetApiKey200Response**](GetApiKey200Response.md)
 
 ### Authorization
 
@@ -750,24 +750,24 @@ Invite user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    invite := *openapiclient.NewInvite("Email_example") // Invite |  (optional)
+	invite := *openapiclient.NewInvite("Email_example") // Invite |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.InviteUser(context.Background()).Invite(invite).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.InviteUser``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `InviteUser`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.InviteUser`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.InviteUser(context.Background()).Invite(invite).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.InviteUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `InviteUser`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.InviteUser`: %v\n", resp)
 }
 ```
 
@@ -816,24 +816,24 @@ List API keys
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    all := true // bool | If true, returns all API keys on the system, otherwise, returns only the API keys owned by the calling user. (optional)
+	all := true // bool | If true, returns all API keys on the system, otherwise, returns only the API keys owned by the calling user. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.ListApiKeys(context.Background()).All(all).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListApiKeys``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListApiKeys`: ListApiKeys200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListApiKeys`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.ListApiKeys(context.Background()).All(all).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListApiKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListApiKeys`: ListApiKeys200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListApiKeys`: %v\n", resp)
 }
 ```
 
@@ -882,23 +882,23 @@ List audit logs
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.ListAuditLogs(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListAuditLogs``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListAuditLogs`: ListAuditLogs200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListAuditLogs`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.ListAuditLogs(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListAuditLogs``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListAuditLogs`: ListAuditLogs200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListAuditLogs`: %v\n", resp)
 }
 ```
 
@@ -943,23 +943,23 @@ List CORS origins
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.ListCorsOrigins(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListCorsOrigins``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListCorsOrigins`: ListCorsOrigins200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListCorsOrigins`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.ListCorsOrigins(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListCorsOrigins``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListCorsOrigins`: ListCorsOrigins200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListCorsOrigins`: %v\n", resp)
 }
 ```
 
@@ -1004,26 +1004,26 @@ List groups
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    userID := int64(789) // int64 |  (optional)
-    apiKeyID := int64(789) // int64 |  (optional)
-    assignable := true // bool |  (optional)
+	userID := int64(789) // int64 |  (optional)
+	apiKeyID := int64(789) // int64 |  (optional)
+	assignable := true // bool |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.ListGroups(context.Background()).UserID(userID).ApiKeyID(apiKeyID).Assignable(assignable).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListGroups``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListGroups`: ListGroups200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListGroups`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.ListGroups(context.Background()).UserID(userID).ApiKeyID(apiKeyID).Assignable(assignable).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListGroups``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListGroups`: ListGroups200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListGroups`: %v\n", resp)
 }
 ```
 
@@ -1074,24 +1074,24 @@ List user signers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    userID := int64(789) // int64 | 
+	userID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.ListUserSigners(context.Background(), userID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListUserSigners``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListUserSigners`: ListUserSigners200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListUserSigners`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.ListUserSigners(context.Background(), userID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListUserSigners``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListUserSigners`: ListUserSigners200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListUserSigners`: %v\n", resp)
 }
 ```
 
@@ -1144,24 +1144,24 @@ List users
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    groupID := int64(789) // int64 |  (optional)
+	groupID := int64(789) // int64 |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.ListUsers(context.Background()).GroupID(groupID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListUsers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListUsers`: ListUsers200Response
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListUsers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.ListUsers(context.Background()).GroupID(groupID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListUsers`: ListUsers200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListUsers`: %v\n", resp)
 }
 ```
 
@@ -1210,24 +1210,24 @@ Remove CORS Origin
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    originID := int64(789) // int64 | 
+	originID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.RemoveCorsOrigin(context.Background(), originID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveCorsOrigin``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemoveCorsOrigin`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveCorsOrigin`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.RemoveCorsOrigin(context.Background(), originID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveCorsOrigin``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveCorsOrigin`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveCorsOrigin`: %v\n", resp)
 }
 ```
 
@@ -1280,25 +1280,25 @@ Remove API key from group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    groupID := int64(789) // int64 | 
-    apiKeyID := int64(789) // int64 | 
+	groupID := int64(789) // int64 | 
+	apiKeyID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.RemoveGroupApiKey(context.Background(), groupID, apiKeyID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveGroupApiKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemoveGroupApiKey`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveGroupApiKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.RemoveGroupApiKey(context.Background(), groupID, apiKeyID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveGroupApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveGroupApiKey`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveGroupApiKey`: %v\n", resp)
 }
 ```
 
@@ -1353,25 +1353,25 @@ Remove role from group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    groupID := int64(789) // int64 | 
-    roleShortName := "roleShortName_example" // string | 
+	groupID := int64(789) // int64 | 
+	roleShortName := "roleShortName_example" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.RemoveGroupRole(context.Background(), groupID, roleShortName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveGroupRole``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemoveGroupRole`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveGroupRole`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.RemoveGroupRole(context.Background(), groupID, roleShortName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveGroupRole``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveGroupRole`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveGroupRole`: %v\n", resp)
 }
 ```
 
@@ -1426,25 +1426,25 @@ Remove user from group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    groupID := int64(789) // int64 | 
-    userID := int64(789) // int64 | 
+	groupID := int64(789) // int64 | 
+	userID := int64(789) // int64 | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.RemoveGroupUser(context.Background(), groupID, userID).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveGroupUser``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemoveGroupUser`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveGroupUser`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.RemoveGroupUser(context.Background(), groupID, userID).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveGroupUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveGroupUser`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveGroupUser`: %v\n", resp)
 }
 ```
 
@@ -1499,25 +1499,25 @@ Remove user cloud wallet signer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    userID := int64(789) // int64 | 
-    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	userID := int64(789) // int64 | 
+	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.RemoveUserSignerCloudWallet(context.Background(), userID, walletAddress).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveUserSignerCloudWallet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemoveUserSignerCloudWallet`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveUserSignerCloudWallet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.RemoveUserSignerCloudWallet(context.Background(), userID, walletAddress).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveUserSignerCloudWallet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveUserSignerCloudWallet`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveUserSignerCloudWallet`: %v\n", resp)
 }
 ```
 
@@ -1572,25 +1572,25 @@ Remove user web3 wallet signer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    userID := int64(789) // int64 | 
-    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	userID := int64(789) // int64 | 
+	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.RemoveUserSignerWeb3Wallet(context.Background(), userID, walletAddress).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveUserSignerWeb3Wallet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `RemoveUserSignerWeb3Wallet`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveUserSignerWeb3Wallet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.RemoveUserSignerWeb3Wallet(context.Background(), userID, walletAddress).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveUserSignerWeb3Wallet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveUserSignerWeb3Wallet`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveUserSignerWeb3Wallet`: %v\n", resp)
 }
 ```
 
@@ -1645,25 +1645,25 @@ Add or update user cloud wallet signer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    userID := int64(789) // int64 | 
-    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	userID := int64(789) // int64 | 
+	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.SetUserSignerCloudWallet(context.Background(), userID, walletAddress).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.SetUserSignerCloudWallet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetUserSignerCloudWallet`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.SetUserSignerCloudWallet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.SetUserSignerCloudWallet(context.Background(), userID, walletAddress).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.SetUserSignerCloudWallet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetUserSignerCloudWallet`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.SetUserSignerCloudWallet`: %v\n", resp)
 }
 ```
 
@@ -1718,26 +1718,26 @@ Add or update user web3 wallet signer
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    userID := int64(789) // int64 | 
-    walletAddress := "walletAddress_example" // string | An HSM ethereum address.
-    signerLabel := *openapiclient.NewSignerLabel("Label_example") // SignerLabel |  (optional)
+	userID := int64(789) // int64 | 
+	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	signerLabel := *openapiclient.NewSignerLabel("Label_example") // SignerLabel |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.SetUserSignerWeb3Wallet(context.Background(), userID, walletAddress).SignerLabel(signerLabel).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.SetUserSignerWeb3Wallet``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetUserSignerWeb3Wallet`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.SetUserSignerWeb3Wallet`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.SetUserSignerWeb3Wallet(context.Background(), userID, walletAddress).SignerLabel(signerLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.SetUserSignerWeb3Wallet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetUserSignerWeb3Wallet`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.SetUserSignerWeb3Wallet`: %v\n", resp)
 }
 ```
 
@@ -1793,25 +1793,25 @@ Update API key
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    apiKeyID := int64(789) // int64 | 
-    baseAPIKey := *openapiclient.NewBaseAPIKey("Label_example") // BaseAPIKey |  (optional)
+	apiKeyID := int64(789) // int64 | 
+	baseAPIKey := *openapiclient.NewBaseAPIKey("Label_example") // BaseAPIKey |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AdminAPI.UpdateApiKey(context.Background(), apiKeyID).BaseAPIKey(baseAPIKey).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.UpdateApiKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `UpdateApiKey`: BaseResponse
-    fmt.Fprintf(os.Stdout, "Response from `AdminAPI.UpdateApiKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.UpdateApiKey(context.Background(), apiKeyID).BaseAPIKey(baseAPIKey).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.UpdateApiKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateApiKey`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.UpdateApiKey`: %v\n", resp)
 }
 ```
 

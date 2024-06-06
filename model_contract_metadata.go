@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ContractMetadata type satisfies the MappedNullable interface at compile time
@@ -27,6 +29,8 @@ type ContractMetadata struct {
 	Version  string `json:"version"`
 	Conflict bool   `json:"conflict"`
 }
+
+type _ContractMetadata ContractMetadata
 
 // NewContractMetadata instantiates a new ContractMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -160,6 +164,46 @@ func (o ContractMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize["version"] = o.Version
 	toSerialize["conflict"] = o.Conflict
 	return toSerialize, nil
+}
+
+func (o *ContractMetadata) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"label",
+		"name",
+		"version",
+		"conflict",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varContractMetadata := _ContractMetadata{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varContractMetadata)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ContractMetadata(varContractMetadata)
+
+	return err
 }
 
 type NullableContractMetadata struct {

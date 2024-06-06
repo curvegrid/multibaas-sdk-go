@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PreviewArgs type satisfies the MappedNullable interface at compile time
@@ -26,6 +28,8 @@ type PreviewArgs struct {
 	// Type Conversion information for the function outputs. The number of outputs must match that of the actual function outputs. The parameter is a contract function argument where only the type conversion information is used.
 	Outputs []ContractABIMethodArgument `json:"outputs"`
 }
+
+type _PreviewArgs PreviewArgs
 
 // NewPreviewArgs instantiates a new PreviewArgs object
 // This constructor will assign default values to properties that have it defined,
@@ -133,6 +137,45 @@ func (o PreviewArgs) ToMap() (map[string]interface{}, error) {
 	toSerialize["inputs"] = o.Inputs
 	toSerialize["outputs"] = o.Outputs
 	return toSerialize, nil
+}
+
+func (o *PreviewArgs) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"inputsOnly",
+		"inputs",
+		"outputs",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPreviewArgs := _PreviewArgs{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPreviewArgs)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PreviewArgs(varPreviewArgs)
+
+	return err
 }
 
 type NullablePreviewArgs struct {

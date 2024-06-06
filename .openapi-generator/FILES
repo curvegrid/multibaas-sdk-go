@@ -13,6 +13,7 @@ api_webhooks.go
 client.go
 configuration.go
 docs/APIKey.md
+docs/APIKeyWithSecret.md
 docs/AcceptInvite200Response.md
 docs/AcceptInviteRequest.md
 docs/AddKey.md
@@ -41,6 +42,8 @@ docs/ChainStatus.md
 docs/ChainsAPI.md
 docs/Contract.md
 docs/ContractABI.md
+docs/ContractABIError.md
+docs/ContractABIErrorArgument.md
 docs/ContractABIEvent.md
 docs/ContractABIEventArgument.md
 docs/ContractABIMethod.md
@@ -84,6 +87,7 @@ docs/EventsAPI.md
 docs/ExecuteArbitraryEventQuery200Response.md
 docs/FieldType.md
 docs/GasParams.md
+docs/GetApiKey200Response.md
 docs/GetBlock200Response.md
 docs/GetChainStatus200Response.md
 docs/GetContract200Response.md
@@ -162,6 +166,7 @@ model_add_key.go
 model_address.go
 model_address_label.go
 model_api_key.go
+model_api_key_with_secret.go
 model_audit_log.go
 model_azure_account.go
 model_azure_hardware_wallet.go
@@ -181,6 +186,8 @@ model_chain_name.go
 model_chain_status.go
 model_contract.go
 model_contract_abi.go
+model_contract_abi_error.go
+model_contract_abi_error_argument.go
 model_contract_abi_event.go
 model_contract_abi_event_argument.go
 model_contract_abi_method.go
@@ -222,6 +229,7 @@ model_event_type_conversion_options.go
 model_execute_arbitrary_event_query_200_response.go
 model_field_type.go
 model_gas_params.go
+model_get_api_key_200_response.go
 model_get_block_200_response.go
 model_get_chain_status_200_response.go
 model_get_contract_200_response.go

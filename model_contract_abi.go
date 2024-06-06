@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ContractABI type satisfies the MappedNullable interface at compile time
@@ -22,9 +24,12 @@ type ContractABI struct {
 	Constructor NullableContractABIMethod1   `json:"constructor"`
 	Methods     map[string]ContractABIMethod `json:"methods"`
 	Events      map[string]ContractABIEvent  `json:"events"`
+	Errors      *map[string]ContractABIError `json:"errors,omitempty"`
 	Fallback    NullableContractABIMethod    `json:"fallback"`
 	Receive     NullableContractABIMethod    `json:"receive"`
 }
+
+type _ContractABI ContractABI
 
 // NewContractABI instantiates a new ContractABI object
 // This constructor will assign default values to properties that have it defined,
@@ -122,6 +127,38 @@ func (o *ContractABI) SetEvents(v map[string]ContractABIEvent) {
 	o.Events = v
 }
 
+// GetErrors returns the Errors field value if set, zero value otherwise.
+func (o *ContractABI) GetErrors() map[string]ContractABIError {
+	if o == nil || IsNil(o.Errors) {
+		var ret map[string]ContractABIError
+		return ret
+	}
+	return *o.Errors
+}
+
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContractABI) GetErrorsOk() (*map[string]ContractABIError, bool) {
+	if o == nil || IsNil(o.Errors) {
+		return nil, false
+	}
+	return o.Errors, true
+}
+
+// HasErrors returns a boolean if a field has been set.
+func (o *ContractABI) HasErrors() bool {
+	if o != nil && !IsNil(o.Errors) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrors gets a reference to the given map[string]ContractABIError and assigns it to the Errors field.
+func (o *ContractABI) SetErrors(v map[string]ContractABIError) {
+	o.Errors = &v
+}
+
 // GetFallback returns the Fallback field value
 // If the value is explicit nil, the zero value for ContractABIMethod will be returned
 func (o *ContractABI) GetFallback() ContractABIMethod {
@@ -187,9 +224,53 @@ func (o ContractABI) ToMap() (map[string]interface{}, error) {
 	toSerialize["constructor"] = o.Constructor.Get()
 	toSerialize["methods"] = o.Methods
 	toSerialize["events"] = o.Events
+	if !IsNil(o.Errors) {
+		toSerialize["errors"] = o.Errors
+	}
 	toSerialize["fallback"] = o.Fallback.Get()
 	toSerialize["receive"] = o.Receive.Get()
 	return toSerialize, nil
+}
+
+func (o *ContractABI) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"constructor",
+		"methods",
+		"events",
+		"fallback",
+		"receive",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varContractABI := _ContractABI{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varContractABI)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ContractABI(varContractABI)
+
+	return err
 }
 
 type NullableContractABI struct {

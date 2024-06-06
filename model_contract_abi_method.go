@@ -11,7 +11,9 @@ API version: 0.0
 package multibaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ContractABIMethod type satisfies the MappedNullable interface at compile time
@@ -19,6 +21,8 @@ var _ MappedNullable = &ContractABIMethod{}
 
 // ContractABIMethod A contract function.
 type ContractABIMethod struct {
+	// A hex string.
+	Id string `json:"id"`
 	// Name of the function.
 	Name string `json:"name"`
 	// The function signature.
@@ -36,12 +40,15 @@ type ContractABIMethod struct {
 	Description string `json:"description"`
 }
 
+type _ContractABIMethod ContractABIMethod
+
 // NewContractABIMethod instantiates a new ContractABIMethod object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIMethod(name string, signature string, const_ bool, payable bool, inputs []ContractABIMethodArgument, outputs []ContractABIMethodArgument, author string, notes string, returns string, description string) *ContractABIMethod {
+func NewContractABIMethod(id string, name string, signature string, const_ bool, payable bool, inputs []ContractABIMethodArgument, outputs []ContractABIMethodArgument, author string, notes string, returns string, description string) *ContractABIMethod {
 	this := ContractABIMethod{}
+	this.Id = id
 	this.Name = name
 	this.Signature = signature
 	this.Const = const_
@@ -61,6 +68,30 @@ func NewContractABIMethod(name string, signature string, const_ bool, payable bo
 func NewContractABIMethodWithDefaults() *ContractABIMethod {
 	this := ContractABIMethod{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *ContractABIMethod) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ContractABIMethod) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ContractABIMethod) SetId(v string) {
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -313,6 +344,7 @@ func (o ContractABIMethod) MarshalJSON() ([]byte, error) {
 
 func (o ContractABIMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["signature"] = o.Signature
 	toSerialize["const"] = o.Const
@@ -324,6 +356,53 @@ func (o ContractABIMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize["returns"] = o.Returns
 	toSerialize["description"] = o.Description
 	return toSerialize, nil
+}
+
+func (o *ContractABIMethod) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"signature",
+		"const",
+		"payable",
+		"inputs",
+		"outputs",
+		"author",
+		"notes",
+		"returns",
+		"description",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varContractABIMethod := _ContractABIMethod{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varContractABIMethod)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ContractABIMethod(varContractABIMethod)
+
+	return err
 }
 
 type NullableContractABIMethod struct {
