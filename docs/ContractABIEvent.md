@@ -9,12 +9,14 @@ Name | Type | Description | Notes
 **Signature** | **string** |  | 
 **Anonymous** | **bool** |  | 
 **Inputs** | [**[]ContractABIEventArgument**](ContractABIEventArgument.md) | List of contract event&#39;s input arguments. | 
+**Notes** | **string** | The developer documentation. | 
+**Description** | **string** | The user documentation. | 
 
 ## Methods
 
 ### NewContractABIEvent
 
-`func NewContractABIEvent(id string, name string, signature string, anonymous bool, inputs []ContractABIEventArgument, ) *ContractABIEvent`
+`func NewContractABIEvent(id string, name string, signature string, anonymous bool, inputs []ContractABIEventArgument, notes string, description string, ) *ContractABIEvent`
 
 NewContractABIEvent instantiates a new ContractABIEvent object
 This constructor will assign default values to properties that have it defined,
@@ -127,6 +129,46 @@ and a boolean to check if the value has been set.
 `func (o *ContractABIEvent) SetInputs(v []ContractABIEventArgument)`
 
 SetInputs sets Inputs field to given value.
+
+
+### GetNotes
+
+`func (o *ContractABIEvent) GetNotes() string`
+
+GetNotes returns the Notes field if non-nil, zero value otherwise.
+
+### GetNotesOk
+
+`func (o *ContractABIEvent) GetNotesOk() (*string, bool)`
+
+GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotes
+
+`func (o *ContractABIEvent) SetNotes(v string)`
+
+SetNotes sets Notes field to given value.
+
+
+### GetDescription
+
+`func (o *ContractABIEvent) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *ContractABIEvent) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *ContractABIEvent) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 
 

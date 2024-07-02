@@ -25,6 +25,8 @@ type ContractABIEventArgument struct {
 	Type           ContractABIType                   `json:"type"`
 	Indexed        bool                              `json:"indexed"`
 	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
+	// The developer documentation.
+	Notes string `json:"notes"`
 }
 
 type _ContractABIEventArgument ContractABIEventArgument
@@ -33,12 +35,13 @@ type _ContractABIEventArgument ContractABIEventArgument
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIEventArgument(name string, type_ ContractABIType, indexed bool, typeConversion NullableContractABITypeConversion) *ContractABIEventArgument {
+func NewContractABIEventArgument(name string, type_ ContractABIType, indexed bool, typeConversion NullableContractABITypeConversion, notes string) *ContractABIEventArgument {
 	this := ContractABIEventArgument{}
 	this.Name = name
 	this.Type = type_
 	this.Indexed = indexed
 	this.TypeConversion = typeConversion
+	this.Notes = notes
 	return &this
 }
 
@@ -148,6 +151,30 @@ func (o *ContractABIEventArgument) SetTypeConversion(v ContractABITypeConversion
 	o.TypeConversion.Set(&v)
 }
 
+// GetNotes returns the Notes field value
+func (o *ContractABIEventArgument) GetNotes() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value
+// and a boolean to check if the value has been set.
+func (o *ContractABIEventArgument) GetNotesOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Notes, true
+}
+
+// SetNotes sets field value
+func (o *ContractABIEventArgument) SetNotes(v string) {
+	o.Notes = v
+}
+
 func (o ContractABIEventArgument) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -162,6 +189,7 @@ func (o ContractABIEventArgument) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["indexed"] = o.Indexed
 	toSerialize["typeConversion"] = o.TypeConversion.Get()
+	toSerialize["notes"] = o.Notes
 	return toSerialize, nil
 }
 
@@ -174,6 +202,7 @@ func (o *ContractABIEventArgument) UnmarshalJSON(data []byte) (err error) {
 		"type",
 		"indexed",
 		"typeConversion",
+		"notes",
 	}
 
 	allProperties := make(map[string]interface{})

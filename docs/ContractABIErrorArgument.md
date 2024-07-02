@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Type** | [**ContractABIType**](ContractABIType.md) |  | 
 **Indexed** | **bool** |  | 
+**Notes** | **string** | The developer documentation. | 
 
 ## Methods
 
 ### NewContractABIErrorArgument
 
-`func NewContractABIErrorArgument(name string, type_ ContractABIType, indexed bool, ) *ContractABIErrorArgument`
+`func NewContractABIErrorArgument(name string, type_ ContractABIType, indexed bool, notes string, ) *ContractABIErrorArgument`
 
 NewContractABIErrorArgument instantiates a new ContractABIErrorArgument object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *ContractABIErrorArgument) SetIndexed(v bool)`
 
 SetIndexed sets Indexed field to given value.
+
+
+### GetNotes
+
+`func (o *ContractABIErrorArgument) GetNotes() string`
+
+GetNotes returns the Notes field if non-nil, zero value otherwise.
+
+### GetNotesOk
+
+`func (o *ContractABIErrorArgument) GetNotesOk() (*string, bool)`
+
+GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotes
+
+`func (o *ContractABIErrorArgument) SetNotes(v string)`
+
+SetNotes sets Notes field to given value.
 
 
 

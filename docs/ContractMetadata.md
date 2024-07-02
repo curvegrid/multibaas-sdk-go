@@ -7,13 +7,12 @@ Name | Type | Description | Notes
 **Label** | **string** | A label. | 
 **Name** | **string** | The name of the contract. | 
 **Version** | **string** | The contract version. | 
-**Conflict** | **bool** |  | 
 
 ## Methods
 
 ### NewContractMetadata
 
-`func NewContractMetadata(label string, name string, version string, conflict bool, ) *ContractMetadata`
+`func NewContractMetadata(label string, name string, version string, ) *ContractMetadata`
 
 NewContractMetadata instantiates a new ContractMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -86,26 +85,6 @@ and a boolean to check if the value has been set.
 `func (o *ContractMetadata) SetVersion(v string)`
 
 SetVersion sets Version field to given value.
-
-
-### GetConflict
-
-`func (o *ContractMetadata) GetConflict() bool`
-
-GetConflict returns the Conflict field if non-nil, zero value otherwise.
-
-### GetConflictOk
-
-`func (o *ContractMetadata) GetConflictOk() (*bool, bool)`
-
-GetConflictOk returns a tuple with the Conflict field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConflict
-
-`func (o *ContractMetadata) SetConflict(v bool)`
-
-SetConflict sets Conflict field to given value.
 
 
 

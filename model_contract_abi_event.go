@@ -28,6 +28,10 @@ type ContractABIEvent struct {
 	Anonymous bool   `json:"anonymous"`
 	// List of contract event's input arguments.
 	Inputs []ContractABIEventArgument `json:"inputs"`
+	// The developer documentation.
+	Notes string `json:"notes"`
+	// The user documentation.
+	Description string `json:"description"`
 }
 
 type _ContractABIEvent ContractABIEvent
@@ -36,13 +40,15 @@ type _ContractABIEvent ContractABIEvent
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIEvent(id string, name string, signature string, anonymous bool, inputs []ContractABIEventArgument) *ContractABIEvent {
+func NewContractABIEvent(id string, name string, signature string, anonymous bool, inputs []ContractABIEventArgument, notes string, description string) *ContractABIEvent {
 	this := ContractABIEvent{}
 	this.Id = id
 	this.Name = name
 	this.Signature = signature
 	this.Anonymous = anonymous
 	this.Inputs = inputs
+	this.Notes = notes
+	this.Description = description
 	return &this
 }
 
@@ -174,6 +180,54 @@ func (o *ContractABIEvent) SetInputs(v []ContractABIEventArgument) {
 	o.Inputs = v
 }
 
+// GetNotes returns the Notes field value
+func (o *ContractABIEvent) GetNotes() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value
+// and a boolean to check if the value has been set.
+func (o *ContractABIEvent) GetNotesOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Notes, true
+}
+
+// SetNotes sets field value
+func (o *ContractABIEvent) SetNotes(v string) {
+	o.Notes = v
+}
+
+// GetDescription returns the Description field value
+func (o *ContractABIEvent) GetDescription() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *ContractABIEvent) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
+// SetDescription sets field value
+func (o *ContractABIEvent) SetDescription(v string) {
+	o.Description = v
+}
+
 func (o ContractABIEvent) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -189,6 +243,8 @@ func (o ContractABIEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize["signature"] = o.Signature
 	toSerialize["anonymous"] = o.Anonymous
 	toSerialize["inputs"] = o.Inputs
+	toSerialize["notes"] = o.Notes
+	toSerialize["description"] = o.Description
 	return toSerialize, nil
 }
 
@@ -202,6 +258,8 @@ func (o *ContractABIEvent) UnmarshalJSON(data []byte) (err error) {
 		"signature",
 		"anonymous",
 		"inputs",
+		"notes",
+		"description",
 	}
 
 	allProperties := make(map[string]interface{})

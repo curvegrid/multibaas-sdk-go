@@ -26,8 +26,10 @@ Method | HTTP request | Description
 [**RemoveGroupRole**](AdminAPI.md#RemoveGroupRole) | **Delete** /groups/{groupID}/roles/{roleShortName} | Remove role from group
 [**RemoveGroupUser**](AdminAPI.md#RemoveGroupUser) | **Delete** /groups/{groupID}/users/{userID} | Remove user from group
 [**RemoveUserSignerCloudWallet**](AdminAPI.md#RemoveUserSignerCloudWallet) | **Delete** /users/{userID}/cloudwallets/{wallet_address} | Remove user cloud wallet signer
+[**RemoveUserSignerSafeAccount**](AdminAPI.md#RemoveUserSignerSafeAccount) | **Delete** /users/{userID}/safeaccounts/{wallet_address} | Remove user safe account signer
 [**RemoveUserSignerWeb3Wallet**](AdminAPI.md#RemoveUserSignerWeb3Wallet) | **Delete** /users/{userID}/web3wallets/{wallet_address} | Remove user web3 wallet signer
 [**SetUserSignerCloudWallet**](AdminAPI.md#SetUserSignerCloudWallet) | **Put** /users/{userID}/cloudwallets/{wallet_address} | Add or update user cloud wallet signer
+[**SetUserSignerSafeAccount**](AdminAPI.md#SetUserSignerSafeAccount) | **Put** /users/{userID}/safeaccounts/{wallet_address} | Add or update user safe account signer
 [**SetUserSignerWeb3Wallet**](AdminAPI.md#SetUserSignerWeb3Wallet) | **Put** /users/{userID}/web3wallets/{wallet_address} | Add or update user web3 wallet signer
 [**UpdateApiKey**](AdminAPI.md#UpdateApiKey) | **Put** /api_keys/{apiKeyID} | Update API key
 
@@ -1558,6 +1560,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RemoveUserSignerSafeAccount
+
+> BaseResponse RemoveUserSignerSafeAccount(ctx, userID, walletAddress).Execute()
+
+Remove user safe account signer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+	userID := int64(789) // int64 | 
+	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.RemoveUserSignerSafeAccount(context.Background(), userID, walletAddress).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.RemoveUserSignerSafeAccount``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RemoveUserSignerSafeAccount`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.RemoveUserSignerSafeAccount`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userID** | **int64** |  | 
+**walletAddress** | **string** | An HSM ethereum address. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveUserSignerSafeAccountRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RemoveUserSignerWeb3Wallet
 
 > BaseResponse RemoveUserSignerWeb3Wallet(ctx, userID, walletAddress).Execute()
@@ -1697,6 +1772,81 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetUserSignerSafeAccount
+
+> BaseResponse SetUserSignerSafeAccount(ctx, userID, walletAddress).SignerLabel(signerLabel).Execute()
+
+Add or update user safe account signer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+	userID := int64(789) // int64 | 
+	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	signerLabel := *openapiclient.NewSignerLabel("Label_example") // SignerLabel |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.SetUserSignerSafeAccount(context.Background(), userID, walletAddress).SignerLabel(signerLabel).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.SetUserSignerSafeAccount``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SetUserSignerSafeAccount`: BaseResponse
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.SetUserSignerSafeAccount`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userID** | **int64** |  | 
+**walletAddress** | **string** | An HSM ethereum address. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetUserSignerSafeAccountRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **signerLabel** | [**SignerLabel**](SignerLabel.md) |  | 
+
+### Return type
+
+[**BaseResponse**](BaseResponse.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

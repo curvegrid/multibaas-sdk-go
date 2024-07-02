@@ -24,6 +24,8 @@ type ContractABIErrorArgument struct {
 	Name    string          `json:"name"`
 	Type    ContractABIType `json:"type"`
 	Indexed bool            `json:"indexed"`
+	// The developer documentation.
+	Notes string `json:"notes"`
 }
 
 type _ContractABIErrorArgument ContractABIErrorArgument
@@ -32,11 +34,12 @@ type _ContractABIErrorArgument ContractABIErrorArgument
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIErrorArgument(name string, type_ ContractABIType, indexed bool) *ContractABIErrorArgument {
+func NewContractABIErrorArgument(name string, type_ ContractABIType, indexed bool, notes string) *ContractABIErrorArgument {
 	this := ContractABIErrorArgument{}
 	this.Name = name
 	this.Type = type_
 	this.Indexed = indexed
+	this.Notes = notes
 	return &this
 }
 
@@ -120,6 +123,30 @@ func (o *ContractABIErrorArgument) SetIndexed(v bool) {
 	o.Indexed = v
 }
 
+// GetNotes returns the Notes field value
+func (o *ContractABIErrorArgument) GetNotes() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value
+// and a boolean to check if the value has been set.
+func (o *ContractABIErrorArgument) GetNotesOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Notes, true
+}
+
+// SetNotes sets field value
+func (o *ContractABIErrorArgument) SetNotes(v string) {
+	o.Notes = v
+}
+
 func (o ContractABIErrorArgument) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -133,6 +160,7 @@ func (o ContractABIErrorArgument) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
 	toSerialize["indexed"] = o.Indexed
+	toSerialize["notes"] = o.Notes
 	return toSerialize, nil
 }
 
@@ -144,6 +172,7 @@ func (o *ContractABIErrorArgument) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"type",
 		"indexed",
+		"notes",
 	}
 
 	allProperties := make(map[string]interface{})

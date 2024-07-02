@@ -26,8 +26,7 @@ type ContractMetadata struct {
 	// The name of the contract.
 	Name string `json:"name"`
 	// The contract version.
-	Version  string `json:"version"`
-	Conflict bool   `json:"conflict"`
+	Version string `json:"version"`
 }
 
 type _ContractMetadata ContractMetadata
@@ -36,12 +35,11 @@ type _ContractMetadata ContractMetadata
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractMetadata(label string, name string, version string, conflict bool) *ContractMetadata {
+func NewContractMetadata(label string, name string, version string) *ContractMetadata {
 	this := ContractMetadata{}
 	this.Label = label
 	this.Name = name
 	this.Version = version
-	this.Conflict = conflict
 	return &this
 }
 
@@ -125,30 +123,6 @@ func (o *ContractMetadata) SetVersion(v string) {
 	o.Version = v
 }
 
-// GetConflict returns the Conflict field value
-func (o *ContractMetadata) GetConflict() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Conflict
-}
-
-// GetConflictOk returns a tuple with the Conflict field value
-// and a boolean to check if the value has been set.
-func (o *ContractMetadata) GetConflictOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Conflict, true
-}
-
-// SetConflict sets field value
-func (o *ContractMetadata) SetConflict(v bool) {
-	o.Conflict = v
-}
-
 func (o ContractMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -162,7 +136,6 @@ func (o ContractMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	toSerialize["name"] = o.Name
 	toSerialize["version"] = o.Version
-	toSerialize["conflict"] = o.Conflict
 	return toSerialize, nil
 }
 
@@ -174,7 +147,6 @@ func (o *ContractMetadata) UnmarshalJSON(data []byte) (err error) {
 		"label",
 		"name",
 		"version",
-		"conflict",
 	}
 
 	allProperties := make(map[string]interface{})

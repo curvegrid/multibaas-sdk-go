@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Type** | [**ContractABIType**](ContractABIType.md) |  | 
 **Indexed** | **bool** |  | 
 **TypeConversion** | [**NullableContractABITypeConversion**](ContractABITypeConversion.md) |  | 
+**Notes** | **string** | The developer documentation. | 
 
 ## Methods
 
 ### NewContractABIEventArgument
 
-`func NewContractABIEventArgument(name string, type_ ContractABIType, indexed bool, typeConversion NullableContractABITypeConversion, ) *ContractABIEventArgument`
+`func NewContractABIEventArgument(name string, type_ ContractABIType, indexed bool, typeConversion NullableContractABITypeConversion, notes string, ) *ContractABIEventArgument`
 
 NewContractABIEventArgument instantiates a new ContractABIEventArgument object
 This constructor will assign default values to properties that have it defined,
@@ -118,6 +119,26 @@ SetTypeConversion sets TypeConversion field to given value.
 `func (o *ContractABIEventArgument) UnsetTypeConversion()`
 
 UnsetTypeConversion ensures that no value is present for TypeConversion, not even an explicit nil
+### GetNotes
+
+`func (o *ContractABIEventArgument) GetNotes() string`
+
+GetNotes returns the Notes field if non-nil, zero value otherwise.
+
+### GetNotesOk
+
+`func (o *ContractABIEventArgument) GetNotesOk() (*string, bool)`
+
+GetNotesOk returns a tuple with the Notes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotes
+
+`func (o *ContractABIEventArgument) SetNotes(v string)`
+
+SetNotes sets Notes field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

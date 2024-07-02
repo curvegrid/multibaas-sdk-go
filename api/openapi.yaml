@@ -3404,6 +3404,96 @@ paths:
       summary: Add or update user cloud wallet signer
       tags:
       - admin
+  /users/{userID}/safeaccounts/{wallet_address}:
+    delete:
+      description: Removes a safe account signer from a user.
+      operationId: remove-user-signer-safe-account
+      parameters:
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An HSM ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Remove user safe account signer
+      tags:
+      - admin
+    put:
+      description: Adds or updates a user's safe account signer.
+      operationId: set-user-signer-safe-account
+      parameters:
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An HSM ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignerLabel'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: OK
+        "4XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
+        "5XX":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
+      summary: Add or update user safe account signer
+      tags:
+      - admin
   /groups:
     get:
       description: Returns all the groups.
@@ -4043,11 +4133,9 @@ components:
         - name: name
           label: label
           version: version
-          conflict: true
         - name: name
           label: label
           version: version
-          conflict: true
         nonce: 6
         modules:
         - modules
@@ -4548,7 +4636,6 @@ components:
         name: name
         label: label
         version: version
-        conflict: true
       properties:
         label:
           description: A label.
@@ -4565,10 +4652,7 @@ components:
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractVersion
           type: string
-        conflict:
-          type: boolean
       required:
-      - conflict
       - label
       - name
       - version
@@ -4799,6 +4883,7 @@ components:
     ContractABIEventArgument:
       description: A contract event argument.
       example:
+        notes: notes
         indexed: true
         name: name
         typeConversion:
@@ -4824,9 +4909,13 @@ components:
           type: boolean
         typeConversion:
           $ref: '#/components/schemas/ContractABITypeConversion'
+        notes:
+          description: The developer documentation.
+          type: string
       required:
       - indexed
       - name
+      - notes
       - type
       - typeConversion
       title: ContractABIEventArgument
@@ -4834,9 +4923,11 @@ components:
     ContractABIEvent:
       description: A contract event.
       example:
+        notes: notes
         signature: signature
         inputs:
-        - indexed: true
+        - notes: notes
+          indexed: true
           name: name
           typeConversion:
             mode: mode
@@ -4852,7 +4943,8 @@ components:
             - tupleRawNames
             - tupleRawNames
             type: type
-        - indexed: true
+        - notes: notes
+          indexed: true
           name: name
           typeConversion:
             mode: mode
@@ -4870,6 +4962,7 @@ components:
             type: type
         name: name
         anonymous: true
+        description: description
         id: id
       properties:
         id:
@@ -4890,17 +4983,26 @@ components:
           items:
             $ref: '#/components/schemas/ContractABIEventArgument'
           type: array
+        notes:
+          description: The developer documentation.
+          type: string
+        description:
+          description: The user documentation.
+          type: string
       required:
       - anonymous
+      - description
       - id
       - inputs
       - name
+      - notes
       - signature
       title: ContractABIEvent
       type: object
     ContractABIErrorArgument:
       description: A contract error argument.
       example:
+        notes: notes
         indexed: true
         name: name
         type:
@@ -4920,18 +5022,24 @@ components:
           $ref: '#/components/schemas/ContractABIType'
         indexed:
           type: boolean
+        notes:
+          description: The developer documentation.
+          type: string
       required:
       - indexed
       - name
+      - notes
       - type
       title: ContractABIErrorArgument
       type: object
     ContractABIError:
       description: A contract error.
       example:
+        notes: notes
         signature: signature
         inputs:
-        - indexed: true
+        - notes: notes
+          indexed: true
           name: name
           type:
             elem: null
@@ -4943,7 +5051,8 @@ components:
             - tupleRawNames
             - tupleRawNames
             type: type
-        - indexed: true
+        - notes: notes
+          indexed: true
           name: name
           type:
             elem: null
@@ -4956,6 +5065,7 @@ components:
             - tupleRawNames
             type: type
         name: name
+        description: description
         id: id
       properties:
         id:
@@ -4974,6 +5084,12 @@ components:
           items:
             $ref: '#/components/schemas/ContractABIErrorArgument'
           type: array
+        notes:
+          description: The developer documentation.
+          type: string
+        description:
+          description: The user documentation.
+          type: string
       required:
       - id
       - inputs
@@ -5291,9 +5407,11 @@ components:
           id: id
         events:
           key:
+            notes: notes
             signature: signature
             inputs:
-            - indexed: true
+            - notes: notes
+              indexed: true
               name: name
               typeConversion:
                 mode: mode
@@ -5309,7 +5427,8 @@ components:
                 - tupleRawNames
                 - tupleRawNames
                 type: type
-            - indexed: true
+            - notes: notes
+              indexed: true
               name: name
               typeConversion:
                 mode: mode
@@ -5327,12 +5446,15 @@ components:
                 type: type
             name: name
             anonymous: true
+            description: description
             id: id
         errors:
           key:
+            notes: notes
             signature: signature
             inputs:
-            - indexed: true
+            - notes: notes
+              indexed: true
               name: name
               type:
                 elem: null
@@ -5344,7 +5466,8 @@ components:
                 - tupleRawNames
                 - tupleRawNames
                 type: type
-            - indexed: true
+            - notes: notes
+              indexed: true
               name: name
               type:
                 elem: null
@@ -5357,6 +5480,7 @@ components:
                 - tupleRawNames
                 type: type
             name: name
+            description: description
             id: id
       properties:
         constructor:
@@ -5775,9 +5899,11 @@ components:
             id: id
           events:
             key:
+              notes: notes
               signature: signature
               inputs:
-              - indexed: true
+              - notes: notes
+                indexed: true
                 name: name
                 typeConversion:
                   mode: mode
@@ -5793,7 +5919,8 @@ components:
                   - tupleRawNames
                   - tupleRawNames
                   type: type
-              - indexed: true
+              - notes: notes
+                indexed: true
                 name: name
                 typeConversion:
                   mode: mode
@@ -5811,12 +5938,15 @@ components:
                   type: type
               name: name
               anonymous: true
+              description: description
               id: id
           errors:
             key:
+              notes: notes
               signature: signature
               inputs:
-              - indexed: true
+              - notes: notes
+                indexed: true
                 name: name
                 type:
                   elem: null
@@ -5828,7 +5958,8 @@ components:
                   - tupleRawNames
                   - tupleRawNames
                   type: type
-              - indexed: true
+              - notes: notes
+                indexed: true
                 name: name
                 type:
                   elem: null
@@ -5841,6 +5972,7 @@ components:
                   - tupleRawNames
                   type: type
               name: name
+              description: description
               id: id
         contractName: contractName
         label: label
@@ -7999,6 +8131,7 @@ components:
           - web3
           - cloud
           - multisig
+          - safe
           type: string
         wallet:
           description: An ethereum address.
@@ -8510,11 +8643,9 @@ components:
           - name: name
             label: label
             version: version
-            conflict: true
           - name: name
             label: label
             version: version
-            conflict: true
           nonce: 6
           modules:
           - modules
@@ -8971,9 +9102,11 @@ components:
               id: id
             events:
               key:
+                notes: notes
                 signature: signature
                 inputs:
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   typeConversion:
                     mode: mode
@@ -8989,7 +9122,8 @@ components:
                     - tupleRawNames
                     - tupleRawNames
                     type: type
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   typeConversion:
                     mode: mode
@@ -9007,12 +9141,15 @@ components:
                     type: type
                 name: name
                 anonymous: true
+                description: description
                 id: id
             errors:
               key:
+                notes: notes
                 signature: signature
                 inputs:
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   type:
                     elem: null
@@ -9024,7 +9161,8 @@ components:
                     - tupleRawNames
                     - tupleRawNames
                     type: type
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   type:
                     elem: null
@@ -9037,6 +9175,7 @@ components:
                     - tupleRawNames
                     type: type
                 name: name
+                description: description
                 id: id
           contractName: contractName
           label: label
@@ -9437,9 +9576,11 @@ components:
               id: id
             events:
               key:
+                notes: notes
                 signature: signature
                 inputs:
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   typeConversion:
                     mode: mode
@@ -9455,7 +9596,8 @@ components:
                     - tupleRawNames
                     - tupleRawNames
                     type: type
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   typeConversion:
                     mode: mode
@@ -9473,12 +9615,15 @@ components:
                     type: type
                 name: name
                 anonymous: true
+                description: description
                 id: id
             errors:
               key:
+                notes: notes
                 signature: signature
                 inputs:
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   type:
                     elem: null
@@ -9490,7 +9635,8 @@ components:
                     - tupleRawNames
                     - tupleRawNames
                     type: type
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   type:
                     elem: null
@@ -9503,6 +9649,7 @@ components:
                     - tupleRawNames
                     type: type
                 name: name
+                description: description
                 id: id
           contractName: contractName
           label: label
@@ -9826,9 +9973,11 @@ components:
               id: id
             events:
               key:
+                notes: notes
                 signature: signature
                 inputs:
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   typeConversion:
                     mode: mode
@@ -9844,7 +9993,8 @@ components:
                     - tupleRawNames
                     - tupleRawNames
                     type: type
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   typeConversion:
                     mode: mode
@@ -9862,12 +10012,15 @@ components:
                     type: type
                 name: name
                 anonymous: true
+                description: description
                 id: id
             errors:
               key:
+                notes: notes
                 signature: signature
                 inputs:
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   type:
                     elem: null
@@ -9879,7 +10032,8 @@ components:
                     - tupleRawNames
                     - tupleRawNames
                     type: type
-                - indexed: true
+                - notes: notes
+                  indexed: true
                   name: name
                   type:
                     elem: null
@@ -9892,6 +10046,7 @@ components:
                     - tupleRawNames
                     type: type
                 name: name
+                description: description
                 id: id
           contractName: contractName
           label: label

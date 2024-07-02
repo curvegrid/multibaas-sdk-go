@@ -27,6 +27,10 @@ type ContractABIError struct {
 	Signature string `json:"signature"`
 	// List of contract event's input arguments.
 	Inputs []ContractABIErrorArgument `json:"inputs"`
+	// The developer documentation.
+	Notes *string `json:"notes,omitempty"`
+	// The user documentation.
+	Description *string `json:"description,omitempty"`
 }
 
 type _ContractABIError ContractABIError
@@ -148,6 +152,70 @@ func (o *ContractABIError) SetInputs(v []ContractABIErrorArgument) {
 	o.Inputs = v
 }
 
+// GetNotes returns the Notes field value if set, zero value otherwise.
+func (o *ContractABIError) GetNotes() string {
+	if o == nil || IsNil(o.Notes) {
+		var ret string
+		return ret
+	}
+	return *o.Notes
+}
+
+// GetNotesOk returns a tuple with the Notes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContractABIError) GetNotesOk() (*string, bool) {
+	if o == nil || IsNil(o.Notes) {
+		return nil, false
+	}
+	return o.Notes, true
+}
+
+// HasNotes returns a boolean if a field has been set.
+func (o *ContractABIError) HasNotes() bool {
+	if o != nil && !IsNil(o.Notes) {
+		return true
+	}
+
+	return false
+}
+
+// SetNotes gets a reference to the given string and assigns it to the Notes field.
+func (o *ContractABIError) SetNotes(v string) {
+	o.Notes = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *ContractABIError) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ContractABIError) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *ContractABIError) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *ContractABIError) SetDescription(v string) {
+	o.Description = &v
+}
+
 func (o ContractABIError) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -162,6 +230,12 @@ func (o ContractABIError) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["signature"] = o.Signature
 	toSerialize["inputs"] = o.Inputs
+	if !IsNil(o.Notes) {
+		toSerialize["notes"] = o.Notes
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
 	return toSerialize, nil
 }
 
