@@ -21,12 +21,12 @@ var _ MappedNullable = &ContractMetadata{}
 
 // ContractMetadata struct for ContractMetadata
 type ContractMetadata struct {
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
-	Name string `json:"name"`
+	Name string `json:"name" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract version.
-	Version string `json:"version"`
+	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 }
 
 type _ContractMetadata ContractMetadata

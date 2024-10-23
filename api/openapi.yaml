@@ -69,6 +69,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/create_api_key_request'
+        required: true
       responses:
         "200":
           content:
@@ -177,6 +178,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BaseAPIKey'
+        required: true
       responses:
         "200":
           content:
@@ -208,6 +210,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Invite'
+        required: true
       responses:
         "200":
           content:
@@ -283,6 +286,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/accept_invite_request'
+        required: true
       responses:
         "200":
           content:
@@ -325,6 +329,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostMethodArgs'
+        required: true
       responses:
         "200":
           content:
@@ -365,6 +370,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SignedTransactionSubmission'
+        required: true
       responses:
         "200":
           content:
@@ -626,6 +632,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AddressLabel'
+        required: true
       responses:
         "201":
           content:
@@ -719,6 +726,7 @@ paths:
           - `balance` to get the balance of this address.
           - `code` to get the code at this address.
           - `nonce` to get the next available transaction nonce for this address.
+          - `contractLookup` to get the contract(s) details for this address.
         explode: true
         in: query
         name: include
@@ -729,6 +737,7 @@ paths:
             - balance
             - code
             - nonce
+            - contractLookup
             type: string
           type: array
         style: form
@@ -781,6 +790,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/link_address_contract_request'
+        required: true
       responses:
         "200":
           content:
@@ -950,6 +960,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostMethodArgs'
+        required: true
       responses:
         "200":
           content:
@@ -990,6 +1001,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/HSMSignRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1030,6 +1042,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BaseTransactionToSign'
+        required: true
       responses:
         "200":
           content:
@@ -1066,7 +1079,7 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -1079,6 +1092,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SetNonceRequest'
+        required: true
       responses:
         "200":
           content:
@@ -1138,6 +1152,7 @@ paths:
               items:
                 $ref: '#/components/schemas/BaseContract'
               type: array
+        required: true
       responses:
         "200":
           content:
@@ -1244,6 +1259,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BaseContract'
+        required: true
       responses:
         "200":
           content:
@@ -1283,6 +1299,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostMethodArgs'
+        required: true
       responses:
         "200":
           content:
@@ -1485,6 +1502,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PostMethodArgs'
+        required: true
       responses:
         "200":
           content:
@@ -1595,6 +1613,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ContractMethodOptions'
+        required: true
       responses:
         "200":
           content:
@@ -1705,6 +1724,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ContractEventOptions'
+        required: true
       responses:
         "200":
           content:
@@ -1761,6 +1781,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CORSOrigin'
+        required: true
       responses:
         "200":
           content:
@@ -2194,6 +2215,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AddKey'
+        required: true
       responses:
         "200":
           content:
@@ -2222,7 +2244,7 @@ paths:
       description: Removes the specified key configuration.
       operationId: remove-hsm-key
       parameters:
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -2262,6 +2284,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateKey'
+        required: true
       responses:
         "200":
           content:
@@ -2293,6 +2316,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BaseAzureAccount'
+        required: true
       responses:
         "200":
           content:
@@ -2402,6 +2426,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/EventQuery'
+        required: true
       responses:
         "200":
           content:
@@ -2511,6 +2536,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/EventQuery'
+        required: true
       responses:
         "200":
           content:
@@ -2631,7 +2657,7 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -2714,7 +2740,7 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -2758,7 +2784,7 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -2780,6 +2806,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/GasParams'
+        required: true
       responses:
         "200":
           content:
@@ -2815,7 +2842,7 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -2837,6 +2864,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/GasParams'
+        required: true
       responses:
         "200":
           content:
@@ -2908,6 +2936,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BaseWebhookEndpoint'
+        required: true
       responses:
         "200":
           content:
@@ -3042,6 +3071,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BaseWebhookEndpoint'
+        required: true
       responses:
         "200":
           content:
@@ -3242,7 +3272,7 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -3284,7 +3314,7 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -3297,6 +3327,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SignerLabel'
+        required: true
       responses:
         "200":
           content:
@@ -3332,7 +3363,7 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -3374,7 +3405,7 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -3417,7 +3448,7 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -3459,7 +3490,7 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: An HSM ethereum address.
+      - description: An Ethereum address.
         explode: false
         in: path
         name: wallet_address
@@ -3472,6 +3503,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SignerLabel'
+        required: true
       responses:
         "200":
           content:
@@ -3882,7 +3914,7 @@ components:
         type: string
       style: simple
     ETHAddress:
-      description: An HSM ethereum address.
+      description: An Ethereum address.
       explode: false
       in: path
       name: wallet_address
@@ -4116,6 +4148,10 @@ components:
             items:
               $ref: '#/components/schemas/ContractMetadata'
             type: array
+          contractLookup:
+            items:
+              $ref: '#/components/schemas/ContractLookup'
+            type: array
         required:
         - chain
         - contracts
@@ -4127,6 +4163,29 @@ components:
         address: address
         balance: balance
         localNonce: 1
+        contractLookup:
+        - bytecode: bytecode
+          proxy: true
+          address: address
+          verifiedLink: https://openapi-generator.tech
+          userdoc: userdoc
+          verifiedSource: verifiedSource
+          name: name
+          devdoc: devdoc
+          verified: true
+          abi: abi
+          source: source
+        - bytecode: bytecode
+          proxy: true
+          address: address
+          verifiedLink: https://openapi-generator.tech
+          userdoc: userdoc
+          verifiedSource: verifiedSource
+          name: name
+          devdoc: devdoc
+          verified: true
+          abi: abi
+          source: source
         codeAt: codeAt
         label: label
         contracts:
@@ -4148,7 +4207,8 @@ components:
         label: label
       properties:
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -4168,7 +4228,8 @@ components:
         label: label
       properties:
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -4249,7 +4310,8 @@ components:
         subscriptionID: subscriptionID
       properties:
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -4638,7 +4700,8 @@ components:
         version: version
       properties:
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -5523,7 +5586,8 @@ components:
         isFavorite: true
       properties:
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -5993,7 +6057,8 @@ components:
           title: ETHAddress
           type: string
         addressLabel:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -6001,7 +6066,8 @@ components:
           description: The name of the contract.
           type: string
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -6027,7 +6093,8 @@ components:
         isFavorite: true
       properties:
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -6057,6 +6124,69 @@ components:
       - label
       - version
       title: ContractOverview
+      type: object
+    ContractLookup:
+      description: The contract lookup item.
+      example:
+        bytecode: bytecode
+        proxy: true
+        address: address
+        verifiedLink: https://openapi-generator.tech
+        userdoc: userdoc
+        verifiedSource: verifiedSource
+        name: name
+        devdoc: devdoc
+        verified: true
+        abi: abi
+        source: source
+      properties:
+        address:
+          description: An ethereum address.
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddress
+          type: string
+        name:
+          description: The name of the contract.
+          pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
+          title: ContractName
+          type: string
+        abi:
+          description: The contract ABI JSON string.
+          type: string
+        bytecode:
+          description: The smart-contract bytecode.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        source:
+          description: The contract's source code.
+          type: string
+        userdoc:
+          description: The user documentation JSON string.
+          type: string
+        devdoc:
+          description: The developer documentation JSON string.
+          type: string
+        verified:
+          description: Indicates whether the contract has been verified.
+          type: boolean
+        verifiedSource:
+          description: The name of the service that provided the contract verification.
+          type: string
+        verifiedLink:
+          description: The URL to the contract's verification details on the verification
+            service.
+          format: uri
+          type: string
+        proxy:
+          description: Indicates whether the contract is a proxy contract.
+          type: boolean
+      required:
+      - abi
+      - address
+      - proxy
+      - verified
+      title: ContractLookup
       type: object
     DeployContractTransaction:
       allOf:
@@ -7838,7 +7968,8 @@ components:
           description: The URL to send the webhook to.
           type: string
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -8021,7 +8152,8 @@ components:
       title: Keccak256Hash
       type: string
     Label:
-      description: A label.
+      description: An alias to easily identify and reference the entity in subsequent
+        requests.
       pattern: "^[a-z0-9_-]+$"
       title: Label
       type: string
@@ -8637,6 +8769,29 @@ components:
           address: address
           balance: balance
           localNonce: 1
+          contractLookup:
+          - bytecode: bytecode
+            proxy: true
+            address: address
+            verifiedLink: https://openapi-generator.tech
+            userdoc: userdoc
+            verifiedSource: verifiedSource
+            name: name
+            devdoc: devdoc
+            verified: true
+            abi: abi
+            source: source
+          - bytecode: bytecode
+            proxy: true
+            address: address
+            verifiedLink: https://openapi-generator.tech
+            userdoc: userdoc
+            verifiedSource: verifiedSource
+            name: name
+            devdoc: devdoc
+            verified: true
+            abi: abi
+            source: source
           codeAt: codeAt
           label: label
           contracts:
@@ -8655,7 +8810,8 @@ components:
     link_address_contract_request:
       properties:
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string
@@ -9218,7 +9374,8 @@ components:
         label: label
       properties:
         label:
-          description: A label.
+          description: An alias to easily identify and reference the entity in subsequent
+            requests.
           pattern: "^[a-z0-9_-]+$"
           title: Label
           type: string

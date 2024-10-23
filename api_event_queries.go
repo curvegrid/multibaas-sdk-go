@@ -381,9 +381,14 @@ func (a *EventQueriesAPIService) DeleteEventQueryExecute(r ApiDeleteEventQueryRe
 type ApiExecuteArbitraryEventQueryRequest struct {
 	ctx        context.Context
 	ApiService EventQueriesAPI
+	eventQuery *EventQuery
 	offset     *int64
 	limit      *int64
-	eventQuery *EventQuery
+}
+
+func (r ApiExecuteArbitraryEventQueryRequest) EventQuery(eventQuery EventQuery) ApiExecuteArbitraryEventQueryRequest {
+	r.eventQuery = &eventQuery
+	return r
 }
 
 func (r ApiExecuteArbitraryEventQueryRequest) Offset(offset int64) ApiExecuteArbitraryEventQueryRequest {
@@ -393,11 +398,6 @@ func (r ApiExecuteArbitraryEventQueryRequest) Offset(offset int64) ApiExecuteArb
 
 func (r ApiExecuteArbitraryEventQueryRequest) Limit(limit int64) ApiExecuteArbitraryEventQueryRequest {
 	r.limit = &limit
-	return r
-}
-
-func (r ApiExecuteArbitraryEventQueryRequest) EventQuery(eventQuery EventQuery) ApiExecuteArbitraryEventQueryRequest {
-	r.eventQuery = &eventQuery
 	return r
 }
 
@@ -441,12 +441,15 @@ func (a *EventQueriesAPIService) ExecuteArbitraryEventQueryExecute(r ApiExecuteA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.eventQuery == nil {
+		return localVarReturnValue, nil, reportError("eventQuery is required and must be specified")
+	}
 
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -588,10 +591,10 @@ func (a *EventQueriesAPIService) ExecuteEventQueryExecute(r ApiExecuteEventQuery
 	localVarFormParams := url.Values{}
 
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -969,6 +972,9 @@ func (a *EventQueriesAPIService) SetEventQueryExecute(r ApiSetEventQueryRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.eventQuery2 == nil {
+		return localVarReturnValue, nil, reportError("eventQuery2 is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

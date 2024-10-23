@@ -32,15 +32,15 @@ type BaseTransactionToSignTx struct {
 	// Gas limit of the transaction
 	Gas int64 `json:"gas"`
 	// An ethereum address.
-	From string `json:"from"`
+	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// An ethereum address.
-	To NullableString `json:"to,omitempty"`
+	To NullableString `json:"to,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// Amount (in wei) to send with the transaction.
 	Value string `json:"value"`
 	// A hex string.
-	Data string `json:"data"`
+	Data string `json:"data" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	Hash *string `json:"hash,omitempty"`
+	Hash *string `json:"hash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// Transaction type
 	Type int64 `json:"type"`
 }

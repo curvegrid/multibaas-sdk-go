@@ -328,7 +328,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	signedTransactionSubmission := *openapiclient.NewSignedTransactionSubmission("SignedTx_example") // SignedTransactionSubmission |  (optional)
+	signedTransactionSubmission := *openapiclient.NewSignedTransactionSubmission("SignedTx_example") // SignedTransactionSubmission | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -400,7 +400,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
+	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

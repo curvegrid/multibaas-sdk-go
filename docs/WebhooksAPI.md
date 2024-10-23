@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	baseWebhookEndpoint := *openapiclient.NewBaseWebhookEndpoint("Url_example", "Label_example", []openapiclient.WebhookEventsType{openapiclient.WebhookEventsType("transaction.included")}) // BaseWebhookEndpoint |  (optional)
+	baseWebhookEndpoint := *openapiclient.NewBaseWebhookEndpoint("Url_example", "Label_example", []openapiclient.WebhookEventsType{openapiclient.WebhookEventsType("transaction.included")}) // BaseWebhookEndpoint | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -516,7 +516,7 @@ import (
 
 func main() {
 	webhookID := int64(789) // int64 | 
-	baseWebhookEndpoint := *openapiclient.NewBaseWebhookEndpoint("Url_example", "Label_example", []openapiclient.WebhookEventsType{openapiclient.WebhookEventsType("transaction.included")}) // BaseWebhookEndpoint |  (optional)
+	baseWebhookEndpoint := *openapiclient.NewBaseWebhookEndpoint("Url_example", "Label_example", []openapiclient.WebhookEventsType{openapiclient.WebhookEventsType("transaction.included")}) // BaseWebhookEndpoint | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

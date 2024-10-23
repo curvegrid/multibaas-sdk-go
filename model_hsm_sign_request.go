@@ -22,7 +22,7 @@ var _ MappedNullable = &HSMSignRequest{}
 // HSMSignRequest Request body representing a sign-data request.
 type HSMSignRequest struct {
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// Is the data field an encapsulated EIP-712 typed message?
 	IsTyped *bool `json:"isTyped,omitempty"`
 	// Data to sign

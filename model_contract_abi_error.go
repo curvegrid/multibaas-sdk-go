@@ -22,7 +22,7 @@ var _ MappedNullable = &ContractABIError{}
 // ContractABIError A contract error.
 type ContractABIError struct {
 	// The keccak256 hash as a hex string of 256 bits.
-	Id        string `json:"id"`
+	Id        string `json:"id" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	Name      string `json:"name"`
 	Signature string `json:"signature"`
 	// List of contract event's input arguments.

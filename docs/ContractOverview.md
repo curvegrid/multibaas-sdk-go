@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | A label. | 
+**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 **ContractName** | **string** | The name of the contract. | 
 **Version** | **string** | The contract version. | 
 **IsFavorite** | Pointer to **bool** |  | [optional] 

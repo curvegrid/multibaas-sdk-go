@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## ExecuteArbitraryEventQuery
 
-> ExecuteArbitraryEventQuery200Response ExecuteArbitraryEventQuery(ctx).Offset(offset).Limit(limit).EventQuery(eventQuery).Execute()
+> ExecuteArbitraryEventQuery200Response ExecuteArbitraryEventQuery(ctx).EventQuery(eventQuery).Offset(offset).Limit(limit).Execute()
 
 Execute arbitrary event query
 
@@ -175,13 +175,13 @@ import (
 )
 
 func main() {
+	eventQuery := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery | 
 	offset := int64(789) // int64 |  (optional)
 	limit := int64(789) // int64 |  (optional)
-	eventQuery := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventQueriesAPI.ExecuteArbitraryEventQuery(context.Background()).Offset(offset).Limit(limit).EventQuery(eventQuery).Execute()
+	resp, r, err := apiClient.EventQueriesAPI.ExecuteArbitraryEventQuery(context.Background()).EventQuery(eventQuery).Offset(offset).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventQueriesAPI.ExecuteArbitraryEventQuery``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,9 +202,9 @@ Other parameters are passed through a pointer to a apiExecuteArbitraryEventQuery
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **eventQuery** | [**EventQuery**](EventQuery.md) |  | 
  **offset** | **int64** |  | 
  **limit** | **int64** |  | 
- **eventQuery** | [**EventQuery**](EventQuery.md) |  | 
 
 ### Return type
 
@@ -451,7 +451,7 @@ import (
 
 func main() {
 	eventQuery := "eventQuery_example" // string | An event query label.
-	eventQuery2 := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery |  (optional)
+	eventQuery2 := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

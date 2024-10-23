@@ -21,8 +21,8 @@ var _ MappedNullable = &CreateApiKeyRequest{}
 
 // CreateApiKeyRequest struct for CreateApiKeyRequest
 type CreateApiKeyRequest struct {
-	// A label.
-	Label    string  `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label    string  `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	GroupIDs []int64 `json:"groupIDs,omitempty"`
 }
 

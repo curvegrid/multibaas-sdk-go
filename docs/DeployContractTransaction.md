@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Tx** | [**BaseTransactionToSignTx**](BaseTransactionToSignTx.md) |  | 
 **Submitted** | **bool** |  | 
 **DeployAt** | Pointer to **string** |  | [optional] 
-**Label** | Pointer to **string** | A label. | [optional] 
+**Label** | Pointer to **string** | An alias to easily identify and reference the entity in subsequent requests. | [optional] 
 
 ## Methods
 

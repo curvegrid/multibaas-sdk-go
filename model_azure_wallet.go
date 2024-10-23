@@ -22,11 +22,11 @@ var _ MappedNullable = &AzureWallet{}
 // AzureWallet An HSM Wallet returned when a new key is created
 type AzureWallet struct {
 	// The name of the key.
-	KeyName string `json:"keyName"`
+	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
 	// The version of the key.
-	KeyVersion string `json:"keyVersion"`
+	KeyVersion string `json:"keyVersion" validate:"regexp=^[a-zA-Z0-9]{32}$"`
 	// An ethereum address.
-	PublicAddress string `json:"publicAddress"`
+	PublicAddress string `json:"publicAddress" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 }
 
 type _AzureWallet AzureWallet

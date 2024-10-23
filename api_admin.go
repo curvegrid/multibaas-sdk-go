@@ -341,7 +341,7 @@ type AdminAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param userID
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiRemoveUserSignerCloudWalletRequest
 	*/
 	RemoveUserSignerCloudWallet(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerCloudWalletRequest
@@ -357,7 +357,7 @@ type AdminAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param userID
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiRemoveUserSignerSafeAccountRequest
 	*/
 	RemoveUserSignerSafeAccount(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerSafeAccountRequest
@@ -373,7 +373,7 @@ type AdminAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param userID
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiRemoveUserSignerWeb3WalletRequest
 	*/
 	RemoveUserSignerWeb3Wallet(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerWeb3WalletRequest
@@ -389,7 +389,7 @@ type AdminAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param userID
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiSetUserSignerCloudWalletRequest
 	*/
 	SetUserSignerCloudWallet(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerCloudWalletRequest
@@ -405,7 +405,7 @@ type AdminAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param userID
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiSetUserSignerSafeAccountRequest
 	*/
 	SetUserSignerSafeAccount(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerSafeAccountRequest
@@ -421,7 +421,7 @@ type AdminAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param userID
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiSetUserSignerWeb3WalletRequest
 	*/
 	SetUserSignerWeb3Wallet(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerWeb3WalletRequest
@@ -504,6 +504,9 @@ func (a *AdminAPIService) AcceptInviteExecute(r ApiAcceptInviteRequest) (*Accept
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.acceptInviteRequest == nil {
+		return localVarReturnValue, nil, reportError("acceptInviteRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -633,6 +636,9 @@ func (a *AdminAPIService) AddCorsOriginExecute(r ApiAddCorsOriginRequest) (*Base
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.cORSOrigin == nil {
+		return localVarReturnValue, nil, reportError("cORSOrigin is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1274,6 +1280,9 @@ func (a *AdminAPIService) CreateApiKeyExecute(r ApiCreateApiKeyRequest) (*Create
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createApiKeyRequest == nil {
+		return localVarReturnValue, nil, reportError("createApiKeyRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1778,6 +1787,9 @@ func (a *AdminAPIService) InviteUserExecute(r ApiInviteUserRequest) (*BaseRespon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.invite == nil {
+		return localVarReturnValue, nil, reportError("invite is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1910,7 +1922,7 @@ func (a *AdminAPIService) ListApiKeysExecute(r ApiListApiKeysRequest) (*ListApiK
 	localVarFormParams := url.Values{}
 
 	if r.all != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "all", r.all, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "all", r.all, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2294,13 +2306,13 @@ func (a *AdminAPIService) ListGroupsExecute(r ApiListGroupsRequest) (*ListGroups
 	localVarFormParams := url.Values{}
 
 	if r.userID != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "userID", r.userID, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "userID", r.userID, "form", "")
 	}
 	if r.apiKeyID != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "apiKeyID", r.apiKeyID, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "apiKeyID", r.apiKeyID, "form", "")
 	}
 	if r.assignable != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assignable", r.assignable, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assignable", r.assignable, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2555,7 +2567,7 @@ func (a *AdminAPIService) ListUsersExecute(r ApiListUsersRequest) (*ListUsers200
 	localVarFormParams := url.Values{}
 
 	if r.groupID != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "groupID", r.groupID, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "groupID", r.groupID, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3162,7 +3174,7 @@ Removes a cloud wallet signer from a user.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userID
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiRemoveUserSignerCloudWalletRequest
 */
 func (a *AdminAPIService) RemoveUserSignerCloudWallet(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerCloudWalletRequest {
@@ -3291,7 +3303,7 @@ Removes a safe account signer from a user.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userID
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiRemoveUserSignerSafeAccountRequest
 */
 func (a *AdminAPIService) RemoveUserSignerSafeAccount(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerSafeAccountRequest {
@@ -3420,7 +3432,7 @@ Removes a web3 wallet signer from a user.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userID
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiRemoveUserSignerWeb3WalletRequest
 */
 func (a *AdminAPIService) RemoveUserSignerWeb3Wallet(ctx context.Context, userID int64, walletAddress string) ApiRemoveUserSignerWeb3WalletRequest {
@@ -3549,7 +3561,7 @@ Adds or updates a user's cloud wallet signer.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userID
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiSetUserSignerCloudWalletRequest
 */
 func (a *AdminAPIService) SetUserSignerCloudWallet(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerCloudWalletRequest {
@@ -3684,7 +3696,7 @@ Adds or updates a user's safe account signer.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userID
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiSetUserSignerSafeAccountRequest
 */
 func (a *AdminAPIService) SetUserSignerSafeAccount(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerSafeAccountRequest {
@@ -3719,6 +3731,9 @@ func (a *AdminAPIService) SetUserSignerSafeAccountExecute(r ApiSetUserSignerSafe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.signerLabel == nil {
+		return localVarReturnValue, nil, reportError("signerLabel is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -3821,7 +3836,7 @@ Adds or updates a user's web3 wallet signer.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param userID
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiSetUserSignerWeb3WalletRequest
 */
 func (a *AdminAPIService) SetUserSignerWeb3Wallet(ctx context.Context, userID int64, walletAddress string) ApiSetUserSignerWeb3WalletRequest {
@@ -3856,6 +3871,9 @@ func (a *AdminAPIService) SetUserSignerWeb3WalletExecute(r ApiSetUserSignerWeb3W
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.signerLabel == nil {
+		return localVarReturnValue, nil, reportError("signerLabel is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -3989,6 +4007,9 @@ func (a *AdminAPIService) UpdateApiKeyExecute(r ApiUpdateApiKeyRequest) (*BaseRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.baseAPIKey == nil {
+		return localVarReturnValue, nil, reportError("baseAPIKey is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

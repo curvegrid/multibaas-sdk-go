@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** | An ethereum address. | 
-**AddressLabel** | **string** | A label. | 
+**AddressLabel** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 **Name** | **string** | The name of the contract. | 
-**Label** | **string** | A label. | 
+**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 
 ## Methods
 

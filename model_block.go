@@ -23,31 +23,31 @@ var _ MappedNullable = &Block{}
 type Block struct {
 	Blockchain string `json:"blockchain"`
 	// The keccak256 hash as a hex string of 256 bits.
-	Hash         string        `json:"hash"`
+	Hash         string        `json:"hash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	Difficulty   string        `json:"difficulty"`
 	GasLimit     int64         `json:"gasLimit"`
 	Number       string        `json:"number"`
 	Timestamp    int64         `json:"timestamp"`
 	Transactions []Transaction `json:"transactions"`
 	// The keccak256 hash as a hex string of 256 bits.
-	ReceiptsRoot string `json:"receiptsRoot"`
+	ReceiptsRoot string `json:"receiptsRoot" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	ParentHash string `json:"parentHash"`
+	ParentHash string `json:"parentHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	Sha3Uncles string `json:"sha3Uncles"`
+	Sha3Uncles string `json:"sha3Uncles" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// An ethereum address.
-	Miner string `json:"miner"`
+	Miner string `json:"miner" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	StateRoot string `json:"stateRoot"`
+	StateRoot string `json:"stateRoot" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	TransactionsRoot string `json:"transactionsRoot"`
+	TransactionsRoot string `json:"transactionsRoot" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// A hex string.
-	LogsBloom string `json:"logsBloom"`
+	LogsBloom string `json:"logsBloom" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	GasUsed   int32  `json:"gasUsed"`
 	// A hex string.
-	Nonce string `json:"nonce"`
+	Nonce string `json:"nonce" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	MixHash       string `json:"mixHash"`
+	MixHash       string `json:"mixHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	ExtraData     string `json:"extraData"`
 	BaseFeePerGas string `json:"baseFeePerGas"`
 }

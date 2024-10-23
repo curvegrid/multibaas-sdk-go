@@ -22,13 +22,13 @@ var _ MappedNullable = &ContractInformation{}
 // ContractInformation The contract information within the event or transaction.
 type ContractInformation struct {
 	// An ethereum address.
-	Address string `json:"address"`
-	// A label.
-	AddressLabel string `json:"addressLabel"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	AddressLabel string `json:"addressLabel" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
 	Name string `json:"name"`
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 }
 
 type _ContractInformation ContractInformation

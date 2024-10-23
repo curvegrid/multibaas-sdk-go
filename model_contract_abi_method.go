@@ -22,7 +22,7 @@ var _ MappedNullable = &ContractABIMethod{}
 // ContractABIMethod A contract function.
 type ContractABIMethod struct {
 	// A hex string.
-	Id string `json:"id"`
+	Id string `json:"id" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// Name of the function.
 	Name string `json:"name"`
 	// The function signature.

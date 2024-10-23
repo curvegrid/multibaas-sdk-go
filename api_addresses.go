@@ -228,7 +228,7 @@ type ApiGetAddressRequest struct {
 	include        *[]string
 }
 
-// Optional data to fetch from the blockchain: - &#x60;balance&#x60; to get the balance of this address. - &#x60;code&#x60; to get the code at this address. - &#x60;nonce&#x60; to get the next available transaction nonce for this address.
+// Optional data to fetch from the blockchain: - &#x60;balance&#x60; to get the balance of this address. - &#x60;code&#x60; to get the code at this address. - &#x60;nonce&#x60; to get the next available transaction nonce for this address. - &#x60;contractLookup&#x60; to get the contract(s) details for this address.
 func (r ApiGetAddressRequest) Include(include []string) ApiGetAddressRequest {
 	r.include = &include
 	return r
@@ -289,10 +289,10 @@ func (a *AddressesAPIService) GetAddressExecute(r ApiGetAddressRequest) (*SetAdd
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "include", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "include", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header
@@ -550,6 +550,9 @@ func (a *AddressesAPIService) SetAddressExecute(r ApiSetAddressRequest) (*SetAdd
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.addressLabel == nil {
+		return localVarReturnValue, nil, reportError("addressLabel is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

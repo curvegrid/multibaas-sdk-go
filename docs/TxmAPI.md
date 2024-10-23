@@ -33,9 +33,9 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 	nonce := int64(789) // int64 | Transaction nonce.
-	gasParams := *openapiclient.NewGasParams() // GasParams |  (optional)
+	gasParams := *openapiclient.NewGasParams() // GasParams | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 **nonce** | **int64** | Transaction nonce. | 
 
 ### Other Parameters
@@ -111,7 +111,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -184,7 +184,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 	hash := "hash_example" // string | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: `?hash=HASH1&hash=HASH2&hash=HASH3` (optional)
 	nonce := int64(789) // int64 | Filter transactions by nonce (optional)
 	status := openapiclient.TransactionStatus("pending") // TransactionStatus | Filter transactions by status (optional)
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -267,9 +267,9 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 	nonce := int64(789) // int64 | Transaction nonce.
-	gasParams := *openapiclient.NewGasParams() // GasParams |  (optional)
+	gasParams := *openapiclient.NewGasParams() // GasParams | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -290,7 +290,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 **nonce** | **int64** | Transaction nonce. | 
 
 ### Other Parameters

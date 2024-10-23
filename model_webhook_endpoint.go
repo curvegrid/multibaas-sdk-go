@@ -24,8 +24,8 @@ var _ MappedNullable = &WebhookEndpoint{}
 type WebhookEndpoint struct {
 	// The URL to send the webhook to.
 	Url string `json:"url"`
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The events to subscribe to.
 	Subscriptions []WebhookEventsType `json:"subscriptions"`
 	Id            int64               `json:"id"`

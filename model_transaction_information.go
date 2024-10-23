@@ -22,15 +22,15 @@ var _ MappedNullable = &TransactionInformation{}
 // TransactionInformation The transaction information returned as part of an event.
 type TransactionInformation struct {
 	// An ethereum address.
-	From string `json:"from"`
+	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A hex string.
-	TxData string `json:"txData"`
+	TxData string `json:"txData" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	TxHash string `json:"txHash"`
+	TxHash string `json:"txHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// The location of the transaction in the block.
 	TxIndexInBlock int64 `json:"txIndexInBlock"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash string `json:"blockHash"`
+	BlockHash string `json:"blockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// The transaction block number.
 	BlockNumber int64                     `json:"blockNumber"`
 	Contract    ContractInformation       `json:"contract"`

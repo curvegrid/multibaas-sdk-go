@@ -21,14 +21,14 @@ var _ MappedNullable = &Contract{}
 
 // Contract A returned contract.
 type Contract struct {
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
-	ContractName string `json:"contractName"`
+	ContractName string `json:"contractName" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract version.
-	Version string `json:"version"`
+	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The smart-contract bytecode.
-	Bin *string `json:"bin,omitempty"`
+	Bin *string `json:"bin,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The contract raw ABI JSON string.
 	RawAbi string `json:"rawAbi"`
 	// The user documentation JSON string.

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | A label. | 
+**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 **Versions** | **[]string** |  | 
 
 ## Methods

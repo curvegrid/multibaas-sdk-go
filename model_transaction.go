@@ -22,33 +22,33 @@ var _ MappedNullable = &Transaction{}
 // Transaction A transaction from the Ethereum Blockchain.
 type Transaction struct {
 	// A hex string.
-	Type string `json:"type"`
+	Type string `json:"type" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	Nonce string `json:"nonce"`
+	Nonce string `json:"nonce" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	GasPrice NullableString `json:"gasPrice,omitempty"`
+	GasPrice NullableString `json:"gasPrice,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	MaxFeePerGas NullableString `json:"maxFeePerGas,omitempty"`
+	MaxFeePerGas NullableString `json:"maxFeePerGas,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	MaxPriorityFeePerGas NullableString `json:"maxPriorityFeePerGas,omitempty"`
+	MaxPriorityFeePerGas NullableString `json:"maxPriorityFeePerGas,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	Gas string `json:"gas"`
+	Gas string `json:"gas" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// An ethereum address.
-	To NullableString `json:"to"`
+	To NullableString `json:"to" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A hex string or null.
-	Value NullableString `json:"value"`
+	Value NullableString `json:"value" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	Input string `json:"input"`
+	Input string `json:"input" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	V string `json:"v"`
+	V string `json:"v" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	R string `json:"r"`
+	R string `json:"r" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	S string `json:"s"`
+	S string `json:"s" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	ChainId *string `json:"chainId,omitempty"`
+	ChainId *string `json:"chainId,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	Hash string `json:"hash"`
+	Hash string `json:"hash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 }
 
 type _Transaction Transaction

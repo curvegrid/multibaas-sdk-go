@@ -24,9 +24,9 @@ type SignerWallet struct {
 	// The type of the signer.
 	Type string `json:"type"`
 	// An ethereum address.
-	Wallet string `json:"wallet"`
+	Wallet string `json:"wallet" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// An ethereum address.
-	Signer string `json:"signer"`
+	Signer string `json:"signer" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// The label of the signer.
 	Label string `json:"label"`
 }

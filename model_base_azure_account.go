@@ -21,8 +21,8 @@ var _ MappedNullable = &BaseAzureAccount{}
 
 // BaseAzureAccount An Azure account.
 type BaseAzureAccount struct {
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The application’s secret key that you generate when you first register the application in Azure.

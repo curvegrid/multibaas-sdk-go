@@ -21,19 +21,20 @@ var _ MappedNullable = &Address{}
 
 // Address An address details.
 type Address struct {
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// An ethereum address.
-	Address string   `json:"address"`
+	Address string   `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	Balance *string  `json:"balance,omitempty"`
 	Chain   string   `json:"chain"`
 	Modules []string `json:"modules"`
 	// The next transaction nonce for this address (obtained from the blockchain node).
 	Nonce *int64 `json:"nonce,omitempty"`
 	// The next transaction nonce for this address when using the nonce management feature.
-	LocalNonce *int64             `json:"localNonce,omitempty"`
-	CodeAt     *string            `json:"codeAt,omitempty"`
-	Contracts  []ContractMetadata `json:"contracts"`
+	LocalNonce     *int64             `json:"localNonce,omitempty"`
+	CodeAt         *string            `json:"codeAt,omitempty"`
+	Contracts      []ContractMetadata `json:"contracts"`
+	ContractLookup []ContractLookup   `json:"contractLookup,omitempty"`
 }
 
 type _Address Address
@@ -308,6 +309,38 @@ func (o *Address) SetContracts(v []ContractMetadata) {
 	o.Contracts = v
 }
 
+// GetContractLookup returns the ContractLookup field value if set, zero value otherwise.
+func (o *Address) GetContractLookup() []ContractLookup {
+	if o == nil || IsNil(o.ContractLookup) {
+		var ret []ContractLookup
+		return ret
+	}
+	return o.ContractLookup
+}
+
+// GetContractLookupOk returns a tuple with the ContractLookup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Address) GetContractLookupOk() ([]ContractLookup, bool) {
+	if o == nil || IsNil(o.ContractLookup) {
+		return nil, false
+	}
+	return o.ContractLookup, true
+}
+
+// HasContractLookup returns a boolean if a field has been set.
+func (o *Address) HasContractLookup() bool {
+	if o != nil && !IsNil(o.ContractLookup) {
+		return true
+	}
+
+	return false
+}
+
+// SetContractLookup gets a reference to the given []ContractLookup and assigns it to the ContractLookup field.
+func (o *Address) SetContractLookup(v []ContractLookup) {
+	o.ContractLookup = v
+}
+
 func (o Address) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -335,6 +368,9 @@ func (o Address) ToMap() (map[string]interface{}, error) {
 		toSerialize["codeAt"] = o.CodeAt
 	}
 	toSerialize["contracts"] = o.Contracts
+	if !IsNil(o.ContractLookup) {
+		toSerialize["contractLookup"] = o.ContractLookup
+	}
 	return toSerialize, nil
 }
 

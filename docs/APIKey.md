@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | A label. | 
+**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 **Id** | **int64** |  | 
 **CreatedAt** | **time.Time** | The time the API key was created. | 
 **LastUsedAt** | Pointer to **time.Time** | The time the API key was last used. | [optional] 

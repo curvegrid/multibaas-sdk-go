@@ -25,7 +25,7 @@ type WalletTransaction struct {
 	Tx     Transaction       `json:"tx"`
 	Status TransactionStatus `json:"status"`
 	// An ethereum address.
-	From string `json:"from"`
+	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// The total number of resubmission attempts.
 	ResubmissionAttempts int64 `json:"resubmissionAttempts"`
 	// The total number of successful resubmission (added into the transaction pool).
@@ -39,7 +39,7 @@ type WalletTransaction struct {
 	// The block number that the transaction was included in.
 	BlockNumber *int64 `json:"blockNumber,omitempty"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash *string `json:"blockHash,omitempty"`
+	BlockHash *string `json:"blockHash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 }
 
 type _WalletTransaction WalletTransaction

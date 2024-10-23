@@ -107,7 +107,7 @@ import (
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
-	include := []string{"Include_example"} // []string | Optional data to fetch from the blockchain: - `balance` to get the balance of this address. - `code` to get the code at this address. - `nonce` to get the next available transaction nonce for this address.  (optional)
+	include := []string{"Include_example"} // []string | Optional data to fetch from the blockchain: - `balance` to get the balance of this address. - `code` to get the code at this address. - `nonce` to get the next available transaction nonce for this address. - `contractLookup` to get the contract(s) details for this address.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **include** | **[]string** | Optional data to fetch from the blockchain: - &#x60;balance&#x60; to get the balance of this address. - &#x60;code&#x60; to get the code at this address. - &#x60;nonce&#x60; to get the next available transaction nonce for this address.  | 
+ **include** | **[]string** | Optional data to fetch from the blockchain: - &#x60;balance&#x60; to get the balance of this address. - &#x60;code&#x60; to get the code at this address. - &#x60;nonce&#x60; to get the next available transaction nonce for this address. - &#x60;contractLookup&#x60; to get the contract(s) details for this address.  | 
 
 ### Return type
 
@@ -251,7 +251,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	addressLabel := *openapiclient.NewAddressLabel("Label_example", "Address_example") // AddressLabel |  (optional)
+	addressLabel := *openapiclient.NewAddressLabel("Label_example", "Address_example") // AddressLabel | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

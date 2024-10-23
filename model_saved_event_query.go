@@ -23,7 +23,7 @@ var _ MappedNullable = &SavedEventQuery{}
 type SavedEventQuery struct {
 	Id int64 `json:"id"`
 	// An event query label.
-	Label string     `json:"label"`
+	Label string     "json:\"label\" validate:\"regexp=^[^<>?&\\\\\\\"'\\\\`\\/\\\\\\\\]*$\""
 	Query EventQuery `json:"query"`
 	// Specifies if this a system-generated query which is not modifiable by the user.
 	IsSystem bool `json:"isSystem"`

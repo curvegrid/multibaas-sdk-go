@@ -21,12 +21,12 @@ var _ MappedNullable = &ContractOverview{}
 
 // ContractOverview A contract overview.
 type ContractOverview struct {
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
-	ContractName string `json:"contractName"`
+	ContractName string `json:"contractName" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract version.
-	Version    string `json:"version"`
+	Version    string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	IsFavorite *bool  `json:"isFavorite,omitempty"`
 	Deployable bool   `json:"deployable"`
 	// List of contract instances.

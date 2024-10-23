@@ -28,7 +28,7 @@ type TxmAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param chain The blockchain chain label.
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@param nonce Transaction nonce.
 		@return ApiCancelTransactionRequest
 	*/
@@ -45,7 +45,7 @@ type TxmAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param chain The blockchain chain label.
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiCountWalletTransactionsRequest
 	*/
 	CountWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiCountWalletTransactionsRequest
@@ -61,7 +61,7 @@ type TxmAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param chain The blockchain chain label.
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiListWalletTransactionsRequest
 	*/
 	ListWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiListWalletTransactionsRequest
@@ -77,7 +77,7 @@ type TxmAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param chain The blockchain chain label.
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@param nonce Transaction nonce.
 		@return ApiSpeedUpTransactionRequest
 	*/
@@ -116,7 +116,7 @@ Cancels a transaction by resubmitting it as no-op transaction and with a higher 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param chain The blockchain chain label.
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@param nonce Transaction nonce.
 	@return ApiCancelTransactionRequest
 */
@@ -154,6 +154,9 @@ func (a *TxmAPIService) CancelTransactionExecute(r ApiCancelTransactionRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.gasParams == nil {
+		return localVarReturnValue, nil, reportError("gasParams is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -250,7 +253,7 @@ Count all transactions for the given wallet address.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param chain The blockchain chain label.
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiCountWalletTransactionsRequest
 */
 func (a *TxmAPIService) CountWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiCountWalletTransactionsRequest {
@@ -412,7 +415,7 @@ List the transactions submitted by the given wallet address.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param chain The blockchain chain label.
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiListWalletTransactionsRequest
 */
 func (a *TxmAPIService) ListWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiListWalletTransactionsRequest {
@@ -449,19 +452,19 @@ func (a *TxmAPIService) ListWalletTransactionsExecute(r ApiListWalletTransaction
 	localVarFormParams := url.Values{}
 
 	if r.hash != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "form", "")
 	}
 	if r.nonce != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "nonce", r.nonce, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "nonce", r.nonce, "form", "")
 	}
 	if r.status != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -563,7 +566,7 @@ Speeds up a transaction by resubmitting it with a higher gas price.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param chain The blockchain chain label.
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@param nonce Transaction nonce.
 	@return ApiSpeedUpTransactionRequest
 */
@@ -601,6 +604,9 @@ func (a *TxmAPIService) SpeedUpTransactionExecute(r ApiSpeedUpTransactionRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.gasParams == nil {
+		return localVarReturnValue, nil, reportError("gasParams is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

@@ -24,9 +24,9 @@ type AddKey struct {
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The name of the key.
-	KeyName string `json:"keyName"`
+	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
 	// The version of the key.
-	KeyVersion string `json:"keyVersion"`
+	KeyVersion string `json:"keyVersion" validate:"regexp=^[a-zA-Z0-9]{32}$"`
 	// The name given to the vault your key is stored in.
 	VaultName string `json:"vaultName"`
 }

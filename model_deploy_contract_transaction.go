@@ -24,8 +24,8 @@ type DeployContractTransaction struct {
 	Tx        BaseTransactionToSignTx `json:"tx"`
 	Submitted bool                    `json:"submitted"`
 	DeployAt  *string                 `json:"deployAt,omitempty"`
-	// A label.
-	Label *string `json:"label,omitempty"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label *string `json:"label,omitempty" validate:"regexp=^[a-z0-9_-]+$"`
 }
 
 type _DeployContractTransaction DeployContractTransaction

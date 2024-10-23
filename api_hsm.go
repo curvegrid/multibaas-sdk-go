@@ -112,7 +112,7 @@ type HsmAPI interface {
 		Removes the specified key configuration.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiRemoveHsmKeyRequest
 	*/
 	RemoveHsmKey(ctx context.Context, walletAddress string) ApiRemoveHsmKeyRequest
@@ -128,7 +128,7 @@ type HsmAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param chain The blockchain chain label.
-		@param walletAddress An HSM ethereum address.
+		@param walletAddress An Ethereum address.
 		@return ApiSetLocalNonceRequest
 	*/
 	SetLocalNonce(ctx context.Context, chain ChainName, walletAddress string) ApiSetLocalNonceRequest
@@ -222,6 +222,9 @@ func (a *HsmAPIService) AddHsmConfigExecute(r ApiAddHsmConfigRequest) (*BaseResp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.baseAzureAccount == nil {
+		return localVarReturnValue, nil, reportError("baseAzureAccount is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -351,6 +354,9 @@ func (a *HsmAPIService) AddHsmKeyExecute(r ApiAddHsmKeyRequest) (*BaseResponse, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.addKey == nil {
+		return localVarReturnValue, nil, reportError("addKey is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -480,6 +486,9 @@ func (a *HsmAPIService) CreateHsmKeyExecute(r ApiCreateHsmKeyRequest) (*CreateHs
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.createKey == nil {
+		return localVarReturnValue, nil, reportError("createKey is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -780,28 +789,28 @@ func (a *HsmAPIService) ListHsmWalletsExecute(r ApiListHsmWalletsRequest) (*List
 	localVarFormParams := url.Values{}
 
 	if r.keyName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "key_name", r.keyName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "key_name", r.keyName, "form", "")
 	}
 	if r.keyVersion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "key_version", r.keyVersion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "key_version", r.keyVersion, "form", "")
 	}
 	if r.vaultName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "vault_name", r.vaultName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "vault_name", r.vaultName, "form", "")
 	}
 	if r.baseGroupName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "base_group_name", r.baseGroupName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_group_name", r.baseGroupName, "form", "")
 	}
 	if r.clientId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
 	}
 	if r.publicAddress != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "public_address", r.publicAddress, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "public_address", r.publicAddress, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1019,7 +1028,7 @@ RemoveHsmKey Remove HSM key
 Removes the specified key configuration.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiRemoveHsmKeyRequest
 */
 func (a *HsmAPIService) RemoveHsmKey(ctx context.Context, walletAddress string) ApiRemoveHsmKeyRequest {
@@ -1152,7 +1161,7 @@ Sets the next transaction nonce for the given HSM address that will be used with
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param chain The blockchain chain label.
-	@param walletAddress An HSM ethereum address.
+	@param walletAddress An Ethereum address.
 	@return ApiSetLocalNonceRequest
 */
 func (a *HsmAPIService) SetLocalNonce(ctx context.Context, chain ChainName, walletAddress string) ApiSetLocalNonceRequest {
@@ -1187,6 +1196,9 @@ func (a *HsmAPIService) SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*BaseRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.setNonceRequest == nil {
+		return localVarReturnValue, nil, reportError("setNonceRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1320,6 +1332,9 @@ func (a *HsmAPIService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransa
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.baseTransactionToSign == nil {
+		return localVarReturnValue, nil, reportError("baseTransactionToSign is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1453,6 +1468,9 @@ func (a *HsmAPIService) SignDataExecute(r ApiSignDataRequest) (*SignData200Respo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.hSMSignRequest == nil {
+		return localVarReturnValue, nil, reportError("hSMSignRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

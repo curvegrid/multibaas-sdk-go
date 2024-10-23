@@ -24,7 +24,7 @@ type CreateKey struct {
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The name of the key.
-	KeyName string `json:"keyName"`
+	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
 	// The name given to the vault your key is stored in.
 	VaultName         string `json:"vaultName"`
 	UseHardwareModule bool   `json:"useHardwareModule"`

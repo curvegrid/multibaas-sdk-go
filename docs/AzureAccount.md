@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | A label. | 
+**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 **ClientID** | **string** | The Application ID that will be accessing the Key Vault. | 
 **ClientSecret** | **string** | The application’s secret key that you generate when you first register the application in Azure. | 
 **TenantID** | **string** | Also known as Directory ID. | 

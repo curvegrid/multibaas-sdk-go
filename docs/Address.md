@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | A label. | 
+**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 **Address** | **string** | An ethereum address. | 
 **Balance** | Pointer to **string** |  | [optional] 
 **Chain** | **string** |  | 
@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **LocalNonce** | Pointer to **int64** | The next transaction nonce for this address when using the nonce management feature. | [optional] 
 **CodeAt** | Pointer to **string** |  | [optional] 
 **Contracts** | [**[]ContractMetadata**](ContractMetadata.md) |  | 
+**ContractLookup** | Pointer to [**[]ContractLookup**](ContractLookup.md) |  | [optional] 
 
 ## Methods
 
@@ -232,6 +233,31 @@ and a boolean to check if the value has been set.
 
 SetContracts sets Contracts field to given value.
 
+
+### GetContractLookup
+
+`func (o *Address) GetContractLookup() []ContractLookup`
+
+GetContractLookup returns the ContractLookup field if non-nil, zero value otherwise.
+
+### GetContractLookupOk
+
+`func (o *Address) GetContractLookupOk() (*[]ContractLookup, bool)`
+
+GetContractLookupOk returns a tuple with the ContractLookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContractLookup
+
+`func (o *Address) SetContractLookup(v []ContractLookup)`
+
+SetContractLookup sets ContractLookup field to given value.
+
+### HasContractLookup
+
+`func (o *Address) HasContractLookup() bool`
+
+HasContractLookup returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -54,6 +54,7 @@ docs/ContractABITypeConversion.md
 docs/ContractEventOptions.md
 docs/ContractInformation.md
 docs/ContractInstance.md
+docs/ContractLookup.md
 docs/ContractMetadata.md
 docs/ContractMethodInformation.md
 docs/ContractMethodOptions.md
@@ -198,6 +199,7 @@ model_contract_abi_type_conversion.go
 model_contract_event_options.go
 model_contract_information.go
 model_contract_instance.go
+model_contract_lookup.go
 model_contract_metadata.go
 model_contract_method_information.go
 model_contract_method_options.go

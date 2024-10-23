@@ -21,10 +21,10 @@ var _ MappedNullable = &AddressLabel{}
 
 // AddressLabel An address and it's label.
 type AddressLabel struct {
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 }
 
 type _AddressLabel AddressLabel

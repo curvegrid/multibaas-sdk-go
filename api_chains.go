@@ -434,7 +434,7 @@ func (a *ChainsAPIService) GetTransactionExecute(r ApiGetTransactionRequest) (*G
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -573,7 +573,7 @@ func (a *ChainsAPIService) GetTransactionReceiptExecute(r ApiGetTransactionRecei
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -705,6 +705,9 @@ func (a *ChainsAPIService) SubmitSignedTransactionExecute(r ApiSubmitSignedTrans
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.signedTransactionSubmission == nil {
+		return localVarReturnValue, nil, reportError("signedTransactionSubmission is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -838,6 +841,9 @@ func (a *ChainsAPIService) TransferEthExecute(r ApiTransferEthRequest) (*Transfe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.postMethodArgs == nil {
+		return localVarReturnValue, nil, reportError("postMethodArgs is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

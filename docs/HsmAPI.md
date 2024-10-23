@@ -38,7 +38,7 @@ import (
 )
 
 func main() {
-	baseAzureAccount := *openapiclient.NewBaseAzureAccount("Label_example", "ClientID_example", "ClientSecret_example", "TenantID_example", "SubscriptionID_example", "BaseGroupName_example") // BaseAzureAccount |  (optional)
+	baseAzureAccount := *openapiclient.NewBaseAzureAccount("Label_example", "ClientID_example", "ClientSecret_example", "TenantID_example", "SubscriptionID_example", "BaseGroupName_example") // BaseAzureAccount | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -104,7 +104,7 @@ import (
 )
 
 func main() {
-	addKey := *openapiclient.NewAddKey("ClientID_example", "KeyName_example", "KeyVersion_example", "VaultName_example") // AddKey |  (optional)
+	addKey := *openapiclient.NewAddKey("ClientID_example", "KeyName_example", "KeyVersion_example", "VaultName_example") // AddKey | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -170,7 +170,7 @@ import (
 )
 
 func main() {
-	createKey := *openapiclient.NewCreateKey("ClientID_example", "KeyName_example", "VaultName_example", false) // CreateKey |  (optional)
+	createKey := *openapiclient.NewCreateKey("ClientID_example", "KeyName_example", "VaultName_example", false) // CreateKey | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -447,7 +447,7 @@ import (
 )
 
 func main() {
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -467,7 +467,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -518,8 +518,8 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
-	setNonceRequest := *openapiclient.NewSetNonceRequest() // SetNonceRequest |  (optional)
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
+	setNonceRequest := *openapiclient.NewSetNonceRequest() // SetNonceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -540,7 +540,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -593,7 +593,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	baseTransactionToSign := *openapiclient.NewBaseTransactionToSign(*openapiclient.NewBaseTransactionToSignTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))) // BaseTransactionToSign |  (optional)
+	baseTransactionToSign := *openapiclient.NewBaseTransactionToSign(*openapiclient.NewBaseTransactionToSignTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))) // BaseTransactionToSign | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -665,7 +665,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	hSMSignRequest := *openapiclient.NewHSMSignRequest("Address_example", "Data_example") // HSMSignRequest |  (optional)
+	hSMSignRequest := *openapiclient.NewHSMSignRequest("Address_example", "Data_example") // HSMSignRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

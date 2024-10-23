@@ -400,6 +400,9 @@ func (a *ContractsAPIService) CallContractFunctionExecute(r ApiCallContractFunct
 	if strlen(r.method) < 1 {
 		return localVarReturnValue, nil, reportError("method must have at least 1 elements")
 	}
+	if r.postMethodArgs == nil {
+		return localVarReturnValue, nil, reportError("postMethodArgs is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -533,6 +536,9 @@ func (a *ContractsAPIService) CreateContractExecute(r ApiCreateContractRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.baseContract == nil {
+		return localVarReturnValue, nil, reportError("baseContract is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -662,6 +668,9 @@ func (a *ContractsAPIService) CreateContractsExecute(r ApiCreateContractsRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.baseContract == nil {
+		return localVarReturnValue, nil, reportError("baseContract is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1052,6 +1061,9 @@ func (a *ContractsAPIService) DeployContractExecute(r ApiDeployContractRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.postMethodArgs == nil {
+		return localVarReturnValue, nil, reportError("postMethodArgs is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1191,6 +1203,9 @@ func (a *ContractsAPIService) DeployContractVersionExecute(r ApiDeployContractVe
 	localVarFormParams := url.Values{}
 	if strlen(r.version) < 1 {
 		return localVarReturnValue, nil, reportError("version must have at least 1 elements")
+	}
+	if r.postMethodArgs == nil {
+		return localVarReturnValue, nil, reportError("postMethodArgs is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2128,6 +2143,9 @@ func (a *ContractsAPIService) LinkAddressContractExecute(r ApiLinkAddressContrac
 	if strlen(r.addressOrLabel) < 1 {
 		return localVarReturnValue, nil, reportError("addressOrLabel must have at least 1 elements")
 	}
+	if r.linkAddressContractRequest == nil {
+		return localVarReturnValue, nil, reportError("linkAddressContractRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -2521,6 +2539,9 @@ func (a *ContractsAPIService) SetEventTypeConversionsExecute(r ApiSetEventTypeCo
 	if strlen(r.event) < 1 {
 		return localVarReturnValue, nil, reportError("event must have at least 1 elements")
 	}
+	if r.contractEventOptions == nil {
+		return localVarReturnValue, nil, reportError("contractEventOptions is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -2667,6 +2688,9 @@ func (a *ContractsAPIService) SetFunctionTypeConversionsExecute(r ApiSetFunction
 	}
 	if strlen(r.method) < 1 {
 		return localVarReturnValue, nil, reportError("method must have at least 1 elements")
+	}
+	if r.contractMethodOptions == nil {
+		return localVarReturnValue, nil, reportError("contractMethodOptions is required and must be specified")
 	}
 
 	// to determine the Content-Type header

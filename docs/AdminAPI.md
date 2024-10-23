@@ -57,7 +57,7 @@ import (
 
 func main() {
 	inviteID := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	acceptInviteRequest := *openapiclient.NewAcceptInviteRequest() // AcceptInviteRequest |  (optional)
+	acceptInviteRequest := *openapiclient.NewAcceptInviteRequest() // AcceptInviteRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -128,7 +128,7 @@ import (
 )
 
 func main() {
-	cORSOrigin := *openapiclient.NewCORSOrigin() // CORSOrigin |  (optional)
+	cORSOrigin := *openapiclient.NewCORSOrigin() // CORSOrigin | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -483,7 +483,7 @@ import (
 )
 
 func main() {
-	createApiKeyRequest := *openapiclient.NewCreateApiKeyRequest("Label_example") // CreateApiKeyRequest |  (optional)
+	createApiKeyRequest := *openapiclient.NewCreateApiKeyRequest("Label_example") // CreateApiKeyRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -759,7 +759,7 @@ import (
 )
 
 func main() {
-	invite := *openapiclient.NewInvite("Email_example") // Invite |  (optional)
+	invite := *openapiclient.NewInvite("Email_example") // Invite | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1509,7 +1509,7 @@ import (
 
 func main() {
 	userID := int64(789) // int64 | 
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1530,7 +1530,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userID** | **int64** |  | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -1582,7 +1582,7 @@ import (
 
 func main() {
 	userID := int64(789) // int64 | 
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1603,7 +1603,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userID** | **int64** |  | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -1655,7 +1655,7 @@ import (
 
 func main() {
 	userID := int64(789) // int64 | 
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1676,7 +1676,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userID** | **int64** |  | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -1728,7 +1728,7 @@ import (
 
 func main() {
 	userID := int64(789) // int64 | 
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1749,7 +1749,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userID** | **int64** |  | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -1801,8 +1801,8 @@ import (
 
 func main() {
 	userID := int64(789) // int64 | 
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
-	signerLabel := *openapiclient.NewSignerLabel("Label_example") // SignerLabel |  (optional)
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
+	signerLabel := *openapiclient.NewSignerLabel("Label_example") // SignerLabel | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1823,7 +1823,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userID** | **int64** |  | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -1876,8 +1876,8 @@ import (
 
 func main() {
 	userID := int64(789) // int64 | 
-	walletAddress := "walletAddress_example" // string | An HSM ethereum address.
-	signerLabel := *openapiclient.NewSignerLabel("Label_example") // SignerLabel |  (optional)
+	walletAddress := "walletAddress_example" // string | An Ethereum address.
+	signerLabel := *openapiclient.NewSignerLabel("Label_example") // SignerLabel | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1898,7 +1898,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userID** | **int64** |  | 
-**walletAddress** | **string** | An HSM ethereum address. | 
+**walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
 
@@ -1951,7 +1951,7 @@ import (
 
 func main() {
 	apiKeyID := int64(789) // int64 | 
-	baseAPIKey := *openapiclient.NewBaseAPIKey("Label_example") // BaseAPIKey |  (optional)
+	baseAPIKey := *openapiclient.NewBaseAPIKey("Label_example") // BaseAPIKey | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

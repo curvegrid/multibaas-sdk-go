@@ -42,8 +42,8 @@ func (dst *HSMSignRequestChainId) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into Int64
 	err = json.Unmarshal(data, &dst.Int64)
 	if err == nil {
-		jsonint64, _ := json.Marshal(dst.Int64)
-		if string(jsonint64) == "{}" { // empty struct
+		jsonInt64, _ := json.Marshal(dst.Int64)
+		if string(jsonInt64) == "{}" { // empty struct
 			dst.Int64 = nil
 		} else {
 			match++
@@ -55,8 +55,8 @@ func (dst *HSMSignRequestChainId) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into String
 	err = json.Unmarshal(data, &dst.String)
 	if err == nil {
-		jsonstring, _ := json.Marshal(dst.String)
-		if string(jsonstring) == "{}" { // empty struct
+		jsonString, _ := json.Marshal(dst.String)
+		if string(jsonString) == "{}" { // empty struct
 			dst.String = nil
 		} else {
 			match++

@@ -22,8 +22,8 @@ var _ MappedNullable = &APIKeyWithSecret{}
 
 // APIKeyWithSecret A freshly created API key with its secret.
 type APIKeyWithSecret struct {
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	Id    int64  `json:"id"`
 	// The time the API key was created.
 	CreatedAt time.Time `json:"createdAt"`

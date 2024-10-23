@@ -23,7 +23,7 @@ var _ MappedNullable = &ContractInstance{}
 type ContractInstance struct {
 	Label string `json:"label"`
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 }
 
 type _ContractInstance ContractInstance

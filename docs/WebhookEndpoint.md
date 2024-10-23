@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** | The URL to send the webhook to. | 
-**Label** | **string** | A label. | 
+**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 **Subscriptions** | [**[]WebhookEventsType**](WebhookEventsType.md) | The events to subscribe to. | 
 **Id** | **int64** |  | 
 **NextAttempt** | Pointer to **time.Time** | The time the next attempt will be made. | [optional] 

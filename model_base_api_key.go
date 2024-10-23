@@ -21,8 +21,8 @@ var _ MappedNullable = &BaseAPIKey{}
 
 // BaseAPIKey An API key.
 type BaseAPIKey struct {
-	// A label.
-	Label string `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 }
 
 type _BaseAPIKey BaseAPIKey

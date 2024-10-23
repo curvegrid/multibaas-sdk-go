@@ -21,8 +21,8 @@ var _ MappedNullable = &ListContractVersions200ResponseAllOfResult{}
 
 // ListContractVersions200ResponseAllOfResult struct for ListContractVersions200ResponseAllOfResult
 type ListContractVersions200ResponseAllOfResult struct {
-	// A label.
-	Label    string   `json:"label"`
+	// An alias to easily identify and reference the entity in subsequent requests.
+	Label    string   `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	Versions []string `json:"versions"`
 }
 

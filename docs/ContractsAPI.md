@@ -51,7 +51,7 @@ func main() {
 	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
 	contract := "contract_example" // string | 
 	method := "method_example" // string | Contract function.
-	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
+	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -129,7 +129,7 @@ import (
 
 func main() {
 	contract := "contract_example" // string | 
-	baseContract := *openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example", "UserDoc_example", "DeveloperDoc_example") // BaseContract |  (optional)
+	baseContract := *openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example", "UserDoc_example", "DeveloperDoc_example") // BaseContract | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -200,7 +200,7 @@ import (
 )
 
 func main() {
-	baseContract := []openapiclient.BaseContract{*openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example", "UserDoc_example", "DeveloperDoc_example")} // []BaseContract |  (optional)
+	baseContract := []openapiclient.BaseContract{*openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example", "UserDoc_example", "DeveloperDoc_example")} // []BaseContract | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -410,7 +410,7 @@ import (
 
 func main() {
 	contract := "contract_example" // string | 
-	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
+	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -483,7 +483,7 @@ import (
 func main() {
 	contract := "contract_example" // string | 
 	version := "version_example" // string | Contract Version.
-	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs |  (optional)
+	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -999,7 +999,7 @@ import (
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
-	linkAddressContractRequest := *openapiclient.NewLinkAddressContractRequest("Label_example") // LinkAddressContractRequest |  (optional)
+	linkAddressContractRequest := *openapiclient.NewLinkAddressContractRequest("Label_example") // LinkAddressContractRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1206,7 +1206,7 @@ func main() {
 	contract := "contract_example" // string | 
 	version := "version_example" // string | Contract Version.
 	event := "event_example" // string | Contract Event.
-	contractEventOptions := *openapiclient.NewContractEventOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractEventOptions |  (optional)
+	contractEventOptions := *openapiclient.NewContractEventOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractEventOptions | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1284,7 +1284,7 @@ func main() {
 	contract := "contract_example" // string | 
 	version := "version_example" // string | Contract Version.
 	method := "method_example" // string | Contract function.
-	contractMethodOptions := *openapiclient.NewContractMethodOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractMethodOptions |  (optional)
+	contractMethodOptions := *openapiclient.NewContractMethodOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractMethodOptions | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
