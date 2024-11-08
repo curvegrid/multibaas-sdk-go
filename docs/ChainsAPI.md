@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 
 ## SubmitSignedTransaction
 
-> BaseResponse SubmitSignedTransaction(ctx, chain).SignedTransactionSubmission(signedTransactionSubmission).Execute()
+> SubmitSignedTransaction200Response SubmitSignedTransaction(ctx, chain).SignedTransactionSubmission(signedTransactionSubmission).Execute()
 
 Submit signed transaction
 
@@ -337,7 +337,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.SubmitSignedTransaction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubmitSignedTransaction`: BaseResponse
+	// response from `SubmitSignedTransaction`: SubmitSignedTransaction200Response
 	fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.SubmitSignedTransaction`: %v\n", resp)
 }
 ```
@@ -362,7 +362,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BaseResponse**](BaseResponse.md)
+[**SubmitSignedTransaction200Response**](SubmitSignedTransaction200Response.md)
 
 ### Authorization
 

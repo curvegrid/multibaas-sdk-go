@@ -376,8 +376,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/BaseResponse'
+                $ref: '#/components/schemas/submit_signed_transaction_200_response'
           description: OK
         "4XX":
           content:
@@ -7211,6 +7210,30 @@ components:
       - signedTx
       title: SignedTransactionSubmission
       type: object
+    SignedTransactionResponse:
+      description: A transaction that was signed externally and submitted.
+      example:
+        tx:
+          type: type
+          nonce: nonce
+          input: input
+          r: r
+          s: s
+          chainId: chainId
+          v: v
+          gas: gas
+          maxPriorityFeePerGas: maxPriorityFeePerGas
+          to: to
+          maxFeePerGas: maxFeePerGas
+          value: value
+          hash: hash
+          gasPrice: gasPrice
+      properties:
+        tx:
+          $ref: '#/components/schemas/Transaction'
+      required:
+      - tx
+      title: SignedTransactionResponse
     SetNonceRequest:
       description: Request body representing a set local nonce request.
       example:
@@ -8525,6 +8548,33 @@ components:
             type: 5
             nonce: 6
             gasFeeCap: gasFeeCap
+            value: value
+            hash: hash
+            gasPrice: gasPrice
+        message: message
+        status: 0
+    submit_signed_transaction_200_response:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - properties:
+          result:
+            $ref: '#/components/schemas/SignedTransactionResponse'
+        required:
+        - result
+      example:
+        result:
+          tx:
+            type: type
+            nonce: nonce
+            input: input
+            r: r
+            s: s
+            chainId: chainId
+            v: v
+            gas: gas
+            maxPriorityFeePerGas: maxPriorityFeePerGas
+            to: to
+            maxFeePerGas: maxFeePerGas
             value: value
             hash: hash
             gasPrice: gasPrice

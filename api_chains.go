@@ -96,8 +96,8 @@ type ChainsAPI interface {
 	SubmitSignedTransaction(ctx context.Context, chain ChainName) ApiSubmitSignedTransactionRequest
 
 	// SubmitSignedTransactionExecute executes the request
-	//  @return BaseResponse
-	SubmitSignedTransactionExecute(r ApiSubmitSignedTransactionRequest) (*BaseResponse, *http.Response, error)
+	//  @return SubmitSignedTransaction200Response
+	SubmitSignedTransactionExecute(r ApiSubmitSignedTransactionRequest) (*SubmitSignedTransaction200Response, *http.Response, error)
 
 	/*
 		TransferEth Transfer ETH
@@ -662,7 +662,7 @@ func (r ApiSubmitSignedTransactionRequest) SignedTransactionSubmission(signedTra
 	return r
 }
 
-func (r ApiSubmitSignedTransactionRequest) Execute() (*BaseResponse, *http.Response, error) {
+func (r ApiSubmitSignedTransactionRequest) Execute() (*SubmitSignedTransaction200Response, *http.Response, error) {
 	return r.ApiService.SubmitSignedTransactionExecute(r)
 }
 
@@ -685,13 +685,13 @@ func (a *ChainsAPIService) SubmitSignedTransaction(ctx context.Context, chain Ch
 
 // Execute executes the request
 //
-//	@return BaseResponse
-func (a *ChainsAPIService) SubmitSignedTransactionExecute(r ApiSubmitSignedTransactionRequest) (*BaseResponse, *http.Response, error) {
+//	@return SubmitSignedTransaction200Response
+func (a *ChainsAPIService) SubmitSignedTransactionExecute(r ApiSubmitSignedTransactionRequest) (*SubmitSignedTransaction200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *BaseResponse
+		localVarReturnValue *SubmitSignedTransaction200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChainsAPIService.SubmitSignedTransaction")

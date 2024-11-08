@@ -138,10 +138,12 @@ docs/SavedEventQuery.md
 docs/SetAddress201Response.md
 docs/SetNonceRequest.md
 docs/SignData200Response.md
+docs/SignedTransactionResponse.md
 docs/SignedTransactionSubmission.md
 docs/SignerLabel.md
 docs/SignerWallet.md
 docs/StandaloneWallet.md
+docs/SubmitSignedTransaction200Response.md
 docs/Transaction.md
 docs/TransactionData.md
 docs/TransactionInformation.md
@@ -280,10 +282,12 @@ model_saved_event_query.go
 model_set_address_201_response.go
 model_set_nonce_request.go
 model_sign_data_200_response.go
+model_signed_transaction_response.go
 model_signed_transaction_submission.go
 model_signer_label.go
 model_signer_wallet.go
 model_standalone_wallet.go
+model_submit_signed_transaction_200_response.go
 model_transaction.go
 model_transaction_data.go
 model_transaction_information.go
