@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Type** | [**ContractABIType**](ContractABIType.md) |  | 
+**TypeName** | **string** |  | 
 **Indexed** | **bool** |  | 
 **TypeConversion** | [**NullableContractABITypeConversion**](ContractABITypeConversion.md) |  | 
 **Notes** | **string** | The developer documentation. | 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewContractABIEventArgument
 
-`func NewContractABIEventArgument(name string, type_ ContractABIType, indexed bool, typeConversion NullableContractABITypeConversion, notes string, ) *ContractABIEventArgument`
+`func NewContractABIEventArgument(name string, type_ ContractABIType, typeName string, indexed bool, typeConversion NullableContractABITypeConversion, notes string, ) *ContractABIEventArgument`
 
 NewContractABIEventArgument instantiates a new ContractABIEventArgument object
 This constructor will assign default values to properties that have it defined,
@@ -67,6 +68,26 @@ and a boolean to check if the value has been set.
 `func (o *ContractABIEventArgument) SetType(v ContractABIType)`
 
 SetType sets Type field to given value.
+
+
+### GetTypeName
+
+`func (o *ContractABIEventArgument) GetTypeName() string`
+
+GetTypeName returns the TypeName field if non-nil, zero value otherwise.
+
+### GetTypeNameOk
+
+`func (o *ContractABIEventArgument) GetTypeNameOk() (*string, bool)`
+
+GetTypeNameOk returns a tuple with the TypeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTypeName
+
+`func (o *ContractABIEventArgument) SetTypeName(v string)`
+
+SetTypeName sets TypeName field to given value.
 
 
 ### GetIndexed

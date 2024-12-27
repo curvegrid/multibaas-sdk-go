@@ -21,9 +21,10 @@ var _ MappedNullable = &ContractABIErrorArgument{}
 
 // ContractABIErrorArgument A contract error argument.
 type ContractABIErrorArgument struct {
-	Name    string          `json:"name"`
-	Type    ContractABIType `json:"type"`
-	Indexed bool            `json:"indexed"`
+	Name     string          `json:"name"`
+	Type     ContractABIType `json:"type"`
+	TypeName string          `json:"typeName"`
+	Indexed  bool            `json:"indexed"`
 	// The developer documentation.
 	Notes string `json:"notes"`
 }
@@ -34,10 +35,11 @@ type _ContractABIErrorArgument ContractABIErrorArgument
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIErrorArgument(name string, type_ ContractABIType, indexed bool, notes string) *ContractABIErrorArgument {
+func NewContractABIErrorArgument(name string, type_ ContractABIType, typeName string, indexed bool, notes string) *ContractABIErrorArgument {
 	this := ContractABIErrorArgument{}
 	this.Name = name
 	this.Type = type_
+	this.TypeName = typeName
 	this.Indexed = indexed
 	this.Notes = notes
 	return &this
@@ -97,6 +99,30 @@ func (o *ContractABIErrorArgument) GetTypeOk() (*ContractABIType, bool) {
 // SetType sets field value
 func (o *ContractABIErrorArgument) SetType(v ContractABIType) {
 	o.Type = v
+}
+
+// GetTypeName returns the TypeName field value
+func (o *ContractABIErrorArgument) GetTypeName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TypeName
+}
+
+// GetTypeNameOk returns a tuple with the TypeName field value
+// and a boolean to check if the value has been set.
+func (o *ContractABIErrorArgument) GetTypeNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TypeName, true
+}
+
+// SetTypeName sets field value
+func (o *ContractABIErrorArgument) SetTypeName(v string) {
+	o.TypeName = v
 }
 
 // GetIndexed returns the Indexed field value
@@ -159,6 +185,7 @@ func (o ContractABIErrorArgument) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
+	toSerialize["typeName"] = o.TypeName
 	toSerialize["indexed"] = o.Indexed
 	toSerialize["notes"] = o.Notes
 	return toSerialize, nil
@@ -171,6 +198,7 @@ func (o *ContractABIErrorArgument) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"name",
 		"type",
+		"typeName",
 		"indexed",
 		"notes",
 	}

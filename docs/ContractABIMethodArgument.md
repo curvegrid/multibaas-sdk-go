@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to [**ContractABIType**](ContractABIType.md) |  | [optional] 
+**Name** | **string** |  | 
+**Type** | [**ContractABIType**](ContractABIType.md) |  | 
+**TypeName** | **string** |  | 
 **TypeConversion** | [**NullableContractABITypeConversion**](ContractABITypeConversion.md) |  | 
-**Notes** | Pointer to **string** |  | [optional] 
+**Notes** | **string** |  | 
 
 ## Methods
 
 ### NewContractABIMethodArgument
 
-`func NewContractABIMethodArgument(typeConversion NullableContractABITypeConversion, ) *ContractABIMethodArgument`
+`func NewContractABIMethodArgument(name string, type_ ContractABIType, typeName string, typeConversion NullableContractABITypeConversion, notes string, ) *ContractABIMethodArgument`
 
 NewContractABIMethodArgument instantiates a new ContractABIMethodArgument object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *ContractABIMethodArgument) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetType
 
@@ -72,11 +68,26 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
 
-`func (o *ContractABIMethodArgument) HasType() bool`
+### GetTypeName
 
-HasType returns a boolean if a field has been set.
+`func (o *ContractABIMethodArgument) GetTypeName() string`
+
+GetTypeName returns the TypeName field if non-nil, zero value otherwise.
+
+### GetTypeNameOk
+
+`func (o *ContractABIMethodArgument) GetTypeNameOk() (*string, bool)`
+
+GetTypeNameOk returns a tuple with the TypeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTypeName
+
+`func (o *ContractABIMethodArgument) SetTypeName(v string)`
+
+SetTypeName sets TypeName field to given value.
+
 
 ### GetTypeConversion
 
@@ -127,11 +138,6 @@ and a boolean to check if the value has been set.
 
 SetNotes sets Notes field to given value.
 
-### HasNotes
-
-`func (o *ContractABIMethodArgument) HasNotes() bool`
-
-HasNotes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

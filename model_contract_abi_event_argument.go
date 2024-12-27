@@ -23,6 +23,7 @@ var _ MappedNullable = &ContractABIEventArgument{}
 type ContractABIEventArgument struct {
 	Name           string                            `json:"name"`
 	Type           ContractABIType                   `json:"type"`
+	TypeName       string                            `json:"typeName"`
 	Indexed        bool                              `json:"indexed"`
 	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
 	// The developer documentation.
@@ -35,10 +36,11 @@ type _ContractABIEventArgument ContractABIEventArgument
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIEventArgument(name string, type_ ContractABIType, indexed bool, typeConversion NullableContractABITypeConversion, notes string) *ContractABIEventArgument {
+func NewContractABIEventArgument(name string, type_ ContractABIType, typeName string, indexed bool, typeConversion NullableContractABITypeConversion, notes string) *ContractABIEventArgument {
 	this := ContractABIEventArgument{}
 	this.Name = name
 	this.Type = type_
+	this.TypeName = typeName
 	this.Indexed = indexed
 	this.TypeConversion = typeConversion
 	this.Notes = notes
@@ -99,6 +101,30 @@ func (o *ContractABIEventArgument) GetTypeOk() (*ContractABIType, bool) {
 // SetType sets field value
 func (o *ContractABIEventArgument) SetType(v ContractABIType) {
 	o.Type = v
+}
+
+// GetTypeName returns the TypeName field value
+func (o *ContractABIEventArgument) GetTypeName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TypeName
+}
+
+// GetTypeNameOk returns a tuple with the TypeName field value
+// and a boolean to check if the value has been set.
+func (o *ContractABIEventArgument) GetTypeNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TypeName, true
+}
+
+// SetTypeName sets field value
+func (o *ContractABIEventArgument) SetTypeName(v string) {
+	o.TypeName = v
 }
 
 // GetIndexed returns the Indexed field value
@@ -187,6 +213,7 @@ func (o ContractABIEventArgument) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
+	toSerialize["typeName"] = o.TypeName
 	toSerialize["indexed"] = o.Indexed
 	toSerialize["typeConversion"] = o.TypeConversion.Get()
 	toSerialize["notes"] = o.Notes
@@ -200,6 +227,7 @@ func (o *ContractABIEventArgument) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"name",
 		"type",
+		"typeName",
 		"indexed",
 		"typeConversion",
 		"notes",

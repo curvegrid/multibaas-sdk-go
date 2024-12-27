@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Type** | [**ContractABIType**](ContractABIType.md) |  | 
+**TypeName** | **string** |  | 
 **Indexed** | **bool** |  | 
 **Notes** | **string** | The developer documentation. | 
 
@@ -13,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewContractABIErrorArgument
 
-`func NewContractABIErrorArgument(name string, type_ ContractABIType, indexed bool, notes string, ) *ContractABIErrorArgument`
+`func NewContractABIErrorArgument(name string, type_ ContractABIType, typeName string, indexed bool, notes string, ) *ContractABIErrorArgument`
 
 NewContractABIErrorArgument instantiates a new ContractABIErrorArgument object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +67,26 @@ and a boolean to check if the value has been set.
 `func (o *ContractABIErrorArgument) SetType(v ContractABIType)`
 
 SetType sets Type field to given value.
+
+
+### GetTypeName
+
+`func (o *ContractABIErrorArgument) GetTypeName() string`
+
+GetTypeName returns the TypeName field if non-nil, zero value otherwise.
+
+### GetTypeNameOk
+
+`func (o *ContractABIErrorArgument) GetTypeNameOk() (*string, bool)`
+
+GetTypeNameOk returns a tuple with the TypeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTypeName
+
+`func (o *ContractABIErrorArgument) SetTypeName(v string)`
+
+SetTypeName sets TypeName field to given value.
 
 
 ### GetIndexed
