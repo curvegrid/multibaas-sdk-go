@@ -15,28 +15,28 @@ import (
 	"fmt"
 )
 
-// HSMSignRequestChainId - struct for HSMSignRequestChainId
-type HSMSignRequestChainId struct {
+// EIP712DomainChainId - The EIP-155 chain ID of the application using the typed data.
+type EIP712DomainChainId struct {
 	Int64  *int64
 	String *string
 }
 
-// int64AsHSMSignRequestChainId is a convenience function that returns int64 wrapped in HSMSignRequestChainId
-func Int64AsHSMSignRequestChainId(v *int64) HSMSignRequestChainId {
-	return HSMSignRequestChainId{
+// int64AsEIP712DomainChainId is a convenience function that returns int64 wrapped in EIP712DomainChainId
+func Int64AsEIP712DomainChainId(v *int64) EIP712DomainChainId {
+	return EIP712DomainChainId{
 		Int64: v,
 	}
 }
 
-// stringAsHSMSignRequestChainId is a convenience function that returns string wrapped in HSMSignRequestChainId
-func StringAsHSMSignRequestChainId(v *string) HSMSignRequestChainId {
-	return HSMSignRequestChainId{
+// stringAsEIP712DomainChainId is a convenience function that returns string wrapped in EIP712DomainChainId
+func StringAsEIP712DomainChainId(v *string) EIP712DomainChainId {
+	return EIP712DomainChainId{
 		String: v,
 	}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *HSMSignRequestChainId) UnmarshalJSON(data []byte) error {
+func (dst *EIP712DomainChainId) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into Int64
@@ -70,16 +70,16 @@ func (dst *HSMSignRequestChainId) UnmarshalJSON(data []byte) error {
 		dst.Int64 = nil
 		dst.String = nil
 
-		return fmt.Errorf("data matches more than one schema in oneOf(HSMSignRequestChainId)")
+		return fmt.Errorf("data matches more than one schema in oneOf(EIP712DomainChainId)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(HSMSignRequestChainId)")
+		return fmt.Errorf("data failed to match schemas in oneOf(EIP712DomainChainId)")
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src HSMSignRequestChainId) MarshalJSON() ([]byte, error) {
+func (src EIP712DomainChainId) MarshalJSON() ([]byte, error) {
 	if src.Int64 != nil {
 		return json.Marshal(&src.Int64)
 	}
@@ -92,7 +92,7 @@ func (src HSMSignRequestChainId) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *HSMSignRequestChainId) GetActualInstance() interface{} {
+func (obj *EIP712DomainChainId) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -108,38 +108,38 @@ func (obj *HSMSignRequestChainId) GetActualInstance() interface{} {
 	return nil
 }
 
-type NullableHSMSignRequestChainId struct {
-	value *HSMSignRequestChainId
+type NullableEIP712DomainChainId struct {
+	value *EIP712DomainChainId
 	isSet bool
 }
 
-func (v NullableHSMSignRequestChainId) Get() *HSMSignRequestChainId {
+func (v NullableEIP712DomainChainId) Get() *EIP712DomainChainId {
 	return v.value
 }
 
-func (v *NullableHSMSignRequestChainId) Set(val *HSMSignRequestChainId) {
+func (v *NullableEIP712DomainChainId) Set(val *EIP712DomainChainId) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHSMSignRequestChainId) IsSet() bool {
+func (v NullableEIP712DomainChainId) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHSMSignRequestChainId) Unset() {
+func (v *NullableEIP712DomainChainId) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHSMSignRequestChainId(val *HSMSignRequestChainId) *NullableHSMSignRequestChainId {
-	return &NullableHSMSignRequestChainId{value: val, isSet: true}
+func NewNullableEIP712DomainChainId(val *EIP712DomainChainId) *NullableEIP712DomainChainId {
+	return &NullableEIP712DomainChainId{value: val, isSet: true}
 }
 
-func (v NullableHSMSignRequestChainId) MarshalJSON() ([]byte, error) {
+func (v NullableEIP712DomainChainId) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHSMSignRequestChainId) UnmarshalJSON(src []byte) error {
+func (v *NullableEIP712DomainChainId) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

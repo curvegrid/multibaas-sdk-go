@@ -4860,7 +4860,6 @@ components:
         author: author
         name: name
         description: description
-        returns: returns
         id: id
       nullable: true
       properties:
@@ -4893,8 +4892,6 @@ components:
           type: string
         notes:
           type: string
-        returns:
-          type: string
         description:
           description: The function description.
           type: string
@@ -4908,7 +4905,6 @@ components:
       - notes
       - outputs
       - payable
-      - returns
       - signature
       title: ContractABIMethod
       type: object
@@ -5236,7 +5232,6 @@ components:
           author: author
           name: name
           description: description
-          returns: returns
           id: id
         methods:
           key:
@@ -5313,7 +5308,6 @@ components:
             author: author
             name: name
             description: description
-            returns: returns
             id: id
         constructor:
           outputs:
@@ -5389,7 +5383,6 @@ components:
           author: author
           name: name
           description: description
-          returns: returns
           id: id
         fallback:
           outputs:
@@ -5465,7 +5458,6 @@ components:
           author: author
           name: name
           description: description
-          returns: returns
           id: id
         events:
           key:
@@ -5729,7 +5721,6 @@ components:
             author: author
             name: name
             description: description
-            returns: returns
             id: id
           methods:
             key:
@@ -5806,7 +5797,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
           constructor:
             outputs:
@@ -5882,7 +5872,6 @@ components:
             author: author
             name: name
             description: description
-            returns: returns
             id: id
           fallback:
             outputs:
@@ -5958,7 +5947,6 @@ components:
             author: author
             name: name
             description: description
-            returns: returns
             id: id
           events:
             key:
@@ -6269,32 +6257,63 @@ components:
       - updatedAt
       title: EventMonitorStatus
       type: object
-    HSMSignRequest:
-      description: Request body representing a sign-data request.
+    HSMSignRequestPersonalSign:
+      description: Request to sign a message using a cloud wallet.
       example:
         address: address
-        isTyped: true
+        method: method
         data: data
         chainId: 0
       properties:
+        method:
+          description: The signing method to use.
+          type: string
         address:
           description: An ethereum address.
           pattern: "^0[xX][a-fA-F0-9]{40}$"
           title: ETHAddress
           type: string
-        isTyped:
-          description: Is the data field an encapsulated EIP-712 typed message?
-          type: boolean
         data:
-          description: Data to sign
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
           type: string
         chainId:
-          $ref: '#/components/schemas/HSMSignRequest_chainId'
+          $ref: '#/components/schemas/HSMSignRequestPersonalSign_chainId'
       required:
       - address
       - data
-      title: HSMSignRequest
+      - method
+      title: HSMSignRequestPersonalSign
       type: object
+    HSMSignRequestTypedData:
+      description: Request to sign typed data using a cloud wallet.
+      properties:
+        method:
+          description: The signing method to use.
+          type: string
+        address:
+          description: An ethereum address.
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddress
+          type: string
+        data:
+          $ref: '#/components/schemas/EIP712TypedData'
+      required:
+      - address
+      - data
+      - method
+      title: HSMSignRequestTypedData
+      type: object
+    HSMSignRequest:
+      discriminator:
+        mapping:
+          personal_sign: '#/components/schemas/HSMSignRequestPersonalSign'
+          eth_signTypedData_v4: '#/components/schemas/HSMSignRequestTypedData'
+        propertyName: method
+      oneOf:
+      - $ref: '#/components/schemas/HSMSignRequestPersonalSign'
+      - $ref: '#/components/schemas/HSMSignRequestTypedData'
     HSMSignResponse:
       description: Response body representing a sign-data response.
       example:
@@ -8434,6 +8453,74 @@ components:
       - type
       title: AuditLog
       type: object
+    EIP712TypeEntry:
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+      required:
+      - name
+      - type
+      type: object
+    EIP712Types:
+      additionalProperties:
+        items:
+          $ref: '#/components/schemas/EIP712TypeEntry'
+        type: array
+      description: A mapping of type names to arrays of fields.
+      properties:
+        EIP712Domain:
+          items:
+            $ref: '#/components/schemas/EIP712TypeEntry'
+          type: array
+      required:
+      - EIP712Domain
+      type: object
+    EIP712Domain:
+      description: The domain fields for EIP-712. All fields are optional per the
+        specification.
+      properties:
+        name:
+          description: Human-readable name of the signing domain.
+          type: string
+        version:
+          description: Current major version of the signing domain.
+          type: string
+        chainId:
+          $ref: '#/components/schemas/EIP712Domain_chainId'
+        verifyingContract:
+          description: An ethereum address.
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddress
+          type: string
+        salt:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+      type: object
+    EIP712TypedData:
+      description: EIP-712 structured typed data object.
+      properties:
+        types:
+          $ref: '#/components/schemas/EIP712Types'
+        primaryType:
+          description: The root type of the message object. Must correspond to a key
+            in the `types` object.
+          type: string
+        domain:
+          $ref: '#/components/schemas/EIP712Domain'
+        message:
+          description: "The actual data, conforming to the `primaryType` definition\
+            \ in `types`."
+          type: object
+      required:
+      - domain
+      - message
+      - primaryType
+      - types
+      type: object
     list_api_keys_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9075,7 +9162,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             methods:
               key:
@@ -9152,7 +9238,6 @@ components:
                 author: author
                 name: name
                 description: description
-                returns: returns
                 id: id
             constructor:
               outputs:
@@ -9228,7 +9313,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             fallback:
               outputs:
@@ -9304,7 +9388,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             events:
               key:
@@ -9550,7 +9633,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             methods:
               key:
@@ -9627,7 +9709,6 @@ components:
                 author: author
                 name: name
                 description: description
-                returns: returns
                 id: id
             constructor:
               outputs:
@@ -9703,7 +9784,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             fallback:
               outputs:
@@ -9779,7 +9859,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             events:
               key:
@@ -9947,7 +10026,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             methods:
               key:
@@ -10024,7 +10102,6 @@ components:
                 author: author
                 name: name
                 description: description
-                returns: returns
                 id: id
             constructor:
               outputs:
@@ -10100,7 +10177,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             fallback:
               outputs:
@@ -10176,7 +10252,6 @@ components:
               author: author
               name: name
               description: description
-              returns: returns
               id: id
             events:
               key:
@@ -11113,7 +11188,6 @@ components:
         author: author
         name: name
         description: description
-        returns: returns
         id: id
       nullable: true
       properties:
@@ -11146,8 +11220,6 @@ components:
           type: string
         notes:
           type: string
-        returns:
-          type: string
         description:
           description: The function description.
           type: string
@@ -11161,11 +11233,12 @@ components:
       - notes
       - outputs
       - payable
-      - returns
       - signature
       title: ContractABIMethod
       type: object
-    HSMSignRequest_chainId:
+    HSMSignRequestPersonalSign_chainId:
+      description: Optionally lock the message to a specific chain by encoding the
+        chain ID in the signature per EIP-155.
       oneOf:
       - format: int64
         type: integer
@@ -11359,6 +11432,12 @@ components:
       - type
       - value
       type: object
+    EIP712Domain_chainId:
+      description: The EIP-155 chain ID of the application using the typed data.
+      oneOf:
+      - format: int64
+        type: integer
+      - $ref: '#/components/schemas/Hex'
   securitySchemes:
     bearer:
       bearerFormat: JWT

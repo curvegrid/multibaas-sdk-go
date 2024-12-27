@@ -1,4 +1,4 @@
-# HSMSignRequestChainId
+# EIP712DomainChainId
 
 ## Properties
 
@@ -7,20 +7,20 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewHSMSignRequestChainId
+### NewEIP712DomainChainId
 
-`func NewHSMSignRequestChainId() *HSMSignRequestChainId`
+`func NewEIP712DomainChainId() *EIP712DomainChainId`
 
-NewHSMSignRequestChainId instantiates a new HSMSignRequestChainId object
+NewEIP712DomainChainId instantiates a new EIP712DomainChainId object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewHSMSignRequestChainIdWithDefaults
+### NewEIP712DomainChainIdWithDefaults
 
-`func NewHSMSignRequestChainIdWithDefaults() *HSMSignRequestChainId`
+`func NewEIP712DomainChainIdWithDefaults() *EIP712DomainChainId`
 
-NewHSMSignRequestChainIdWithDefaults instantiates a new HSMSignRequestChainId object
+NewEIP712DomainChainIdWithDefaults instantiates a new EIP712DomainChainId object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 

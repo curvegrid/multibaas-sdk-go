@@ -13,14 +13,13 @@ Name | Type | Description | Notes
 **Outputs** | [**[]ContractABIMethodArgument**](ContractABIMethodArgument.md) | List of function outputs. | 
 **Author** | **string** |  | 
 **Notes** | **string** |  | 
-**Returns** | **string** |  | 
 **Description** | **string** | The function description. | 
 
 ## Methods
 
 ### NewContractABIMethod1
 
-`func NewContractABIMethod1(id string, name string, signature string, const_ bool, payable bool, inputs []ContractABIMethodArgument, outputs []ContractABIMethodArgument, author string, notes string, returns string, description string, ) *ContractABIMethod1`
+`func NewContractABIMethod1(id string, name string, signature string, const_ bool, payable bool, inputs []ContractABIMethodArgument, outputs []ContractABIMethodArgument, author string, notes string, description string, ) *ContractABIMethod1`
 
 NewContractABIMethod1 instantiates a new ContractABIMethod1 object
 This constructor will assign default values to properties that have it defined,
@@ -213,26 +212,6 @@ and a boolean to check if the value has been set.
 `func (o *ContractABIMethod1) SetNotes(v string)`
 
 SetNotes sets Notes field to given value.
-
-
-### GetReturns
-
-`func (o *ContractABIMethod1) GetReturns() string`
-
-GetReturns returns the Returns field if non-nil, zero value otherwise.
-
-### GetReturnsOk
-
-`func (o *ContractABIMethod1) GetReturnsOk() (*string, bool)`
-
-GetReturnsOk returns a tuple with the Returns field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReturns
-
-`func (o *ContractABIMethod1) SetReturns(v string)`
-
-SetReturns sets Returns field to given value.
 
 
 ### GetDescription

@@ -72,6 +72,11 @@ docs/CreateKey.md
 docs/CreateWebhook200Response.md
 docs/DeployContract200Response.md
 docs/DeployContractTransaction.md
+docs/EIP712Domain.md
+docs/EIP712DomainChainId.md
+docs/EIP712TypeEntry.md
+docs/EIP712TypedData.md
+docs/EIP712Types.md
 docs/Error.md
 docs/Event.md
 docs/EventField.md
@@ -103,7 +108,9 @@ docs/GetTransactionReceipt200Response.md
 docs/Group.md
 docs/HSMData.md
 docs/HSMSignRequest.md
-docs/HSMSignRequestChainId.md
+docs/HSMSignRequestPersonalSign.md
+docs/HSMSignRequestPersonalSignChainId.md
+docs/HSMSignRequestTypedData.md
 docs/HSMSignResponse.md
 docs/HsmAPI.md
 docs/Invite.md
@@ -219,6 +226,11 @@ model_create_key.go
 model_create_webhook_200_response.go
 model_deploy_contract_200_response.go
 model_deploy_contract_transaction.go
+model_eip712_domain.go
+model_eip712_domain_chain_id.go
+model_eip712_type_entry.go
+model_eip712_typed_data.go
+model_eip712_types.go
 model_error.go
 model_event.go
 model_event_field.go
@@ -248,7 +260,9 @@ model_get_transaction_receipt_200_response.go
 model_group.go
 model_hsm_data.go
 model_hsm_sign_request.go
-model_hsm_sign_request_chain_id.go
+model_hsm_sign_request_personal_sign.go
+model_hsm_sign_request_personal_sign_chain_id.go
+model_hsm_sign_request_typed_data.go
 model_hsm_sign_response.go
 model_invite.go
 model_link_address_contract_request.go

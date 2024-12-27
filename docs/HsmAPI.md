@@ -665,7 +665,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	hSMSignRequest := *openapiclient.NewHSMSignRequest("Address_example", "Data_example") // HSMSignRequest | 
+	hSMSignRequest := openapiclient.HSMSignRequest{HSMSignRequestPersonalSign: openapiclient.NewHSMSignRequestPersonalSign("Method_example", "Address_example", "Data_example")} // HSMSignRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

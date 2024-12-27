@@ -35,7 +35,6 @@ type ContractABIMethod1 struct {
 	Outputs []ContractABIMethodArgument `json:"outputs"`
 	Author  string                      `json:"author"`
 	Notes   string                      `json:"notes"`
-	Returns string                      `json:"returns"`
 	// The function description.
 	Description string `json:"description"`
 }
@@ -46,7 +45,7 @@ type _ContractABIMethod1 ContractABIMethod1
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIMethod1(id string, name string, signature string, const_ bool, payable bool, inputs []ContractABIMethodArgument, outputs []ContractABIMethodArgument, author string, notes string, returns string, description string) *ContractABIMethod1 {
+func NewContractABIMethod1(id string, name string, signature string, const_ bool, payable bool, inputs []ContractABIMethodArgument, outputs []ContractABIMethodArgument, author string, notes string, description string) *ContractABIMethod1 {
 	this := ContractABIMethod1{}
 	this.Id = id
 	this.Name = name
@@ -57,7 +56,6 @@ func NewContractABIMethod1(id string, name string, signature string, const_ bool
 	this.Outputs = outputs
 	this.Author = author
 	this.Notes = notes
-	this.Returns = returns
 	this.Description = description
 	return &this
 }
@@ -286,30 +284,6 @@ func (o *ContractABIMethod1) SetNotes(v string) {
 	o.Notes = v
 }
 
-// GetReturns returns the Returns field value
-func (o *ContractABIMethod1) GetReturns() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Returns
-}
-
-// GetReturnsOk returns a tuple with the Returns field value
-// and a boolean to check if the value has been set.
-func (o *ContractABIMethod1) GetReturnsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Returns, true
-}
-
-// SetReturns sets field value
-func (o *ContractABIMethod1) SetReturns(v string) {
-	o.Returns = v
-}
-
 // GetDescription returns the Description field value
 func (o *ContractABIMethod1) GetDescription() string {
 	if o == nil {
@@ -353,7 +327,6 @@ func (o ContractABIMethod1) ToMap() (map[string]interface{}, error) {
 	toSerialize["outputs"] = o.Outputs
 	toSerialize["author"] = o.Author
 	toSerialize["notes"] = o.Notes
-	toSerialize["returns"] = o.Returns
 	toSerialize["description"] = o.Description
 	return toSerialize, nil
 }
@@ -372,7 +345,6 @@ func (o *ContractABIMethod1) UnmarshalJSON(data []byte) (err error) {
 		"outputs",
 		"author",
 		"notes",
-		"returns",
 		"description",
 	}
 
