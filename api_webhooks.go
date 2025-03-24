@@ -813,6 +813,9 @@ func (a *WebhooksAPIService) ListWebhookEventsExecute(r ApiListWebhookEventsRequ
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int64 = 10
+		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
@@ -931,6 +934,9 @@ func (a *WebhooksAPIService) ListWebhooksExecute(r ApiListWebhooksRequest) (*Lis
 
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int64 = 10
+		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")

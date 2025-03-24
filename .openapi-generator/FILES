@@ -18,7 +18,7 @@ docs/AcceptInvite200Response.md
 docs/AcceptInviteRequest.md
 docs/AddKey.md
 docs/Address.md
-docs/AddressLabel.md
+docs/AddressAlias.md
 docs/AddressesAPI.md
 docs/AdminAPI.md
 docs/AuditLog.md
@@ -174,7 +174,7 @@ model_accept_invite_200_response.go
 model_accept_invite_request.go
 model_add_key.go
 model_address.go
-model_address_label.go
+model_address_alias.go
 model_api_key.go
 model_api_key_with_secret.go
 model_audit_log.go

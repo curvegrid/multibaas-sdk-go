@@ -1,67 +1,67 @@
-# AddressLabel
+# AddressAlias
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
+**Alias** | **string** | An alias to easily identify and reference addresses. | 
 **Address** | **string** | An ethereum address. | 
 
 ## Methods
 
-### NewAddressLabel
+### NewAddressAlias
 
-`func NewAddressLabel(label string, address string, ) *AddressLabel`
+`func NewAddressAlias(alias string, address string, ) *AddressAlias`
 
-NewAddressLabel instantiates a new AddressLabel object
+NewAddressAlias instantiates a new AddressAlias object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAddressLabelWithDefaults
+### NewAddressAliasWithDefaults
 
-`func NewAddressLabelWithDefaults() *AddressLabel`
+`func NewAddressAliasWithDefaults() *AddressAlias`
 
-NewAddressLabelWithDefaults instantiates a new AddressLabel object
+NewAddressAliasWithDefaults instantiates a new AddressAlias object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLabel
+### GetAlias
 
-`func (o *AddressLabel) GetLabel() string`
+`func (o *AddressAlias) GetAlias() string`
 
-GetLabel returns the Label field if non-nil, zero value otherwise.
+GetAlias returns the Alias field if non-nil, zero value otherwise.
 
-### GetLabelOk
+### GetAliasOk
 
-`func (o *AddressLabel) GetLabelOk() (*string, bool)`
+`func (o *AddressAlias) GetAliasOk() (*string, bool)`
 
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+GetAliasOk returns a tuple with the Alias field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLabel
+### SetAlias
 
-`func (o *AddressLabel) SetLabel(v string)`
+`func (o *AddressAlias) SetAlias(v string)`
 
-SetLabel sets Label field to given value.
+SetAlias sets Alias field to given value.
 
 
 ### GetAddress
 
-`func (o *AddressLabel) GetAddress() string`
+`func (o *AddressAlias) GetAddress() string`
 
 GetAddress returns the Address field if non-nil, zero value otherwise.
 
 ### GetAddressOk
 
-`func (o *AddressLabel) GetAddressOk() (*string, bool)`
+`func (o *AddressAlias) GetAddressOk() (*string, bool)`
 
 GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAddress
 
-`func (o *AddressLabel) SetAddress(v string)`
+`func (o *AddressAlias) SetAddress(v string)`
 
 SetAddress sets Address field to given value.
 

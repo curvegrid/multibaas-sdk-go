@@ -581,7 +581,7 @@ paths:
       - chains
   /chains/{chain}/addresses:
     get:
-      description: Returns all the labeled addresses.
+      description: Returns all the aliased addresses.
       operationId: list-addresses
       parameters:
       - description: The blockchain chain label.
@@ -615,7 +615,7 @@ paths:
       tags:
       - addresses
     post:
-      description: Associates an address with a label.
+      description: Associates an address with an alias.
       operationId: set-address
       parameters:
       - description: The blockchain chain label.
@@ -630,7 +630,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddressLabel'
+              $ref: '#/components/schemas/AddressAlias'
         required: true
       responses:
         "201":
@@ -654,9 +654,9 @@ paths:
       summary: Create or update address
       tags:
       - addresses
-  /chains/{chain}/addresses/{address-or-label}:
+  /chains/{chain}/addresses/{address-or-alias}:
     delete:
-      description: Deletes an address label.
+      description: Deletes an address alias.
       operationId: delete-address
       parameters:
       - description: The blockchain chain label.
@@ -667,10 +667,10 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An address or the label of an address.
+      - description: An address or the alias of an address.
         explode: false
         in: path
-        name: address-or-label
+        name: address-or-alias
         required: true
         schema:
           minLength: 1
@@ -711,10 +711,10 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An address or the label of an address.
+      - description: An address or the alias of an address.
         explode: false
         in: path
-        name: address-or-label
+        name: address-or-alias
         required: true
         schema:
           minLength: 1
@@ -762,7 +762,7 @@ paths:
       summary: Get address
       tags:
       - addresses
-  /chains/{chain}/addresses/{address-or-label}/contracts:
+  /chains/{chain}/addresses/{address-or-alias}/contracts:
     post:
       description: Links an address to a contract.
       operationId: link-address-contract
@@ -775,10 +775,10 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An address or the label of an address.
+      - description: An address or the alias of an address.
         explode: false
         in: path
-        name: address-or-label
+        name: address-or-alias
         required: true
         schema:
           minLength: 1
@@ -812,7 +812,7 @@ paths:
       summary: Link address and contract
       tags:
       - contracts
-  /chains/{chain}/addresses/{address-or-label}/contracts/{contract}:
+  /chains/{chain}/addresses/{address-or-alias}/contracts/{contract}:
     delete:
       description: Unlinks an address from a contract.
       operationId: unlink-address-contract
@@ -825,10 +825,10 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An address or the label of an address.
+      - description: An address or the alias of an address.
         explode: false
         in: path
-        name: address-or-label
+        name: address-or-alias
         required: true
         schema:
           minLength: 1
@@ -863,7 +863,7 @@ paths:
       summary: Unlink address and contract
       tags:
       - contracts
-  /chains/{chain}/addresses/{address-or-label}/contracts/{contract}/status:
+  /chains/{chain}/addresses/{address-or-alias}/contracts/{contract}/status:
     get:
       description: Returns the event monitor status for a given address and contract.
       operationId: get-event-monitor-status
@@ -876,10 +876,10 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An address or the label of an address.
+      - description: An address or the alias of an address.
         explode: false
         in: path
-        name: address-or-label
+        name: address-or-alias
         required: true
         schema:
           minLength: 1
@@ -914,7 +914,7 @@ paths:
       summary: Get event monitor status
       tags:
       - contracts
-  /chains/{chain}/addresses/{address-or-label}/contracts/{contract}/methods/{method}:
+  /chains/{chain}/addresses/{address-or-alias}/contracts/{contract}/methods/{method}:
     post:
       description: Builds a transaction to call the given contract function. Returns
         a transaction to be signed and signs and submits to the blockchain it if the
@@ -929,10 +929,10 @@ paths:
         schema:
           $ref: '#/components/schemas/ChainName'
         style: simple
-      - description: An address or the label of an address.
+      - description: An address or the alias of an address.
         explode: false
         in: path
-        name: address-or-label
+        name: address-or-alias
         required: true
         schema:
           minLength: 1
@@ -3856,11 +3856,11 @@ paths:
       - admin
 components:
   parameters:
-    AddressOrLabel:
-      description: An address or the label of an address.
+    AddressOrAlias:
+      description: An address or the alias of an address.
       explode: false
       in: path
-      name: address-or-label
+      name: address-or-alias
       required: true
       schema:
         minLength: 1
@@ -4120,7 +4120,7 @@ components:
       title: GasParams
     Address:
       allOf:
-      - $ref: '#/components/schemas/AddressLabel'
+      - $ref: '#/components/schemas/AddressAlias'
       - properties:
           balance:
             type: string
@@ -4162,6 +4162,7 @@ components:
         address: address
         balance: balance
         localNonce: 1
+        alias: alias
         contractLookup:
         - bytecode: bytecode
           proxy: true
@@ -4186,7 +4187,6 @@ components:
           abi: abi
           source: source
         codeAt: codeAt
-        label: label
         contracts:
         - name: name
           label: label
@@ -4199,17 +4199,16 @@ components:
         - modules
         - modules
       title: Address
-    AddressLabel:
-      description: An address and it's label.
+    AddressAlias:
+      description: An address and it's alias.
       example:
         address: address
-        label: label
+        alias: alias
       properties:
-        label:
-          description: An alias to easily identify and reference the entity in subsequent
-            requests.
+        alias:
+          description: An alias to easily identify and reference addresses.
           pattern: "^[a-z0-9_-]+$"
-          title: Label
+          title: Alias
           type: string
         address:
           description: An ethereum address.
@@ -4218,8 +4217,8 @@ components:
           type: string
       required:
       - address
-      - label
-      title: AddressLabel
+      - alias
+      title: AddressAlias
       type: object
     BaseAPIKey:
       description: An API key.
@@ -4678,9 +4677,9 @@ components:
       description: A contract instance
       example:
         address: address
-        label: label
+        alias: alias
       properties:
-        label:
+        alias:
           type: string
         address:
           description: An ethereum address.
@@ -4689,7 +4688,7 @@ components:
           type: string
       required:
       - address
-      - label
+      - alias
       title: ContractInstance
       type: object
     ContractMetadata:
@@ -5656,10 +5655,8 @@ components:
           type: boolean
       required:
       - contractName
-      - developerDoc
       - label
       - rawAbi
-      - userDoc
       - version
       title: BaseContract
       type: object
@@ -5683,9 +5680,9 @@ components:
         metadata: metadata
         instances:
         - address: address
-          label: label
+          alias: alias
         - address: address
-          label: label
+          alias: alias
         bin: bin
         rawAbi: rawAbi
         userDoc: userDoc
@@ -6098,19 +6095,18 @@ components:
       example:
         address: address
         name: name
+        addressAlias: addressAlias
         label: label
-        addressLabel: addressLabel
       properties:
         address:
           description: An ethereum address.
           pattern: "^0[xX][a-fA-F0-9]{40}$"
           title: ETHAddress
           type: string
-        addressLabel:
-          description: An alias to easily identify and reference the entity in subsequent
-            requests.
+        addressAlias:
+          description: An alias to easily identify and reference addresses.
           pattern: "^[a-z0-9_-]+$"
-          title: Label
+          title: Alias
           type: string
         name:
           description: The name of the contract.
@@ -6123,7 +6119,7 @@ components:
           type: string
       required:
       - address
-      - addressLabel
+      - addressAlias
       - label
       - name
       title: ContractInformation
@@ -6134,9 +6130,9 @@ components:
         deployable: true
         instances:
         - address: address
-          label: label
+          alias: alias
         - address: address
-          label: label
+          alias: alias
         contractName: contractName
         label: label
         version: version
@@ -6411,8 +6407,8 @@ components:
           contract:
             address: address
             name: name
+            addressAlias: addressAlias
             label: label
-            addressLabel: addressLabel
           name: name
           rawFields: rawFields
         transaction:
@@ -6432,8 +6428,8 @@ components:
           contract:
             address: address
             name: name
+            addressAlias: addressAlias
             label: label
-            addressLabel: addressLabel
           from: from
           txHash: txHash
           txIndexInBlock: 6
@@ -6469,8 +6465,8 @@ components:
         contract:
           address: address
           name: name
+          addressAlias: addressAlias
           label: label
-          addressLabel: addressLabel
         name: name
         rawFields: rawFields
       properties:
@@ -7056,8 +7052,8 @@ components:
               - `auto` (the default option), where number format is decided by its type:
                 - If the type has size at most 32 bits, then the number is returned verbatim.
                 - If the type has size larger than 32 bits, then the number is returned as a string.
-              - `as-numbers`, where all numbers are returned as strings.
-              - `as-strings`, where all numbers are returned verbatim.
+              - `as_numbers`, where all numbers are returned verbatim.
+              - `as_strings`, where all numbers are returned as strings.
           type: string
         timestamp:
           description: Call the function at a specific timestamp. Only available for
@@ -7370,8 +7366,8 @@ components:
         contract:
           address: address
           name: name
+          addressAlias: addressAlias
           label: label
-          addressLabel: addressLabel
         from: from
         isPending: true
       properties:
@@ -7424,8 +7420,8 @@ components:
         contract:
           address: address
           name: name
+          addressAlias: addressAlias
           label: label
-          addressLabel: addressLabel
         from: from
         txHash: txHash
         txIndexInBlock: 6
@@ -7531,8 +7527,8 @@ components:
           contract:
             address: address
             name: name
+            addressAlias: addressAlias
             label: label
-            addressLabel: addressLabel
           name: name
           rawFields: rawFields
         - indexInLog: 6
@@ -7549,8 +7545,8 @@ components:
           contract:
             address: address
             name: name
+            addressAlias: addressAlias
             label: label
-            addressLabel: addressLabel
           name: name
           rawFields: rawFields
       properties:
@@ -7694,7 +7690,7 @@ components:
       - contract_label
       - contract_name
       - contract_address
-      - contract_address_label
+      - contract_address_alias
       - block_number
       - triggered_at
       - event_signature
@@ -8264,6 +8260,11 @@ components:
       pattern: "^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"
       title: Keccak256Hash
       type: string
+    Alias:
+      description: An alias to easily identify and reference addresses.
+      pattern: "^[a-z0-9_-]+$"
+      title: Alias
+      type: string
     Label:
       description: An alias to easily identify and reference the entity in subsequent
         requests.
@@ -8286,6 +8287,7 @@ components:
       title: ContractName
       type: string
     PaginationLimit:
+      default: 10
       description: Specify the number of records that should be returned.
       format: int64
       title: PaginationLimit
@@ -8778,8 +8780,8 @@ components:
           contract:
             address: address
             name: name
+            addressAlias: addressAlias
             label: label
-            addressLabel: addressLabel
           from: from
           isPending: true
         message: message
@@ -8845,8 +8847,8 @@ components:
             contract:
               address: address
               name: name
+              addressAlias: addressAlias
               label: label
-              addressLabel: addressLabel
             name: name
             rawFields: rawFields
           - indexInLog: 6
@@ -8863,8 +8865,8 @@ components:
             contract:
               address: address
               name: name
+              addressAlias: addressAlias
               label: label
-              addressLabel: addressLabel
             name: name
             rawFields: rawFields
         message: message
@@ -8951,16 +8953,16 @@ components:
       - properties:
           result:
             items:
-              $ref: '#/components/schemas/AddressLabel'
+              $ref: '#/components/schemas/AddressAlias'
             type: array
         required:
         - result
       example:
         result:
         - address: address
-          label: label
+          alias: alias
         - address: address
-          label: label
+          alias: alias
         message: message
         status: 0
     set_address_201_response:
@@ -8977,6 +8979,7 @@ components:
           address: address
           balance: balance
           localNonce: 1
+          alias: alias
           contractLookup:
           - bytecode: bytecode
             proxy: true
@@ -9001,7 +9004,6 @@ components:
             abi: abi
             source: source
           codeAt: codeAt
-          label: label
           contracts:
           - name: name
             label: label
@@ -9119,9 +9121,9 @@ components:
         - deployable: true
           instances:
           - address: address
-            label: label
+            alias: alias
           - address: address
-            label: label
+            alias: alias
           contractName: contractName
           label: label
           version: version
@@ -9129,9 +9131,9 @@ components:
         - deployable: true
           instances:
           - address: address
-            label: label
+            alias: alias
           - address: address
-            label: label
+            alias: alias
           contractName: contractName
           label: label
           version: version
@@ -9152,9 +9154,9 @@ components:
           metadata: metadata
           instances:
           - address: address
-            label: label
+            alias: alias
           - address: address
-            label: label
+            alias: alias
           bin: bin
           rawAbi: rawAbi
           userDoc: userDoc
@@ -9643,9 +9645,9 @@ components:
           metadata: metadata
           instances:
           - address: address
-            label: label
+            alias: alias
           - address: address
-            label: label
+            alias: alias
           bin: bin
           rawAbi: rawAbi
           userDoc: userDoc
@@ -10056,9 +10058,9 @@ components:
           metadata: metadata
           instances:
           - address: address
-            label: label
+            alias: alias
           - address: address
-            label: label
+            alias: alias
           bin: bin
           rawAbi: rawAbi
           userDoc: userDoc
@@ -10558,8 +10560,8 @@ components:
             contract:
               address: address
               name: name
+              addressAlias: addressAlias
               label: label
-              addressLabel: addressLabel
             name: name
             rawFields: rawFields
           transaction:
@@ -10579,8 +10581,8 @@ components:
             contract:
               address: address
               name: name
+              addressAlias: addressAlias
               label: label
-              addressLabel: addressLabel
             from: from
             txHash: txHash
             txIndexInBlock: 6
@@ -10600,8 +10602,8 @@ components:
             contract:
               address: address
               name: name
+              addressAlias: addressAlias
               label: label
-              addressLabel: addressLabel
             name: name
             rawFields: rawFields
           transaction:
@@ -10621,8 +10623,8 @@ components:
             contract:
               address: address
               name: name
+              addressAlias: addressAlias
               label: label
-              addressLabel: addressLabel
             from: from
             txHash: txHash
             txIndexInBlock: 6

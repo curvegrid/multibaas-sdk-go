@@ -11,7 +11,7 @@
 
 * `CONTRACT_ADDRESS` (value: `"contract_address"`)
 
-* `CONTRACT_ADDRESS_LABEL` (value: `"contract_address_label"`)
+* `CONTRACT_ADDRESS_ALIAS` (value: `"contract_address_alias"`)
 
 * `BLOCK_NUMBER` (value: `"block_number"`)
 

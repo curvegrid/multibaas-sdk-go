@@ -25,7 +25,7 @@ type ListAddresses200Response struct {
 	Status int64 `json:"status"`
 	// The human-readable status message.
 	Message string         `json:"message"`
-	Result  []AddressLabel `json:"result"`
+	Result  []AddressAlias `json:"result"`
 }
 
 type _ListAddresses200Response ListAddresses200Response
@@ -34,7 +34,7 @@ type _ListAddresses200Response ListAddresses200Response
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListAddresses200Response(status int64, message string, result []AddressLabel) *ListAddresses200Response {
+func NewListAddresses200Response(status int64, message string, result []AddressAlias) *ListAddresses200Response {
 	this := ListAddresses200Response{}
 	this.Status = status
 	this.Message = message
@@ -99,9 +99,9 @@ func (o *ListAddresses200Response) SetMessage(v string) {
 }
 
 // GetResult returns the Result field value
-func (o *ListAddresses200Response) GetResult() []AddressLabel {
+func (o *ListAddresses200Response) GetResult() []AddressAlias {
 	if o == nil {
-		var ret []AddressLabel
+		var ret []AddressAlias
 		return ret
 	}
 
@@ -110,7 +110,7 @@ func (o *ListAddresses200Response) GetResult() []AddressLabel {
 
 // GetResultOk returns a tuple with the Result field value
 // and a boolean to check if the value has been set.
-func (o *ListAddresses200Response) GetResultOk() ([]AddressLabel, bool) {
+func (o *ListAddresses200Response) GetResultOk() ([]AddressAlias, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,7 +118,7 @@ func (o *ListAddresses200Response) GetResultOk() ([]AddressLabel, bool) {
 }
 
 // SetResult sets field value
-func (o *ListAddresses200Response) SetResult(v []AddressLabel) {
+func (o *ListAddresses200Response) SetResult(v []AddressAlias) {
 	o.Result = v
 }
 

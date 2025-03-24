@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
+**Alias** | **string** | An alias to easily identify and reference addresses. | 
 **Address** | **string** | An ethereum address. | 
 **Balance** | Pointer to **string** |  | [optional] 
 **Chain** | **string** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewAddress
 
-`func NewAddress(label string, address string, chain string, modules []string, contracts []ContractMetadata, ) *Address`
+`func NewAddress(alias string, address string, chain string, modules []string, contracts []ContractMetadata, ) *Address`
 
 NewAddress instantiates a new Address object
 This constructor will assign default values to properties that have it defined,
@@ -34,24 +34,24 @@ NewAddressWithDefaults instantiates a new Address object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLabel
+### GetAlias
 
-`func (o *Address) GetLabel() string`
+`func (o *Address) GetAlias() string`
 
-GetLabel returns the Label field if non-nil, zero value otherwise.
+GetAlias returns the Alias field if non-nil, zero value otherwise.
 
-### GetLabelOk
+### GetAliasOk
 
-`func (o *Address) GetLabelOk() (*string, bool)`
+`func (o *Address) GetAliasOk() (*string, bool)`
 
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+GetAliasOk returns a tuple with the Alias field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLabel
+### SetAlias
 
-`func (o *Address) SetLabel(v string)`
+`func (o *Address) SetAlias(v string)`
 
-SetLabel sets Label field to given value.
+SetAlias sets Alias field to given value.
 
 
 ### GetAddress

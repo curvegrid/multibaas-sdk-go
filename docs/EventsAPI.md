@@ -40,7 +40,7 @@ func main() {
 	contractAddress := "contractAddress_example" // string | Filter events by a contract address. (optional)
 	contractLabel := "contractLabel_example" // string | Filter events by a contract label. (optional)
 	eventSignature := "eventSignature_example" // string | Filter events by the signature. (optional)
-	limit := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional) (default to 10)
 	offset := int64(789) // int64 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
  **contractAddress** | **string** | Filter events by a contract address. | 
  **contractLabel** | **string** | Filter events by a contract label. | 
  **eventSignature** | **string** | Filter events by the signature. | 
- **limit** | **int64** |  | 
+ **limit** | **int64** |  | [default to 10]
  **offset** | **int64** |  | 
 
 ### Return type
@@ -128,7 +128,7 @@ func main() {
 	contractAddress := "contractAddress_example" // string | Filter events by a contract address. (optional)
 	contractLabel := "contractLabel_example" // string | Filter events by a contract label. (optional)
 	eventSignature := "eventSignature_example" // string | Filter events by the signature. (optional)
-	limit := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional) (default to 10)
 	offset := int64(789) // int64 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
  **contractAddress** | **string** | Filter events by a contract address. | 
  **contractLabel** | **string** | Filter events by a contract label. | 
  **eventSignature** | **string** | Filter events by the signature. | 
- **limit** | **int64** |  | 
+ **limit** | **int64** |  | [default to 10]
  **offset** | **int64** |  | 
 
 ### Return type

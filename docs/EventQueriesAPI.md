@@ -177,7 +177,7 @@ import (
 func main() {
 	eventQuery := *openapiclient.NewEventQuery([]openapiclient.EventQueryEvent{*openapiclient.NewEventQueryEvent("EventName_example", []openapiclient.EventQueryField{*openapiclient.NewEventQueryField(openapiclient.FieldType("input"))})}) // EventQuery | 
 	offset := int64(789) // int64 |  (optional)
-	limit := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional) (default to 10)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **eventQuery** | [**EventQuery**](EventQuery.md) |  | 
  **offset** | **int64** |  | 
- **limit** | **int64** |  | 
+ **limit** | **int64** |  | [default to 10]
 
 ### Return type
 
@@ -247,7 +247,7 @@ import (
 func main() {
 	eventQuery := "eventQuery_example" // string | An event query label.
 	offset := int64(789) // int64 |  (optional)
-	limit := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional) (default to 10)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **offset** | **int64** |  | 
- **limit** | **int64** |  | 
+ **limit** | **int64** |  | [default to 10]
 
 ### Return type
 

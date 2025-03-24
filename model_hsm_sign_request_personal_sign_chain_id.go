@@ -108,6 +108,20 @@ func (obj *HSMSignRequestPersonalSignChainId) GetActualInstance() interface{} {
 	return nil
 }
 
+// Get the actual instance value
+func (obj HSMSignRequestPersonalSignChainId) GetActualInstanceValue() interface{} {
+	if obj.Int64 != nil {
+		return *obj.Int64
+	}
+
+	if obj.String != nil {
+		return *obj.String
+	}
+
+	// all schemas are nil
+	return nil
+}
+
 type NullableHSMSignRequestPersonalSignChainId struct {
 	value *HSMSignRequestPersonalSignChainId
 	isSet bool

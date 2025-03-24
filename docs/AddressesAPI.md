@@ -4,8 +4,8 @@ All URIs are relative to *https://your_deployment.multibaas.com/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteAddress**](AddressesAPI.md#DeleteAddress) | **Delete** /chains/{chain}/addresses/{address-or-label} | Delete address
-[**GetAddress**](AddressesAPI.md#GetAddress) | **Get** /chains/{chain}/addresses/{address-or-label} | Get address
+[**DeleteAddress**](AddressesAPI.md#DeleteAddress) | **Delete** /chains/{chain}/addresses/{address-or-alias} | Delete address
+[**GetAddress**](AddressesAPI.md#GetAddress) | **Get** /chains/{chain}/addresses/{address-or-alias} | Get address
 [**ListAddresses**](AddressesAPI.md#ListAddresses) | **Get** /chains/{chain}/addresses | List addresses
 [**SetAddress**](AddressesAPI.md#SetAddress) | **Post** /chains/{chain}/addresses | Create or update address
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## DeleteAddress
 
-> BaseResponse DeleteAddress(ctx, chain, addressOrLabel).Execute()
+> BaseResponse DeleteAddress(ctx, chain, addressOrAlias).Execute()
 
 Delete address
 
@@ -33,11 +33,11 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
+	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AddressesAPI.DeleteAddress(context.Background(), chain, addressOrLabel).Execute()
+	resp, r, err := apiClient.AddressesAPI.DeleteAddress(context.Background(), chain, addressOrAlias).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.DeleteAddress``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**addressOrLabel** | **string** | An address or the label of an address. | 
+**addressOrAlias** | **string** | An address or the alias of an address. | 
 
 ### Other Parameters
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## GetAddress
 
-> SetAddress201Response GetAddress(ctx, chain, addressOrLabel).Include(include).Execute()
+> SetAddress201Response GetAddress(ctx, chain, addressOrAlias).Include(include).Execute()
 
 Get address
 
@@ -106,12 +106,12 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	addressOrLabel := "addressOrLabel_example" // string | An address or the label of an address.
+	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
 	include := []string{"Include_example"} // []string | Optional data to fetch from the blockchain: - `balance` to get the balance of this address. - `code` to get the code at this address. - `nonce` to get the next available transaction nonce for this address. - `contractLookup` to get the contract(s) details for this address.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AddressesAPI.GetAddress(context.Background(), chain, addressOrLabel).Include(include).Execute()
+	resp, r, err := apiClient.AddressesAPI.GetAddress(context.Background(), chain, addressOrAlias).Include(include).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.GetAddress``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**addressOrLabel** | **string** | An address or the label of an address. | 
+**addressOrAlias** | **string** | An address or the alias of an address. | 
 
 ### Other Parameters
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## SetAddress
 
-> SetAddress201Response SetAddress(ctx, chain).AddressLabel(addressLabel).Execute()
+> SetAddress201Response SetAddress(ctx, chain).AddressAlias(addressAlias).Execute()
 
 Create or update address
 
@@ -251,11 +251,11 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	addressLabel := *openapiclient.NewAddressLabel("Label_example", "Address_example") // AddressLabel | 
+	addressAlias := *openapiclient.NewAddressAlias("Alias_example", "Address_example") // AddressAlias | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AddressesAPI.SetAddress(context.Background(), chain).AddressLabel(addressLabel).Execute()
+	resp, r, err := apiClient.AddressesAPI.SetAddress(context.Background(), chain).AddressAlias(addressAlias).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.SetAddress``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,7 +281,7 @@ Other parameters are passed through a pointer to a apiSetAddressRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **addressLabel** | [**AddressLabel**](AddressLabel.md) |  | 
+ **addressAlias** | [**AddressAlias**](AddressAlias.md) |  | 
 
 ### Return type
 

@@ -108,6 +108,20 @@ func (obj *EIP712DomainChainId) GetActualInstance() interface{} {
 	return nil
 }
 
+// Get the actual instance value
+func (obj EIP712DomainChainId) GetActualInstanceValue() interface{} {
+	if obj.Int64 != nil {
+		return *obj.Int64
+	}
+
+	if obj.String != nil {
+		return *obj.String
+	}
+
+	// all schemas are nil
+	return nil
+}
+
 type NullableEIP712DomainChainId struct {
 	value *EIP712DomainChainId
 	isSet bool

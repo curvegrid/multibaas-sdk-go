@@ -374,7 +374,7 @@ import (
 
 func main() {
 	webhookID := int64(789) // int64 | 
-	limit := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional) (default to 10)
 	offset := int64(789) // int64 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -405,7 +405,7 @@ Other parameters are passed through a pointer to a apiListWebhookEventsRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **int64** |  | 
+ **limit** | **int64** |  | [default to 10]
  **offset** | **int64** |  | 
 
 ### Return type
@@ -447,7 +447,7 @@ import (
 )
 
 func main() {
-	limit := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional) (default to 10)
 	offset := int64(789) // int64 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -473,7 +473,7 @@ Other parameters are passed through a pointer to a apiListWebhooksRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int64** |  | 
+ **limit** | **int64** |  | [default to 10]
  **offset** | **int64** |  | 
 
 ### Return type

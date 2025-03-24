@@ -32,9 +32,9 @@ type BaseContract struct {
 	// The contract raw ABI JSON string.
 	RawAbi string `json:"rawAbi"`
 	// The user documentation JSON string.
-	UserDoc string `json:"userDoc"`
+	UserDoc *string `json:"userDoc,omitempty"`
 	// The developer documentation JSON string.
-	DeveloperDoc string `json:"developerDoc"`
+	DeveloperDoc *string `json:"developerDoc,omitempty"`
 	// The contract metadata JSON string.
 	Metadata   *string `json:"metadata,omitempty"`
 	IsFavorite *bool   `json:"isFavorite,omitempty"`
@@ -46,14 +46,12 @@ type _BaseContract BaseContract
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBaseContract(label string, contractName string, version string, rawAbi string, userDoc string, developerDoc string) *BaseContract {
+func NewBaseContract(label string, contractName string, version string, rawAbi string) *BaseContract {
 	this := BaseContract{}
 	this.Label = label
 	this.ContractName = contractName
 	this.Version = version
 	this.RawAbi = rawAbi
-	this.UserDoc = userDoc
-	this.DeveloperDoc = developerDoc
 	return &this
 }
 
@@ -193,52 +191,68 @@ func (o *BaseContract) SetRawAbi(v string) {
 	o.RawAbi = v
 }
 
-// GetUserDoc returns the UserDoc field value
+// GetUserDoc returns the UserDoc field value if set, zero value otherwise.
 func (o *BaseContract) GetUserDoc() string {
-	if o == nil {
+	if o == nil || IsNil(o.UserDoc) {
 		var ret string
 		return ret
 	}
-
-	return o.UserDoc
+	return *o.UserDoc
 }
 
-// GetUserDocOk returns a tuple with the UserDoc field value
+// GetUserDocOk returns a tuple with the UserDoc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BaseContract) GetUserDocOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserDoc) {
 		return nil, false
 	}
-	return &o.UserDoc, true
+	return o.UserDoc, true
 }
 
-// SetUserDoc sets field value
+// HasUserDoc returns a boolean if a field has been set.
+func (o *BaseContract) HasUserDoc() bool {
+	if o != nil && !IsNil(o.UserDoc) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserDoc gets a reference to the given string and assigns it to the UserDoc field.
 func (o *BaseContract) SetUserDoc(v string) {
-	o.UserDoc = v
+	o.UserDoc = &v
 }
 
-// GetDeveloperDoc returns the DeveloperDoc field value
+// GetDeveloperDoc returns the DeveloperDoc field value if set, zero value otherwise.
 func (o *BaseContract) GetDeveloperDoc() string {
-	if o == nil {
+	if o == nil || IsNil(o.DeveloperDoc) {
 		var ret string
 		return ret
 	}
-
-	return o.DeveloperDoc
+	return *o.DeveloperDoc
 }
 
-// GetDeveloperDocOk returns a tuple with the DeveloperDoc field value
+// GetDeveloperDocOk returns a tuple with the DeveloperDoc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BaseContract) GetDeveloperDocOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeveloperDoc) {
 		return nil, false
 	}
-	return &o.DeveloperDoc, true
+	return o.DeveloperDoc, true
 }
 
-// SetDeveloperDoc sets field value
+// HasDeveloperDoc returns a boolean if a field has been set.
+func (o *BaseContract) HasDeveloperDoc() bool {
+	if o != nil && !IsNil(o.DeveloperDoc) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeveloperDoc gets a reference to the given string and assigns it to the DeveloperDoc field.
 func (o *BaseContract) SetDeveloperDoc(v string) {
-	o.DeveloperDoc = v
+	o.DeveloperDoc = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -322,8 +336,12 @@ func (o BaseContract) ToMap() (map[string]interface{}, error) {
 		toSerialize["bin"] = o.Bin
 	}
 	toSerialize["rawAbi"] = o.RawAbi
-	toSerialize["userDoc"] = o.UserDoc
-	toSerialize["developerDoc"] = o.DeveloperDoc
+	if !IsNil(o.UserDoc) {
+		toSerialize["userDoc"] = o.UserDoc
+	}
+	if !IsNil(o.DeveloperDoc) {
+		toSerialize["developerDoc"] = o.DeveloperDoc
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -342,8 +360,6 @@ func (o *BaseContract) UnmarshalJSON(data []byte) (err error) {
 		"contractName",
 		"version",
 		"rawAbi",
-		"userDoc",
-		"developerDoc",
 	}
 
 	allProperties := make(map[string]interface{})

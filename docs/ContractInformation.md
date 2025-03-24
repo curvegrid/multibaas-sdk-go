@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** | An ethereum address. | 
-**AddressLabel** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
+**AddressAlias** | **string** | An alias to easily identify and reference addresses. | 
 **Name** | **string** | The name of the contract. | 
 **Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewContractInformation
 
-`func NewContractInformation(address string, addressLabel string, name string, label string, ) *ContractInformation`
+`func NewContractInformation(address string, addressAlias string, name string, label string, ) *ContractInformation`
 
 NewContractInformation instantiates a new ContractInformation object
 This constructor will assign default values to properties that have it defined,
@@ -48,24 +48,24 @@ and a boolean to check if the value has been set.
 SetAddress sets Address field to given value.
 
 
-### GetAddressLabel
+### GetAddressAlias
 
-`func (o *ContractInformation) GetAddressLabel() string`
+`func (o *ContractInformation) GetAddressAlias() string`
 
-GetAddressLabel returns the AddressLabel field if non-nil, zero value otherwise.
+GetAddressAlias returns the AddressAlias field if non-nil, zero value otherwise.
 
-### GetAddressLabelOk
+### GetAddressAliasOk
 
-`func (o *ContractInformation) GetAddressLabelOk() (*string, bool)`
+`func (o *ContractInformation) GetAddressAliasOk() (*string, bool)`
 
-GetAddressLabelOk returns a tuple with the AddressLabel field if it's non-nil, zero value otherwise
+GetAddressAliasOk returns a tuple with the AddressAlias field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAddressLabel
+### SetAddressAlias
 
-`func (o *ContractInformation) SetAddressLabel(v string)`
+`func (o *ContractInformation) SetAddressAlias(v string)`
 
-SetAddressLabel sets AddressLabel field to given value.
+SetAddressAlias sets AddressAlias field to given value.
 
 
 ### GetName

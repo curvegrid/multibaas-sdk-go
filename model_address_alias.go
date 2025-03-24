@@ -16,64 +16,64 @@ import (
 	"fmt"
 )
 
-// checks if the AddressLabel type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AddressLabel{}
+// checks if the AddressAlias type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AddressAlias{}
 
-// AddressLabel An address and it's label.
-type AddressLabel struct {
-	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+// AddressAlias An address and it's alias.
+type AddressAlias struct {
+	// An alias to easily identify and reference addresses.
+	Alias string `json:"alias" validate:"regexp=^[a-z0-9_-]+$"`
 	// An ethereum address.
 	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 }
 
-type _AddressLabel AddressLabel
+type _AddressAlias AddressAlias
 
-// NewAddressLabel instantiates a new AddressLabel object
+// NewAddressAlias instantiates a new AddressAlias object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddressLabel(label string, address string) *AddressLabel {
-	this := AddressLabel{}
-	this.Label = label
+func NewAddressAlias(alias string, address string) *AddressAlias {
+	this := AddressAlias{}
+	this.Alias = alias
 	this.Address = address
 	return &this
 }
 
-// NewAddressLabelWithDefaults instantiates a new AddressLabel object
+// NewAddressAliasWithDefaults instantiates a new AddressAlias object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAddressLabelWithDefaults() *AddressLabel {
-	this := AddressLabel{}
+func NewAddressAliasWithDefaults() *AddressAlias {
+	this := AddressAlias{}
 	return &this
 }
 
-// GetLabel returns the Label field value
-func (o *AddressLabel) GetLabel() string {
+// GetAlias returns the Alias field value
+func (o *AddressAlias) GetAlias() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Label
+	return o.Alias
 }
 
-// GetLabelOk returns a tuple with the Label field value
+// GetAliasOk returns a tuple with the Alias field value
 // and a boolean to check if the value has been set.
-func (o *AddressLabel) GetLabelOk() (*string, bool) {
+func (o *AddressAlias) GetAliasOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Label, true
+	return &o.Alias, true
 }
 
-// SetLabel sets field value
-func (o *AddressLabel) SetLabel(v string) {
-	o.Label = v
+// SetAlias sets field value
+func (o *AddressAlias) SetAlias(v string) {
+	o.Alias = v
 }
 
 // GetAddress returns the Address field value
-func (o *AddressLabel) GetAddress() string {
+func (o *AddressAlias) GetAddress() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *AddressLabel) GetAddress() string {
 
 // GetAddressOk returns a tuple with the Address field value
 // and a boolean to check if the value has been set.
-func (o *AddressLabel) GetAddressOk() (*string, bool) {
+func (o *AddressAlias) GetAddressOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,11 +92,11 @@ func (o *AddressLabel) GetAddressOk() (*string, bool) {
 }
 
 // SetAddress sets field value
-func (o *AddressLabel) SetAddress(v string) {
+func (o *AddressAlias) SetAddress(v string) {
 	o.Address = v
 }
 
-func (o AddressLabel) MarshalJSON() ([]byte, error) {
+func (o AddressAlias) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,19 +104,19 @@ func (o AddressLabel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AddressLabel) ToMap() (map[string]interface{}, error) {
+func (o AddressAlias) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["label"] = o.Label
+	toSerialize["alias"] = o.Alias
 	toSerialize["address"] = o.Address
 	return toSerialize, nil
 }
 
-func (o *AddressLabel) UnmarshalJSON(data []byte) (err error) {
+func (o *AddressAlias) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"label",
+		"alias",
 		"address",
 	}
 
@@ -134,53 +134,53 @@ func (o *AddressLabel) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varAddressLabel := _AddressLabel{}
+	varAddressAlias := _AddressAlias{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAddressLabel)
+	err = decoder.Decode(&varAddressAlias)
 
 	if err != nil {
 		return err
 	}
 
-	*o = AddressLabel(varAddressLabel)
+	*o = AddressAlias(varAddressAlias)
 
 	return err
 }
 
-type NullableAddressLabel struct {
-	value *AddressLabel
+type NullableAddressAlias struct {
+	value *AddressAlias
 	isSet bool
 }
 
-func (v NullableAddressLabel) Get() *AddressLabel {
+func (v NullableAddressAlias) Get() *AddressAlias {
 	return v.value
 }
 
-func (v *NullableAddressLabel) Set(val *AddressLabel) {
+func (v *NullableAddressAlias) Set(val *AddressAlias) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAddressLabel) IsSet() bool {
+func (v NullableAddressAlias) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAddressLabel) Unset() {
+func (v *NullableAddressAlias) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAddressLabel(val *AddressLabel) *NullableAddressLabel {
-	return &NullableAddressLabel{value: val, isSet: true}
+func NewNullableAddressAlias(val *AddressAlias) *NullableAddressAlias {
+	return &NullableAddressAlias{value: val, isSet: true}
 }
 
-func (v NullableAddressLabel) MarshalJSON() ([]byte, error) {
+func (v NullableAddressAlias) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAddressLabel) UnmarshalJSON(src []byte) error {
+func (v *NullableAddressAlias) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

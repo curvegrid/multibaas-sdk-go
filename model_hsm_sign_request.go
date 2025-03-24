@@ -126,6 +126,20 @@ func (obj *HSMSignRequest) GetActualInstance() interface{} {
 	return nil
 }
 
+// Get the actual instance value
+func (obj HSMSignRequest) GetActualInstanceValue() interface{} {
+	if obj.HSMSignRequestPersonalSign != nil {
+		return *obj.HSMSignRequestPersonalSign
+	}
+
+	if obj.HSMSignRequestTypedData != nil {
+		return *obj.HSMSignRequestTypedData
+	}
+
+	// all schemas are nil
+	return nil
+}
+
 type NullableHSMSignRequest struct {
 	value *HSMSignRequest
 	isSet bool

@@ -24,7 +24,7 @@ const (
 	CONTRACT_LABEL         FieldType = "contract_label"
 	CONTRACT_NAME          FieldType = "contract_name"
 	CONTRACT_ADDRESS       FieldType = "contract_address"
-	CONTRACT_ADDRESS_LABEL FieldType = "contract_address_label"
+	CONTRACT_ADDRESS_ALIAS FieldType = "contract_address_alias"
 	BLOCK_NUMBER           FieldType = "block_number"
 	TRIGGERED_AT           FieldType = "triggered_at"
 	EVENT_SIGNATURE        FieldType = "event_signature"
@@ -39,7 +39,7 @@ var AllowedFieldTypeEnumValues = []FieldType{
 	"contract_label",
 	"contract_name",
 	"contract_address",
-	"contract_address_label",
+	"contract_address_alias",
 	"block_number",
 	"triggered_at",
 	"event_signature",

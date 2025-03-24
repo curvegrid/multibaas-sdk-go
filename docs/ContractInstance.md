@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** |  | 
+**Alias** | **string** |  | 
 **Address** | **string** | An ethereum address. | 
 
 ## Methods
 
 ### NewContractInstance
 
-`func NewContractInstance(label string, address string, ) *ContractInstance`
+`func NewContractInstance(alias string, address string, ) *ContractInstance`
 
 NewContractInstance instantiates a new ContractInstance object
 This constructor will assign default values to properties that have it defined,
@@ -26,24 +26,24 @@ NewContractInstanceWithDefaults instantiates a new ContractInstance object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLabel
+### GetAlias
 
-`func (o *ContractInstance) GetLabel() string`
+`func (o *ContractInstance) GetAlias() string`
 
-GetLabel returns the Label field if non-nil, zero value otherwise.
+GetAlias returns the Alias field if non-nil, zero value otherwise.
 
-### GetLabelOk
+### GetAliasOk
 
-`func (o *ContractInstance) GetLabelOk() (*string, bool)`
+`func (o *ContractInstance) GetAliasOk() (*string, bool)`
 
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+GetAliasOk returns a tuple with the Alias field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLabel
+### SetAlias
 
-`func (o *ContractInstance) SetLabel(v string)`
+`func (o *ContractInstance) SetAlias(v string)`
 
-SetLabel sets Label field to given value.
+SetAlias sets Alias field to given value.
 
 
 ### GetAddress

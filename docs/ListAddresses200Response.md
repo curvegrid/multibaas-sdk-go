@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **int64** | The status code. | 
 **Message** | **string** | The human-readable status message. | 
-**Result** | [**[]AddressLabel**](AddressLabel.md) |  | 
+**Result** | [**[]AddressAlias**](AddressAlias.md) |  | 
 
 ## Methods
 
 ### NewListAddresses200Response
 
-`func NewListAddresses200Response(status int64, message string, result []AddressLabel, ) *ListAddresses200Response`
+`func NewListAddresses200Response(status int64, message string, result []AddressAlias, ) *ListAddresses200Response`
 
 NewListAddresses200Response instantiates a new ListAddresses200Response object
 This constructor will assign default values to properties that have it defined,
@@ -69,20 +69,20 @@ SetMessage sets Message field to given value.
 
 ### GetResult
 
-`func (o *ListAddresses200Response) GetResult() []AddressLabel`
+`func (o *ListAddresses200Response) GetResult() []AddressAlias`
 
 GetResult returns the Result field if non-nil, zero value otherwise.
 
 ### GetResultOk
 
-`func (o *ListAddresses200Response) GetResultOk() (*[]AddressLabel, bool)`
+`func (o *ListAddresses200Response) GetResultOk() (*[]AddressAlias, bool)`
 
 GetResultOk returns a tuple with the Result field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResult
 
-`func (o *ListAddresses200Response) SetResult(v []AddressLabel)`
+`func (o *ListAddresses200Response) SetResult(v []AddressAlias)`
 
 SetResult sets Result field to given value.
 

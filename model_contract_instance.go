@@ -21,7 +21,7 @@ var _ MappedNullable = &ContractInstance{}
 
 // ContractInstance A contract instance
 type ContractInstance struct {
-	Label string `json:"label"`
+	Alias string `json:"alias"`
 	// An ethereum address.
 	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 }
@@ -32,9 +32,9 @@ type _ContractInstance ContractInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractInstance(label string, address string) *ContractInstance {
+func NewContractInstance(alias string, address string) *ContractInstance {
 	this := ContractInstance{}
-	this.Label = label
+	this.Alias = alias
 	this.Address = address
 	return &this
 }
@@ -47,28 +47,28 @@ func NewContractInstanceWithDefaults() *ContractInstance {
 	return &this
 }
 
-// GetLabel returns the Label field value
-func (o *ContractInstance) GetLabel() string {
+// GetAlias returns the Alias field value
+func (o *ContractInstance) GetAlias() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Label
+	return o.Alias
 }
 
-// GetLabelOk returns a tuple with the Label field value
+// GetAliasOk returns a tuple with the Alias field value
 // and a boolean to check if the value has been set.
-func (o *ContractInstance) GetLabelOk() (*string, bool) {
+func (o *ContractInstance) GetAliasOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Label, true
+	return &o.Alias, true
 }
 
-// SetLabel sets field value
-func (o *ContractInstance) SetLabel(v string) {
-	o.Label = v
+// SetAlias sets field value
+func (o *ContractInstance) SetAlias(v string) {
+	o.Alias = v
 }
 
 // GetAddress returns the Address field value
@@ -105,7 +105,7 @@ func (o ContractInstance) MarshalJSON() ([]byte, error) {
 
 func (o ContractInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["label"] = o.Label
+	toSerialize["alias"] = o.Alias
 	toSerialize["address"] = o.Address
 	return toSerialize, nil
 }
@@ -115,7 +115,7 @@ func (o *ContractInstance) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"label",
+		"alias",
 		"address",
 	}
 

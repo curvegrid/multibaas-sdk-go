@@ -130,6 +130,24 @@ func (obj *CallContractFunction200ResponseAllOfResult) GetActualInstance() inter
 	return nil
 }
 
+// Get the actual instance value
+func (obj CallContractFunction200ResponseAllOfResult) GetActualInstanceValue() interface{} {
+	if obj.MethodCallPreviewResponse != nil {
+		return *obj.MethodCallPreviewResponse
+	}
+
+	if obj.MethodCallResponse != nil {
+		return *obj.MethodCallResponse
+	}
+
+	if obj.TransactionToSignResponse != nil {
+		return *obj.TransactionToSignResponse
+	}
+
+	// all schemas are nil
+	return nil
+}
+
 type NullableCallContractFunction200ResponseAllOfResult struct {
 	value *CallContractFunction200ResponseAllOfResult
 	isSet bool

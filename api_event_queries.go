@@ -450,6 +450,9 @@ func (a *EventQueriesAPIService) ExecuteArbitraryEventQueryExecute(r ApiExecuteA
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int64 = 10
+		r.limit = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -595,6 +598,9 @@ func (a *EventQueriesAPIService) ExecuteEventQueryExecute(r ApiExecuteEventQuery
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int64 = 10
+		r.limit = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

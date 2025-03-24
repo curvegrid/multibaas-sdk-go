@@ -303,7 +303,7 @@ func main() {
 	baseGroupName := "baseGroupName_example" // string | Filter wallets by a base group name. (optional)
 	clientId := "clientId_example" // string | Filter wallets by a client ID. (optional)
 	publicAddress := "publicAddress_example" // string | Filter wallets by a public address. (optional)
-	limit := int64(789) // int64 |  (optional)
+	limit := int64(789) // int64 |  (optional) (default to 10)
 	offset := int64(789) // int64 |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
  **baseGroupName** | **string** | Filter wallets by a base group name. | 
  **clientId** | **string** | Filter wallets by a client ID. | 
  **publicAddress** | **string** | Filter wallets by a public address. | 
- **limit** | **int64** |  | 
+ **limit** | **int64** |  | [default to 10]
  **offset** | **int64** |  | 
 
 ### Return type

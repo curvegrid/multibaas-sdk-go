@@ -23,8 +23,8 @@ var _ MappedNullable = &ContractInformation{}
 type ContractInformation struct {
 	// An ethereum address.
 	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
-	// An alias to easily identify and reference the entity in subsequent requests.
-	AddressLabel string `json:"addressLabel" validate:"regexp=^[a-z0-9_-]+$"`
+	// An alias to easily identify and reference addresses.
+	AddressAlias string `json:"addressAlias" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
 	Name string `json:"name"`
 	// An alias to easily identify and reference the entity in subsequent requests.
@@ -37,10 +37,10 @@ type _ContractInformation ContractInformation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractInformation(address string, addressLabel string, name string, label string) *ContractInformation {
+func NewContractInformation(address string, addressAlias string, name string, label string) *ContractInformation {
 	this := ContractInformation{}
 	this.Address = address
-	this.AddressLabel = addressLabel
+	this.AddressAlias = addressAlias
 	this.Name = name
 	this.Label = label
 	return &this
@@ -78,28 +78,28 @@ func (o *ContractInformation) SetAddress(v string) {
 	o.Address = v
 }
 
-// GetAddressLabel returns the AddressLabel field value
-func (o *ContractInformation) GetAddressLabel() string {
+// GetAddressAlias returns the AddressAlias field value
+func (o *ContractInformation) GetAddressAlias() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AddressLabel
+	return o.AddressAlias
 }
 
-// GetAddressLabelOk returns a tuple with the AddressLabel field value
+// GetAddressAliasOk returns a tuple with the AddressAlias field value
 // and a boolean to check if the value has been set.
-func (o *ContractInformation) GetAddressLabelOk() (*string, bool) {
+func (o *ContractInformation) GetAddressAliasOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AddressLabel, true
+	return &o.AddressAlias, true
 }
 
-// SetAddressLabel sets field value
-func (o *ContractInformation) SetAddressLabel(v string) {
-	o.AddressLabel = v
+// SetAddressAlias sets field value
+func (o *ContractInformation) SetAddressAlias(v string) {
+	o.AddressAlias = v
 }
 
 // GetName returns the Name field value
@@ -161,7 +161,7 @@ func (o ContractInformation) MarshalJSON() ([]byte, error) {
 func (o ContractInformation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
-	toSerialize["addressLabel"] = o.AddressLabel
+	toSerialize["addressAlias"] = o.AddressAlias
 	toSerialize["name"] = o.Name
 	toSerialize["label"] = o.Label
 	return toSerialize, nil
@@ -173,7 +173,7 @@ func (o *ContractInformation) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"address",
-		"addressLabel",
+		"addressAlias",
 		"name",
 		"label",
 	}

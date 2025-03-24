@@ -21,8 +21,8 @@ var _ MappedNullable = &Address{}
 
 // Address An address details.
 type Address struct {
-	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+	// An alias to easily identify and reference addresses.
+	Alias string `json:"alias" validate:"regexp=^[a-z0-9_-]+$"`
 	// An ethereum address.
 	Address string   `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	Balance *string  `json:"balance,omitempty"`
@@ -43,9 +43,9 @@ type _Address Address
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddress(label string, address string, chain string, modules []string, contracts []ContractMetadata) *Address {
+func NewAddress(alias string, address string, chain string, modules []string, contracts []ContractMetadata) *Address {
 	this := Address{}
-	this.Label = label
+	this.Alias = alias
 	this.Address = address
 	this.Chain = chain
 	this.Modules = modules
@@ -61,28 +61,28 @@ func NewAddressWithDefaults() *Address {
 	return &this
 }
 
-// GetLabel returns the Label field value
-func (o *Address) GetLabel() string {
+// GetAlias returns the Alias field value
+func (o *Address) GetAlias() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Label
+	return o.Alias
 }
 
-// GetLabelOk returns a tuple with the Label field value
+// GetAliasOk returns a tuple with the Alias field value
 // and a boolean to check if the value has been set.
-func (o *Address) GetLabelOk() (*string, bool) {
+func (o *Address) GetAliasOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Label, true
+	return &o.Alias, true
 }
 
-// SetLabel sets field value
-func (o *Address) SetLabel(v string) {
-	o.Label = v
+// SetAlias sets field value
+func (o *Address) SetAlias(v string) {
+	o.Alias = v
 }
 
 // GetAddress returns the Address field value
@@ -351,7 +351,7 @@ func (o Address) MarshalJSON() ([]byte, error) {
 
 func (o Address) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["label"] = o.Label
+	toSerialize["alias"] = o.Alias
 	toSerialize["address"] = o.Address
 	if !IsNil(o.Balance) {
 		toSerialize["balance"] = o.Balance
@@ -379,7 +379,7 @@ func (o *Address) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"label",
+		"alias",
 		"address",
 		"chain",
 		"modules",

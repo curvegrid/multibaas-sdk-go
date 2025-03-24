@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **Version** | **string** | The contract version. | 
 **Bin** | Pointer to **string** | The smart-contract bytecode. | [optional] 
 **RawAbi** | **string** | The contract raw ABI JSON string. | 
-**UserDoc** | **string** | The user documentation JSON string. | 
-**DeveloperDoc** | **string** | The developer documentation JSON string. | 
+**UserDoc** | Pointer to **string** | The user documentation JSON string. | [optional] 
+**DeveloperDoc** | Pointer to **string** | The developer documentation JSON string. | [optional] 
 **Metadata** | Pointer to **string** | The contract metadata JSON string. | [optional] 
 **IsFavorite** | Pointer to **bool** |  | [optional] 
 **Abi** | [**ContractABI**](ContractABI.md) |  | 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewContract
 
-`func NewContract(label string, contractName string, version string, rawAbi string, userDoc string, developerDoc string, abi ContractABI, ) *Contract`
+`func NewContract(label string, contractName string, version string, rawAbi string, abi ContractABI, ) *Contract`
 
 NewContract instantiates a new Contract object
 This constructor will assign default values to properties that have it defined,
@@ -159,6 +159,11 @@ and a boolean to check if the value has been set.
 
 SetUserDoc sets UserDoc field to given value.
 
+### HasUserDoc
+
+`func (o *Contract) HasUserDoc() bool`
+
+HasUserDoc returns a boolean if a field has been set.
 
 ### GetDeveloperDoc
 
@@ -179,6 +184,11 @@ and a boolean to check if the value has been set.
 
 SetDeveloperDoc sets DeveloperDoc field to given value.
 
+### HasDeveloperDoc
+
+`func (o *Contract) HasDeveloperDoc() bool`
+
+HasDeveloperDoc returns a boolean if a field has been set.
 
 ### GetMetadata
 
