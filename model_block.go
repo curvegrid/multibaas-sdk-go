@@ -21,7 +21,6 @@ var _ MappedNullable = &Block{}
 
 // Block A block in the Ethereum blockchain.
 type Block struct {
-	Blockchain string `json:"blockchain"`
 	// The keccak256 hash as a hex string of 256 bits.
 	Hash         string        `json:"hash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	Difficulty   string        `json:"difficulty"`
@@ -47,9 +46,9 @@ type Block struct {
 	// A hex string.
 	Nonce string `json:"nonce" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	MixHash       string `json:"mixHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
-	ExtraData     string `json:"extraData"`
-	BaseFeePerGas string `json:"baseFeePerGas"`
+	MixHash       string  `json:"mixHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	ExtraData     string  `json:"extraData"`
+	BaseFeePerGas *string `json:"baseFeePerGas,omitempty"`
 }
 
 type _Block Block
@@ -58,9 +57,8 @@ type _Block Block
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBlock(blockchain string, hash string, difficulty string, gasLimit int64, number string, timestamp int64, transactions []Transaction, receiptsRoot string, parentHash string, sha3Uncles string, miner string, stateRoot string, transactionsRoot string, logsBloom string, gasUsed int32, nonce string, mixHash string, extraData string, baseFeePerGas string) *Block {
+func NewBlock(hash string, difficulty string, gasLimit int64, number string, timestamp int64, transactions []Transaction, receiptsRoot string, parentHash string, sha3Uncles string, miner string, stateRoot string, transactionsRoot string, logsBloom string, gasUsed int32, nonce string, mixHash string, extraData string) *Block {
 	this := Block{}
-	this.Blockchain = blockchain
 	this.Hash = hash
 	this.Difficulty = difficulty
 	this.GasLimit = gasLimit
@@ -78,7 +76,6 @@ func NewBlock(blockchain string, hash string, difficulty string, gasLimit int64,
 	this.Nonce = nonce
 	this.MixHash = mixHash
 	this.ExtraData = extraData
-	this.BaseFeePerGas = baseFeePerGas
 	return &this
 }
 
@@ -88,30 +85,6 @@ func NewBlock(blockchain string, hash string, difficulty string, gasLimit int64,
 func NewBlockWithDefaults() *Block {
 	this := Block{}
 	return &this
-}
-
-// GetBlockchain returns the Blockchain field value
-func (o *Block) GetBlockchain() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Blockchain
-}
-
-// GetBlockchainOk returns a tuple with the Blockchain field value
-// and a boolean to check if the value has been set.
-func (o *Block) GetBlockchainOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Blockchain, true
-}
-
-// SetBlockchain sets field value
-func (o *Block) SetBlockchain(v string) {
-	o.Blockchain = v
 }
 
 // GetHash returns the Hash field value
@@ -522,28 +495,36 @@ func (o *Block) SetExtraData(v string) {
 	o.ExtraData = v
 }
 
-// GetBaseFeePerGas returns the BaseFeePerGas field value
+// GetBaseFeePerGas returns the BaseFeePerGas field value if set, zero value otherwise.
 func (o *Block) GetBaseFeePerGas() string {
-	if o == nil {
+	if o == nil || IsNil(o.BaseFeePerGas) {
 		var ret string
 		return ret
 	}
-
-	return o.BaseFeePerGas
+	return *o.BaseFeePerGas
 }
 
-// GetBaseFeePerGasOk returns a tuple with the BaseFeePerGas field value
+// GetBaseFeePerGasOk returns a tuple with the BaseFeePerGas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Block) GetBaseFeePerGasOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BaseFeePerGas) {
 		return nil, false
 	}
-	return &o.BaseFeePerGas, true
+	return o.BaseFeePerGas, true
 }
 
-// SetBaseFeePerGas sets field value
+// HasBaseFeePerGas returns a boolean if a field has been set.
+func (o *Block) HasBaseFeePerGas() bool {
+	if o != nil && !IsNil(o.BaseFeePerGas) {
+		return true
+	}
+
+	return false
+}
+
+// SetBaseFeePerGas gets a reference to the given string and assigns it to the BaseFeePerGas field.
 func (o *Block) SetBaseFeePerGas(v string) {
-	o.BaseFeePerGas = v
+	o.BaseFeePerGas = &v
 }
 
 func (o Block) MarshalJSON() ([]byte, error) {
@@ -556,7 +537,6 @@ func (o Block) MarshalJSON() ([]byte, error) {
 
 func (o Block) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["blockchain"] = o.Blockchain
 	toSerialize["hash"] = o.Hash
 	toSerialize["difficulty"] = o.Difficulty
 	toSerialize["gasLimit"] = o.GasLimit
@@ -574,7 +554,9 @@ func (o Block) ToMap() (map[string]interface{}, error) {
 	toSerialize["nonce"] = o.Nonce
 	toSerialize["mixHash"] = o.MixHash
 	toSerialize["extraData"] = o.ExtraData
-	toSerialize["baseFeePerGas"] = o.BaseFeePerGas
+	if !IsNil(o.BaseFeePerGas) {
+		toSerialize["baseFeePerGas"] = o.BaseFeePerGas
+	}
 	return toSerialize, nil
 }
 
@@ -583,7 +565,6 @@ func (o *Block) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"blockchain",
 		"hash",
 		"difficulty",
 		"gasLimit",
@@ -601,7 +582,6 @@ func (o *Block) UnmarshalJSON(data []byte) (err error) {
 		"nonce",
 		"mixHash",
 		"extraData",
-		"baseFeePerGas",
 	}
 
 	allProperties := make(map[string]interface{})

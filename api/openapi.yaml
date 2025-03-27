@@ -4481,13 +4481,49 @@ components:
         extraData: extraData
         baseFeePerGas: baseFeePerGas
         transactions:
-        - type: type
+        - blobs:
+          - null
+          - null
+          maxFeePerBlobGas: maxFeePerBlobGas
+          commitments:
+          - null
+          - null
+          yParity: yParity
+          accessList:
+          - address: address
+            storageKeys:
+            - null
+            - null
+          - address: address
+            storageKeys:
+            - null
+            - null
+          blobVersionedHashes:
+          - null
+          - null
+          type: type
           nonce: nonce
+          authorizationList:
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
           input: input
           r: r
           s: s
           chainId: chainId
           v: v
+          proofs:
+          - null
+          - null
           gas: gas
           maxPriorityFeePerGas: maxPriorityFeePerGas
           to: to
@@ -4495,13 +4531,49 @@ components:
           value: value
           hash: hash
           gasPrice: gasPrice
-        - type: type
+        - blobs:
+          - null
+          - null
+          maxFeePerBlobGas: maxFeePerBlobGas
+          commitments:
+          - null
+          - null
+          yParity: yParity
+          accessList:
+          - address: address
+            storageKeys:
+            - null
+            - null
+          - address: address
+            storageKeys:
+            - null
+            - null
+          blobVersionedHashes:
+          - null
+          - null
+          type: type
           nonce: nonce
+          authorizationList:
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
           input: input
           r: r
           s: s
           chainId: chainId
           v: v
+          proofs:
+          - null
+          - null
           gas: gas
           maxPriorityFeePerGas: maxPriorityFeePerGas
           to: to
@@ -4516,7 +4588,6 @@ components:
         number: number
         gasUsed: 0
         sha3Uncles: sha3Uncles
-        blockchain: blockchain
         transactionsRoot: transactionsRoot
         stateRoot: stateRoot
         mixHash: mixHash
@@ -4524,8 +4595,6 @@ components:
         hash: hash
         timestamp: 1
       properties:
-        blockchain:
-          type: string
         hash:
           description: The keccak256 hash as a hex string of 256 bits.
           maxLength: 66
@@ -4614,8 +4683,6 @@ components:
         baseFeePerGas:
           type: string
       required:
-      - baseFeePerGas
-      - blockchain
       - difficulty
       - extraData
       - gasLimit
@@ -7179,13 +7246,49 @@ components:
     Transaction:
       description: A transaction from the Ethereum Blockchain.
       example:
+        blobs:
+        - null
+        - null
+        maxFeePerBlobGas: maxFeePerBlobGas
+        commitments:
+        - null
+        - null
+        yParity: yParity
+        accessList:
+        - address: address
+          storageKeys:
+          - null
+          - null
+        - address: address
+          storageKeys:
+          - null
+          - null
+        blobVersionedHashes:
+        - null
+        - null
         type: type
         nonce: nonce
+        authorizationList:
+        - r: r
+          address: address
+          s: s
+          yParity: yParity
+          chainId: chainId
+          nonce: nonce
+        - r: r
+          address: address
+          s: s
+          yParity: yParity
+          chainId: chainId
+          nonce: nonce
         input: input
         r: r
         s: s
         chainId: chainId
         v: v
+        proofs:
+        - null
+        - null
         gas: gas
         maxPriorityFeePerGas: maxPriorityFeePerGas
         to: to
@@ -7199,18 +7302,29 @@ components:
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
           title: Hex
           type: string
-        nonce:
-          description: A hex string.
-          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
-          title: Hex
-          type: string
-        gasPrice:
+        chainId:
           description: A hex string or null.
           nullable: true
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
           title: HexOrNull
           type: string
-        maxFeePerGas:
+        nonce:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        to:
+          description: An ethereum address.
+          nullable: true
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddressOrNull
+          type: string
+        gas:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        gasPrice:
           description: A hex string or null.
           nullable: true
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
@@ -7222,16 +7336,17 @@ components:
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
           title: HexOrNull
           type: string
-        gas:
-          description: A hex string.
-          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
-          title: Hex
-          type: string
-        to:
-          description: An ethereum address.
+        maxFeePerGas:
+          description: A hex string or null.
           nullable: true
-          pattern: "^0[xX][a-fA-F0-9]{40}$"
-          title: ETHAddressOrNull
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: HexOrNull
+          type: string
+        maxFeePerBlobGas:
+          description: A hex string or null.
+          nullable: true
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: HexOrNull
           type: string
         value:
           description: A hex string or null.
@@ -7244,6 +7359,21 @@ components:
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
           title: Hex
           type: string
+        accessList:
+          items:
+            $ref: '#/components/schemas/AccessTuple'
+          nullable: true
+          type: array
+        blobVersionedHashes:
+          items:
+            $ref: '#/components/schemas/Keccak256Hash'
+          nullable: true
+          type: array
+        authorizationList:
+          items:
+            $ref: '#/components/schemas/SetCodeAuthorization'
+          nullable: true
+          type: array
         v:
           description: A hex string.
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
@@ -7259,11 +7389,27 @@ components:
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
           title: Hex
           type: string
-        chainId:
-          description: A hex string.
+        yParity:
+          description: A hex string or null.
+          nullable: true
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
-          title: Hex
+          title: HexOrNull
           type: string
+        blobs:
+          items:
+            $ref: '#/components/schemas/Blob'
+          nullable: true
+          type: array
+        commitments:
+          items:
+            $ref: '#/components/schemas/Commitment'
+          nullable: true
+          type: array
+        proofs:
+          items:
+            $ref: '#/components/schemas/Proof'
+          nullable: true
+          type: array
         hash:
           description: The keccak256 hash as a hex string of 256 bits.
           maxLength: 66
@@ -7284,6 +7430,95 @@ components:
       - value
       title: Transaction
       type: object
+    SetCodeAuthorization:
+      description: Authorization data for setCode operations.
+      example:
+        r: r
+        address: address
+        s: s
+        yParity: yParity
+        chainId: chainId
+        nonce: nonce
+      properties:
+        chainId:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        address:
+          description: An ethereum address.
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddress
+          type: string
+        nonce:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        yParity:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        r:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        s:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+      required:
+      - address
+      - chainId
+      - nonce
+      - r
+      - s
+      - yParity
+      title: SetCodeAuthorization
+      type: object
+    AccessTuple:
+      description: An access tuple representing an address and its storage keys.
+      example:
+        address: address
+        storageKeys:
+        - null
+        - null
+      properties:
+        address:
+          description: An ethereum address.
+          nullable: true
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddressOrNull
+          type: string
+        storageKeys:
+          items:
+            $ref: '#/components/schemas/Keccak256Hash'
+          type: array
+      required:
+      - address
+      - storageKeys
+      title: AccessTuple
+      type: object
+    Blob:
+      description: A 4844 data blob (131072 bytes) encoded as a hex string.
+      pattern: "^0x[0-9a-fA-F]{262144}$"
+      title: Blob
+      type: string
+    Commitment:
+      description: A serialized polynomial commitment (48 bytes) encoded as a hex
+        string.
+      pattern: "^0x[0-9a-fA-F]{96}$"
+      title: Commitment
+      type: string
+    Proof:
+      description: A serialized proof of the quotient polynomial (48 bytes) encoded
+        as a hex string.
+      pattern: "^0x[0-9a-fA-F]{96}$"
+      title: Proof
+      type: string
     SignedTransactionSubmission:
       description: The object used to receive a pre-signed raw transaction.
       example:
@@ -7300,13 +7535,49 @@ components:
       description: A transaction that was signed externally and submitted.
       example:
         tx:
+          blobs:
+          - null
+          - null
+          maxFeePerBlobGas: maxFeePerBlobGas
+          commitments:
+          - null
+          - null
+          yParity: yParity
+          accessList:
+          - address: address
+            storageKeys:
+            - null
+            - null
+          - address: address
+            storageKeys:
+            - null
+            - null
+          blobVersionedHashes:
+          - null
+          - null
           type: type
           nonce: nonce
+          authorizationList:
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
           input: input
           r: r
           s: s
           chainId: chainId
           v: v
+          proofs:
+          - null
+          - null
           gas: gas
           maxPriorityFeePerGas: maxPriorityFeePerGas
           to: to
@@ -7338,13 +7609,49 @@ components:
       example:
         blockHash: blockHash
         data:
+          blobs:
+          - null
+          - null
+          maxFeePerBlobGas: maxFeePerBlobGas
+          commitments:
+          - null
+          - null
+          yParity: yParity
+          accessList:
+          - address: address
+            storageKeys:
+            - null
+            - null
+          - address: address
+            storageKeys:
+            - null
+            - null
+          blobVersionedHashes:
+          - null
+          - null
           type: type
           nonce: nonce
+          authorizationList:
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
           input: input
           r: r
           s: s
           chainId: chainId
           v: v
+          proofs:
+          - null
+          - null
           gas: gas
           maxPriorityFeePerGas: maxPriorityFeePerGas
           to: to
@@ -7994,13 +8301,49 @@ components:
         blockHash: blockHash
         successfulResubmissions: 1
         tx:
+          blobs:
+          - null
+          - null
+          maxFeePerBlobGas: maxFeePerBlobGas
+          commitments:
+          - null
+          - null
+          yParity: yParity
+          accessList:
+          - address: address
+            storageKeys:
+            - null
+            - null
+          - address: address
+            storageKeys:
+            - null
+            - null
+          blobVersionedHashes:
+          - null
+          - null
           type: type
           nonce: nonce
+          authorizationList:
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
+          - r: r
+            address: address
+            s: s
+            yParity: yParity
+            chainId: chainId
+            nonce: nonce
           input: input
           r: r
           s: s
           chainId: chainId
           v: v
+          proofs:
+          - null
+          - null
           gas: gas
           maxPriorityFeePerGas: maxPriorityFeePerGas
           to: to
@@ -8724,13 +9067,49 @@ components:
       example:
         result:
           tx:
+            blobs:
+            - null
+            - null
+            maxFeePerBlobGas: maxFeePerBlobGas
+            commitments:
+            - null
+            - null
+            yParity: yParity
+            accessList:
+            - address: address
+              storageKeys:
+              - null
+              - null
+            - address: address
+              storageKeys:
+              - null
+              - null
+            blobVersionedHashes:
+            - null
+            - null
             type: type
             nonce: nonce
+            authorizationList:
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
             input: input
             r: r
             s: s
             chainId: chainId
             v: v
+            proofs:
+            - null
+            - null
             gas: gas
             maxPriorityFeePerGas: maxPriorityFeePerGas
             to: to
@@ -8752,13 +9131,49 @@ components:
         result:
           blockHash: blockHash
           data:
+            blobs:
+            - null
+            - null
+            maxFeePerBlobGas: maxFeePerBlobGas
+            commitments:
+            - null
+            - null
+            yParity: yParity
+            accessList:
+            - address: address
+              storageKeys:
+              - null
+              - null
+            - address: address
+              storageKeys:
+              - null
+              - null
+            blobVersionedHashes:
+            - null
+            - null
             type: type
             nonce: nonce
+            authorizationList:
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
             input: input
             r: r
             s: s
             chainId: chainId
             v: v
+            proofs:
+            - null
+            - null
             gas: gas
             maxPriorityFeePerGas: maxPriorityFeePerGas
             to: to
@@ -8903,13 +9318,49 @@ components:
           extraData: extraData
           baseFeePerGas: baseFeePerGas
           transactions:
-          - type: type
+          - blobs:
+            - null
+            - null
+            maxFeePerBlobGas: maxFeePerBlobGas
+            commitments:
+            - null
+            - null
+            yParity: yParity
+            accessList:
+            - address: address
+              storageKeys:
+              - null
+              - null
+            - address: address
+              storageKeys:
+              - null
+              - null
+            blobVersionedHashes:
+            - null
+            - null
+            type: type
             nonce: nonce
+            authorizationList:
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
             input: input
             r: r
             s: s
             chainId: chainId
             v: v
+            proofs:
+            - null
+            - null
             gas: gas
             maxPriorityFeePerGas: maxPriorityFeePerGas
             to: to
@@ -8917,13 +9368,49 @@ components:
             value: value
             hash: hash
             gasPrice: gasPrice
-          - type: type
+          - blobs:
+            - null
+            - null
+            maxFeePerBlobGas: maxFeePerBlobGas
+            commitments:
+            - null
+            - null
+            yParity: yParity
+            accessList:
+            - address: address
+              storageKeys:
+              - null
+              - null
+            - address: address
+              storageKeys:
+              - null
+              - null
+            blobVersionedHashes:
+            - null
+            - null
+            type: type
             nonce: nonce
+            authorizationList:
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
             input: input
             r: r
             s: s
             chainId: chainId
             v: v
+            proofs:
+            - null
+            - null
             gas: gas
             maxPriorityFeePerGas: maxPriorityFeePerGas
             to: to
@@ -8938,7 +9425,6 @@ components:
           number: number
           gasUsed: 0
           sha3Uncles: sha3Uncles
-          blockchain: blockchain
           transactionsRoot: transactionsRoot
           stateRoot: stateRoot
           mixHash: mixHash
@@ -10958,13 +11444,49 @@ components:
           blockHash: blockHash
           successfulResubmissions: 1
           tx:
+            blobs:
+            - null
+            - null
+            maxFeePerBlobGas: maxFeePerBlobGas
+            commitments:
+            - null
+            - null
+            yParity: yParity
+            accessList:
+            - address: address
+              storageKeys:
+              - null
+              - null
+            - address: address
+              storageKeys:
+              - null
+              - null
+            blobVersionedHashes:
+            - null
+            - null
             type: type
             nonce: nonce
+            authorizationList:
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
             input: input
             r: r
             s: s
             chainId: chainId
             v: v
+            proofs:
+            - null
+            - null
             gas: gas
             maxPriorityFeePerGas: maxPriorityFeePerGas
             to: to
@@ -10982,13 +11504,49 @@ components:
           blockHash: blockHash
           successfulResubmissions: 1
           tx:
+            blobs:
+            - null
+            - null
+            maxFeePerBlobGas: maxFeePerBlobGas
+            commitments:
+            - null
+            - null
+            yParity: yParity
+            accessList:
+            - address: address
+              storageKeys:
+              - null
+              - null
+            - address: address
+              storageKeys:
+              - null
+              - null
+            blobVersionedHashes:
+            - null
+            - null
             type: type
             nonce: nonce
+            authorizationList:
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
+            - r: r
+              address: address
+              s: s
+              yParity: yParity
+              chainId: chainId
+              nonce: nonce
             input: input
             r: r
             s: s
             chainId: chainId
             v: v
+            proofs:
+            - null
+            - null
             gas: gas
             maxPriorityFeePerGas: maxPriorityFeePerGas
             to: to

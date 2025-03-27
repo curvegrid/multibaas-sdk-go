@@ -5,25 +5,33 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | A hex string. | 
+**ChainId** | Pointer to **NullableString** | A hex string or null. | [optional] 
 **Nonce** | **string** | A hex string. | 
-**GasPrice** | Pointer to **NullableString** | A hex string or null. | [optional] 
-**MaxFeePerGas** | Pointer to **NullableString** | A hex string or null. | [optional] 
-**MaxPriorityFeePerGas** | Pointer to **NullableString** | A hex string or null. | [optional] 
-**Gas** | **string** | A hex string. | 
 **To** | **NullableString** | An ethereum address. | 
+**Gas** | **string** | A hex string. | 
+**GasPrice** | Pointer to **NullableString** | A hex string or null. | [optional] 
+**MaxPriorityFeePerGas** | Pointer to **NullableString** | A hex string or null. | [optional] 
+**MaxFeePerGas** | Pointer to **NullableString** | A hex string or null. | [optional] 
+**MaxFeePerBlobGas** | Pointer to **NullableString** | A hex string or null. | [optional] 
 **Value** | **NullableString** | A hex string or null. | 
 **Input** | **string** | A hex string. | 
+**AccessList** | Pointer to [**[]AccessTuple**](AccessTuple.md) |  | [optional] 
+**BlobVersionedHashes** | Pointer to **[]string** |  | [optional] 
+**AuthorizationList** | Pointer to [**[]SetCodeAuthorization**](SetCodeAuthorization.md) |  | [optional] 
 **V** | **string** | A hex string. | 
 **R** | **string** | A hex string. | 
 **S** | **string** | A hex string. | 
-**ChainId** | Pointer to **string** | A hex string. | [optional] 
+**YParity** | Pointer to **NullableString** | A hex string or null. | [optional] 
+**Blobs** | Pointer to **[]string** |  | [optional] 
+**Commitments** | Pointer to **[]string** |  | [optional] 
+**Proofs** | Pointer to **[]string** |  | [optional] 
 **Hash** | **string** | The keccak256 hash as a hex string of 256 bits. | 
 
 ## Methods
 
 ### NewTransaction
 
-`func NewTransaction(type_ string, nonce string, gas string, to NullableString, value NullableString, input string, v string, r string, s string, hash string, ) *Transaction`
+`func NewTransaction(type_ string, nonce string, to NullableString, gas string, value NullableString, input string, v string, r string, s string, hash string, ) *Transaction`
 
 NewTransaction instantiates a new Transaction object
 This constructor will assign default values to properties that have it defined,
@@ -58,6 +66,41 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
+### GetChainId
+
+`func (o *Transaction) GetChainId() string`
+
+GetChainId returns the ChainId field if non-nil, zero value otherwise.
+
+### GetChainIdOk
+
+`func (o *Transaction) GetChainIdOk() (*string, bool)`
+
+GetChainIdOk returns a tuple with the ChainId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChainId
+
+`func (o *Transaction) SetChainId(v string)`
+
+SetChainId sets ChainId field to given value.
+
+### HasChainId
+
+`func (o *Transaction) HasChainId() bool`
+
+HasChainId returns a boolean if a field has been set.
+
+### SetChainIdNil
+
+`func (o *Transaction) SetChainIdNil(b bool)`
+
+ SetChainIdNil sets the value for ChainId to be an explicit nil
+
+### UnsetChainId
+`func (o *Transaction) UnsetChainId()`
+
+UnsetChainId ensures that no value is present for ChainId, not even an explicit nil
 ### GetNonce
 
 `func (o *Transaction) GetNonce() string`
@@ -76,6 +119,56 @@ and a boolean to check if the value has been set.
 `func (o *Transaction) SetNonce(v string)`
 
 SetNonce sets Nonce field to given value.
+
+
+### GetTo
+
+`func (o *Transaction) GetTo() string`
+
+GetTo returns the To field if non-nil, zero value otherwise.
+
+### GetToOk
+
+`func (o *Transaction) GetToOk() (*string, bool)`
+
+GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTo
+
+`func (o *Transaction) SetTo(v string)`
+
+SetTo sets To field to given value.
+
+
+### SetToNil
+
+`func (o *Transaction) SetToNil(b bool)`
+
+ SetToNil sets the value for To to be an explicit nil
+
+### UnsetTo
+`func (o *Transaction) UnsetTo()`
+
+UnsetTo ensures that no value is present for To, not even an explicit nil
+### GetGas
+
+`func (o *Transaction) GetGas() string`
+
+GetGas returns the Gas field if non-nil, zero value otherwise.
+
+### GetGasOk
+
+`func (o *Transaction) GetGasOk() (*string, bool)`
+
+GetGasOk returns a tuple with the Gas field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGas
+
+`func (o *Transaction) SetGas(v string)`
+
+SetGas sets Gas field to given value.
 
 
 ### GetGasPrice
@@ -113,41 +206,6 @@ HasGasPrice returns a boolean if a field has been set.
 `func (o *Transaction) UnsetGasPrice()`
 
 UnsetGasPrice ensures that no value is present for GasPrice, not even an explicit nil
-### GetMaxFeePerGas
-
-`func (o *Transaction) GetMaxFeePerGas() string`
-
-GetMaxFeePerGas returns the MaxFeePerGas field if non-nil, zero value otherwise.
-
-### GetMaxFeePerGasOk
-
-`func (o *Transaction) GetMaxFeePerGasOk() (*string, bool)`
-
-GetMaxFeePerGasOk returns a tuple with the MaxFeePerGas field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMaxFeePerGas
-
-`func (o *Transaction) SetMaxFeePerGas(v string)`
-
-SetMaxFeePerGas sets MaxFeePerGas field to given value.
-
-### HasMaxFeePerGas
-
-`func (o *Transaction) HasMaxFeePerGas() bool`
-
-HasMaxFeePerGas returns a boolean if a field has been set.
-
-### SetMaxFeePerGasNil
-
-`func (o *Transaction) SetMaxFeePerGasNil(b bool)`
-
- SetMaxFeePerGasNil sets the value for MaxFeePerGas to be an explicit nil
-
-### UnsetMaxFeePerGas
-`func (o *Transaction) UnsetMaxFeePerGas()`
-
-UnsetMaxFeePerGas ensures that no value is present for MaxFeePerGas, not even an explicit nil
 ### GetMaxPriorityFeePerGas
 
 `func (o *Transaction) GetMaxPriorityFeePerGas() string`
@@ -183,56 +241,76 @@ HasMaxPriorityFeePerGas returns a boolean if a field has been set.
 `func (o *Transaction) UnsetMaxPriorityFeePerGas()`
 
 UnsetMaxPriorityFeePerGas ensures that no value is present for MaxPriorityFeePerGas, not even an explicit nil
-### GetGas
+### GetMaxFeePerGas
 
-`func (o *Transaction) GetGas() string`
+`func (o *Transaction) GetMaxFeePerGas() string`
 
-GetGas returns the Gas field if non-nil, zero value otherwise.
+GetMaxFeePerGas returns the MaxFeePerGas field if non-nil, zero value otherwise.
 
-### GetGasOk
+### GetMaxFeePerGasOk
 
-`func (o *Transaction) GetGasOk() (*string, bool)`
+`func (o *Transaction) GetMaxFeePerGasOk() (*string, bool)`
 
-GetGasOk returns a tuple with the Gas field if it's non-nil, zero value otherwise
+GetMaxFeePerGasOk returns a tuple with the MaxFeePerGas field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGas
+### SetMaxFeePerGas
 
-`func (o *Transaction) SetGas(v string)`
+`func (o *Transaction) SetMaxFeePerGas(v string)`
 
-SetGas sets Gas field to given value.
+SetMaxFeePerGas sets MaxFeePerGas field to given value.
 
+### HasMaxFeePerGas
 
-### GetTo
+`func (o *Transaction) HasMaxFeePerGas() bool`
 
-`func (o *Transaction) GetTo() string`
+HasMaxFeePerGas returns a boolean if a field has been set.
 
-GetTo returns the To field if non-nil, zero value otherwise.
+### SetMaxFeePerGasNil
 
-### GetToOk
+`func (o *Transaction) SetMaxFeePerGasNil(b bool)`
 
-`func (o *Transaction) GetToOk() (*string, bool)`
+ SetMaxFeePerGasNil sets the value for MaxFeePerGas to be an explicit nil
 
-GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
+### UnsetMaxFeePerGas
+`func (o *Transaction) UnsetMaxFeePerGas()`
+
+UnsetMaxFeePerGas ensures that no value is present for MaxFeePerGas, not even an explicit nil
+### GetMaxFeePerBlobGas
+
+`func (o *Transaction) GetMaxFeePerBlobGas() string`
+
+GetMaxFeePerBlobGas returns the MaxFeePerBlobGas field if non-nil, zero value otherwise.
+
+### GetMaxFeePerBlobGasOk
+
+`func (o *Transaction) GetMaxFeePerBlobGasOk() (*string, bool)`
+
+GetMaxFeePerBlobGasOk returns a tuple with the MaxFeePerBlobGas field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTo
+### SetMaxFeePerBlobGas
 
-`func (o *Transaction) SetTo(v string)`
+`func (o *Transaction) SetMaxFeePerBlobGas(v string)`
 
-SetTo sets To field to given value.
+SetMaxFeePerBlobGas sets MaxFeePerBlobGas field to given value.
 
+### HasMaxFeePerBlobGas
 
-### SetToNil
+`func (o *Transaction) HasMaxFeePerBlobGas() bool`
 
-`func (o *Transaction) SetToNil(b bool)`
+HasMaxFeePerBlobGas returns a boolean if a field has been set.
 
- SetToNil sets the value for To to be an explicit nil
+### SetMaxFeePerBlobGasNil
 
-### UnsetTo
-`func (o *Transaction) UnsetTo()`
+`func (o *Transaction) SetMaxFeePerBlobGasNil(b bool)`
 
-UnsetTo ensures that no value is present for To, not even an explicit nil
+ SetMaxFeePerBlobGasNil sets the value for MaxFeePerBlobGas to be an explicit nil
+
+### UnsetMaxFeePerBlobGas
+`func (o *Transaction) UnsetMaxFeePerBlobGas()`
+
+UnsetMaxFeePerBlobGas ensures that no value is present for MaxFeePerBlobGas, not even an explicit nil
 ### GetValue
 
 `func (o *Transaction) GetValue() string`
@@ -283,6 +361,111 @@ and a boolean to check if the value has been set.
 SetInput sets Input field to given value.
 
 
+### GetAccessList
+
+`func (o *Transaction) GetAccessList() []AccessTuple`
+
+GetAccessList returns the AccessList field if non-nil, zero value otherwise.
+
+### GetAccessListOk
+
+`func (o *Transaction) GetAccessListOk() (*[]AccessTuple, bool)`
+
+GetAccessListOk returns a tuple with the AccessList field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessList
+
+`func (o *Transaction) SetAccessList(v []AccessTuple)`
+
+SetAccessList sets AccessList field to given value.
+
+### HasAccessList
+
+`func (o *Transaction) HasAccessList() bool`
+
+HasAccessList returns a boolean if a field has been set.
+
+### SetAccessListNil
+
+`func (o *Transaction) SetAccessListNil(b bool)`
+
+ SetAccessListNil sets the value for AccessList to be an explicit nil
+
+### UnsetAccessList
+`func (o *Transaction) UnsetAccessList()`
+
+UnsetAccessList ensures that no value is present for AccessList, not even an explicit nil
+### GetBlobVersionedHashes
+
+`func (o *Transaction) GetBlobVersionedHashes() []string`
+
+GetBlobVersionedHashes returns the BlobVersionedHashes field if non-nil, zero value otherwise.
+
+### GetBlobVersionedHashesOk
+
+`func (o *Transaction) GetBlobVersionedHashesOk() (*[]string, bool)`
+
+GetBlobVersionedHashesOk returns a tuple with the BlobVersionedHashes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBlobVersionedHashes
+
+`func (o *Transaction) SetBlobVersionedHashes(v []string)`
+
+SetBlobVersionedHashes sets BlobVersionedHashes field to given value.
+
+### HasBlobVersionedHashes
+
+`func (o *Transaction) HasBlobVersionedHashes() bool`
+
+HasBlobVersionedHashes returns a boolean if a field has been set.
+
+### SetBlobVersionedHashesNil
+
+`func (o *Transaction) SetBlobVersionedHashesNil(b bool)`
+
+ SetBlobVersionedHashesNil sets the value for BlobVersionedHashes to be an explicit nil
+
+### UnsetBlobVersionedHashes
+`func (o *Transaction) UnsetBlobVersionedHashes()`
+
+UnsetBlobVersionedHashes ensures that no value is present for BlobVersionedHashes, not even an explicit nil
+### GetAuthorizationList
+
+`func (o *Transaction) GetAuthorizationList() []SetCodeAuthorization`
+
+GetAuthorizationList returns the AuthorizationList field if non-nil, zero value otherwise.
+
+### GetAuthorizationListOk
+
+`func (o *Transaction) GetAuthorizationListOk() (*[]SetCodeAuthorization, bool)`
+
+GetAuthorizationListOk returns a tuple with the AuthorizationList field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthorizationList
+
+`func (o *Transaction) SetAuthorizationList(v []SetCodeAuthorization)`
+
+SetAuthorizationList sets AuthorizationList field to given value.
+
+### HasAuthorizationList
+
+`func (o *Transaction) HasAuthorizationList() bool`
+
+HasAuthorizationList returns a boolean if a field has been set.
+
+### SetAuthorizationListNil
+
+`func (o *Transaction) SetAuthorizationListNil(b bool)`
+
+ SetAuthorizationListNil sets the value for AuthorizationList to be an explicit nil
+
+### UnsetAuthorizationList
+`func (o *Transaction) UnsetAuthorizationList()`
+
+UnsetAuthorizationList ensures that no value is present for AuthorizationList, not even an explicit nil
 ### GetV
 
 `func (o *Transaction) GetV() string`
@@ -343,31 +526,146 @@ and a boolean to check if the value has been set.
 SetS sets S field to given value.
 
 
-### GetChainId
+### GetYParity
 
-`func (o *Transaction) GetChainId() string`
+`func (o *Transaction) GetYParity() string`
 
-GetChainId returns the ChainId field if non-nil, zero value otherwise.
+GetYParity returns the YParity field if non-nil, zero value otherwise.
 
-### GetChainIdOk
+### GetYParityOk
 
-`func (o *Transaction) GetChainIdOk() (*string, bool)`
+`func (o *Transaction) GetYParityOk() (*string, bool)`
 
-GetChainIdOk returns a tuple with the ChainId field if it's non-nil, zero value otherwise
+GetYParityOk returns a tuple with the YParity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetChainId
+### SetYParity
 
-`func (o *Transaction) SetChainId(v string)`
+`func (o *Transaction) SetYParity(v string)`
 
-SetChainId sets ChainId field to given value.
+SetYParity sets YParity field to given value.
 
-### HasChainId
+### HasYParity
 
-`func (o *Transaction) HasChainId() bool`
+`func (o *Transaction) HasYParity() bool`
 
-HasChainId returns a boolean if a field has been set.
+HasYParity returns a boolean if a field has been set.
 
+### SetYParityNil
+
+`func (o *Transaction) SetYParityNil(b bool)`
+
+ SetYParityNil sets the value for YParity to be an explicit nil
+
+### UnsetYParity
+`func (o *Transaction) UnsetYParity()`
+
+UnsetYParity ensures that no value is present for YParity, not even an explicit nil
+### GetBlobs
+
+`func (o *Transaction) GetBlobs() []string`
+
+GetBlobs returns the Blobs field if non-nil, zero value otherwise.
+
+### GetBlobsOk
+
+`func (o *Transaction) GetBlobsOk() (*[]string, bool)`
+
+GetBlobsOk returns a tuple with the Blobs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBlobs
+
+`func (o *Transaction) SetBlobs(v []string)`
+
+SetBlobs sets Blobs field to given value.
+
+### HasBlobs
+
+`func (o *Transaction) HasBlobs() bool`
+
+HasBlobs returns a boolean if a field has been set.
+
+### SetBlobsNil
+
+`func (o *Transaction) SetBlobsNil(b bool)`
+
+ SetBlobsNil sets the value for Blobs to be an explicit nil
+
+### UnsetBlobs
+`func (o *Transaction) UnsetBlobs()`
+
+UnsetBlobs ensures that no value is present for Blobs, not even an explicit nil
+### GetCommitments
+
+`func (o *Transaction) GetCommitments() []string`
+
+GetCommitments returns the Commitments field if non-nil, zero value otherwise.
+
+### GetCommitmentsOk
+
+`func (o *Transaction) GetCommitmentsOk() (*[]string, bool)`
+
+GetCommitmentsOk returns a tuple with the Commitments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitments
+
+`func (o *Transaction) SetCommitments(v []string)`
+
+SetCommitments sets Commitments field to given value.
+
+### HasCommitments
+
+`func (o *Transaction) HasCommitments() bool`
+
+HasCommitments returns a boolean if a field has been set.
+
+### SetCommitmentsNil
+
+`func (o *Transaction) SetCommitmentsNil(b bool)`
+
+ SetCommitmentsNil sets the value for Commitments to be an explicit nil
+
+### UnsetCommitments
+`func (o *Transaction) UnsetCommitments()`
+
+UnsetCommitments ensures that no value is present for Commitments, not even an explicit nil
+### GetProofs
+
+`func (o *Transaction) GetProofs() []string`
+
+GetProofs returns the Proofs field if non-nil, zero value otherwise.
+
+### GetProofsOk
+
+`func (o *Transaction) GetProofsOk() (*[]string, bool)`
+
+GetProofsOk returns a tuple with the Proofs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProofs
+
+`func (o *Transaction) SetProofs(v []string)`
+
+SetProofs sets Proofs field to given value.
+
+### HasProofs
+
+`func (o *Transaction) HasProofs() bool`
+
+HasProofs returns a boolean if a field has been set.
+
+### SetProofsNil
+
+`func (o *Transaction) SetProofsNil(b bool)`
+
+ SetProofsNil sets the value for Proofs to be an explicit nil
+
+### UnsetProofs
+`func (o *Transaction) UnsetProofs()`
+
+UnsetProofs ensures that no value is present for Proofs, not even an explicit nil
 ### GetHash
 
 `func (o *Transaction) GetHash() string`

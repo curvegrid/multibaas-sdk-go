@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Blockchain** | **string** |  | 
 **Hash** | **string** | The keccak256 hash as a hex string of 256 bits. | 
 **Difficulty** | **string** |  | 
 **GasLimit** | **int64** |  | 
@@ -22,13 +21,13 @@ Name | Type | Description | Notes
 **Nonce** | **string** | A hex string. | 
 **MixHash** | **string** | The keccak256 hash as a hex string of 256 bits. | 
 **ExtraData** | **string** |  | 
-**BaseFeePerGas** | **string** |  | 
+**BaseFeePerGas** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewBlock
 
-`func NewBlock(blockchain string, hash string, difficulty string, gasLimit int64, number string, timestamp int64, transactions []Transaction, receiptsRoot string, parentHash string, sha3Uncles string, miner string, stateRoot string, transactionsRoot string, logsBloom string, gasUsed int32, nonce string, mixHash string, extraData string, baseFeePerGas string, ) *Block`
+`func NewBlock(hash string, difficulty string, gasLimit int64, number string, timestamp int64, transactions []Transaction, receiptsRoot string, parentHash string, sha3Uncles string, miner string, stateRoot string, transactionsRoot string, logsBloom string, gasUsed int32, nonce string, mixHash string, extraData string, ) *Block`
 
 NewBlock instantiates a new Block object
 This constructor will assign default values to properties that have it defined,
@@ -42,26 +41,6 @@ will change when the set of required properties is changed
 NewBlockWithDefaults instantiates a new Block object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetBlockchain
-
-`func (o *Block) GetBlockchain() string`
-
-GetBlockchain returns the Blockchain field if non-nil, zero value otherwise.
-
-### GetBlockchainOk
-
-`func (o *Block) GetBlockchainOk() (*string, bool)`
-
-GetBlockchainOk returns a tuple with the Blockchain field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBlockchain
-
-`func (o *Block) SetBlockchain(v string)`
-
-SetBlockchain sets Blockchain field to given value.
-
 
 ### GetHash
 
@@ -422,6 +401,11 @@ and a boolean to check if the value has been set.
 
 SetBaseFeePerGas sets BaseFeePerGas field to given value.
 
+### HasBaseFeePerGas
+
+`func (o *Block) HasBaseFeePerGas() bool`
+
+HasBaseFeePerGas returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

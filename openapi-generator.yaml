@@ -3,7 +3,7 @@ outputDir: .
 generatorName: go
 gitUserId: curvegrid
 gitRepoId: multibaas-sdk-go
-packageVersion: 1.0.0
+packageVersion: 1.0.1
 packageName: multibaas
 additionalProperties:
   disallowAdditionalPropertiesIfNotPresent: true

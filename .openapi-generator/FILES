@@ -16,6 +16,7 @@ docs/APIKey.md
 docs/APIKeyWithSecret.md
 docs/AcceptInvite200Response.md
 docs/AcceptInviteRequest.md
+docs/AccessTuple.md
 docs/AddKey.md
 docs/Address.md
 docs/AddressAlias.md
@@ -143,6 +144,7 @@ docs/PreviewArgs.md
 docs/Role.md
 docs/SavedEventQuery.md
 docs/SetAddress201Response.md
+docs/SetCodeAuthorization.md
 docs/SetNonceRequest.md
 docs/SignData200Response.md
 docs/SignedTransactionResponse.md
@@ -172,6 +174,7 @@ go.mod
 go.sum
 model_accept_invite_200_response.go
 model_accept_invite_request.go
+model_access_tuple.go
 model_add_key.go
 model_address.go
 model_address_alias.go
@@ -294,6 +297,7 @@ model_preview_args.go
 model_role.go
 model_saved_event_query.go
 model_set_address_201_response.go
+model_set_code_authorization.go
 model_set_nonce_request.go
 model_sign_data_200_response.go
 model_signed_transaction_response.go
