@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tx** | [**BaseTransactionToSignTx**](BaseTransactionToSignTx.md) |  | 
+**Tx** | **map[string]interface{}** |  | 
 **Submitted** | **bool** |  | 
 **DeployAt** | Pointer to **string** |  | [optional] 
 **Label** | Pointer to **string** | An alias to easily identify and reference the entity in subsequent requests. | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewDeployContractTransaction
 
-`func NewDeployContractTransaction(tx BaseTransactionToSignTx, submitted bool, ) *DeployContractTransaction`
+`func NewDeployContractTransaction(tx map[string]interface{}, submitted bool, ) *DeployContractTransaction`
 
 NewDeployContractTransaction instantiates a new DeployContractTransaction object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTx
 
-`func (o *DeployContractTransaction) GetTx() BaseTransactionToSignTx`
+`func (o *DeployContractTransaction) GetTx() map[string]interface{}`
 
 GetTx returns the Tx field if non-nil, zero value otherwise.
 
 ### GetTxOk
 
-`func (o *DeployContractTransaction) GetTxOk() (*BaseTransactionToSignTx, bool)`
+`func (o *DeployContractTransaction) GetTxOk() (*map[string]interface{}, bool)`
 
 GetTxOk returns a tuple with the Tx field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTx
 
-`func (o *DeployContractTransaction) SetTx(v BaseTransactionToSignTx)`
+`func (o *DeployContractTransaction) SetTx(v map[string]interface{})`
 
 SetTx sets Tx field to given value.
 

@@ -6313,18 +6313,7 @@ components:
       description: The transaction returned when you deploy a contracts.
       example:
         submitted: true
-        tx:
-          data: data
-          gas: 1
-          gasTipCap: gasTipCap
-          from: from
-          to: to
-          type: 5
-          nonce: 6
-          gasFeeCap: gasFeeCap
-          value: value
-          hash: hash
-          gasPrice: gasPrice
+        tx: null
         deployAt: deployAt
         label: null
       title: DeployContractTransaction
@@ -7924,24 +7913,15 @@ components:
       - $ref: '#/components/schemas/TransactionToSign'
       example:
         submitted: true
-        tx:
-          data: data
-          gas: 1
-          gasTipCap: gasTipCap
-          from: from
-          to: to
-          type: 5
-          nonce: 6
-          gasFeeCap: gasFeeCap
-          value: value
-          hash: hash
-          gasPrice: gasPrice
+        tx: null
         kind: kind
       title: TransactionToSignResponse
     TransactionToSign:
       allOf:
       - $ref: '#/components/schemas/BaseTransactionToSign'
       - properties:
+          tx:
+            $ref: '#/components/schemas/TransactionToSign_allOf_tx'
           submitted:
             type: boolean
         required:
@@ -7950,18 +7930,7 @@ components:
       description: A transaction to be signed.
       example:
         submitted: true
-        tx:
-          data: data
-          gas: 1
-          gasTipCap: gasTipCap
-          from: from
-          to: to
-          type: 5
-          nonce: 6
-          gasFeeCap: gasFeeCap
-          value: value
-          hash: hash
-          gasPrice: gasPrice
+        tx: null
       title: TransactionToSign
     MethodCallResponse:
       allOf:
@@ -9042,18 +9011,7 @@ components:
       example:
         result:
           submitted: true
-          tx:
-            data: data
-            gas: 1
-            gasTipCap: gasTipCap
-            from: from
-            to: to
-            type: 5
-            nonce: 6
-            gasFeeCap: gasFeeCap
-            value: value
-            hash: hash
-            gasPrice: gasPrice
+          tx: null
         message: message
         status: 0
     submit_signed_transaction_200_response:
@@ -9563,18 +9521,7 @@ components:
       example:
         result:
           submitted: true
-          tx:
-            data: data
-            gas: 1
-            gasTipCap: gasTipCap
-            from: from
-            to: to
-            type: 5
-            nonce: 6
-            gasFeeCap: gasFeeCap
-            value: value
-            hash: hash
-            gasPrice: gasPrice
+          tx: null
           kind: kind
         message: message
         status: 0
@@ -10062,18 +10009,7 @@ components:
       example:
         result:
           submitted: true
-          tx:
-            data: data
-            gas: 1
-            gasTipCap: gasTipCap
-            from: from
-            to: to
-            type: 5
-            nonce: 6
-            gasFeeCap: gasFeeCap
-            value: value
-            hash: hash
-            gasPrice: gasPrice
+          tx: null
           deployAt: deployAt
           label: null
         message: message
@@ -12126,6 +12062,10 @@ components:
       - gas
       - type
       - value
+      type: object
+    TransactionToSign_allOf_tx:
+      required:
+      - nonce
       type: object
     EIP712Domain_chainId:
       description: The EIP-155 chain ID of the application using the typed data.

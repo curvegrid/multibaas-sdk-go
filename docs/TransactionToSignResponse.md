@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tx** | [**BaseTransactionToSignTx**](BaseTransactionToSignTx.md) |  | 
+**Tx** | **map[string]interface{}** |  | 
 **Submitted** | **bool** |  | 
 
 ## Methods
 
 ### NewTransactionToSignResponse
 
-`func NewTransactionToSignResponse(tx BaseTransactionToSignTx, submitted bool, ) *TransactionToSignResponse`
+`func NewTransactionToSignResponse(tx map[string]interface{}, submitted bool, ) *TransactionToSignResponse`
 
 NewTransactionToSignResponse instantiates a new TransactionToSignResponse object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTx
 
-`func (o *TransactionToSignResponse) GetTx() BaseTransactionToSignTx`
+`func (o *TransactionToSignResponse) GetTx() map[string]interface{}`
 
 GetTx returns the Tx field if non-nil, zero value otherwise.
 
 ### GetTxOk
 
-`func (o *TransactionToSignResponse) GetTxOk() (*BaseTransactionToSignTx, bool)`
+`func (o *TransactionToSignResponse) GetTxOk() (*map[string]interface{}, bool)`
 
 GetTxOk returns a tuple with the Tx field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTx
 
-`func (o *TransactionToSignResponse) SetTx(v BaseTransactionToSignTx)`
+`func (o *TransactionToSignResponse) SetTx(v map[string]interface{})`
 
 SetTx sets Tx field to given value.
 
