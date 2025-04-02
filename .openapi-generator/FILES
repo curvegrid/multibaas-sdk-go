@@ -30,8 +30,6 @@ docs/BaseAPIKey.md
 docs/BaseAzureAccount.md
 docs/BaseContract.md
 docs/BaseResponse.md
-docs/BaseTransactionToSign.md
-docs/BaseTransactionToSignTx.md
 docs/BaseUser.md
 docs/BaseWebhookEndpoint.md
 docs/Block.md
@@ -41,6 +39,8 @@ docs/CallContractFunction200ResponseAllOfResult.md
 docs/ChainName.md
 docs/ChainStatus.md
 docs/ChainsAPI.md
+docs/CloudWalletTXToSign.md
+docs/CloudWalletTXToSignTx.md
 docs/Contract.md
 docs/ContractABI.md
 docs/ContractABIError.md
@@ -161,6 +161,7 @@ docs/TransactionReceiptData.md
 docs/TransactionStatus.md
 docs/TransactionToSign.md
 docs/TransactionToSignResponse.md
+docs/TransactionToSignTx.md
 docs/TransferEth200Response.md
 docs/TxmAPI.md
 docs/TypeConversionOptions.md
@@ -188,8 +189,6 @@ model_base_api_key.go
 model_base_azure_account.go
 model_base_contract.go
 model_base_response.go
-model_base_transaction_to_sign.go
-model_base_transaction_to_sign_tx.go
 model_base_user.go
 model_base_webhook_endpoint.go
 model_block.go
@@ -197,6 +196,8 @@ model_call_contract_function_200_response.go
 model_call_contract_function_200_response_all_of_result.go
 model_chain_name.go
 model_chain_status.go
+model_cloud_wallet_txto_sign.go
+model_cloud_wallet_txto_sign_tx.go
 model_contract.go
 model_contract_abi.go
 model_contract_abi_error.go
@@ -314,6 +315,7 @@ model_transaction_receipt_data.go
 model_transaction_status.go
 model_transaction_to_sign.go
 model_transaction_to_sign_response.go
+model_transaction_to_sign_tx.go
 model_transfer_eth_200_response.go
 model_type_conversion_options.go
 model_user.go

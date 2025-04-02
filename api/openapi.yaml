@@ -1040,7 +1040,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BaseTransactionToSign'
+              $ref: '#/components/schemas/CloudWalletTXToSign'
         required: true
       responses:
         "200":
@@ -6313,7 +6313,18 @@ components:
       description: The transaction returned when you deploy a contracts.
       example:
         submitted: true
-        tx: null
+        tx:
+          data: data
+          gas: 1
+          gasTipCap: gasTipCap
+          from: from
+          to: to
+          type: 5
+          nonce: 6
+          gasFeeCap: gasFeeCap
+          value: value
+          hash: hash
+          gasPrice: gasPrice
         deployAt: deployAt
         label: null
       title: DeployContractTransaction
@@ -7870,27 +7881,27 @@ components:
           type: string
       title: CORSOrigin
       type: object
-    BaseTransactionToSign:
-      description: A transaction to be signed.
+    CloudWalletTXToSign:
+      description: A Cloud Wallet transaction to be signed.
       example:
         tx:
           data: data
-          gas: 1
+          gas: 6
           gasTipCap: gasTipCap
           from: from
           to: to
-          type: 5
-          nonce: 6
+          type: 1
+          nonce: 0
           gasFeeCap: gasFeeCap
           value: value
           hash: hash
           gasPrice: gasPrice
       properties:
         tx:
-          $ref: '#/components/schemas/BaseTransactionToSign_tx'
+          $ref: '#/components/schemas/CloudWalletTXToSign_tx'
       required:
       - tx
-      title: BaseTransactionToSign
+      title: CloudWalletTXToSign
       type: object
     PostMethodResponse:
       discriminator:
@@ -7913,25 +7924,46 @@ components:
       - $ref: '#/components/schemas/TransactionToSign'
       example:
         submitted: true
-        tx: null
+        tx:
+          data: data
+          gas: 1
+          gasTipCap: gasTipCap
+          from: from
+          to: to
+          type: 5
+          nonce: 6
+          gasFeeCap: gasFeeCap
+          value: value
+          hash: hash
+          gasPrice: gasPrice
         kind: kind
       title: TransactionToSignResponse
     TransactionToSign:
-      allOf:
-      - $ref: '#/components/schemas/BaseTransactionToSign'
-      - properties:
-          tx:
-            $ref: '#/components/schemas/TransactionToSign_allOf_tx'
-          submitted:
-            type: boolean
-        required:
-        - submitted
-        type: object
       description: A transaction to be signed.
       example:
         submitted: true
-        tx: null
+        tx:
+          data: data
+          gas: 1
+          gasTipCap: gasTipCap
+          from: from
+          to: to
+          type: 5
+          nonce: 6
+          gasFeeCap: gasFeeCap
+          value: value
+          hash: hash
+          gasPrice: gasPrice
+      properties:
+        tx:
+          $ref: '#/components/schemas/TransactionToSign_tx'
+        submitted:
+          type: boolean
+      required:
+      - submitted
+      - tx
       title: TransactionToSign
+      type: object
     MethodCallResponse:
       allOf:
       - $ref: '#/components/schemas/PostMethodResponse'
@@ -9011,7 +9043,18 @@ components:
       example:
         result:
           submitted: true
-          tx: null
+          tx:
+            data: data
+            gas: 1
+            gasTipCap: gasTipCap
+            from: from
+            to: to
+            type: 5
+            nonce: 6
+            gasFeeCap: gasFeeCap
+            value: value
+            hash: hash
+            gasPrice: gasPrice
         message: message
         status: 0
     submit_signed_transaction_200_response:
@@ -9521,7 +9564,18 @@ components:
       example:
         result:
           submitted: true
-          tx: null
+          tx:
+            data: data
+            gas: 1
+            gasTipCap: gasTipCap
+            from: from
+            to: to
+            type: 5
+            nonce: 6
+            gasFeeCap: gasFeeCap
+            value: value
+            hash: hash
+            gasPrice: gasPrice
           kind: kind
         message: message
         status: 0
@@ -10009,7 +10063,18 @@ components:
       example:
         result:
           submitted: true
-          tx: null
+          tx:
+            data: data
+            gas: 1
+            gasTipCap: gasTipCap
+            from: from
+            to: to
+            type: 5
+            nonce: 6
+            gasFeeCap: gasFeeCap
+            value: value
+            hash: hash
+            gasPrice: gasPrice
           deployAt: deployAt
           label: null
         message: message
@@ -11994,7 +12059,76 @@ components:
       - transactionHash
       - transactionIndex
       type: object
-    BaseTransactionToSign_tx:
+    CloudWalletTXToSign_tx:
+      description: An Ethereum transaction.
+      example:
+        data: data
+        gas: 6
+        gasTipCap: gasTipCap
+        from: from
+        to: to
+        type: 1
+        nonce: 0
+        gasFeeCap: gasFeeCap
+        value: value
+        hash: hash
+        gasPrice: gasPrice
+      properties:
+        nonce:
+          description: Sender account nonce of the transaction
+          format: int64
+          type: integer
+        gasPrice:
+          description: Gas price of the transaction
+          type: string
+        gasFeeCap:
+          description: Fee cap per gas of the transaction
+          type: string
+        gasTipCap:
+          description: GasTipCap per gas of the transaction
+          type: string
+        gas:
+          description: Gas limit of the transaction
+          format: int64
+          type: integer
+        from:
+          description: An ethereum address.
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddress
+          type: string
+        to:
+          description: An ethereum address.
+          nullable: true
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddressOrNull
+          type: string
+        value:
+          description: Amount (in wei) to send with the transaction.
+          type: string
+        data:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        hash:
+          description: The keccak256 hash as a hex string of 256 bits.
+          maxLength: 66
+          minLength: 66
+          pattern: "^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"
+          title: Keccak256Hash
+          type: string
+        type:
+          description: Transaction type
+          format: int64
+          type: integer
+      required:
+      - data
+      - from
+      - gas
+      - type
+      - value
+      type: object
+    TransactionToSign_tx:
       description: An Ethereum transaction.
       example:
         data: data
@@ -12060,12 +12194,9 @@ components:
       - data
       - from
       - gas
+      - nonce
       - type
       - value
-      type: object
-    TransactionToSign_allOf_tx:
-      required:
-      - nonce
       type: object
     EIP712Domain_chainId:
       description: The EIP-155 chain ID of the application using the typed data.

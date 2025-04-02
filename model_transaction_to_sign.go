@@ -21,8 +21,8 @@ var _ MappedNullable = &TransactionToSign{}
 
 // TransactionToSign A transaction to be signed.
 type TransactionToSign struct {
-	Tx        map[string]interface{} `json:"tx"`
-	Submitted bool                   `json:"submitted"`
+	Tx        TransactionToSignTx `json:"tx"`
+	Submitted bool                `json:"submitted"`
 }
 
 type _TransactionToSign TransactionToSign
@@ -31,7 +31,7 @@ type _TransactionToSign TransactionToSign
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransactionToSign(tx map[string]interface{}, submitted bool) *TransactionToSign {
+func NewTransactionToSign(tx TransactionToSignTx, submitted bool) *TransactionToSign {
 	this := TransactionToSign{}
 	this.Tx = tx
 	this.Submitted = submitted
@@ -47,9 +47,9 @@ func NewTransactionToSignWithDefaults() *TransactionToSign {
 }
 
 // GetTx returns the Tx field value
-func (o *TransactionToSign) GetTx() map[string]interface{} {
+func (o *TransactionToSign) GetTx() TransactionToSignTx {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret TransactionToSignTx
 		return ret
 	}
 
@@ -58,15 +58,15 @@ func (o *TransactionToSign) GetTx() map[string]interface{} {
 
 // GetTxOk returns a tuple with the Tx field value
 // and a boolean to check if the value has been set.
-func (o *TransactionToSign) GetTxOk() (map[string]interface{}, bool) {
+func (o *TransactionToSign) GetTxOk() (*TransactionToSignTx, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Tx, true
+	return &o.Tx, true
 }
 
 // SetTx sets field value
-func (o *TransactionToSign) SetTx(v map[string]interface{}) {
+func (o *TransactionToSign) SetTx(v TransactionToSignTx) {
 	o.Tx = v
 }
 

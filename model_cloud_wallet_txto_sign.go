@@ -16,38 +16,38 @@ import (
 	"fmt"
 )
 
-// checks if the BaseTransactionToSign type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BaseTransactionToSign{}
+// checks if the CloudWalletTXToSign type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudWalletTXToSign{}
 
-// BaseTransactionToSign A transaction to be signed.
-type BaseTransactionToSign struct {
-	Tx BaseTransactionToSignTx `json:"tx"`
+// CloudWalletTXToSign A Cloud Wallet transaction to be signed.
+type CloudWalletTXToSign struct {
+	Tx CloudWalletTXToSignTx `json:"tx"`
 }
 
-type _BaseTransactionToSign BaseTransactionToSign
+type _CloudWalletTXToSign CloudWalletTXToSign
 
-// NewBaseTransactionToSign instantiates a new BaseTransactionToSign object
+// NewCloudWalletTXToSign instantiates a new CloudWalletTXToSign object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBaseTransactionToSign(tx BaseTransactionToSignTx) *BaseTransactionToSign {
-	this := BaseTransactionToSign{}
+func NewCloudWalletTXToSign(tx CloudWalletTXToSignTx) *CloudWalletTXToSign {
+	this := CloudWalletTXToSign{}
 	this.Tx = tx
 	return &this
 }
 
-// NewBaseTransactionToSignWithDefaults instantiates a new BaseTransactionToSign object
+// NewCloudWalletTXToSignWithDefaults instantiates a new CloudWalletTXToSign object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBaseTransactionToSignWithDefaults() *BaseTransactionToSign {
-	this := BaseTransactionToSign{}
+func NewCloudWalletTXToSignWithDefaults() *CloudWalletTXToSign {
+	this := CloudWalletTXToSign{}
 	return &this
 }
 
 // GetTx returns the Tx field value
-func (o *BaseTransactionToSign) GetTx() BaseTransactionToSignTx {
+func (o *CloudWalletTXToSign) GetTx() CloudWalletTXToSignTx {
 	if o == nil {
-		var ret BaseTransactionToSignTx
+		var ret CloudWalletTXToSignTx
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *BaseTransactionToSign) GetTx() BaseTransactionToSignTx {
 
 // GetTxOk returns a tuple with the Tx field value
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSign) GetTxOk() (*BaseTransactionToSignTx, bool) {
+func (o *CloudWalletTXToSign) GetTxOk() (*CloudWalletTXToSignTx, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,11 +64,11 @@ func (o *BaseTransactionToSign) GetTxOk() (*BaseTransactionToSignTx, bool) {
 }
 
 // SetTx sets field value
-func (o *BaseTransactionToSign) SetTx(v BaseTransactionToSignTx) {
+func (o *CloudWalletTXToSign) SetTx(v CloudWalletTXToSignTx) {
 	o.Tx = v
 }
 
-func (o BaseTransactionToSign) MarshalJSON() ([]byte, error) {
+func (o CloudWalletTXToSign) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -76,13 +76,13 @@ func (o BaseTransactionToSign) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BaseTransactionToSign) ToMap() (map[string]interface{}, error) {
+func (o CloudWalletTXToSign) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tx"] = o.Tx
 	return toSerialize, nil
 }
 
-func (o *BaseTransactionToSign) UnmarshalJSON(data []byte) (err error) {
+func (o *CloudWalletTXToSign) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -104,53 +104,53 @@ func (o *BaseTransactionToSign) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varBaseTransactionToSign := _BaseTransactionToSign{}
+	varCloudWalletTXToSign := _CloudWalletTXToSign{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBaseTransactionToSign)
+	err = decoder.Decode(&varCloudWalletTXToSign)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BaseTransactionToSign(varBaseTransactionToSign)
+	*o = CloudWalletTXToSign(varCloudWalletTXToSign)
 
 	return err
 }
 
-type NullableBaseTransactionToSign struct {
-	value *BaseTransactionToSign
+type NullableCloudWalletTXToSign struct {
+	value *CloudWalletTXToSign
 	isSet bool
 }
 
-func (v NullableBaseTransactionToSign) Get() *BaseTransactionToSign {
+func (v NullableCloudWalletTXToSign) Get() *CloudWalletTXToSign {
 	return v.value
 }
 
-func (v *NullableBaseTransactionToSign) Set(val *BaseTransactionToSign) {
+func (v *NullableCloudWalletTXToSign) Set(val *CloudWalletTXToSign) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBaseTransactionToSign) IsSet() bool {
+func (v NullableCloudWalletTXToSign) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBaseTransactionToSign) Unset() {
+func (v *NullableCloudWalletTXToSign) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBaseTransactionToSign(val *BaseTransactionToSign) *NullableBaseTransactionToSign {
-	return &NullableBaseTransactionToSign{value: val, isSet: true}
+func NewNullableCloudWalletTXToSign(val *CloudWalletTXToSign) *NullableCloudWalletTXToSign {
+	return &NullableCloudWalletTXToSign{value: val, isSet: true}
 }
 
-func (v NullableBaseTransactionToSign) MarshalJSON() ([]byte, error) {
+func (v NullableCloudWalletTXToSign) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBaseTransactionToSign) UnmarshalJSON(src []byte) error {
+func (v *NullableCloudWalletTXToSign) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -1,46 +1,46 @@
-# BaseTransactionToSign
+# CloudWalletTXToSign
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tx** | [**BaseTransactionToSignTx**](BaseTransactionToSignTx.md) |  | 
+**Tx** | [**CloudWalletTXToSignTx**](CloudWalletTXToSignTx.md) |  | 
 
 ## Methods
 
-### NewBaseTransactionToSign
+### NewCloudWalletTXToSign
 
-`func NewBaseTransactionToSign(tx BaseTransactionToSignTx, ) *BaseTransactionToSign`
+`func NewCloudWalletTXToSign(tx CloudWalletTXToSignTx, ) *CloudWalletTXToSign`
 
-NewBaseTransactionToSign instantiates a new BaseTransactionToSign object
+NewCloudWalletTXToSign instantiates a new CloudWalletTXToSign object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewBaseTransactionToSignWithDefaults
+### NewCloudWalletTXToSignWithDefaults
 
-`func NewBaseTransactionToSignWithDefaults() *BaseTransactionToSign`
+`func NewCloudWalletTXToSignWithDefaults() *CloudWalletTXToSign`
 
-NewBaseTransactionToSignWithDefaults instantiates a new BaseTransactionToSign object
+NewCloudWalletTXToSignWithDefaults instantiates a new CloudWalletTXToSign object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetTx
 
-`func (o *BaseTransactionToSign) GetTx() BaseTransactionToSignTx`
+`func (o *CloudWalletTXToSign) GetTx() CloudWalletTXToSignTx`
 
 GetTx returns the Tx field if non-nil, zero value otherwise.
 
 ### GetTxOk
 
-`func (o *BaseTransactionToSign) GetTxOk() (*BaseTransactionToSignTx, bool)`
+`func (o *CloudWalletTXToSign) GetTxOk() (*CloudWalletTXToSignTx, bool)`
 
 GetTxOk returns a tuple with the Tx field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTx
 
-`func (o *BaseTransactionToSign) SetTx(v BaseTransactionToSignTx)`
+`func (o *CloudWalletTXToSign) SetTx(v CloudWalletTXToSignTx)`
 
 SetTx sets Tx field to given value.
 

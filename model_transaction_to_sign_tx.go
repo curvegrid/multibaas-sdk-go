@@ -16,13 +16,13 @@ import (
 	"fmt"
 )
 
-// checks if the BaseTransactionToSignTx type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BaseTransactionToSignTx{}
+// checks if the TransactionToSignTx type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TransactionToSignTx{}
 
-// BaseTransactionToSignTx An Ethereum transaction.
-type BaseTransactionToSignTx struct {
+// TransactionToSignTx An Ethereum transaction.
+type TransactionToSignTx struct {
 	// Sender account nonce of the transaction
-	Nonce *int64 `json:"nonce,omitempty"`
+	Nonce int64 `json:"nonce"`
 	// Gas price of the transaction
 	GasPrice *string `json:"gasPrice,omitempty"`
 	// Fee cap per gas of the transaction
@@ -45,14 +45,15 @@ type BaseTransactionToSignTx struct {
 	Type int64 `json:"type"`
 }
 
-type _BaseTransactionToSignTx BaseTransactionToSignTx
+type _TransactionToSignTx TransactionToSignTx
 
-// NewBaseTransactionToSignTx instantiates a new BaseTransactionToSignTx object
+// NewTransactionToSignTx instantiates a new TransactionToSignTx object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBaseTransactionToSignTx(gas int64, from string, value string, data string, type_ int64) *BaseTransactionToSignTx {
-	this := BaseTransactionToSignTx{}
+func NewTransactionToSignTx(nonce int64, gas int64, from string, value string, data string, type_ int64) *TransactionToSignTx {
+	this := TransactionToSignTx{}
+	this.Nonce = nonce
 	this.Gas = gas
 	this.From = from
 	this.Value = value
@@ -61,48 +62,40 @@ func NewBaseTransactionToSignTx(gas int64, from string, value string, data strin
 	return &this
 }
 
-// NewBaseTransactionToSignTxWithDefaults instantiates a new BaseTransactionToSignTx object
+// NewTransactionToSignTxWithDefaults instantiates a new TransactionToSignTx object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewBaseTransactionToSignTxWithDefaults() *BaseTransactionToSignTx {
-	this := BaseTransactionToSignTx{}
+func NewTransactionToSignTxWithDefaults() *TransactionToSignTx {
+	this := TransactionToSignTx{}
 	return &this
 }
 
-// GetNonce returns the Nonce field value if set, zero value otherwise.
-func (o *BaseTransactionToSignTx) GetNonce() int64 {
-	if o == nil || IsNil(o.Nonce) {
+// GetNonce returns the Nonce field value
+func (o *TransactionToSignTx) GetNonce() int64 {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Nonce
+
+	return o.Nonce
 }
 
-// GetNonceOk returns a tuple with the Nonce field value if set, nil otherwise
+// GetNonceOk returns a tuple with the Nonce field value
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetNonceOk() (*int64, bool) {
-	if o == nil || IsNil(o.Nonce) {
+func (o *TransactionToSignTx) GetNonceOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Nonce, true
+	return &o.Nonce, true
 }
 
-// HasNonce returns a boolean if a field has been set.
-func (o *BaseTransactionToSignTx) HasNonce() bool {
-	if o != nil && !IsNil(o.Nonce) {
-		return true
-	}
-
-	return false
-}
-
-// SetNonce gets a reference to the given int64 and assigns it to the Nonce field.
-func (o *BaseTransactionToSignTx) SetNonce(v int64) {
-	o.Nonce = &v
+// SetNonce sets field value
+func (o *TransactionToSignTx) SetNonce(v int64) {
+	o.Nonce = v
 }
 
 // GetGasPrice returns the GasPrice field value if set, zero value otherwise.
-func (o *BaseTransactionToSignTx) GetGasPrice() string {
+func (o *TransactionToSignTx) GetGasPrice() string {
 	if o == nil || IsNil(o.GasPrice) {
 		var ret string
 		return ret
@@ -112,7 +105,7 @@ func (o *BaseTransactionToSignTx) GetGasPrice() string {
 
 // GetGasPriceOk returns a tuple with the GasPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetGasPriceOk() (*string, bool) {
+func (o *TransactionToSignTx) GetGasPriceOk() (*string, bool) {
 	if o == nil || IsNil(o.GasPrice) {
 		return nil, false
 	}
@@ -120,7 +113,7 @@ func (o *BaseTransactionToSignTx) GetGasPriceOk() (*string, bool) {
 }
 
 // HasGasPrice returns a boolean if a field has been set.
-func (o *BaseTransactionToSignTx) HasGasPrice() bool {
+func (o *TransactionToSignTx) HasGasPrice() bool {
 	if o != nil && !IsNil(o.GasPrice) {
 		return true
 	}
@@ -129,12 +122,12 @@ func (o *BaseTransactionToSignTx) HasGasPrice() bool {
 }
 
 // SetGasPrice gets a reference to the given string and assigns it to the GasPrice field.
-func (o *BaseTransactionToSignTx) SetGasPrice(v string) {
+func (o *TransactionToSignTx) SetGasPrice(v string) {
 	o.GasPrice = &v
 }
 
 // GetGasFeeCap returns the GasFeeCap field value if set, zero value otherwise.
-func (o *BaseTransactionToSignTx) GetGasFeeCap() string {
+func (o *TransactionToSignTx) GetGasFeeCap() string {
 	if o == nil || IsNil(o.GasFeeCap) {
 		var ret string
 		return ret
@@ -144,7 +137,7 @@ func (o *BaseTransactionToSignTx) GetGasFeeCap() string {
 
 // GetGasFeeCapOk returns a tuple with the GasFeeCap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetGasFeeCapOk() (*string, bool) {
+func (o *TransactionToSignTx) GetGasFeeCapOk() (*string, bool) {
 	if o == nil || IsNil(o.GasFeeCap) {
 		return nil, false
 	}
@@ -152,7 +145,7 @@ func (o *BaseTransactionToSignTx) GetGasFeeCapOk() (*string, bool) {
 }
 
 // HasGasFeeCap returns a boolean if a field has been set.
-func (o *BaseTransactionToSignTx) HasGasFeeCap() bool {
+func (o *TransactionToSignTx) HasGasFeeCap() bool {
 	if o != nil && !IsNil(o.GasFeeCap) {
 		return true
 	}
@@ -161,12 +154,12 @@ func (o *BaseTransactionToSignTx) HasGasFeeCap() bool {
 }
 
 // SetGasFeeCap gets a reference to the given string and assigns it to the GasFeeCap field.
-func (o *BaseTransactionToSignTx) SetGasFeeCap(v string) {
+func (o *TransactionToSignTx) SetGasFeeCap(v string) {
 	o.GasFeeCap = &v
 }
 
 // GetGasTipCap returns the GasTipCap field value if set, zero value otherwise.
-func (o *BaseTransactionToSignTx) GetGasTipCap() string {
+func (o *TransactionToSignTx) GetGasTipCap() string {
 	if o == nil || IsNil(o.GasTipCap) {
 		var ret string
 		return ret
@@ -176,7 +169,7 @@ func (o *BaseTransactionToSignTx) GetGasTipCap() string {
 
 // GetGasTipCapOk returns a tuple with the GasTipCap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetGasTipCapOk() (*string, bool) {
+func (o *TransactionToSignTx) GetGasTipCapOk() (*string, bool) {
 	if o == nil || IsNil(o.GasTipCap) {
 		return nil, false
 	}
@@ -184,7 +177,7 @@ func (o *BaseTransactionToSignTx) GetGasTipCapOk() (*string, bool) {
 }
 
 // HasGasTipCap returns a boolean if a field has been set.
-func (o *BaseTransactionToSignTx) HasGasTipCap() bool {
+func (o *TransactionToSignTx) HasGasTipCap() bool {
 	if o != nil && !IsNil(o.GasTipCap) {
 		return true
 	}
@@ -193,12 +186,12 @@ func (o *BaseTransactionToSignTx) HasGasTipCap() bool {
 }
 
 // SetGasTipCap gets a reference to the given string and assigns it to the GasTipCap field.
-func (o *BaseTransactionToSignTx) SetGasTipCap(v string) {
+func (o *TransactionToSignTx) SetGasTipCap(v string) {
 	o.GasTipCap = &v
 }
 
 // GetGas returns the Gas field value
-func (o *BaseTransactionToSignTx) GetGas() int64 {
+func (o *TransactionToSignTx) GetGas() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -209,7 +202,7 @@ func (o *BaseTransactionToSignTx) GetGas() int64 {
 
 // GetGasOk returns a tuple with the Gas field value
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetGasOk() (*int64, bool) {
+func (o *TransactionToSignTx) GetGasOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -217,12 +210,12 @@ func (o *BaseTransactionToSignTx) GetGasOk() (*int64, bool) {
 }
 
 // SetGas sets field value
-func (o *BaseTransactionToSignTx) SetGas(v int64) {
+func (o *TransactionToSignTx) SetGas(v int64) {
 	o.Gas = v
 }
 
 // GetFrom returns the From field value
-func (o *BaseTransactionToSignTx) GetFrom() string {
+func (o *TransactionToSignTx) GetFrom() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -233,7 +226,7 @@ func (o *BaseTransactionToSignTx) GetFrom() string {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetFromOk() (*string, bool) {
+func (o *TransactionToSignTx) GetFromOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -241,12 +234,12 @@ func (o *BaseTransactionToSignTx) GetFromOk() (*string, bool) {
 }
 
 // SetFrom sets field value
-func (o *BaseTransactionToSignTx) SetFrom(v string) {
+func (o *TransactionToSignTx) SetFrom(v string) {
 	o.From = v
 }
 
 // GetTo returns the To field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *BaseTransactionToSignTx) GetTo() string {
+func (o *TransactionToSignTx) GetTo() string {
 	if o == nil || IsNil(o.To.Get()) {
 		var ret string
 		return ret
@@ -257,7 +250,7 @@ func (o *BaseTransactionToSignTx) GetTo() string {
 // GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BaseTransactionToSignTx) GetToOk() (*string, bool) {
+func (o *TransactionToSignTx) GetToOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -265,7 +258,7 @@ func (o *BaseTransactionToSignTx) GetToOk() (*string, bool) {
 }
 
 // HasTo returns a boolean if a field has been set.
-func (o *BaseTransactionToSignTx) HasTo() bool {
+func (o *TransactionToSignTx) HasTo() bool {
 	if o != nil && o.To.IsSet() {
 		return true
 	}
@@ -274,22 +267,22 @@ func (o *BaseTransactionToSignTx) HasTo() bool {
 }
 
 // SetTo gets a reference to the given NullableString and assigns it to the To field.
-func (o *BaseTransactionToSignTx) SetTo(v string) {
+func (o *TransactionToSignTx) SetTo(v string) {
 	o.To.Set(&v)
 }
 
 // SetToNil sets the value for To to be an explicit nil
-func (o *BaseTransactionToSignTx) SetToNil() {
+func (o *TransactionToSignTx) SetToNil() {
 	o.To.Set(nil)
 }
 
 // UnsetTo ensures that no value is present for To, not even an explicit nil
-func (o *BaseTransactionToSignTx) UnsetTo() {
+func (o *TransactionToSignTx) UnsetTo() {
 	o.To.Unset()
 }
 
 // GetValue returns the Value field value
-func (o *BaseTransactionToSignTx) GetValue() string {
+func (o *TransactionToSignTx) GetValue() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -300,7 +293,7 @@ func (o *BaseTransactionToSignTx) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetValueOk() (*string, bool) {
+func (o *TransactionToSignTx) GetValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -308,12 +301,12 @@ func (o *BaseTransactionToSignTx) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value
-func (o *BaseTransactionToSignTx) SetValue(v string) {
+func (o *TransactionToSignTx) SetValue(v string) {
 	o.Value = v
 }
 
 // GetData returns the Data field value
-func (o *BaseTransactionToSignTx) GetData() string {
+func (o *TransactionToSignTx) GetData() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -324,7 +317,7 @@ func (o *BaseTransactionToSignTx) GetData() string {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetDataOk() (*string, bool) {
+func (o *TransactionToSignTx) GetDataOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -332,12 +325,12 @@ func (o *BaseTransactionToSignTx) GetDataOk() (*string, bool) {
 }
 
 // SetData sets field value
-func (o *BaseTransactionToSignTx) SetData(v string) {
+func (o *TransactionToSignTx) SetData(v string) {
 	o.Data = v
 }
 
 // GetHash returns the Hash field value if set, zero value otherwise.
-func (o *BaseTransactionToSignTx) GetHash() string {
+func (o *TransactionToSignTx) GetHash() string {
 	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
@@ -347,7 +340,7 @@ func (o *BaseTransactionToSignTx) GetHash() string {
 
 // GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetHashOk() (*string, bool) {
+func (o *TransactionToSignTx) GetHashOk() (*string, bool) {
 	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
@@ -355,7 +348,7 @@ func (o *BaseTransactionToSignTx) GetHashOk() (*string, bool) {
 }
 
 // HasHash returns a boolean if a field has been set.
-func (o *BaseTransactionToSignTx) HasHash() bool {
+func (o *TransactionToSignTx) HasHash() bool {
 	if o != nil && !IsNil(o.Hash) {
 		return true
 	}
@@ -364,12 +357,12 @@ func (o *BaseTransactionToSignTx) HasHash() bool {
 }
 
 // SetHash gets a reference to the given string and assigns it to the Hash field.
-func (o *BaseTransactionToSignTx) SetHash(v string) {
+func (o *TransactionToSignTx) SetHash(v string) {
 	o.Hash = &v
 }
 
 // GetType returns the Type field value
-func (o *BaseTransactionToSignTx) GetType() int64 {
+func (o *TransactionToSignTx) GetType() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -380,7 +373,7 @@ func (o *BaseTransactionToSignTx) GetType() int64 {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *BaseTransactionToSignTx) GetTypeOk() (*int64, bool) {
+func (o *TransactionToSignTx) GetTypeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -388,11 +381,11 @@ func (o *BaseTransactionToSignTx) GetTypeOk() (*int64, bool) {
 }
 
 // SetType sets field value
-func (o *BaseTransactionToSignTx) SetType(v int64) {
+func (o *TransactionToSignTx) SetType(v int64) {
 	o.Type = v
 }
 
-func (o BaseTransactionToSignTx) MarshalJSON() ([]byte, error) {
+func (o TransactionToSignTx) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -400,11 +393,9 @@ func (o BaseTransactionToSignTx) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o BaseTransactionToSignTx) ToMap() (map[string]interface{}, error) {
+func (o TransactionToSignTx) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Nonce) {
-		toSerialize["nonce"] = o.Nonce
-	}
+	toSerialize["nonce"] = o.Nonce
 	if !IsNil(o.GasPrice) {
 		toSerialize["gasPrice"] = o.GasPrice
 	}
@@ -428,11 +419,12 @@ func (o BaseTransactionToSignTx) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *BaseTransactionToSignTx) UnmarshalJSON(data []byte) (err error) {
+func (o *TransactionToSignTx) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"nonce",
 		"gas",
 		"from",
 		"value",
@@ -454,53 +446,53 @@ func (o *BaseTransactionToSignTx) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varBaseTransactionToSignTx := _BaseTransactionToSignTx{}
+	varTransactionToSignTx := _TransactionToSignTx{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBaseTransactionToSignTx)
+	err = decoder.Decode(&varTransactionToSignTx)
 
 	if err != nil {
 		return err
 	}
 
-	*o = BaseTransactionToSignTx(varBaseTransactionToSignTx)
+	*o = TransactionToSignTx(varTransactionToSignTx)
 
 	return err
 }
 
-type NullableBaseTransactionToSignTx struct {
-	value *BaseTransactionToSignTx
+type NullableTransactionToSignTx struct {
+	value *TransactionToSignTx
 	isSet bool
 }
 
-func (v NullableBaseTransactionToSignTx) Get() *BaseTransactionToSignTx {
+func (v NullableTransactionToSignTx) Get() *TransactionToSignTx {
 	return v.value
 }
 
-func (v *NullableBaseTransactionToSignTx) Set(val *BaseTransactionToSignTx) {
+func (v *NullableTransactionToSignTx) Set(val *TransactionToSignTx) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableBaseTransactionToSignTx) IsSet() bool {
+func (v NullableTransactionToSignTx) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableBaseTransactionToSignTx) Unset() {
+func (v *NullableTransactionToSignTx) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableBaseTransactionToSignTx(val *BaseTransactionToSignTx) *NullableBaseTransactionToSignTx {
-	return &NullableBaseTransactionToSignTx{value: val, isSet: true}
+func NewNullableTransactionToSignTx(val *TransactionToSignTx) *NullableTransactionToSignTx {
+	return &NullableTransactionToSignTx{value: val, isSet: true}
 }
 
-func (v NullableBaseTransactionToSignTx) MarshalJSON() ([]byte, error) {
+func (v NullableTransactionToSignTx) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableBaseTransactionToSignTx) UnmarshalJSON(src []byte) error {
+func (v *NullableTransactionToSignTx) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

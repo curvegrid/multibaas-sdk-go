@@ -1281,14 +1281,14 @@ func (a *HsmAPIService) SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*BaseRe
 }
 
 type ApiSignAndSubmitTransactionRequest struct {
-	ctx                   context.Context
-	ApiService            HsmAPI
-	chain                 ChainName
-	baseTransactionToSign *BaseTransactionToSign
+	ctx                 context.Context
+	ApiService          HsmAPI
+	chain               ChainName
+	cloudWalletTXToSign *CloudWalletTXToSign
 }
 
-func (r ApiSignAndSubmitTransactionRequest) BaseTransactionToSign(baseTransactionToSign BaseTransactionToSign) ApiSignAndSubmitTransactionRequest {
-	r.baseTransactionToSign = &baseTransactionToSign
+func (r ApiSignAndSubmitTransactionRequest) CloudWalletTXToSign(cloudWalletTXToSign CloudWalletTXToSign) ApiSignAndSubmitTransactionRequest {
+	r.cloudWalletTXToSign = &cloudWalletTXToSign
 	return r
 }
 
@@ -1335,8 +1335,8 @@ func (a *HsmAPIService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransa
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.baseTransactionToSign == nil {
-		return localVarReturnValue, nil, reportError("baseTransactionToSign is required and must be specified")
+	if r.cloudWalletTXToSign == nil {
+		return localVarReturnValue, nil, reportError("cloudWalletTXToSign is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1357,7 +1357,7 @@ func (a *HsmAPIService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.baseTransactionToSign
+	localVarPostBody = r.cloudWalletTXToSign
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

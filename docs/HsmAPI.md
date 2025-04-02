@@ -573,7 +573,7 @@ Name | Type | Description  | Notes
 
 ## SignAndSubmitTransaction
 
-> TransferEth200Response SignAndSubmitTransaction(ctx, chain).BaseTransactionToSign(baseTransactionToSign).Execute()
+> TransferEth200Response SignAndSubmitTransaction(ctx, chain).CloudWalletTXToSign(cloudWalletTXToSign).Execute()
 
 Sign and submit transaction
 
@@ -593,11 +593,11 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	baseTransactionToSign := *openapiclient.NewBaseTransactionToSign(*openapiclient.NewBaseTransactionToSignTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))) // BaseTransactionToSign | 
+	cloudWalletTXToSign := *openapiclient.NewCloudWalletTXToSign(*openapiclient.NewCloudWalletTXToSignTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))) // CloudWalletTXToSign | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HsmAPI.SignAndSubmitTransaction(context.Background(), chain).BaseTransactionToSign(baseTransactionToSign).Execute()
+	resp, r, err := apiClient.HsmAPI.SignAndSubmitTransaction(context.Background(), chain).CloudWalletTXToSign(cloudWalletTXToSign).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SignAndSubmitTransaction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -623,7 +623,7 @@ Other parameters are passed through a pointer to a apiSignAndSubmitTransactionRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **baseTransactionToSign** | [**BaseTransactionToSign**](BaseTransactionToSign.md) |  | 
+ **cloudWalletTXToSign** | [**CloudWalletTXToSign**](CloudWalletTXToSign.md) |  | 
 
 ### Return type
 

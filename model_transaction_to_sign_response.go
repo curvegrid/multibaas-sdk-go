@@ -22,8 +22,8 @@ var _ MappedNullable = &TransactionToSignResponse{}
 // TransactionToSignResponse struct for TransactionToSignResponse
 type TransactionToSignResponse struct {
 	PostMethodResponse
-	Tx        map[string]interface{} `json:"tx"`
-	Submitted bool                   `json:"submitted"`
+	Tx        TransactionToSignTx `json:"tx"`
+	Submitted bool                `json:"submitted"`
 }
 
 type _TransactionToSignResponse TransactionToSignResponse
@@ -32,7 +32,7 @@ type _TransactionToSignResponse TransactionToSignResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransactionToSignResponse(tx map[string]interface{}, submitted bool, kind string) *TransactionToSignResponse {
+func NewTransactionToSignResponse(tx TransactionToSignTx, submitted bool, kind string) *TransactionToSignResponse {
 	this := TransactionToSignResponse{}
 	this.Kind = kind
 	this.Tx = tx
@@ -49,9 +49,9 @@ func NewTransactionToSignResponseWithDefaults() *TransactionToSignResponse {
 }
 
 // GetTx returns the Tx field value
-func (o *TransactionToSignResponse) GetTx() map[string]interface{} {
+func (o *TransactionToSignResponse) GetTx() TransactionToSignTx {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret TransactionToSignTx
 		return ret
 	}
 
@@ -60,15 +60,15 @@ func (o *TransactionToSignResponse) GetTx() map[string]interface{} {
 
 // GetTxOk returns a tuple with the Tx field value
 // and a boolean to check if the value has been set.
-func (o *TransactionToSignResponse) GetTxOk() (map[string]interface{}, bool) {
+func (o *TransactionToSignResponse) GetTxOk() (*TransactionToSignTx, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Tx, true
+	return &o.Tx, true
 }
 
 // SetTx sets field value
-func (o *TransactionToSignResponse) SetTx(v map[string]interface{}) {
+func (o *TransactionToSignResponse) SetTx(v TransactionToSignTx) {
 	o.Tx = v
 }
 

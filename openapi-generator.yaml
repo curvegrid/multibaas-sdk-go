@@ -3,7 +3,7 @@ outputDir: .
 generatorName: go
 gitUserId: curvegrid
 gitRepoId: multibaas-sdk-go
-packageVersion: 1.0.2
+packageVersion: 1.0.3
 packageName: multibaas
 modelNameMappings:
   APIKey: ApiKey # Fix collision with openapi-generator APIKey struct in configuration.go
