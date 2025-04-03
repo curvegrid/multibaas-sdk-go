@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the HSMSignRequestTypedData type satisfies the MappedNullable interface at compile time
@@ -24,11 +22,9 @@ type HSMSignRequestTypedData struct {
 	// The signing method to use.
 	Method string `json:"method"`
 	// An ethereum address.
-	Address string          `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Address string          `json:"address"`
 	Data    EIP712TypedData `json:"data"`
 }
-
-type _HSMSignRequestTypedData HSMSignRequestTypedData
 
 // NewHSMSignRequestTypedData instantiates a new HSMSignRequestTypedData object
 // This constructor will assign default values to properties that have it defined,
@@ -136,45 +132,6 @@ func (o HSMSignRequestTypedData) ToMap() (map[string]interface{}, error) {
 	toSerialize["address"] = o.Address
 	toSerialize["data"] = o.Data
 	return toSerialize, nil
-}
-
-func (o *HSMSignRequestTypedData) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"method",
-		"address",
-		"data",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varHSMSignRequestTypedData := _HSMSignRequestTypedData{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHSMSignRequestTypedData)
-
-	if err != nil {
-		return err
-	}
-
-	*o = HSMSignRequestTypedData(varHSMSignRequestTypedData)
-
-	return err
 }
 
 type NullableHSMSignRequestTypedData struct {

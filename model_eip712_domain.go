@@ -25,9 +25,9 @@ type EIP712Domain struct {
 	Version *string              `json:"version,omitempty"`
 	ChainId *EIP712DomainChainId `json:"chainId,omitempty"`
 	// An ethereum address.
-	VerifyingContract *string `json:"verifyingContract,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	VerifyingContract *string `json:"verifyingContract,omitempty"`
 	// A hex string.
-	Salt *string `json:"salt,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Salt *string `json:"salt,omitempty"`
 }
 
 // NewEIP712Domain instantiates a new EIP712Domain object

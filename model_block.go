@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Block type satisfies the MappedNullable interface at compile time
@@ -22,36 +20,34 @@ var _ MappedNullable = &Block{}
 // Block A block in the Ethereum blockchain.
 type Block struct {
 	// The keccak256 hash as a hex string of 256 bits.
-	Hash         string        `json:"hash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	Hash         string        `json:"hash"`
 	Difficulty   string        `json:"difficulty"`
 	GasLimit     int64         `json:"gasLimit"`
 	Number       string        `json:"number"`
 	Timestamp    int64         `json:"timestamp"`
 	Transactions []Transaction `json:"transactions"`
 	// The keccak256 hash as a hex string of 256 bits.
-	ReceiptsRoot string `json:"receiptsRoot" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	ReceiptsRoot string `json:"receiptsRoot"`
 	// The keccak256 hash as a hex string of 256 bits.
-	ParentHash string `json:"parentHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	ParentHash string `json:"parentHash"`
 	// The keccak256 hash as a hex string of 256 bits.
-	Sha3Uncles string `json:"sha3Uncles" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	Sha3Uncles string `json:"sha3Uncles"`
 	// An ethereum address.
-	Miner string `json:"miner" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Miner string `json:"miner"`
 	// The keccak256 hash as a hex string of 256 bits.
-	StateRoot string `json:"stateRoot" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	StateRoot string `json:"stateRoot"`
 	// The keccak256 hash as a hex string of 256 bits.
-	TransactionsRoot string `json:"transactionsRoot" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	TransactionsRoot string `json:"transactionsRoot"`
 	// A hex string.
-	LogsBloom string `json:"logsBloom" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	LogsBloom string `json:"logsBloom"`
 	GasUsed   int32  `json:"gasUsed"`
 	// A hex string.
-	Nonce string `json:"nonce" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Nonce string `json:"nonce"`
 	// The keccak256 hash as a hex string of 256 bits.
-	MixHash       string  `json:"mixHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	MixHash       string  `json:"mixHash"`
 	ExtraData     string  `json:"extraData"`
 	BaseFeePerGas *string `json:"baseFeePerGas,omitempty"`
 }
-
-type _Block Block
 
 // NewBlock instantiates a new Block object
 // This constructor will assign default values to properties that have it defined,
@@ -558,59 +554,6 @@ func (o Block) ToMap() (map[string]interface{}, error) {
 		toSerialize["baseFeePerGas"] = o.BaseFeePerGas
 	}
 	return toSerialize, nil
-}
-
-func (o *Block) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"hash",
-		"difficulty",
-		"gasLimit",
-		"number",
-		"timestamp",
-		"transactions",
-		"receiptsRoot",
-		"parentHash",
-		"sha3Uncles",
-		"miner",
-		"stateRoot",
-		"transactionsRoot",
-		"logsBloom",
-		"gasUsed",
-		"nonce",
-		"mixHash",
-		"extraData",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBlock := _Block{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBlock)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Block(varBlock)
-
-	return err
 }
 
 type NullableBlock struct {

@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
@@ -25,7 +23,7 @@ type WalletTransaction struct {
 	Tx     Transaction       `json:"tx"`
 	Status TransactionStatus `json:"status"`
 	// An ethereum address.
-	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	From string `json:"from"`
 	// The total number of resubmission attempts.
 	ResubmissionAttempts int64 `json:"resubmissionAttempts"`
 	// The total number of successful resubmission (added into the transaction pool).
@@ -39,10 +37,8 @@ type WalletTransaction struct {
 	// The block number that the transaction was included in.
 	BlockNumber *int64 `json:"blockNumber,omitempty"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash *string `json:"blockHash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	BlockHash *string `json:"blockHash,omitempty"`
 }
-
-type _WalletTransaction WalletTransaction
 
 // NewWalletTransaction instantiates a new WalletTransaction object
 // This constructor will assign default values to properties that have it defined,
@@ -359,49 +355,6 @@ func (o WalletTransaction) ToMap() (map[string]interface{}, error) {
 		toSerialize["blockHash"] = o.BlockHash
 	}
 	return toSerialize, nil
-}
-
-func (o *WalletTransaction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"tx",
-		"status",
-		"from",
-		"resubmissionAttempts",
-		"successfulResubmissions",
-		"createdAt",
-		"updatedAt",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWalletTransaction := _WalletTransaction{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWalletTransaction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WalletTransaction(varWalletTransaction)
-
-	return err
 }
 
 type NullableWalletTransaction struct {

@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
@@ -23,7 +21,7 @@ var _ MappedNullable = &APIKeyWithSecret{}
 // APIKeyWithSecret A freshly created API key with its secret.
 type APIKeyWithSecret struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+	Label string `json:"label"`
 	Id    int64  `json:"id"`
 	// The time the API key was created.
 	CreatedAt time.Time `json:"createdAt"`
@@ -36,8 +34,6 @@ type APIKeyWithSecret struct {
 	// The secret key of the API key.
 	Key string `json:"key"`
 }
-
-type _APIKeyWithSecret APIKeyWithSecret
 
 // NewAPIKeyWithSecret instantiates a new APIKeyWithSecret object
 // This constructor will assign default values to properties that have it defined,
@@ -258,48 +254,6 @@ func (o APIKeyWithSecret) ToMap() (map[string]interface{}, error) {
 	toSerialize["signature"] = o.Signature
 	toSerialize["key"] = o.Key
 	return toSerialize, nil
-}
-
-func (o *APIKeyWithSecret) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"label",
-		"id",
-		"createdAt",
-		"createdBy",
-		"signature",
-		"key",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varAPIKeyWithSecret := _APIKeyWithSecret{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAPIKeyWithSecret)
-
-	if err != nil {
-		return err
-	}
-
-	*o = APIKeyWithSecret(varAPIKeyWithSecret)
-
-	return err
 }
 
 type NullableAPIKeyWithSecret struct {

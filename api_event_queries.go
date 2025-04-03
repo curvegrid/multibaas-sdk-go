@@ -446,10 +446,10 @@ func (a *EventQueriesAPIService) ExecuteArbitraryEventQueryExecute(r ApiExecuteA
 	}
 
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	} else {
 		var defaultValue int64 = 10
 		r.limit = &defaultValue
@@ -594,10 +594,10 @@ func (a *EventQueriesAPIService) ExecuteEventQueryExecute(r ApiExecuteEventQuery
 	localVarFormParams := url.Values{}
 
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	} else {
 		var defaultValue int64 = 10
 		r.limit = &defaultValue

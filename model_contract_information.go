@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ContractInformation type satisfies the MappedNullable interface at compile time
@@ -22,16 +20,14 @@ var _ MappedNullable = &ContractInformation{}
 // ContractInformation The contract information within the event or transaction.
 type ContractInformation struct {
 	// An ethereum address.
-	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Address string `json:"address"`
 	// An alias to easily identify and reference addresses.
-	AddressAlias string `json:"addressAlias" validate:"regexp=^[a-z0-9_-]+$"`
+	AddressAlias string `json:"addressAlias"`
 	// The name of the contract.
 	Name string `json:"name"`
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+	Label string `json:"label"`
 }
-
-type _ContractInformation ContractInformation
 
 // NewContractInformation instantiates a new ContractInformation object
 // This constructor will assign default values to properties that have it defined,
@@ -165,46 +161,6 @@ func (o ContractInformation) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["label"] = o.Label
 	return toSerialize, nil
-}
-
-func (o *ContractInformation) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"address",
-		"addressAlias",
-		"name",
-		"label",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varContractInformation := _ContractInformation{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContractInformation)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ContractInformation(varContractInformation)
-
-	return err
 }
 
 type NullableContractInformation struct {

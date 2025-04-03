@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ContractABIErrorArgument type satisfies the MappedNullable interface at compile time
@@ -28,8 +26,6 @@ type ContractABIErrorArgument struct {
 	// The developer documentation.
 	Notes string `json:"notes"`
 }
-
-type _ContractABIErrorArgument ContractABIErrorArgument
 
 // NewContractABIErrorArgument instantiates a new ContractABIErrorArgument object
 // This constructor will assign default values to properties that have it defined,
@@ -189,47 +185,6 @@ func (o ContractABIErrorArgument) ToMap() (map[string]interface{}, error) {
 	toSerialize["indexed"] = o.Indexed
 	toSerialize["notes"] = o.Notes
 	return toSerialize, nil
-}
-
-func (o *ContractABIErrorArgument) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"name",
-		"type",
-		"typeName",
-		"indexed",
-		"notes",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varContractABIErrorArgument := _ContractABIErrorArgument{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContractABIErrorArgument)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ContractABIErrorArgument(varContractABIErrorArgument)
-
-	return err
 }
 
 type NullableContractABIErrorArgument struct {

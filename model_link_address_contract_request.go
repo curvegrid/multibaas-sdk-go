@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the LinkAddressContractRequest type satisfies the MappedNullable interface at compile time
@@ -22,14 +20,12 @@ var _ MappedNullable = &LinkAddressContractRequest{}
 // LinkAddressContractRequest struct for LinkAddressContractRequest
 type LinkAddressContractRequest struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+	Label string `json:"label"`
 	// The contract version.
-	Version *string `json:"version,omitempty" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
+	Version *string `json:"version,omitempty"`
 	// The block number from which to start syncing events. The value can be `latest` for the latest block number, an absolute block number (e.g. `123` for the block number 123), or a relative block number (e.g. `-100` for 100 blocks before the latest block). If absent, the event monitor will be disabled for this contract and events won't be synced.
 	StartingBlock *string `json:"startingBlock,omitempty"`
 }
-
-type _LinkAddressContractRequest LinkAddressContractRequest
 
 // NewLinkAddressContractRequest instantiates a new LinkAddressContractRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -155,43 +151,6 @@ func (o LinkAddressContractRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["startingBlock"] = o.StartingBlock
 	}
 	return toSerialize, nil
-}
-
-func (o *LinkAddressContractRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"label",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varLinkAddressContractRequest := _LinkAddressContractRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLinkAddressContractRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = LinkAddressContractRequest(varLinkAddressContractRequest)
-
-	return err
 }
 
 type NullableLinkAddressContractRequest struct {

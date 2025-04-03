@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ListContracts200Response type satisfies the MappedNullable interface at compile time
@@ -27,8 +25,6 @@ type ListContracts200Response struct {
 	Message string             `json:"message"`
 	Result  []ContractOverview `json:"result"`
 }
-
-type _ListContracts200Response ListContracts200Response
 
 // NewListContracts200Response instantiates a new ListContracts200Response object
 // This constructor will assign default values to properties that have it defined,
@@ -136,45 +132,6 @@ func (o ListContracts200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize["message"] = o.Message
 	toSerialize["result"] = o.Result
 	return toSerialize, nil
-}
-
-func (o *ListContracts200Response) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"status",
-		"message",
-		"result",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varListContracts200Response := _ListContracts200Response{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListContracts200Response)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ListContracts200Response(varListContracts200Response)
-
-	return err
 }
 
 type NullableListContracts200Response struct {

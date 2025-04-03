@@ -25,25 +25,25 @@ Delete address
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
+    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+    addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AddressesAPI.DeleteAddress(context.Background(), chain, addressOrAlias).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.DeleteAddress``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteAddress`: BaseResponse
-	fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.DeleteAddress`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AddressesAPI.DeleteAddress(context.Background(), chain, addressOrAlias).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.DeleteAddress``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteAddress`: BaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.DeleteAddress`: %v\n", resp)
 }
 ```
 
@@ -98,26 +98,26 @@ Get address
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
-	include := []string{"Include_example"} // []string | Optional data to fetch from the blockchain: - `balance` to get the balance of this address. - `code` to get the code at this address. - `nonce` to get the next available transaction nonce for this address. - `contractLookup` to get the contract(s) details for this address.  (optional)
+    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+    addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
+    include := []string{"Include_example"} // []string | Optional data to fetch from the blockchain: - `balance` to get the balance of this address. - `code` to get the code at this address. - `nonce` to get the next available transaction nonce for this address. - `contractLookup` to get the contract(s) details for this address.  (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AddressesAPI.GetAddress(context.Background(), chain, addressOrAlias).Include(include).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.GetAddress``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetAddress`: SetAddress201Response
-	fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.GetAddress`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AddressesAPI.GetAddress(context.Background(), chain, addressOrAlias).Include(include).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.GetAddress``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAddress`: SetAddress201Response
+    fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.GetAddress`: %v\n", resp)
 }
 ```
 
@@ -173,24 +173,24 @@ List addresses
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AddressesAPI.ListAddresses(context.Background(), chain).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.ListAddresses``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListAddresses`: ListAddresses200Response
-	fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.ListAddresses`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AddressesAPI.ListAddresses(context.Background(), chain).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.ListAddresses``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAddresses`: ListAddresses200Response
+    fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.ListAddresses`: %v\n", resp)
 }
 ```
 
@@ -243,25 +243,25 @@ Create or update address
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	addressAlias := *openapiclient.NewAddressAlias("Alias_example", "Address_example") // AddressAlias | 
+    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+    addressAlias := *openapiclient.NewAddressAlias("Alias_example", "Address_example") // AddressAlias | 
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AddressesAPI.SetAddress(context.Background(), chain).AddressAlias(addressAlias).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.SetAddress``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `SetAddress`: SetAddress201Response
-	fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.SetAddress`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AddressesAPI.SetAddress(context.Background(), chain).AddressAlias(addressAlias).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AddressesAPI.SetAddress``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SetAddress`: SetAddress201Response
+    fmt.Fprintf(os.Stdout, "Response from `AddressesAPI.SetAddress`: %v\n", resp)
 }
 ```
 

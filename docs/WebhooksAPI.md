@@ -29,24 +29,24 @@ Count webhook events
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	webhookID := int64(789) // int64 | 
+    webhookID := int64(789) // int64 | 
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.CountWebhookEvents(context.Background(), webhookID).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.CountWebhookEvents``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CountWebhookEvents`: CountWebhookEvents200Response
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.CountWebhookEvents`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksAPI.CountWebhookEvents(context.Background(), webhookID).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.CountWebhookEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CountWebhookEvents`: CountWebhookEvents200Response
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.CountWebhookEvents`: %v\n", resp)
 }
 ```
 
@@ -99,23 +99,23 @@ Count webhooks
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.CountWebhooks(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.CountWebhooks``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CountWebhooks`: CountWebhooks200Response
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.CountWebhooks`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksAPI.CountWebhooks(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.CountWebhooks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CountWebhooks`: CountWebhooks200Response
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.CountWebhooks`: %v\n", resp)
 }
 ```
 
@@ -160,24 +160,24 @@ Create webhook
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	baseWebhookEndpoint := *openapiclient.NewBaseWebhookEndpoint("Url_example", "Label_example", []openapiclient.WebhookEventsType{openapiclient.WebhookEventsType("transaction.included")}) // BaseWebhookEndpoint | 
+    baseWebhookEndpoint := *openapiclient.NewBaseWebhookEndpoint("Url_example", "Label_example", []openapiclient.WebhookEventsType{openapiclient.WebhookEventsType("transaction.included")}) // BaseWebhookEndpoint | 
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.CreateWebhook(context.Background()).BaseWebhookEndpoint(baseWebhookEndpoint).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.CreateWebhook``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateWebhook`: CreateWebhook200Response
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.CreateWebhook`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksAPI.CreateWebhook(context.Background()).BaseWebhookEndpoint(baseWebhookEndpoint).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.CreateWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateWebhook`: CreateWebhook200Response
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.CreateWebhook`: %v\n", resp)
 }
 ```
 
@@ -226,24 +226,24 @@ Delete webhook
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	webhookID := int64(789) // int64 | 
+    webhookID := int64(789) // int64 | 
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.DeleteWebhook(context.Background(), webhookID).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.DeleteWebhook``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteWebhook`: BaseResponse
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.DeleteWebhook`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksAPI.DeleteWebhook(context.Background(), webhookID).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.DeleteWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteWebhook`: BaseResponse
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.DeleteWebhook`: %v\n", resp)
 }
 ```
 
@@ -296,24 +296,24 @@ Get webhook
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	webhookID := int64(789) // int64 | 
+    webhookID := int64(789) // int64 | 
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.GetWebhook(context.Background(), webhookID).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.GetWebhook``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetWebhook`: CreateWebhook200Response
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.GetWebhook`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksAPI.GetWebhook(context.Background(), webhookID).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.GetWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetWebhook`: CreateWebhook200Response
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.GetWebhook`: %v\n", resp)
 }
 ```
 
@@ -366,26 +366,26 @@ List webhook events
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	webhookID := int64(789) // int64 | 
-	limit := int64(789) // int64 |  (optional) (default to 10)
-	offset := int64(789) // int64 |  (optional)
+    webhookID := int64(789) // int64 | 
+    limit := int64(789) // int64 |  (optional) (default to 10)
+    offset := int64(789) // int64 |  (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.ListWebhookEvents(context.Background(), webhookID).Limit(limit).Offset(offset).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.ListWebhookEvents``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListWebhookEvents`: ListWebhookEvents200Response
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.ListWebhookEvents`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksAPI.ListWebhookEvents(context.Background(), webhookID).Limit(limit).Offset(offset).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.ListWebhookEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWebhookEvents`: ListWebhookEvents200Response
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.ListWebhookEvents`: %v\n", resp)
 }
 ```
 
@@ -440,25 +440,25 @@ List webhooks
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	limit := int64(789) // int64 |  (optional) (default to 10)
-	offset := int64(789) // int64 |  (optional)
+    limit := int64(789) // int64 |  (optional) (default to 10)
+    offset := int64(789) // int64 |  (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.ListWebhooks(context.Background()).Limit(limit).Offset(offset).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.ListWebhooks``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListWebhooks`: ListWebhooks200Response
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.ListWebhooks`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksAPI.ListWebhooks(context.Background()).Limit(limit).Offset(offset).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.ListWebhooks``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWebhooks`: ListWebhooks200Response
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.ListWebhooks`: %v\n", resp)
 }
 ```
 
@@ -508,25 +508,25 @@ Update webhook
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	webhookID := int64(789) // int64 | 
-	baseWebhookEndpoint := *openapiclient.NewBaseWebhookEndpoint("Url_example", "Label_example", []openapiclient.WebhookEventsType{openapiclient.WebhookEventsType("transaction.included")}) // BaseWebhookEndpoint | 
+    webhookID := int64(789) // int64 | 
+    baseWebhookEndpoint := *openapiclient.NewBaseWebhookEndpoint("Url_example", "Label_example", []openapiclient.WebhookEventsType{openapiclient.WebhookEventsType("transaction.included")}) // BaseWebhookEndpoint | 
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksAPI.UpdateWebhook(context.Background(), webhookID).BaseWebhookEndpoint(baseWebhookEndpoint).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.UpdateWebhook``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateWebhook`: CreateWebhook200Response
-	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.UpdateWebhook`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.WebhooksAPI.UpdateWebhook(context.Background(), webhookID).BaseWebhookEndpoint(baseWebhookEndpoint).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.UpdateWebhook``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateWebhook`: CreateWebhook200Response
+    fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.UpdateWebhook`: %v\n", resp)
 }
 ```
 

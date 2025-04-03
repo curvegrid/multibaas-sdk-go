@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Log type satisfies the MappedNullable interface at compile time
@@ -22,26 +20,24 @@ var _ MappedNullable = &Log{}
 // Log A contract log event.
 type Log struct {
 	// An ethereum address.
-	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Address string `json:"address"`
 	// A list of topics provided by the contract.
 	Topics []string `json:"topics"`
 	// A hex string.
-	Data string `json:"data" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Data string `json:"data"`
 	// A hex string.
-	BlockNumber string `json:"blockNumber" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	BlockNumber string `json:"blockNumber"`
 	// The keccak256 hash as a hex string of 256 bits.
-	TransactionHash string `json:"transactionHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	TransactionHash string `json:"transactionHash"`
 	// A hex string.
-	TransactionIndex string `json:"transactionIndex" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	TransactionIndex string `json:"transactionIndex"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash string `json:"blockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	BlockHash string `json:"blockHash"`
 	// A hex string.
-	LogIndex string `json:"logIndex" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	LogIndex string `json:"logIndex"`
 	// True if this log was reverted due to a chain reorganization.
 	Removed bool `json:"removed"`
 }
-
-type _Log Log
 
 // NewLog instantiates a new Log object
 // This constructor will assign default values to properties that have it defined,
@@ -305,51 +301,6 @@ func (o Log) ToMap() (map[string]interface{}, error) {
 	toSerialize["logIndex"] = o.LogIndex
 	toSerialize["removed"] = o.Removed
 	return toSerialize, nil
-}
-
-func (o *Log) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"address",
-		"topics",
-		"data",
-		"blockNumber",
-		"transactionHash",
-		"transactionIndex",
-		"blockHash",
-		"logIndex",
-		"removed",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varLog := _Log{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLog)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Log(varLog)
-
-	return err
 }
 
 type NullableLog struct {

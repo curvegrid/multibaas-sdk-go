@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AzureWallet type satisfies the MappedNullable interface at compile time
@@ -22,14 +20,12 @@ var _ MappedNullable = &AzureWallet{}
 // AzureWallet An HSM Wallet returned when a new key is created
 type AzureWallet struct {
 	// The name of the key.
-	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
+	KeyName string `json:"keyName"`
 	// The version of the key.
-	KeyVersion string `json:"keyVersion" validate:"regexp=^[a-zA-Z0-9]{32}$"`
+	KeyVersion string `json:"keyVersion"`
 	// An ethereum address.
-	PublicAddress string `json:"publicAddress" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	PublicAddress string `json:"publicAddress"`
 }
-
-type _AzureWallet AzureWallet
 
 // NewAzureWallet instantiates a new AzureWallet object
 // This constructor will assign default values to properties that have it defined,
@@ -137,45 +133,6 @@ func (o AzureWallet) ToMap() (map[string]interface{}, error) {
 	toSerialize["keyVersion"] = o.KeyVersion
 	toSerialize["publicAddress"] = o.PublicAddress
 	return toSerialize, nil
-}
-
-func (o *AzureWallet) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"keyName",
-		"keyVersion",
-		"publicAddress",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varAzureWallet := _AzureWallet{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAzureWallet)
-
-	if err != nil {
-		return err
-	}
-
-	*o = AzureWallet(varAzureWallet)
-
-	return err
 }
 
 type NullableAzureWallet struct {

@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BaseWebhookEndpoint type satisfies the MappedNullable interface at compile time
@@ -24,12 +22,10 @@ type BaseWebhookEndpoint struct {
 	// The URL to send the webhook to.
 	Url string `json:"url"`
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+	Label string `json:"label"`
 	// The events to subscribe to.
 	Subscriptions []WebhookEventsType `json:"subscriptions"`
 }
-
-type _BaseWebhookEndpoint BaseWebhookEndpoint
 
 // NewBaseWebhookEndpoint instantiates a new BaseWebhookEndpoint object
 // This constructor will assign default values to properties that have it defined,
@@ -137,45 +133,6 @@ func (o BaseWebhookEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize["label"] = o.Label
 	toSerialize["subscriptions"] = o.Subscriptions
 	return toSerialize, nil
-}
-
-func (o *BaseWebhookEndpoint) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-		"label",
-		"subscriptions",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBaseWebhookEndpoint := _BaseWebhookEndpoint{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBaseWebhookEndpoint)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BaseWebhookEndpoint(varBaseWebhookEndpoint)
-
-	return err
 }
 
 type NullableBaseWebhookEndpoint struct {

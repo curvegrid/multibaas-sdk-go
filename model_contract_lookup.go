@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ContractLookup type satisfies the MappedNullable interface at compile time
@@ -22,13 +20,13 @@ var _ MappedNullable = &ContractLookup{}
 // ContractLookup The contract lookup item.
 type ContractLookup struct {
 	// An ethereum address.
-	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Address string `json:"address"`
 	// The name of the contract.
-	Name *string `json:"name,omitempty" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
+	Name *string `json:"name,omitempty"`
 	// The contract ABI JSON string.
 	Abi string `json:"abi"`
 	// The smart-contract bytecode.
-	Bytecode *string `json:"bytecode,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Bytecode *string `json:"bytecode,omitempty"`
 	// The contract's source code.
 	Source *string `json:"source,omitempty"`
 	// The user documentation JSON string.
@@ -44,8 +42,6 @@ type ContractLookup struct {
 	// Indicates whether the contract is a proxy contract.
 	Proxy bool `json:"proxy"`
 }
-
-type _ContractLookup ContractLookup
 
 // NewContractLookup instantiates a new ContractLookup object
 // This constructor will assign default values to properties that have it defined,
@@ -424,46 +420,6 @@ func (o ContractLookup) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["proxy"] = o.Proxy
 	return toSerialize, nil
-}
-
-func (o *ContractLookup) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"address",
-		"abi",
-		"verified",
-		"proxy",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varContractLookup := _ContractLookup{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContractLookup)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ContractLookup(varContractLookup)
-
-	return err
 }
 
 type NullableContractLookup struct {

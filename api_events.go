@@ -181,43 +181,43 @@ func (a *EventsAPIService) GetEventCountExecute(r ApiGetEventCountRequest) (*Get
 	localVarFormParams := url.Values{}
 
 	if r.blockHash != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "block_hash", r.blockHash, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "block_hash", r.blockHash, "")
 	}
 	if r.blockNumber != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "block_number", r.blockNumber, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "block_number", r.blockNumber, "")
 	}
 	if r.txIndexInBlock != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "tx_index_in_block", r.txIndexInBlock, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tx_index_in_block", r.txIndexInBlock, "")
 	}
 	if r.eventIndexInLog != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "event_index_in_log", r.eventIndexInLog, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "event_index_in_log", r.eventIndexInLog, "")
 	}
 	if r.txHash != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "tx_hash", r.txHash, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tx_hash", r.txHash, "")
 	}
 	if r.fromConstructor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from_constructor", r.fromConstructor, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from_constructor", r.fromConstructor, "")
 	}
 	if r.chain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "")
 	}
 	if r.contractAddress != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "")
 	}
 	if r.contractLabel != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_label", r.contractLabel, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_label", r.contractLabel, "")
 	}
 	if r.eventSignature != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "event_signature", r.eventSignature, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "event_signature", r.eventSignature, "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	} else {
 		var defaultValue int64 = 10
 		r.limit = &defaultValue
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -423,43 +423,43 @@ func (a *EventsAPIService) ListEventsExecute(r ApiListEventsRequest) (*ListEvent
 	localVarFormParams := url.Values{}
 
 	if r.blockHash != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "block_hash", r.blockHash, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "block_hash", r.blockHash, "")
 	}
 	if r.blockNumber != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "block_number", r.blockNumber, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "block_number", r.blockNumber, "")
 	}
 	if r.txIndexInBlock != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "tx_index_in_block", r.txIndexInBlock, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tx_index_in_block", r.txIndexInBlock, "")
 	}
 	if r.eventIndexInLog != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "event_index_in_log", r.eventIndexInLog, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "event_index_in_log", r.eventIndexInLog, "")
 	}
 	if r.txHash != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "tx_hash", r.txHash, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tx_hash", r.txHash, "")
 	}
 	if r.fromConstructor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from_constructor", r.fromConstructor, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from_constructor", r.fromConstructor, "")
 	}
 	if r.chain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "")
 	}
 	if r.contractAddress != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "")
 	}
 	if r.contractLabel != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_label", r.contractLabel, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_label", r.contractLabel, "")
 	}
 	if r.eventSignature != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "event_signature", r.eventSignature, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "event_signature", r.eventSignature, "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	} else {
 		var defaultValue int64 = 10
 		r.limit = &defaultValue
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

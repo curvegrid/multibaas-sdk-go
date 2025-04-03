@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the StandaloneWallet type satisfies the MappedNullable interface at compile time
@@ -28,14 +26,12 @@ type StandaloneWallet struct {
 	// The name given to the vault your key is stored in.
 	VaultName *string `json:"vaultName,omitempty"`
 	// The name of the key.
-	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
+	KeyName string `json:"keyName"`
 	// The version of the key.
-	KeyVersion *string `json:"keyVersion,omitempty" validate:"regexp=^[a-zA-Z0-9]{32}$"`
+	KeyVersion *string `json:"keyVersion,omitempty"`
 	// An ethereum address.
-	PublicAddress string `json:"publicAddress" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	PublicAddress string `json:"publicAddress"`
 }
-
-type _StandaloneWallet StandaloneWallet
 
 // NewStandaloneWallet instantiates a new StandaloneWallet object
 // This constructor will assign default values to properties that have it defined,
@@ -248,45 +244,6 @@ func (o StandaloneWallet) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["publicAddress"] = o.PublicAddress
 	return toSerialize, nil
-}
-
-func (o *StandaloneWallet) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"baseGroupName",
-		"keyName",
-		"publicAddress",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varStandaloneWallet := _StandaloneWallet{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStandaloneWallet)
-
-	if err != nil {
-		return err
-	}
-
-	*o = StandaloneWallet(varStandaloneWallet)
-
-	return err
 }
 
 type NullableStandaloneWallet struct {

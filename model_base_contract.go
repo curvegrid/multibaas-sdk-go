@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the BaseContract type satisfies the MappedNullable interface at compile time
@@ -22,13 +20,13 @@ var _ MappedNullable = &BaseContract{}
 // BaseContract A contract.
 type BaseContract struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+	Label string `json:"label"`
 	// The name of the contract.
-	ContractName string `json:"contractName" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
+	ContractName string `json:"contractName"`
 	// The contract version.
-	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
+	Version string `json:"version"`
 	// The smart-contract bytecode.
-	Bin *string `json:"bin,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Bin *string `json:"bin,omitempty"`
 	// The contract raw ABI JSON string.
 	RawAbi string `json:"rawAbi"`
 	// The user documentation JSON string.
@@ -39,8 +37,6 @@ type BaseContract struct {
 	Metadata   *string `json:"metadata,omitempty"`
 	IsFavorite *bool   `json:"isFavorite,omitempty"`
 }
-
-type _BaseContract BaseContract
 
 // NewBaseContract instantiates a new BaseContract object
 // This constructor will assign default values to properties that have it defined,
@@ -349,46 +345,6 @@ func (o BaseContract) ToMap() (map[string]interface{}, error) {
 		toSerialize["isFavorite"] = o.IsFavorite
 	}
 	return toSerialize, nil
-}
-
-func (o *BaseContract) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"label",
-		"contractName",
-		"version",
-		"rawAbi",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBaseContract := _BaseContract{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBaseContract)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BaseContract(varBaseContract)
-
-	return err
 }
 
 type NullableBaseContract struct {

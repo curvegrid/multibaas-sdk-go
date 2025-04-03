@@ -60,7 +60,7 @@ func (o *TypeConversionOptions) GetTypesOk() ([]string, bool) {
 
 // HasTypes returns a boolean if a field has been set.
 func (o *TypeConversionOptions) HasTypes() bool {
-	if o != nil && !IsNil(o.Types) {
+	if o != nil && IsNil(o.Types) {
 		return true
 	}
 

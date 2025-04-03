@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SignerWallet type satisfies the MappedNullable interface at compile time
@@ -24,14 +22,12 @@ type SignerWallet struct {
 	// The type of the signer.
 	Type string `json:"type"`
 	// An ethereum address.
-	Wallet string `json:"wallet" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Wallet string `json:"wallet"`
 	// An ethereum address.
-	Signer string `json:"signer" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Signer string `json:"signer"`
 	// The label of the signer.
 	Label string `json:"label"`
 }
-
-type _SignerWallet SignerWallet
 
 // NewSignerWallet instantiates a new SignerWallet object
 // This constructor will assign default values to properties that have it defined,
@@ -165,46 +161,6 @@ func (o SignerWallet) ToMap() (map[string]interface{}, error) {
 	toSerialize["signer"] = o.Signer
 	toSerialize["label"] = o.Label
 	return toSerialize, nil
-}
-
-func (o *SignerWallet) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"wallet",
-		"signer",
-		"label",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSignerWallet := _SignerWallet{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSignerWallet)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SignerWallet(varSignerWallet)
-
-	return err
 }
 
 type NullableSignerWallet struct {

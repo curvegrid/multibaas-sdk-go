@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ContractABIError type satisfies the MappedNullable interface at compile time
@@ -22,7 +20,7 @@ var _ MappedNullable = &ContractABIError{}
 // ContractABIError A contract error.
 type ContractABIError struct {
 	// The keccak256 hash as a hex string of 256 bits.
-	Id        string `json:"id" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	Id        string `json:"id"`
 	Name      string `json:"name"`
 	Signature string `json:"signature"`
 	// List of contract event's input arguments.
@@ -32,8 +30,6 @@ type ContractABIError struct {
 	// The user documentation.
 	Description *string `json:"description,omitempty"`
 }
-
-type _ContractABIError ContractABIError
 
 // NewContractABIError instantiates a new ContractABIError object
 // This constructor will assign default values to properties that have it defined,
@@ -237,46 +233,6 @@ func (o ContractABIError) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	return toSerialize, nil
-}
-
-func (o *ContractABIError) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"signature",
-		"inputs",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varContractABIError := _ContractABIError{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContractABIError)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ContractABIError(varContractABIError)
-
-	return err
 }
 
 type NullableContractABIError struct {

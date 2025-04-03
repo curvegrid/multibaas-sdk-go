@@ -1922,7 +1922,7 @@ func (a *AdminAPIService) ListApiKeysExecute(r ApiListApiKeysRequest) (*ListApiK
 	localVarFormParams := url.Values{}
 
 	if r.all != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "all", r.all, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "all", r.all, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2306,13 +2306,13 @@ func (a *AdminAPIService) ListGroupsExecute(r ApiListGroupsRequest) (*ListGroups
 	localVarFormParams := url.Values{}
 
 	if r.userID != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "userID", r.userID, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "userID", r.userID, "")
 	}
 	if r.apiKeyID != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "apiKeyID", r.apiKeyID, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "apiKeyID", r.apiKeyID, "")
 	}
 	if r.assignable != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assignable", r.assignable, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assignable", r.assignable, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2567,7 +2567,7 @@ func (a *AdminAPIService) ListUsersExecute(r ApiListUsersRequest) (*ListUsers200
 	localVarFormParams := url.Values{}
 
 	if r.groupID != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "groupID", r.groupID, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "groupID", r.groupID, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -25,27 +25,27 @@ Cancel transaction
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An Ethereum address.
-	nonce := int64(789) // int64 | Transaction nonce.
-	gasParams := *openapiclient.NewGasParams() // GasParams | 
+    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+    walletAddress := "walletAddress_example" // string | An Ethereum address.
+    nonce := int64(789) // int64 | Transaction nonce.
+    gasParams := *openapiclient.NewGasParams() // GasParams | 
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TxmAPI.CancelTransaction(context.Background(), chain, walletAddress, nonce).GasParams(gasParams).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.CancelTransaction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CancelTransaction`: TransferEth200Response
-	fmt.Fprintf(os.Stdout, "Response from `TxmAPI.CancelTransaction`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TxmAPI.CancelTransaction(context.Background(), chain, walletAddress, nonce).GasParams(gasParams).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.CancelTransaction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CancelTransaction`: TransferEth200Response
+    fmt.Fprintf(os.Stdout, "Response from `TxmAPI.CancelTransaction`: %v\n", resp)
 }
 ```
 
@@ -103,25 +103,25 @@ Count all transactions for a wallet
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An Ethereum address.
+    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+    walletAddress := "walletAddress_example" // string | An Ethereum address.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TxmAPI.CountWalletTransactions(context.Background(), chain, walletAddress).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.CountWalletTransactions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CountWalletTransactions`: CountWalletTransactions200Response
-	fmt.Fprintf(os.Stdout, "Response from `TxmAPI.CountWalletTransactions`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TxmAPI.CountWalletTransactions(context.Background(), chain, walletAddress).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.CountWalletTransactions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CountWalletTransactions`: CountWalletTransactions200Response
+    fmt.Fprintf(os.Stdout, "Response from `TxmAPI.CountWalletTransactions`: %v\n", resp)
 }
 ```
 
@@ -176,30 +176,30 @@ List transactions for a wallet
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An Ethereum address.
-	hash := "hash_example" // string | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: `?hash=HASH1&hash=HASH2&hash=HASH3` (optional)
-	nonce := int64(789) // int64 | Filter transactions by nonce (optional)
-	status := openapiclient.TransactionStatus("pending") // TransactionStatus | Filter transactions by status (optional)
-	limit := int64(789) // int64 |  (optional) (default to 10)
-	offset := int64(789) // int64 |  (optional)
+    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+    walletAddress := "walletAddress_example" // string | An Ethereum address.
+    hash := "hash_example" // string | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: `?hash=HASH1&hash=HASH2&hash=HASH3` (optional)
+    nonce := int64(789) // int64 | Filter transactions by nonce (optional)
+    status := openapiclient.TransactionStatus("pending") // TransactionStatus | Filter transactions by status (optional)
+    limit := int64(789) // int64 |  (optional) (default to 10)
+    offset := int64(789) // int64 |  (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TxmAPI.ListWalletTransactions(context.Background(), chain, walletAddress).Hash(hash).Nonce(nonce).Status(status).Limit(limit).Offset(offset).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.ListWalletTransactions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListWalletTransactions`: ListWalletTransactions200Response
-	fmt.Fprintf(os.Stdout, "Response from `TxmAPI.ListWalletTransactions`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TxmAPI.ListWalletTransactions(context.Background(), chain, walletAddress).Hash(hash).Nonce(nonce).Status(status).Limit(limit).Offset(offset).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.ListWalletTransactions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListWalletTransactions`: ListWalletTransactions200Response
+    fmt.Fprintf(os.Stdout, "Response from `TxmAPI.ListWalletTransactions`: %v\n", resp)
 }
 ```
 
@@ -259,27 +259,27 @@ Speed up transaction
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	walletAddress := "walletAddress_example" // string | An Ethereum address.
-	nonce := int64(789) // int64 | Transaction nonce.
-	gasParams := *openapiclient.NewGasParams() // GasParams | 
+    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+    walletAddress := "walletAddress_example" // string | An Ethereum address.
+    nonce := int64(789) // int64 | Transaction nonce.
+    gasParams := *openapiclient.NewGasParams() // GasParams | 
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TxmAPI.SpeedUpTransaction(context.Background(), chain, walletAddress, nonce).GasParams(gasParams).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.SpeedUpTransaction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `SpeedUpTransaction`: TransferEth200Response
-	fmt.Fprintf(os.Stdout, "Response from `TxmAPI.SpeedUpTransaction`: %v\n", resp)
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.TxmAPI.SpeedUpTransaction(context.Background(), chain, walletAddress, nonce).GasParams(gasParams).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.SpeedUpTransaction``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SpeedUpTransaction`: TransferEth200Response
+    fmt.Fprintf(os.Stdout, "Response from `TxmAPI.SpeedUpTransaction`: %v\n", resp)
 }
 ```
 

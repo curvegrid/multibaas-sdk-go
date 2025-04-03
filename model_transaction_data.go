@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the TransactionData type satisfies the MappedNullable interface at compile time
@@ -25,16 +23,14 @@ type TransactionData struct {
 	// Whether the transaction has been included yet.
 	IsPending bool `json:"isPending"`
 	// An ethereum address.
-	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	From string `json:"from"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash *string `json:"blockHash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	BlockHash *string `json:"blockHash,omitempty"`
 	// The transaction block number.
 	BlockNumber *string                    `json:"blockNumber,omitempty"`
 	Contract    *ContractInformation       `json:"contract,omitempty"`
 	Method      *ContractMethodInformation `json:"method,omitempty"`
 }
-
-type _TransactionData TransactionData
 
 // NewTransactionData instantiates a new TransactionData object
 // This constructor will assign default values to properties that have it defined,
@@ -282,45 +278,6 @@ func (o TransactionData) ToMap() (map[string]interface{}, error) {
 		toSerialize["method"] = o.Method
 	}
 	return toSerialize, nil
-}
-
-func (o *TransactionData) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"data",
-		"isPending",
-		"from",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varTransactionData := _TransactionData{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTransactionData)
-
-	if err != nil {
-		return err
-	}
-
-	*o = TransactionData(varTransactionData)
-
-	return err
 }
 
 type NullableTransactionData struct {

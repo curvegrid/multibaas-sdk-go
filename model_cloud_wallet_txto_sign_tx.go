@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CloudWalletTXToSignTx type satisfies the MappedNullable interface at compile time
@@ -32,20 +30,18 @@ type CloudWalletTXToSignTx struct {
 	// Gas limit of the transaction
 	Gas int64 `json:"gas"`
 	// An ethereum address.
-	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	From string `json:"from"`
 	// An ethereum address.
-	To NullableString `json:"to,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	To NullableString `json:"to,omitempty"`
 	// Amount (in wei) to send with the transaction.
 	Value string `json:"value"`
 	// A hex string.
-	Data string `json:"data" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Data string `json:"data"`
 	// The keccak256 hash as a hex string of 256 bits.
-	Hash *string `json:"hash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	Hash *string `json:"hash,omitempty"`
 	// Transaction type
 	Type int64 `json:"type"`
 }
-
-type _CloudWalletTXToSignTx CloudWalletTXToSignTx
 
 // NewCloudWalletTXToSignTx instantiates a new CloudWalletTXToSignTx object
 // This constructor will assign default values to properties that have it defined,
@@ -426,47 +422,6 @@ func (o CloudWalletTXToSignTx) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
-}
-
-func (o *CloudWalletTXToSignTx) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"gas",
-		"from",
-		"value",
-		"data",
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCloudWalletTXToSignTx := _CloudWalletTXToSignTx{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCloudWalletTXToSignTx)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CloudWalletTXToSignTx(varCloudWalletTXToSignTx)
-
-	return err
 }
 
 type NullableCloudWalletTXToSignTx struct {

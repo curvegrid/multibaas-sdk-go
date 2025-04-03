@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the EventQuery type satisfies the MappedNullable interface at compile time
@@ -29,8 +27,6 @@ type EventQuery struct {
 	// Specify ascending or descending order, the default is \"ASC\".
 	Order *string `json:"order,omitempty"`
 }
-
-type _EventQuery EventQuery
 
 // NewEventQuery instantiates a new EventQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -191,43 +187,6 @@ func (o EventQuery) ToMap() (map[string]interface{}, error) {
 		toSerialize["order"] = o.Order
 	}
 	return toSerialize, nil
-}
-
-func (o *EventQuery) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"events",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varEventQuery := _EventQuery{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEventQuery)
-
-	if err != nil {
-		return err
-	}
-
-	*o = EventQuery(varEventQuery)
-
-	return err
 }
 
 type NullableEventQuery struct {

@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SavedEventQuery type satisfies the MappedNullable interface at compile time
@@ -23,13 +21,11 @@ var _ MappedNullable = &SavedEventQuery{}
 type SavedEventQuery struct {
 	Id int64 `json:"id"`
 	// An event query label.
-	Label string     "json:\"label\" validate:\"regexp=^[^<>?&\\\\\\\"'\\\\`\\/\\\\\\\\]*$\""
+	Label string     `json:"label"`
 	Query EventQuery `json:"query"`
 	// Specifies if this a system-generated query which is not modifiable by the user.
 	IsSystem bool `json:"isSystem"`
 }
-
-type _SavedEventQuery SavedEventQuery
 
 // NewSavedEventQuery instantiates a new SavedEventQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -163,46 +159,6 @@ func (o SavedEventQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize["query"] = o.Query
 	toSerialize["isSystem"] = o.IsSystem
 	return toSerialize, nil
-}
-
-func (o *SavedEventQuery) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"label",
-		"query",
-		"isSystem",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varSavedEventQuery := _SavedEventQuery{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSavedEventQuery)
-
-	if err != nil {
-		return err
-	}
-
-	*o = SavedEventQuery(varSavedEventQuery)
-
-	return err
 }
 
 type NullableSavedEventQuery struct {

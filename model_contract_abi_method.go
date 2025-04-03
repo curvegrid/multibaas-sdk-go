@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ContractABIMethod type satisfies the MappedNullable interface at compile time
@@ -22,7 +20,7 @@ var _ MappedNullable = &ContractABIMethod{}
 // ContractABIMethod A contract function.
 type ContractABIMethod struct {
 	// A hex string.
-	Id string `json:"id" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Id string `json:"id"`
 	// Name of the function.
 	Name string `json:"name"`
 	// The function signature.
@@ -38,8 +36,6 @@ type ContractABIMethod struct {
 	// The function description.
 	Description string `json:"description"`
 }
-
-type _ContractABIMethod ContractABIMethod
 
 // NewContractABIMethod instantiates a new ContractABIMethod object
 // This constructor will assign default values to properties that have it defined,
@@ -329,52 +325,6 @@ func (o ContractABIMethod) ToMap() (map[string]interface{}, error) {
 	toSerialize["notes"] = o.Notes
 	toSerialize["description"] = o.Description
 	return toSerialize, nil
-}
-
-func (o *ContractABIMethod) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"signature",
-		"const",
-		"payable",
-		"inputs",
-		"outputs",
-		"author",
-		"notes",
-		"description",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varContractABIMethod := _ContractABIMethod{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContractABIMethod)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ContractABIMethod(varContractABIMethod)
-
-	return err
 }
 
 type NullableContractABIMethod struct {

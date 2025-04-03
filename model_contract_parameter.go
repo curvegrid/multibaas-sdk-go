@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ContractParameter type satisfies the MappedNullable interface at compile time
@@ -23,8 +21,6 @@ var _ MappedNullable = &ContractParameter{}
 type ContractParameter struct {
 	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
 }
-
-type _ContractParameter ContractParameter
 
 // NewContractParameter instantiates a new ContractParameter object
 // This constructor will assign default values to properties that have it defined,
@@ -82,43 +78,6 @@ func (o ContractParameter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["typeConversion"] = o.TypeConversion.Get()
 	return toSerialize, nil
-}
-
-func (o *ContractParameter) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"typeConversion",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varContractParameter := _ContractParameter{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContractParameter)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ContractParameter(varContractParameter)
-
-	return err
 }
 
 type NullableContractParameter struct {

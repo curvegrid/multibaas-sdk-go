@@ -45,30 +45,6 @@ func (dst *HSMSignRequest) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
-	// check if the discriminator value is 'eth_signTypedData_v4'
-	if jsonDict["method"] == "eth_signTypedData_v4" {
-		// try to unmarshal JSON data into HSMSignRequestTypedData
-		err = json.Unmarshal(data, &dst.HSMSignRequestTypedData)
-		if err == nil {
-			return nil // data stored in dst.HSMSignRequestTypedData, return on the first match
-		} else {
-			dst.HSMSignRequestTypedData = nil
-			return fmt.Errorf("failed to unmarshal HSMSignRequest as HSMSignRequestTypedData: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'personal_sign'
-	if jsonDict["method"] == "personal_sign" {
-		// try to unmarshal JSON data into HSMSignRequestPersonalSign
-		err = json.Unmarshal(data, &dst.HSMSignRequestPersonalSign)
-		if err == nil {
-			return nil // data stored in dst.HSMSignRequestPersonalSign, return on the first match
-		} else {
-			dst.HSMSignRequestPersonalSign = nil
-			return fmt.Errorf("failed to unmarshal HSMSignRequest as HSMSignRequestPersonalSign: %s", err.Error())
-		}
-	}
-
 	// check if the discriminator value is 'HSMSignRequestPersonalSign'
 	if jsonDict["method"] == "HSMSignRequestPersonalSign" {
 		// try to unmarshal JSON data into HSMSignRequestPersonalSign
@@ -90,6 +66,30 @@ func (dst *HSMSignRequest) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.HSMSignRequestTypedData = nil
 			return fmt.Errorf("failed to unmarshal HSMSignRequest as HSMSignRequestTypedData: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'eth_signTypedData_v4'
+	if jsonDict["method"] == "eth_signTypedData_v4" {
+		// try to unmarshal JSON data into HSMSignRequestTypedData
+		err = json.Unmarshal(data, &dst.HSMSignRequestTypedData)
+		if err == nil {
+			return nil // data stored in dst.HSMSignRequestTypedData, return on the first match
+		} else {
+			dst.HSMSignRequestTypedData = nil
+			return fmt.Errorf("failed to unmarshal HSMSignRequest as HSMSignRequestTypedData: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'personal_sign'
+	if jsonDict["method"] == "personal_sign" {
+		// try to unmarshal JSON data into HSMSignRequestPersonalSign
+		err = json.Unmarshal(data, &dst.HSMSignRequestPersonalSign)
+		if err == nil {
+			return nil // data stored in dst.HSMSignRequestPersonalSign, return on the first match
+		} else {
+			dst.HSMSignRequestPersonalSign = nil
+			return fmt.Errorf("failed to unmarshal HSMSignRequest as HSMSignRequestPersonalSign: %s", err.Error())
 		}
 	}
 
@@ -120,20 +120,6 @@ func (obj *HSMSignRequest) GetActualInstance() interface{} {
 
 	if obj.HSMSignRequestTypedData != nil {
 		return obj.HSMSignRequestTypedData
-	}
-
-	// all schemas are nil
-	return nil
-}
-
-// Get the actual instance value
-func (obj HSMSignRequest) GetActualInstanceValue() interface{} {
-	if obj.HSMSignRequestPersonalSign != nil {
-		return *obj.HSMSignRequestPersonalSign
-	}
-
-	if obj.HSMSignRequestTypedData != nil {
-		return *obj.HSMSignRequestTypedData
 	}
 
 	// all schemas are nil

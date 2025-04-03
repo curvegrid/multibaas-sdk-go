@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AddKey type satisfies the MappedNullable interface at compile time
@@ -24,14 +22,12 @@ type AddKey struct {
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The name of the key.
-	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
+	KeyName string `json:"keyName"`
 	// The version of the key.
-	KeyVersion string `json:"keyVersion" validate:"regexp=^[a-zA-Z0-9]{32}$"`
+	KeyVersion string `json:"keyVersion"`
 	// The name given to the vault your key is stored in.
 	VaultName string `json:"vaultName"`
 }
-
-type _AddKey AddKey
 
 // NewAddKey instantiates a new AddKey object
 // This constructor will assign default values to properties that have it defined,
@@ -165,46 +161,6 @@ func (o AddKey) ToMap() (map[string]interface{}, error) {
 	toSerialize["keyVersion"] = o.KeyVersion
 	toSerialize["vaultName"] = o.VaultName
 	return toSerialize, nil
-}
-
-func (o *AddKey) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"clientID",
-		"keyName",
-		"keyVersion",
-		"vaultName",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varAddKey := _AddKey{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAddKey)
-
-	if err != nil {
-		return err
-	}
-
-	*o = AddKey(varAddKey)
-
-	return err
 }
 
 type NullableAddKey struct {

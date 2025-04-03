@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ListWalletTransactions200Response type satisfies the MappedNullable interface at compile time
@@ -27,8 +25,6 @@ type ListWalletTransactions200Response struct {
 	Message string              `json:"message"`
 	Result  []WalletTransaction `json:"result"`
 }
-
-type _ListWalletTransactions200Response ListWalletTransactions200Response
 
 // NewListWalletTransactions200Response instantiates a new ListWalletTransactions200Response object
 // This constructor will assign default values to properties that have it defined,
@@ -136,45 +132,6 @@ func (o ListWalletTransactions200Response) ToMap() (map[string]interface{}, erro
 	toSerialize["message"] = o.Message
 	toSerialize["result"] = o.Result
 	return toSerialize, nil
-}
-
-func (o *ListWalletTransactions200Response) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"status",
-		"message",
-		"result",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varListWalletTransactions200Response := _ListWalletTransactions200Response{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListWalletTransactions200Response)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ListWalletTransactions200Response(varListWalletTransactions200Response)
-
-	return err
 }
 
 type NullableListWalletTransactions200Response struct {

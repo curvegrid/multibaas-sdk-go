@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MethodArg type satisfies the MappedNullable interface at compile time
@@ -28,8 +26,6 @@ type MethodArg struct {
 	// The type of the argument.
 	Type string `json:"type"`
 }
-
-type _MethodArg MethodArg
 
 // NewMethodArg instantiates a new MethodArg object
 // This constructor will assign default values to properties that have it defined,
@@ -141,45 +137,6 @@ func (o MethodArg) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
-}
-
-func (o *MethodArg) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"name",
-		"value",
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMethodArg := _MethodArg{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMethodArg)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MethodArg(varMethodArg)
-
-	return err
 }
 
 type NullableMethodArg struct {

@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the TransactionInformation type satisfies the MappedNullable interface at compile time
@@ -22,22 +20,20 @@ var _ MappedNullable = &TransactionInformation{}
 // TransactionInformation The transaction information returned as part of an event.
 type TransactionInformation struct {
 	// An ethereum address.
-	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	From string `json:"from"`
 	// A hex string.
-	TxData string `json:"txData" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	TxData string `json:"txData"`
 	// The keccak256 hash as a hex string of 256 bits.
-	TxHash string `json:"txHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	TxHash string `json:"txHash"`
 	// The location of the transaction in the block.
 	TxIndexInBlock int64 `json:"txIndexInBlock"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash string `json:"blockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	BlockHash string `json:"blockHash"`
 	// The transaction block number.
 	BlockNumber int64                     `json:"blockNumber"`
 	Contract    ContractInformation       `json:"contract"`
 	Method      ContractMethodInformation `json:"method"`
 }
-
-type _TransactionInformation TransactionInformation
 
 // NewTransactionInformation instantiates a new TransactionInformation object
 // This constructor will assign default values to properties that have it defined,
@@ -275,50 +271,6 @@ func (o TransactionInformation) ToMap() (map[string]interface{}, error) {
 	toSerialize["contract"] = o.Contract
 	toSerialize["method"] = o.Method
 	return toSerialize, nil
-}
-
-func (o *TransactionInformation) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"from",
-		"txData",
-		"txHash",
-		"txIndexInBlock",
-		"blockHash",
-		"blockNumber",
-		"contract",
-		"method",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varTransactionInformation := _TransactionInformation{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTransactionInformation)
-
-	if err != nil {
-		return err
-	}
-
-	*o = TransactionInformation(varTransactionInformation)
-
-	return err
 }
 
 type NullableTransactionInformation struct {

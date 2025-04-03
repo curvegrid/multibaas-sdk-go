@@ -4157,47 +4157,6 @@ components:
         - modules
         type: object
       description: An address details.
-      example:
-        chain: chain
-        address: address
-        balance: balance
-        localNonce: 1
-        alias: alias
-        contractLookup:
-        - bytecode: bytecode
-          proxy: true
-          address: address
-          verifiedLink: https://openapi-generator.tech
-          userdoc: userdoc
-          verifiedSource: verifiedSource
-          name: name
-          devdoc: devdoc
-          verified: true
-          abi: abi
-          source: source
-        - bytecode: bytecode
-          proxy: true
-          address: address
-          verifiedLink: https://openapi-generator.tech
-          userdoc: userdoc
-          verifiedSource: verifiedSource
-          name: name
-          devdoc: devdoc
-          verified: true
-          abi: abi
-          source: source
-        codeAt: codeAt
-        contracts:
-        - name: name
-          label: label
-          version: version
-        - name: name
-          label: label
-          version: version
-        nonce: 6
-        modules:
-        - modules
-        - modules
       title: Address
     AddressAlias:
       description: An address and it's alias.
@@ -4262,13 +4221,6 @@ components:
         - signature
         type: object
       description: An API key.
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        lastUsedAt: 2000-01-23T04:56:07.000+00:00
-        createdBy: 1
-        signature: signature
-        label: label
-        id: 6
     APIKeyWithSecret:
       allOf:
       - $ref: '#/components/schemas/APIKey'
@@ -4280,14 +4232,6 @@ components:
         - key
         type: object
       description: A freshly created API key with its secret.
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        lastUsedAt: 2000-01-23T04:56:07.000+00:00
-        createdBy: 1
-        signature: signature
-        label: label
-        id: 6
-        key: key
     AzureKeyName:
       description: The name of the key.
       pattern: "^[a-zA-Z0-9-]{1,127}$"
@@ -4349,25 +4293,10 @@ components:
         - id
         type: object
       description: An Azure account.
-      example:
-        baseGroupName: baseGroupName
-        clientID: clientID
-        tenantID: tenantID
-        clientSecret: clientSecret
-        label: label
-        id: 6
-        subscriptionID: subscriptionID
       title: AzureAccount
       type: object
     AzureHardwareWallet:
       description: An HSM Wallet
-      example:
-        azureAccountID: 5
-        vaultName: vaultName
-        keyVersion: keyVersion
-        keyName: keyName
-        publicAddress: publicAddress
-        id: 1
       properties:
         id:
           format: int64
@@ -4409,10 +4338,6 @@ components:
       type: array
     AzureWallet:
       description: An HSM Wallet returned when a new key is created
-      example:
-        keyVersion: keyVersion
-        keyName: keyName
-        publicAddress: publicAddress
       properties:
         keyName:
           description: The name of the key.
@@ -4436,13 +4361,6 @@ components:
       type: object
     StandaloneWallet:
       description: An object containing an HSM wallet's details.
-      example:
-        baseGroupName: baseGroupName
-        clientID: clientID
-        vaultName: vaultName
-        keyVersion: keyVersion
-        keyName: keyName
-        publicAddress: publicAddress
       properties:
         clientID:
           description: The Application ID that accesses the Key Vault.
@@ -4475,125 +4393,6 @@ components:
       type: object
     Block:
       description: A block in the Ethereum blockchain.
-      example:
-        logsBloom: logsBloom
-        receiptsRoot: receiptsRoot
-        extraData: extraData
-        baseFeePerGas: baseFeePerGas
-        transactions:
-        - blobs:
-          - null
-          - null
-          maxFeePerBlobGas: maxFeePerBlobGas
-          commitments:
-          - null
-          - null
-          yParity: yParity
-          accessList:
-          - address: address
-            storageKeys:
-            - null
-            - null
-          - address: address
-            storageKeys:
-            - null
-            - null
-          blobVersionedHashes:
-          - null
-          - null
-          type: type
-          nonce: nonce
-          authorizationList:
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          input: input
-          r: r
-          s: s
-          chainId: chainId
-          v: v
-          proofs:
-          - null
-          - null
-          gas: gas
-          maxPriorityFeePerGas: maxPriorityFeePerGas
-          to: to
-          maxFeePerGas: maxFeePerGas
-          value: value
-          hash: hash
-          gasPrice: gasPrice
-        - blobs:
-          - null
-          - null
-          maxFeePerBlobGas: maxFeePerBlobGas
-          commitments:
-          - null
-          - null
-          yParity: yParity
-          accessList:
-          - address: address
-            storageKeys:
-            - null
-            - null
-          - address: address
-            storageKeys:
-            - null
-            - null
-          blobVersionedHashes:
-          - null
-          - null
-          type: type
-          nonce: nonce
-          authorizationList:
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          input: input
-          r: r
-          s: s
-          chainId: chainId
-          v: v
-          proofs:
-          - null
-          - null
-          gas: gas
-          maxPriorityFeePerGas: maxPriorityFeePerGas
-          to: to
-          maxFeePerGas: maxFeePerGas
-          value: value
-          hash: hash
-          gasPrice: gasPrice
-        nonce: nonce
-        miner: miner
-        difficulty: difficulty
-        gasLimit: 0
-        number: number
-        gasUsed: 0
-        sha3Uncles: sha3Uncles
-        transactionsRoot: transactionsRoot
-        stateRoot: stateRoot
-        mixHash: mixHash
-        parentHash: parentHash
-        hash: hash
-        timestamp: 1
       properties:
         hash:
           description: The keccak256 hash as a hex string of 256 bits.
@@ -4710,12 +4509,6 @@ components:
       type: string
     ChainStatus:
       description: The status of the Chain
-      example:
-        chainID: 1
-        blockNumber: 6
-        baseFee: baseFee
-        networkID: 5
-        version: version
       properties:
         blockNumber:
           format: int64
@@ -4742,9 +4535,6 @@ components:
       type: object
     ContractInstance:
       description: A contract instance
-      example:
-        address: address
-        alias: alias
       properties:
         alias:
           type: string
@@ -4759,10 +4549,6 @@ components:
       title: ContractInstance
       type: object
     ContractMetadata:
-      example:
-        name: name
-        label: label
-        version: version
       properties:
         label:
           description: An alias to easily identify and reference the entity in subsequent
@@ -4859,85 +4645,6 @@ components:
       type: object
     ContractABIMethod:
       description: A contract function.
-      example:
-        outputs:
-        - notes: notes
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        - notes: notes
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        notes: notes
-        const: true
-        payable: true
-        signature: signature
-        inputs:
-        - notes: notes
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        - notes: notes
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        author: author
-        name: name
-        description: description
-        id: id
       nullable: true
       properties:
         id:
@@ -4988,16 +4695,6 @@ components:
     ContractMethodInformation:
       description: The contract method's information returned within the event or
         transaction.
-      example:
-        signature: signature
-        inputs:
-        - name: name
-          type: type
-          value: ""
-        - name: name
-          type: type
-          value: ""
-        name: name
       properties:
         name:
           description: The name of the method.
@@ -5017,25 +4714,6 @@ components:
       type: object
     ContractABIEventArgument:
       description: A contract event argument.
-      example:
-        notes: notes
-        indexed: true
-        name: name
-        typeName: typeName
-        typeConversion:
-          mode: mode
-          decimalsFunction: decimalsFunction
-          decimalsAbsolute: 7
-        type:
-          elem: null
-          size: 2
-          tupleElems:
-          - null
-          - null
-          tupleRawNames:
-          - tupleRawNames
-          - tupleRawNames
-          type: type
       properties:
         name:
           type: string
@@ -5061,50 +4739,6 @@ components:
       type: object
     ContractABIEvent:
       description: A contract event.
-      example:
-        notes: notes
-        signature: signature
-        inputs:
-        - notes: notes
-          indexed: true
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        - notes: notes
-          indexed: true
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        name: name
-        anonymous: true
-        description: description
-        id: id
       properties:
         id:
           description: The keccak256 hash as a hex string of 256 bits.
@@ -5142,21 +4776,6 @@ components:
       type: object
     ContractABIErrorArgument:
       description: A contract error argument.
-      example:
-        notes: notes
-        indexed: true
-        name: name
-        typeName: typeName
-        type:
-          elem: null
-          size: 2
-          tupleElems:
-          - null
-          - null
-          tupleRawNames:
-          - tupleRawNames
-          - tupleRawNames
-          type: type
       properties:
         name:
           type: string
@@ -5179,41 +4798,6 @@ components:
       type: object
     ContractABIError:
       description: A contract error.
-      example:
-        notes: notes
-        signature: signature
-        inputs:
-        - notes: notes
-          indexed: true
-          name: name
-          typeName: typeName
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        - notes: notes
-          indexed: true
-          name: name
-          typeName: typeName
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        name: name
-        description: description
-        id: id
       properties:
         id:
           description: The keccak256 hash as a hex string of 256 bits.
@@ -5246,405 +4830,6 @@ components:
       type: object
     ContractABI:
       description: The contract ABI.
-      example:
-        receive:
-          outputs:
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          notes: notes
-          const: true
-          payable: true
-          signature: signature
-          inputs:
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          author: author
-          name: name
-          description: description
-          id: id
-        methods:
-          key:
-            outputs:
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            notes: notes
-            const: true
-            payable: true
-            signature: signature
-            inputs:
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            author: author
-            name: name
-            description: description
-            id: id
-        constructor:
-          outputs:
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          notes: notes
-          const: true
-          payable: true
-          signature: signature
-          inputs:
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          author: author
-          name: name
-          description: description
-          id: id
-        fallback:
-          outputs:
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          notes: notes
-          const: true
-          payable: true
-          signature: signature
-          inputs:
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          - notes: notes
-            name: name
-            typeName: typeName
-            typeConversion:
-              mode: mode
-              decimalsFunction: decimalsFunction
-              decimalsAbsolute: 7
-            type:
-              elem: null
-              size: 2
-              tupleElems:
-              - null
-              - null
-              tupleRawNames:
-              - tupleRawNames
-              - tupleRawNames
-              type: type
-          author: author
-          name: name
-          description: description
-          id: id
-        events:
-          key:
-            notes: notes
-            signature: signature
-            inputs:
-            - notes: notes
-              indexed: true
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              indexed: true
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            name: name
-            anonymous: true
-            description: description
-            id: id
-        errors:
-          key:
-            notes: notes
-            signature: signature
-            inputs:
-            - notes: notes
-              indexed: true
-              name: name
-              typeName: typeName
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              indexed: true
-              name: name
-              typeName: typeName
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            name: name
-            description: description
-            id: id
       properties:
         constructor:
           $ref: '#/components/schemas/ContractABIMethod_1'
@@ -5742,428 +4927,9 @@ components:
         - abi
         type: object
       description: A returned contract.
-      example:
-        developerDoc: developerDoc
-        metadata: metadata
-        instances:
-        - address: address
-          alias: alias
-        - address: address
-          alias: alias
-        bin: bin
-        rawAbi: rawAbi
-        userDoc: userDoc
-        abi:
-          receive:
-            outputs:
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            notes: notes
-            const: true
-            payable: true
-            signature: signature
-            inputs:
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            author: author
-            name: name
-            description: description
-            id: id
-          methods:
-            key:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-          constructor:
-            outputs:
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            notes: notes
-            const: true
-            payable: true
-            signature: signature
-            inputs:
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            author: author
-            name: name
-            description: description
-            id: id
-          fallback:
-            outputs:
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            notes: notes
-            const: true
-            payable: true
-            signature: signature
-            inputs:
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            - notes: notes
-              name: name
-              typeName: typeName
-              typeConversion:
-                mode: mode
-                decimalsFunction: decimalsFunction
-                decimalsAbsolute: 7
-              type:
-                elem: null
-                size: 2
-                tupleElems:
-                - null
-                - null
-                tupleRawNames:
-                - tupleRawNames
-                - tupleRawNames
-                type: type
-            author: author
-            name: name
-            description: description
-            id: id
-          events:
-            key:
-              notes: notes
-              signature: signature
-              inputs:
-              - notes: notes
-                indexed: true
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                indexed: true
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              name: name
-              anonymous: true
-              description: description
-              id: id
-          errors:
-            key:
-              notes: notes
-              signature: signature
-              inputs:
-              - notes: notes
-                indexed: true
-                name: name
-                typeName: typeName
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                indexed: true
-                name: name
-                typeName: typeName
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              name: name
-              description: description
-              id: id
-        contractName: contractName
-        label: label
-        version: version
-        isFavorite: true
       title: Contract
     ContractInformation:
       description: The contract information within the event or transaction.
-      example:
-        address: address
-        name: name
-        addressAlias: addressAlias
-        label: label
       properties:
         address:
           description: An ethereum address.
@@ -6193,17 +4959,6 @@ components:
       type: object
     ContractOverview:
       description: A contract overview.
-      example:
-        deployable: true
-        instances:
-        - address: address
-          alias: alias
-        - address: address
-          alias: alias
-        contractName: contractName
-        label: label
-        version: version
-        isFavorite: true
       properties:
         label:
           description: An alias to easily identify and reference the entity in subsequent
@@ -6240,18 +4995,6 @@ components:
       type: object
     ContractLookup:
       description: The contract lookup item.
-      example:
-        bytecode: bytecode
-        proxy: true
-        address: address
-        verifiedLink: https://openapi-generator.tech
-        userdoc: userdoc
-        verifiedSource: verifiedSource
-        name: name
-        devdoc: devdoc
-        verified: true
-        abi: abi
-        source: source
       properties:
         address:
           description: An ethereum address.
@@ -6311,35 +5054,9 @@ components:
             $ref: '#/components/schemas/Label'
         type: object
       description: The transaction returned when you deploy a contracts.
-      example:
-        submitted: true
-        tx:
-          data: data
-          gas: 1
-          gasTipCap: gasTipCap
-          from: from
-          to: to
-          type: 5
-          nonce: 6
-          gasFeeCap: gasFeeCap
-          value: value
-          hash: hash
-          gasPrice: gasPrice
-        deployAt: deployAt
-        label: null
       title: DeployContractTransaction
     EventMonitorStatus:
       description: Status of an Event Monitor
-      example:
-        isProcessingPastLogs: true
-        latestBlockHash: latestBlockHash
-        startBlockHash: startBlockHash
-        contractId: 6
-        idealBlockRange: 5
-        startBlockNumber: 2
-        latestBlockNumber: 5
-        addressId: 1
-        updatedAt: updatedAt
       properties:
         contractId:
           format: int64
@@ -6385,11 +5102,6 @@ components:
       type: object
     HSMSignRequestPersonalSign:
       description: Request to sign a message using a cloud wallet.
-      example:
-        address: address
-        method: method
-        data: data
-        chainId: 0
       properties:
         method:
           description: The signing method to use.
@@ -6442,9 +5154,6 @@ components:
       - $ref: '#/components/schemas/HSMSignRequestTypedData'
     HSMSignResponse:
       description: Response body representing a sign-data response.
-      example:
-        signature: signature
-        publicKey: publicKey
       properties:
         publicKey:
           type: string
@@ -6457,49 +5166,6 @@ components:
       type: object
     Event:
       description: An event returned by the API call.
-      example:
-        triggeredAt: 2000-01-23T04:56:07.000+00:00
-        event:
-          indexInLog: 6
-          signature: signature
-          inputs:
-          - name: name
-            hashed: true
-            type: type
-            value: ""
-          - name: name
-            hashed: true
-            type: type
-            value: ""
-          contract:
-            address: address
-            name: name
-            addressAlias: addressAlias
-            label: label
-          name: name
-          rawFields: rawFields
-        transaction:
-          blockHash: blockHash
-          txData: txData
-          method:
-            signature: signature
-            inputs:
-            - name: name
-              type: type
-              value: ""
-            - name: name
-              type: type
-              value: ""
-            name: name
-          blockNumber: 1
-          contract:
-            address: address
-            name: name
-            addressAlias: addressAlias
-            label: label
-          from: from
-          txHash: txHash
-          txIndexInBlock: 6
       properties:
         triggeredAt:
           description: The time at which the event was triggered.
@@ -6517,25 +5183,6 @@ components:
       type: object
     EventInformation:
       description: The event information returned as part of an event.
-      example:
-        indexInLog: 6
-        signature: signature
-        inputs:
-        - name: name
-          hashed: true
-          type: type
-          value: ""
-        - name: name
-          hashed: true
-          type: type
-          value: ""
-        contract:
-          address: address
-          name: name
-          addressAlias: addressAlias
-          label: label
-        name: name
-        rawFields: rawFields
       properties:
         name:
           description: The name of the event.
@@ -6568,11 +5215,6 @@ components:
       type: object
     EventField:
       description: Holds a field in the event's data.
-      example:
-        name: name
-        hashed: true
-        type: type
-        value: ""
       properties:
         name:
           description: The input name.
@@ -6594,10 +5236,6 @@ components:
       type: object
     MethodArg:
       description: An argument passed to a method call.
-      example:
-        name: name
-        type: type
-        value: ""
       properties:
         name:
           description: The input name.
@@ -6615,28 +5253,6 @@ components:
       type: object
     HSMData:
       description: Response body for returning HSM Data.
-      example:
-        configuration:
-          baseGroupName: baseGroupName
-          clientID: clientID
-          tenantID: tenantID
-          clientSecret: clientSecret
-          label: label
-          id: 6
-          subscriptionID: subscriptionID
-        wallets:
-        - azureAccountID: 5
-          vaultName: vaultName
-          keyVersion: keyVersion
-          keyName: keyName
-          publicAddress: publicAddress
-          id: 1
-        - azureAccountID: 5
-          vaultName: vaultName
-          keyVersion: keyVersion
-          keyName: keyName
-          publicAddress: publicAddress
-          id: 1
       properties:
         configuration:
           $ref: '#/components/schemas/AzureAccount'
@@ -6813,18 +5429,6 @@ components:
       type: object
     Log:
       description: A contract log event.
-      example:
-        blockHash: blockHash
-        address: address
-        logIndex: logIndex
-        data: data
-        removed: true
-        topics:
-        - null
-        - null
-        blockNumber: blockNumber
-        transactionIndex: transactionIndex
-        transactionHash: transactionHash
       properties:
         address:
           description: An ethereum address.
@@ -6888,10 +5492,6 @@ components:
     TypeConversionOptions:
       description: Represents the set of type conversions allowed for a particular
         input or output of a function (how it may be "cast").
-      example:
-        types:
-        - types
-        - types
       properties:
         types:
           items:
@@ -6902,14 +5502,6 @@ components:
       type: object
     EventTypeConversionOptions:
       description: Type conversion options for each of the inputs of an event.
-      example:
-        inputs:
-        - types:
-          - types
-          - types
-        - types:
-          - types
-          - types
       properties:
         inputs:
           description: List of event's input parameters.
@@ -6923,21 +5515,6 @@ components:
     MethodTypeConversionOptions:
       description: Type conversion options for each of the inputs and outputs of a
         function.
-      example:
-        outputs:
-        - types:
-          - types
-          - types
-        - types:
-          - types
-          - types
-        inputs:
-        - types:
-          - types
-          - types
-        - types:
-          - types
-          - types
       properties:
         inputs:
           items:
@@ -7245,57 +5822,6 @@ components:
       type: object
     Transaction:
       description: A transaction from the Ethereum Blockchain.
-      example:
-        blobs:
-        - null
-        - null
-        maxFeePerBlobGas: maxFeePerBlobGas
-        commitments:
-        - null
-        - null
-        yParity: yParity
-        accessList:
-        - address: address
-          storageKeys:
-          - null
-          - null
-        - address: address
-          storageKeys:
-          - null
-          - null
-        blobVersionedHashes:
-        - null
-        - null
-        type: type
-        nonce: nonce
-        authorizationList:
-        - r: r
-          address: address
-          s: s
-          yParity: yParity
-          chainId: chainId
-          nonce: nonce
-        - r: r
-          address: address
-          s: s
-          yParity: yParity
-          chainId: chainId
-          nonce: nonce
-        input: input
-        r: r
-        s: s
-        chainId: chainId
-        v: v
-        proofs:
-        - null
-        - null
-        gas: gas
-        maxPriorityFeePerGas: maxPriorityFeePerGas
-        to: to
-        maxFeePerGas: maxFeePerGas
-        value: value
-        hash: hash
-        gasPrice: gasPrice
       properties:
         type:
           description: A hex string.
@@ -7432,13 +5958,6 @@ components:
       type: object
     SetCodeAuthorization:
       description: Authorization data for setCode operations.
-      example:
-        r: r
-        address: address
-        s: s
-        yParity: yParity
-        chainId: chainId
-        nonce: nonce
       properties:
         chainId:
           description: A hex string.
@@ -7481,11 +6000,6 @@ components:
       type: object
     AccessTuple:
       description: An access tuple representing an address and its storage keys.
-      example:
-        address: address
-        storageKeys:
-        - null
-        - null
       properties:
         address:
           description: An ethereum address.
@@ -7533,58 +6047,6 @@ components:
       type: object
     SignedTransactionResponse:
       description: A transaction that was signed externally and submitted.
-      example:
-        tx:
-          blobs:
-          - null
-          - null
-          maxFeePerBlobGas: maxFeePerBlobGas
-          commitments:
-          - null
-          - null
-          yParity: yParity
-          accessList:
-          - address: address
-            storageKeys:
-            - null
-            - null
-          - address: address
-            storageKeys:
-            - null
-            - null
-          blobVersionedHashes:
-          - null
-          - null
-          type: type
-          nonce: nonce
-          authorizationList:
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          input: input
-          r: r
-          s: s
-          chainId: chainId
-          v: v
-          proofs:
-          - null
-          - null
-          gas: gas
-          maxPriorityFeePerGas: maxPriorityFeePerGas
-          to: to
-          maxFeePerGas: maxFeePerGas
-          value: value
-          hash: hash
-          gasPrice: gasPrice
       properties:
         tx:
           $ref: '#/components/schemas/Transaction'
@@ -7606,77 +6068,6 @@ components:
     TransactionData:
       description: The transaction data returned from a call to get transaction by
         hash.
-      example:
-        blockHash: blockHash
-        data:
-          blobs:
-          - null
-          - null
-          maxFeePerBlobGas: maxFeePerBlobGas
-          commitments:
-          - null
-          - null
-          yParity: yParity
-          accessList:
-          - address: address
-            storageKeys:
-            - null
-            - null
-          - address: address
-            storageKeys:
-            - null
-            - null
-          blobVersionedHashes:
-          - null
-          - null
-          type: type
-          nonce: nonce
-          authorizationList:
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          input: input
-          r: r
-          s: s
-          chainId: chainId
-          v: v
-          proofs:
-          - null
-          - null
-          gas: gas
-          maxPriorityFeePerGas: maxPriorityFeePerGas
-          to: to
-          maxFeePerGas: maxFeePerGas
-          value: value
-          hash: hash
-          gasPrice: gasPrice
-        method:
-          signature: signature
-          inputs:
-          - name: name
-            type: type
-            value: ""
-          - name: name
-            type: type
-            value: ""
-          name: name
-        blockNumber: blockNumber
-        contract:
-          address: address
-          name: name
-          addressAlias: addressAlias
-          label: label
-        from: from
-        isPending: true
       properties:
         data:
           $ref: '#/components/schemas/Transaction'
@@ -7710,28 +6101,6 @@ components:
       type: object
     TransactionInformation:
       description: The transaction information returned as part of an event.
-      example:
-        blockHash: blockHash
-        txData: txData
-        method:
-          signature: signature
-          inputs:
-          - name: name
-            type: type
-            value: ""
-          - name: name
-            type: type
-            value: ""
-          name: name
-        blockNumber: 1
-        contract:
-          address: address
-          name: name
-          addressAlias: addressAlias
-          label: label
-        from: from
-        txHash: txHash
-        txIndexInBlock: 6
       properties:
         from:
           description: An ethereum address.
@@ -7782,80 +6151,6 @@ components:
       type: object
     TransactionReceipt:
       description: Record of the transaction's outcome.
-      example:
-        data:
-          logsBloom: logsBloom
-          blockHash: blockHash
-          contractAddress: contractAddress
-          transactionIndex: transactionIndex
-          type: type
-          transactionHash: transactionHash
-          gasUsed: gasUsed
-          root: root
-          blockNumber: blockNumber
-          cumulativeGasUsed: cumulativeGasUsed
-          effectiveGasPrice: effectiveGasPrice
-          logs:
-          - blockHash: blockHash
-            address: address
-            logIndex: logIndex
-            data: data
-            removed: true
-            topics:
-            - null
-            - null
-            blockNumber: blockNumber
-            transactionIndex: transactionIndex
-            transactionHash: transactionHash
-          - blockHash: blockHash
-            address: address
-            logIndex: logIndex
-            data: data
-            removed: true
-            topics:
-            - null
-            - null
-            blockNumber: blockNumber
-            transactionIndex: transactionIndex
-            transactionHash: transactionHash
-          status: status
-        events:
-        - indexInLog: 6
-          signature: signature
-          inputs:
-          - name: name
-            hashed: true
-            type: type
-            value: ""
-          - name: name
-            hashed: true
-            type: type
-            value: ""
-          contract:
-            address: address
-            name: name
-            addressAlias: addressAlias
-            label: label
-          name: name
-          rawFields: rawFields
-        - indexInLog: 6
-          signature: signature
-          inputs:
-          - name: name
-            hashed: true
-            type: type
-            value: ""
-          - name: name
-            hashed: true
-            type: type
-            value: ""
-          contract:
-            address: address
-            name: name
-            addressAlias: addressAlias
-            label: label
-          name: name
-          rawFields: rawFields
       properties:
         data:
           $ref: '#/components/schemas/TransactionReceipt_data'
@@ -7871,7 +6166,7 @@ components:
       description: CORS Origin
       example:
         origin: origin
-        id: 6
+        id: 0
       properties:
         id:
           format: int64
@@ -7922,38 +6217,9 @@ components:
       allOf:
       - $ref: '#/components/schemas/PostMethodResponse'
       - $ref: '#/components/schemas/TransactionToSign'
-      example:
-        submitted: true
-        tx:
-          data: data
-          gas: 1
-          gasTipCap: gasTipCap
-          from: from
-          to: to
-          type: 5
-          nonce: 6
-          gasFeeCap: gasFeeCap
-          value: value
-          hash: hash
-          gasPrice: gasPrice
-        kind: kind
       title: TransactionToSignResponse
     TransactionToSign:
       description: A transaction to be signed.
-      example:
-        submitted: true
-        tx:
-          data: data
-          gas: 1
-          gasTipCap: gasTipCap
-          from: from
-          to: to
-          type: 5
-          nonce: 6
-          gasFeeCap: gasFeeCap
-          value: value
-          hash: hash
-          gasPrice: gasPrice
       properties:
         tx:
           $ref: '#/components/schemas/TransactionToSign_tx'
@@ -8010,11 +6276,11 @@ components:
     EventQueryField:
       description: A single event field's query information.
       example:
-        inputIndex: 1
+        inputIndex: 0
         aggregator: add
         name: name
         alias: alias
-        type: input
+        type: null
       properties:
         type:
           $ref: '#/components/schemas/FieldType'
@@ -8052,7 +6318,7 @@ components:
         children:
         - null
         - null
-        inputIndex: 5
+        inputIndex: 6
         rule: and
         fieldType: null
         value: value
@@ -8099,22 +6365,22 @@ components:
           children:
           - null
           - null
-          inputIndex: 5
+          inputIndex: 6
           rule: and
           fieldType: null
           value: value
           operator: equal
         select:
-        - inputIndex: 1
+        - inputIndex: 0
           aggregator: add
           name: name
           alias: alias
-          type: input
-        - inputIndex: 1
+          type: null
+        - inputIndex: 0
           aggregator: add
           name: name
           alias: alias
-          type: input
+          type: null
         eventName: eventName
       properties:
         eventName:
@@ -8143,43 +6409,43 @@ components:
             children:
             - null
             - null
-            inputIndex: 5
+            inputIndex: 6
             rule: and
             fieldType: null
             value: value
             operator: equal
           select:
-          - inputIndex: 1
+          - inputIndex: 0
             aggregator: add
             name: name
             alias: alias
-            type: input
-          - inputIndex: 1
+            type: null
+          - inputIndex: 0
             aggregator: add
             name: name
             alias: alias
-            type: input
+            type: null
           eventName: eventName
         - filter:
             children:
             - null
             - null
-            inputIndex: 5
+            inputIndex: 6
             rule: and
             fieldType: null
             value: value
             operator: equal
           select:
-          - inputIndex: 1
+          - inputIndex: 0
             aggregator: add
             name: name
             alias: alias
-            type: input
-          - inputIndex: 1
+            type: null
+          - inputIndex: 0
             aggregator: add
             name: name
             alias: alias
-            type: input
+            type: null
           eventName: eventName
         order: ASC
       properties:
@@ -8207,57 +6473,6 @@ components:
       type: object
     SavedEventQuery:
       description: A saved event query.
-      example:
-        isSystem: true
-        query:
-          orderBy: orderBy
-          groupBy: groupBy
-          events:
-          - filter:
-              children:
-              - null
-              - null
-              inputIndex: 5
-              rule: and
-              fieldType: null
-              value: value
-              operator: equal
-            select:
-            - inputIndex: 1
-              aggregator: add
-              name: name
-              alias: alias
-              type: input
-            - inputIndex: 1
-              aggregator: add
-              name: name
-              alias: alias
-              type: input
-            eventName: eventName
-          - filter:
-              children:
-              - null
-              - null
-              inputIndex: 5
-              rule: and
-              fieldType: null
-              value: value
-              operator: equal
-            select:
-            - inputIndex: 1
-              aggregator: add
-              name: name
-              alias: alias
-              type: input
-            - inputIndex: 1
-              aggregator: add
-              name: name
-              alias: alias
-              type: input
-            eventName: eventName
-          order: ASC
-        id: 6
-        label: label
       properties:
         id:
           format: int64
@@ -8282,10 +6497,6 @@ components:
       type: object
     EventQueryResults:
       description: Results of an executed event query.
-      example:
-        rows:
-        - key: ""
-        - key: ""
       properties:
         rows:
           items:
@@ -8297,67 +6508,6 @@ components:
       title: EventQueryResults
       type: object
     WalletTransaction:
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        blockHash: blockHash
-        successfulResubmissions: 1
-        tx:
-          blobs:
-          - null
-          - null
-          maxFeePerBlobGas: maxFeePerBlobGas
-          commitments:
-          - null
-          - null
-          yParity: yParity
-          accessList:
-          - address: address
-            storageKeys:
-            - null
-            - null
-          - address: address
-            storageKeys:
-            - null
-            - null
-          blobVersionedHashes:
-          - null
-          - null
-          type: type
-          nonce: nonce
-          authorizationList:
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          - r: r
-            address: address
-            s: s
-            yParity: yParity
-            chainId: chainId
-            nonce: nonce
-          input: input
-          r: r
-          s: s
-          chainId: chainId
-          v: v
-          proofs:
-          - null
-          - null
-          gas: gas
-          maxPriorityFeePerGas: maxPriorityFeePerGas
-          to: to
-          maxFeePerGas: maxFeePerGas
-          value: value
-          hash: hash
-          gasPrice: gasPrice
-        blockNumber: 5
-        from: from
-        failed: true
-        status: pending
-        resubmissionAttempts: 6
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         tx:
           $ref: '#/components/schemas/Transaction'
@@ -8412,8 +6562,8 @@ components:
     BaseWebhookEndpoint:
       example:
         subscriptions:
-        - transaction.included
-        - transaction.included
+        - null
+        - null
         label: label
         url: url
       properties:
@@ -8478,29 +6628,9 @@ components:
         - secret
         - updatedAt
         type: object
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        subscriptions:
-        - transaction.included
-        - transaction.included
-        failedCalls: 1
-        lastError: lastError
-        lastAttempt: 2000-01-23T04:56:07.000+00:00
-        label: label
-        id: 6
-        secret: secret
-        url: url
-        nextAttempt: 2000-01-23T04:56:07.000+00:00
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       title: WebhookEndpoint
       type: object
     WebhookEvent:
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        data: "{}"
-        id: 6
-        eventType: transaction.included
-        deliveredAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           description: The ID of the webhook event.
@@ -8680,10 +6810,6 @@ components:
         - name
         type: object
       description: A user.
-      example:
-        name: name
-        id: 6
-        email: email
       title: User
     Invite:
       allOf:
@@ -8701,20 +6827,10 @@ components:
         required:
         - email
       description: An invite with groups.
-      example:
-        groupIDs:
-        - 0
-        - 0
-        email: email
       title: Invite
       type: object
     SignerWallet:
       description: A signer wallet.
-      example:
-        wallet: wallet
-        label: label
-        type: web3
-        signer: signer
       properties:
         type:
           description: The type of the signer.
@@ -8756,20 +6872,6 @@ components:
       title: Signer Label
     Group:
       description: A group.
-      example:
-        roles:
-        - name: name
-          description: description
-          id: 1
-          shortName: shortName
-        - name: name
-          description: description
-          id: 1
-          shortName: shortName
-        name: name
-        description: description
-        id: 6
-        shortName: shortName
       properties:
         id:
           description: The group ID.
@@ -8799,11 +6901,6 @@ components:
       type: object
     Role:
       description: A role.
-      example:
-        name: name
-        description: description
-        id: 1
-        shortName: shortName
       properties:
         id:
           description: The role ID.
@@ -8827,14 +6924,6 @@ components:
       type: object
     AuditLog:
       description: An audit log entry.
-      example:
-        actionByID: 6
-        actionOnUserEmail: actionOnUserEmail
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        activityData: "{}"
-        actionByUserEmail: actionByUserEmail
-        type: type
-        actionOnID: 1
       properties:
         actionByID:
           description: The ID of the user who performed the action.
@@ -8948,22 +7037,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          lastUsedAt: 2000-01-23T04:56:07.000+00:00
-          createdBy: 1
-          signature: signature
-          label: label
-          id: 6
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          lastUsedAt: 2000-01-23T04:56:07.000+00:00
-          createdBy: 1
-          signature: signature
-          label: label
-          id: 6
-        message: message
-        status: 0
     create_api_key_request:
       allOf:
       - $ref: '#/components/schemas/BaseAPIKey'
@@ -8982,17 +7055,6 @@ components:
             $ref: '#/components/schemas/APIKeyWithSecret'
         required:
         - result
-      example:
-        result:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          lastUsedAt: 2000-01-23T04:56:07.000+00:00
-          createdBy: 1
-          signature: signature
-          label: label
-          id: 6
-          key: key
-        message: message
-        status: 0
     get_api_key_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9001,16 +7063,6 @@ components:
             $ref: '#/components/schemas/APIKey'
         required:
         - result
-      example:
-        result:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          lastUsedAt: 2000-01-23T04:56:07.000+00:00
-          createdBy: 1
-          signature: signature
-          label: label
-          id: 6
-        message: message
-        status: 0
     accept_invite_request:
       properties:
         idToken:
@@ -9025,13 +7077,6 @@ components:
             $ref: '#/components/schemas/User'
         required:
         - result
-      example:
-        result:
-          name: name
-          id: 6
-          email: email
-        message: message
-        status: 0
     transfer_eth_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9040,23 +7085,6 @@ components:
             $ref: '#/components/schemas/TransactionToSign'
         required:
         - result
-      example:
-        result:
-          submitted: true
-          tx:
-            data: data
-            gas: 1
-            gasTipCap: gasTipCap
-            from: from
-            to: to
-            type: 5
-            nonce: 6
-            gasFeeCap: gasFeeCap
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-        message: message
-        status: 0
     submit_signed_transaction_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9065,61 +7093,6 @@ components:
             $ref: '#/components/schemas/SignedTransactionResponse'
         required:
         - result
-      example:
-        result:
-          tx:
-            blobs:
-            - null
-            - null
-            maxFeePerBlobGas: maxFeePerBlobGas
-            commitments:
-            - null
-            - null
-            yParity: yParity
-            accessList:
-            - address: address
-              storageKeys:
-              - null
-              - null
-            - address: address
-              storageKeys:
-              - null
-              - null
-            blobVersionedHashes:
-            - null
-            - null
-            type: type
-            nonce: nonce
-            authorizationList:
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            input: input
-            r: r
-            s: s
-            chainId: chainId
-            v: v
-            proofs:
-            - null
-            - null
-            gas: gas
-            maxPriorityFeePerGas: maxPriorityFeePerGas
-            to: to
-            maxFeePerGas: maxFeePerGas
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-        message: message
-        status: 0
     get_transaction_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9128,80 +7101,6 @@ components:
             $ref: '#/components/schemas/TransactionData'
         required:
         - result
-      example:
-        result:
-          blockHash: blockHash
-          data:
-            blobs:
-            - null
-            - null
-            maxFeePerBlobGas: maxFeePerBlobGas
-            commitments:
-            - null
-            - null
-            yParity: yParity
-            accessList:
-            - address: address
-              storageKeys:
-              - null
-              - null
-            - address: address
-              storageKeys:
-              - null
-              - null
-            blobVersionedHashes:
-            - null
-            - null
-            type: type
-            nonce: nonce
-            authorizationList:
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            input: input
-            r: r
-            s: s
-            chainId: chainId
-            v: v
-            proofs:
-            - null
-            - null
-            gas: gas
-            maxPriorityFeePerGas: maxPriorityFeePerGas
-            to: to
-            maxFeePerGas: maxFeePerGas
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-          method:
-            signature: signature
-            inputs:
-            - name: name
-              type: type
-              value: ""
-            - name: name
-              type: type
-              value: ""
-            name: name
-          blockNumber: blockNumber
-          contract:
-            address: address
-            name: name
-            addressAlias: addressAlias
-            label: label
-          from: from
-          isPending: true
-        message: message
-        status: 0
     get_transaction_receipt_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9210,83 +7109,6 @@ components:
             $ref: '#/components/schemas/TransactionReceipt'
         required:
         - result
-      example:
-        result:
-          data:
-            logsBloom: logsBloom
-            blockHash: blockHash
-            contractAddress: contractAddress
-            transactionIndex: transactionIndex
-            type: type
-            transactionHash: transactionHash
-            gasUsed: gasUsed
-            root: root
-            blockNumber: blockNumber
-            cumulativeGasUsed: cumulativeGasUsed
-            effectiveGasPrice: effectiveGasPrice
-            logs:
-            - blockHash: blockHash
-              address: address
-              logIndex: logIndex
-              data: data
-              removed: true
-              topics:
-              - null
-              - null
-              blockNumber: blockNumber
-              transactionIndex: transactionIndex
-              transactionHash: transactionHash
-            - blockHash: blockHash
-              address: address
-              logIndex: logIndex
-              data: data
-              removed: true
-              topics:
-              - null
-              - null
-              blockNumber: blockNumber
-              transactionIndex: transactionIndex
-              transactionHash: transactionHash
-            status: status
-          events:
-          - indexInLog: 6
-            signature: signature
-            inputs:
-            - name: name
-              hashed: true
-              type: type
-              value: ""
-            - name: name
-              hashed: true
-              type: type
-              value: ""
-            contract:
-              address: address
-              name: name
-              addressAlias: addressAlias
-              label: label
-            name: name
-            rawFields: rawFields
-          - indexInLog: 6
-            signature: signature
-            inputs:
-            - name: name
-              hashed: true
-              type: type
-              value: ""
-            - name: name
-              hashed: true
-              type: type
-              value: ""
-            contract:
-              address: address
-              name: name
-              addressAlias: addressAlias
-              label: label
-            name: name
-            rawFields: rawFields
-        message: message
-        status: 0
     get_chain_status_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9295,15 +7117,6 @@ components:
             $ref: '#/components/schemas/ChainStatus'
         required:
         - result
-      example:
-        result:
-          chainID: 1
-          blockNumber: 6
-          baseFee: baseFee
-          networkID: 5
-          version: version
-        message: message
-        status: 0
     get_block_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9312,128 +7125,6 @@ components:
             $ref: '#/components/schemas/Block'
         required:
         - result
-      example:
-        result:
-          logsBloom: logsBloom
-          receiptsRoot: receiptsRoot
-          extraData: extraData
-          baseFeePerGas: baseFeePerGas
-          transactions:
-          - blobs:
-            - null
-            - null
-            maxFeePerBlobGas: maxFeePerBlobGas
-            commitments:
-            - null
-            - null
-            yParity: yParity
-            accessList:
-            - address: address
-              storageKeys:
-              - null
-              - null
-            - address: address
-              storageKeys:
-              - null
-              - null
-            blobVersionedHashes:
-            - null
-            - null
-            type: type
-            nonce: nonce
-            authorizationList:
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            input: input
-            r: r
-            s: s
-            chainId: chainId
-            v: v
-            proofs:
-            - null
-            - null
-            gas: gas
-            maxPriorityFeePerGas: maxPriorityFeePerGas
-            to: to
-            maxFeePerGas: maxFeePerGas
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-          - blobs:
-            - null
-            - null
-            maxFeePerBlobGas: maxFeePerBlobGas
-            commitments:
-            - null
-            - null
-            yParity: yParity
-            accessList:
-            - address: address
-              storageKeys:
-              - null
-              - null
-            - address: address
-              storageKeys:
-              - null
-              - null
-            blobVersionedHashes:
-            - null
-            - null
-            type: type
-            nonce: nonce
-            authorizationList:
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            input: input
-            r: r
-            s: s
-            chainId: chainId
-            v: v
-            proofs:
-            - null
-            - null
-            gas: gas
-            maxPriorityFeePerGas: maxPriorityFeePerGas
-            to: to
-            maxFeePerGas: maxFeePerGas
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-          nonce: nonce
-          miner: miner
-          difficulty: difficulty
-          gasLimit: 0
-          number: number
-          gasUsed: 0
-          sha3Uncles: sha3Uncles
-          transactionsRoot: transactionsRoot
-          stateRoot: stateRoot
-          mixHash: mixHash
-          parentHash: parentHash
-          hash: hash
-          timestamp: 1
-        message: message
-        status: 0
     list_addresses_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9444,14 +7135,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - address: address
-          alias: alias
-        - address: address
-          alias: alias
-        message: message
-        status: 0
     set_address_201_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9460,50 +7143,6 @@ components:
             $ref: '#/components/schemas/Address'
         required:
         - result
-      example:
-        result:
-          chain: chain
-          address: address
-          balance: balance
-          localNonce: 1
-          alias: alias
-          contractLookup:
-          - bytecode: bytecode
-            proxy: true
-            address: address
-            verifiedLink: https://openapi-generator.tech
-            userdoc: userdoc
-            verifiedSource: verifiedSource
-            name: name
-            devdoc: devdoc
-            verified: true
-            abi: abi
-            source: source
-          - bytecode: bytecode
-            proxy: true
-            address: address
-            verifiedLink: https://openapi-generator.tech
-            userdoc: userdoc
-            verifiedSource: verifiedSource
-            name: name
-            devdoc: devdoc
-            verified: true
-            abi: abi
-            source: source
-          codeAt: codeAt
-          contracts:
-          - name: name
-            label: label
-            version: version
-          - name: name
-            label: label
-            version: version
-          nonce: 6
-          modules:
-          - modules
-          - modules
-        message: message
-        status: 0
     link_address_contract_request:
       properties:
         label:
@@ -9535,19 +7174,6 @@ components:
             $ref: '#/components/schemas/EventMonitorStatus'
         required:
         - result
-      example:
-        result:
-          isProcessingPastLogs: true
-          latestBlockHash: latestBlockHash
-          startBlockHash: startBlockHash
-          contractId: 6
-          idealBlockRange: 5
-          startBlockNumber: 2
-          latestBlockNumber: 5
-          addressId: 1
-          updatedAt: updatedAt
-        message: message
-        status: 0
     call_contract_function_200_response_allOf_result:
       oneOf:
       - $ref: '#/components/schemas/TransactionToSignResponse'
@@ -9561,24 +7187,6 @@ components:
             $ref: '#/components/schemas/call_contract_function_200_response_allOf_result'
         required:
         - result
-      example:
-        result:
-          submitted: true
-          tx:
-            data: data
-            gas: 1
-            gasTipCap: gasTipCap
-            from: from
-            to: to
-            type: 5
-            nonce: 6
-            gasFeeCap: gasFeeCap
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-          kind: kind
-        message: message
-        status: 0
     sign_data_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9587,12 +7195,6 @@ components:
             $ref: '#/components/schemas/HSMSignResponse'
         required:
         - result
-      example:
-        result:
-          signature: signature
-          publicKey: publicKey
-        message: message
-        status: 0
     list_contracts_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9603,30 +7205,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - deployable: true
-          instances:
-          - address: address
-            alias: alias
-          - address: address
-            alias: alias
-          contractName: contractName
-          label: label
-          version: version
-          isFavorite: true
-        - deployable: true
-          instances:
-          - address: address
-            alias: alias
-          - address: address
-            alias: alias
-          contractName: contractName
-          label: label
-          version: version
-          isFavorite: true
-        message: message
-        status: 0
     get_contract_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9635,423 +7213,6 @@ components:
             $ref: '#/components/schemas/Contract'
         required:
         - result
-      example:
-        result:
-          developerDoc: developerDoc
-          metadata: metadata
-          instances:
-          - address: address
-            alias: alias
-          - address: address
-            alias: alias
-          bin: bin
-          rawAbi: rawAbi
-          userDoc: userDoc
-          abi:
-            receive:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            methods:
-              key:
-                outputs:
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                notes: notes
-                const: true
-                payable: true
-                signature: signature
-                inputs:
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                author: author
-                name: name
-                description: description
-                id: id
-            constructor:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            fallback:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            events:
-              key:
-                notes: notes
-                signature: signature
-                inputs:
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                name: name
-                anonymous: true
-                description: description
-                id: id
-            errors:
-              key:
-                notes: notes
-                signature: signature
-                inputs:
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                name: name
-                description: description
-                id: id
-          contractName: contractName
-          label: label
-          version: version
-          isFavorite: true
-        message: message
-        status: 0
     deploy_contract_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -10060,31 +7221,7 @@ components:
             $ref: '#/components/schemas/DeployContractTransaction'
         required:
         - result
-      example:
-        result:
-          submitted: true
-          tx:
-            data: data
-            gas: 1
-            gasTipCap: gasTipCap
-            from: from
-            to: to
-            type: 5
-            nonce: 6
-            gasFeeCap: gasFeeCap
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-          deployAt: deployAt
-          label: null
-        message: message
-        status: 0
     list_contract_versions_200_response_allOf_result:
-      example:
-        versions:
-        - null
-        - null
-        label: label
       properties:
         label:
           description: An alias to easily identify and reference the entity in subsequent
@@ -10108,14 +7245,6 @@ components:
             $ref: '#/components/schemas/list_contract_versions_200_response_allOf_result'
         required:
         - result
-      example:
-        result:
-          versions:
-          - null
-          - null
-          label: label
-        message: message
-        status: 0
     get_contract_versions_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -10126,836 +7255,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - developerDoc: developerDoc
-          metadata: metadata
-          instances:
-          - address: address
-            alias: alias
-          - address: address
-            alias: alias
-          bin: bin
-          rawAbi: rawAbi
-          userDoc: userDoc
-          abi:
-            receive:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            methods:
-              key:
-                outputs:
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                notes: notes
-                const: true
-                payable: true
-                signature: signature
-                inputs:
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                author: author
-                name: name
-                description: description
-                id: id
-            constructor:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            fallback:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            events:
-              key:
-                notes: notes
-                signature: signature
-                inputs:
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                name: name
-                anonymous: true
-                description: description
-                id: id
-            errors:
-              key:
-                notes: notes
-                signature: signature
-                inputs:
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                name: name
-                description: description
-                id: id
-          contractName: contractName
-          label: label
-          version: version
-          isFavorite: true
-        - developerDoc: developerDoc
-          metadata: metadata
-          instances:
-          - address: address
-            alias: alias
-          - address: address
-            alias: alias
-          bin: bin
-          rawAbi: rawAbi
-          userDoc: userDoc
-          abi:
-            receive:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            methods:
-              key:
-                outputs:
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                notes: notes
-                const: true
-                payable: true
-                signature: signature
-                inputs:
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                author: author
-                name: name
-                description: description
-                id: id
-            constructor:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            fallback:
-              outputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              notes: notes
-              const: true
-              payable: true
-              signature: signature
-              inputs:
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              - notes: notes
-                name: name
-                typeName: typeName
-                typeConversion:
-                  mode: mode
-                  decimalsFunction: decimalsFunction
-                  decimalsAbsolute: 7
-                type:
-                  elem: null
-                  size: 2
-                  tupleElems:
-                  - null
-                  - null
-                  tupleRawNames:
-                  - tupleRawNames
-                  - tupleRawNames
-                  type: type
-              author: author
-              name: name
-              description: description
-              id: id
-            events:
-              key:
-                notes: notes
-                signature: signature
-                inputs:
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  typeConversion:
-                    mode: mode
-                    decimalsFunction: decimalsFunction
-                    decimalsAbsolute: 7
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                name: name
-                anonymous: true
-                description: description
-                id: id
-            errors:
-              key:
-                notes: notes
-                signature: signature
-                inputs:
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                - notes: notes
-                  indexed: true
-                  name: name
-                  typeName: typeName
-                  type:
-                    elem: null
-                    size: 2
-                    tupleElems:
-                    - null
-                    - null
-                    tupleRawNames:
-                    - tupleRawNames
-                    - tupleRawNames
-                    type: type
-                name: name
-                description: description
-                id: id
-          contractName: contractName
-          label: label
-          version: version
-          isFavorite: true
-        message: message
-        status: 0
     get_function_type_conversions_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -10964,24 +7263,6 @@ components:
             $ref: '#/components/schemas/MethodTypeConversionOptions'
         required:
         - result
-      example:
-        result:
-          outputs:
-          - types:
-            - types
-            - types
-          - types:
-            - types
-            - types
-          inputs:
-          - types:
-            - types
-            - types
-          - types:
-            - types
-            - types
-        message: message
-        status: 0
     get_event_type_conversions_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -10990,17 +7271,6 @@ components:
             $ref: '#/components/schemas/EventTypeConversionOptions'
         required:
         - result
-      example:
-        result:
-          inputs:
-          - types:
-            - types
-            - types
-          - types:
-            - types
-            - types
-        message: message
-        status: 0
     list_cors_origins_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11011,14 +7281,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - origin: origin
-          id: 6
-        - origin: origin
-          id: 6
-        message: message
-        status: 0
     list_events_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11029,94 +7291,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - triggeredAt: 2000-01-23T04:56:07.000+00:00
-          event:
-            indexInLog: 6
-            signature: signature
-            inputs:
-            - name: name
-              hashed: true
-              type: type
-              value: ""
-            - name: name
-              hashed: true
-              type: type
-              value: ""
-            contract:
-              address: address
-              name: name
-              addressAlias: addressAlias
-              label: label
-            name: name
-            rawFields: rawFields
-          transaction:
-            blockHash: blockHash
-            txData: txData
-            method:
-              signature: signature
-              inputs:
-              - name: name
-                type: type
-                value: ""
-              - name: name
-                type: type
-                value: ""
-              name: name
-            blockNumber: 1
-            contract:
-              address: address
-              name: name
-              addressAlias: addressAlias
-              label: label
-            from: from
-            txHash: txHash
-            txIndexInBlock: 6
-        - triggeredAt: 2000-01-23T04:56:07.000+00:00
-          event:
-            indexInLog: 6
-            signature: signature
-            inputs:
-            - name: name
-              hashed: true
-              type: type
-              value: ""
-            - name: name
-              hashed: true
-              type: type
-              value: ""
-            contract:
-              address: address
-              name: name
-              addressAlias: addressAlias
-              label: label
-            name: name
-            rawFields: rawFields
-          transaction:
-            blockHash: blockHash
-            txData: txData
-            method:
-              signature: signature
-              inputs:
-              - name: name
-                type: type
-                value: ""
-              - name: name
-                type: type
-                value: ""
-              name: name
-            blockNumber: 1
-            contract:
-              address: address
-              name: name
-              addressAlias: addressAlias
-              label: label
-            from: from
-            txHash: txHash
-            txIndexInBlock: 6
-        message: message
-        status: 0
     get_event_count_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11127,10 +7301,6 @@ components:
             type: integer
         required:
         - result
-      example:
-        result: 6
-        message: message
-        status: 0
     list_hsm_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11141,52 +7311,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - configuration:
-            baseGroupName: baseGroupName
-            clientID: clientID
-            tenantID: tenantID
-            clientSecret: clientSecret
-            label: label
-            id: 6
-            subscriptionID: subscriptionID
-          wallets:
-          - azureAccountID: 5
-            vaultName: vaultName
-            keyVersion: keyVersion
-            keyName: keyName
-            publicAddress: publicAddress
-            id: 1
-          - azureAccountID: 5
-            vaultName: vaultName
-            keyVersion: keyVersion
-            keyName: keyName
-            publicAddress: publicAddress
-            id: 1
-        - configuration:
-            baseGroupName: baseGroupName
-            clientID: clientID
-            tenantID: tenantID
-            clientSecret: clientSecret
-            label: label
-            id: 6
-            subscriptionID: subscriptionID
-          wallets:
-          - azureAccountID: 5
-            vaultName: vaultName
-            keyVersion: keyVersion
-            keyName: keyName
-            publicAddress: publicAddress
-            id: 1
-          - azureAccountID: 5
-            vaultName: vaultName
-            keyVersion: keyVersion
-            keyName: keyName
-            publicAddress: publicAddress
-            id: 1
-        message: message
-        status: 0
     list_hsm_wallets_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11197,22 +7321,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - baseGroupName: baseGroupName
-          clientID: clientID
-          vaultName: vaultName
-          keyVersion: keyVersion
-          keyName: keyName
-          publicAddress: publicAddress
-        - baseGroupName: baseGroupName
-          clientID: clientID
-          vaultName: vaultName
-          keyVersion: keyVersion
-          keyName: keyName
-          publicAddress: publicAddress
-        message: message
-        status: 0
     create_hsm_key_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11221,13 +7329,6 @@ components:
             $ref: '#/components/schemas/AzureWallet'
         required:
         - result
-      example:
-        result:
-          keyVersion: keyVersion
-          keyName: keyName
-          publicAddress: publicAddress
-        message: message
-        status: 0
     list_event_queries_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11238,110 +7339,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - isSystem: true
-          query:
-            orderBy: orderBy
-            groupBy: groupBy
-            events:
-            - filter:
-                children:
-                - null
-                - null
-                inputIndex: 5
-                rule: and
-                fieldType: null
-                value: value
-                operator: equal
-              select:
-              - inputIndex: 1
-                aggregator: add
-                name: name
-                alias: alias
-                type: input
-              - inputIndex: 1
-                aggregator: add
-                name: name
-                alias: alias
-                type: input
-              eventName: eventName
-            - filter:
-                children:
-                - null
-                - null
-                inputIndex: 5
-                rule: and
-                fieldType: null
-                value: value
-                operator: equal
-              select:
-              - inputIndex: 1
-                aggregator: add
-                name: name
-                alias: alias
-                type: input
-              - inputIndex: 1
-                aggregator: add
-                name: name
-                alias: alias
-                type: input
-              eventName: eventName
-            order: ASC
-          id: 6
-          label: label
-        - isSystem: true
-          query:
-            orderBy: orderBy
-            groupBy: groupBy
-            events:
-            - filter:
-                children:
-                - null
-                - null
-                inputIndex: 5
-                rule: and
-                fieldType: null
-                value: value
-                operator: equal
-              select:
-              - inputIndex: 1
-                aggregator: add
-                name: name
-                alias: alias
-                type: input
-              - inputIndex: 1
-                aggregator: add
-                name: name
-                alias: alias
-                type: input
-              eventName: eventName
-            - filter:
-                children:
-                - null
-                - null
-                inputIndex: 5
-                rule: and
-                fieldType: null
-                value: value
-                operator: equal
-              select:
-              - inputIndex: 1
-                aggregator: add
-                name: name
-                alias: alias
-                type: input
-              - inputIndex: 1
-                aggregator: add
-                name: name
-                alias: alias
-                type: input
-              eventName: eventName
-            order: ASC
-          id: 6
-          label: label
-        message: message
-        status: 0
     execute_arbitrary_event_query_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11350,13 +7347,6 @@ components:
             $ref: '#/components/schemas/EventQueryResults'
         required:
         - result
-      example:
-        result:
-          rows:
-          - key: ""
-          - key: ""
-        message: message
-        status: 0
     get_event_query_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11365,56 +7355,6 @@ components:
             $ref: '#/components/schemas/EventQuery'
         required:
         - result
-      example:
-        result:
-          orderBy: orderBy
-          groupBy: groupBy
-          events:
-          - filter:
-              children:
-              - null
-              - null
-              inputIndex: 5
-              rule: and
-              fieldType: null
-              value: value
-              operator: equal
-            select:
-            - inputIndex: 1
-              aggregator: add
-              name: name
-              alias: alias
-              type: input
-            - inputIndex: 1
-              aggregator: add
-              name: name
-              alias: alias
-              type: input
-            eventName: eventName
-          - filter:
-              children:
-              - null
-              - null
-              inputIndex: 5
-              rule: and
-              fieldType: null
-              value: value
-              operator: equal
-            select:
-            - inputIndex: 1
-              aggregator: add
-              name: name
-              alias: alias
-              type: input
-            - inputIndex: 1
-              aggregator: add
-              name: name
-              alias: alias
-              type: input
-            eventName: eventName
-          order: ASC
-        message: message
-        status: 0
     count_event_query_records_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11425,10 +7365,6 @@ components:
             type: integer
         required:
         - result
-      example:
-        result: 6
-        message: message
-        status: 0
     list_wallet_transactions_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11439,130 +7375,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          blockHash: blockHash
-          successfulResubmissions: 1
-          tx:
-            blobs:
-            - null
-            - null
-            maxFeePerBlobGas: maxFeePerBlobGas
-            commitments:
-            - null
-            - null
-            yParity: yParity
-            accessList:
-            - address: address
-              storageKeys:
-              - null
-              - null
-            - address: address
-              storageKeys:
-              - null
-              - null
-            blobVersionedHashes:
-            - null
-            - null
-            type: type
-            nonce: nonce
-            authorizationList:
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            input: input
-            r: r
-            s: s
-            chainId: chainId
-            v: v
-            proofs:
-            - null
-            - null
-            gas: gas
-            maxPriorityFeePerGas: maxPriorityFeePerGas
-            to: to
-            maxFeePerGas: maxFeePerGas
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-          blockNumber: 5
-          from: from
-          failed: true
-          status: pending
-          resubmissionAttempts: 6
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          blockHash: blockHash
-          successfulResubmissions: 1
-          tx:
-            blobs:
-            - null
-            - null
-            maxFeePerBlobGas: maxFeePerBlobGas
-            commitments:
-            - null
-            - null
-            yParity: yParity
-            accessList:
-            - address: address
-              storageKeys:
-              - null
-              - null
-            - address: address
-              storageKeys:
-              - null
-              - null
-            blobVersionedHashes:
-            - null
-            - null
-            type: type
-            nonce: nonce
-            authorizationList:
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            - r: r
-              address: address
-              s: s
-              yParity: yParity
-              chainId: chainId
-              nonce: nonce
-            input: input
-            r: r
-            s: s
-            chainId: chainId
-            v: v
-            proofs:
-            - null
-            - null
-            gas: gas
-            maxPriorityFeePerGas: maxPriorityFeePerGas
-            to: to
-            maxFeePerGas: maxFeePerGas
-            value: value
-            hash: hash
-            gasPrice: gasPrice
-          blockNumber: 5
-          from: from
-          failed: true
-          status: pending
-          resubmissionAttempts: 6
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        message: message
-        status: 0
     count_wallet_transactions_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11573,10 +7385,6 @@ components:
             type: integer
         required:
         - result
-      example:
-        result: 6
-        message: message
-        status: 0
     list_webhooks_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11587,36 +7395,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          subscriptions:
-          - transaction.included
-          - transaction.included
-          failedCalls: 1
-          lastError: lastError
-          lastAttempt: 2000-01-23T04:56:07.000+00:00
-          label: label
-          id: 6
-          secret: secret
-          url: url
-          nextAttempt: 2000-01-23T04:56:07.000+00:00
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          subscriptions:
-          - transaction.included
-          - transaction.included
-          failedCalls: 1
-          lastError: lastError
-          lastAttempt: 2000-01-23T04:56:07.000+00:00
-          label: label
-          id: 6
-          secret: secret
-          url: url
-          nextAttempt: 2000-01-23T04:56:07.000+00:00
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        message: message
-        status: 0
     create_webhook_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11625,23 +7403,6 @@ components:
             $ref: '#/components/schemas/WebhookEndpoint'
         required:
         - result
-      example:
-        result:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          subscriptions:
-          - transaction.included
-          - transaction.included
-          failedCalls: 1
-          lastError: lastError
-          lastAttempt: 2000-01-23T04:56:07.000+00:00
-          label: label
-          id: 6
-          secret: secret
-          url: url
-          nextAttempt: 2000-01-23T04:56:07.000+00:00
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        message: message
-        status: 0
     count_webhooks_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11652,10 +7413,6 @@ components:
             type: integer
         required:
         - result
-      example:
-        result: 6
-        message: message
-        status: 0
     list_webhook_events_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11666,20 +7423,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          data: "{}"
-          id: 6
-          eventType: transaction.included
-          deliveredAt: 2000-01-23T04:56:07.000+00:00
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          data: "{}"
-          id: 6
-          eventType: transaction.included
-          deliveredAt: 2000-01-23T04:56:07.000+00:00
-        message: message
-        status: 0
     count_webhook_events_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11690,10 +7433,6 @@ components:
             type: integer
         required:
         - result
-      example:
-        result: 6
-        message: message
-        status: 0
     list_users_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11704,16 +7443,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - name: name
-          id: 6
-          email: email
-        - name: name
-          id: 6
-          email: email
-        message: message
-        status: 0
     list_user_signers_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11724,18 +7453,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - wallet: wallet
-          label: label
-          type: web3
-          signer: signer
-        - wallet: wallet
-          label: label
-          type: web3
-          signer: signer
-        message: message
-        status: 0
     list_groups_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11746,36 +7463,6 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - roles:
-          - name: name
-            description: description
-            id: 1
-            shortName: shortName
-          - name: name
-            description: description
-            id: 1
-            shortName: shortName
-          name: name
-          description: description
-          id: 6
-          shortName: shortName
-        - roles:
-          - name: name
-            description: description
-            id: 1
-            shortName: shortName
-          - name: name
-            description: description
-            id: 1
-            shortName: shortName
-          name: name
-          description: description
-          id: 6
-          shortName: shortName
-        message: message
-        status: 0
     list_audit_logs_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -11786,105 +7473,8 @@ components:
             type: array
         required:
         - result
-      example:
-        result:
-        - actionByID: 6
-          actionOnUserEmail: actionOnUserEmail
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          activityData: "{}"
-          actionByUserEmail: actionByUserEmail
-          type: type
-          actionOnID: 1
-        - actionByID: 6
-          actionOnUserEmail: actionOnUserEmail
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          activityData: "{}"
-          actionByUserEmail: actionByUserEmail
-          type: type
-          actionOnID: 1
-        message: message
-        status: 0
     ContractABIMethod_1:
       description: A contract function.
-      example:
-        outputs:
-        - notes: notes
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        - notes: notes
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        notes: notes
-        const: true
-        payable: true
-        signature: signature
-        inputs:
-        - notes: notes
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        - notes: notes
-          name: name
-          typeName: typeName
-          typeConversion:
-            mode: mode
-            decimalsFunction: decimalsFunction
-            decimalsAbsolute: 7
-          type:
-            elem: null
-            size: 2
-            tupleElems:
-            - null
-            - null
-            tupleRawNames:
-            - tupleRawNames
-            - tupleRawNames
-            type: type
-        author: author
-        name: name
-        description: description
-        id: id
       nullable: true
       properties:
         id:
@@ -11940,42 +7530,6 @@ components:
         type: integer
       - $ref: '#/components/schemas/Hex'
     TransactionReceipt_data:
-      example:
-        logsBloom: logsBloom
-        blockHash: blockHash
-        contractAddress: contractAddress
-        transactionIndex: transactionIndex
-        type: type
-        transactionHash: transactionHash
-        gasUsed: gasUsed
-        root: root
-        blockNumber: blockNumber
-        cumulativeGasUsed: cumulativeGasUsed
-        effectiveGasPrice: effectiveGasPrice
-        logs:
-        - blockHash: blockHash
-          address: address
-          logIndex: logIndex
-          data: data
-          removed: true
-          topics:
-          - null
-          - null
-          blockNumber: blockNumber
-          transactionIndex: transactionIndex
-          transactionHash: transactionHash
-        - blockHash: blockHash
-          address: address
-          logIndex: logIndex
-          data: data
-          removed: true
-          topics:
-          - null
-          - null
-          blockNumber: blockNumber
-          transactionIndex: transactionIndex
-          transactionHash: transactionHash
-        status: status
       properties:
         type:
           description: A hex string.
@@ -12130,18 +7684,6 @@ components:
       type: object
     TransactionToSign_tx:
       description: An Ethereum transaction.
-      example:
-        data: data
-        gas: 1
-        gasTipCap: gasTipCap
-        from: from
-        to: to
-        type: 5
-        nonce: 6
-        gasFeeCap: gasFeeCap
-        value: value
-        hash: hash
-        gasPrice: gasPrice
       properties:
         nonce:
           description: Sender account nonce of the transaction

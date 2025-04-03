@@ -11,9 +11,7 @@ API version: 0.0
 package multibaas
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the Transaction type satisfies the MappedNullable interface at compile time
@@ -22,46 +20,44 @@ var _ MappedNullable = &Transaction{}
 // Transaction A transaction from the Ethereum Blockchain.
 type Transaction struct {
 	// A hex string.
-	Type string `json:"type" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Type string `json:"type"`
 	// A hex string or null.
-	ChainId NullableString `json:"chainId,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	ChainId NullableString `json:"chainId,omitempty"`
 	// A hex string.
-	Nonce string `json:"nonce" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Nonce string `json:"nonce"`
 	// An ethereum address.
-	To NullableString `json:"to" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	To NullableString `json:"to"`
 	// A hex string.
-	Gas string `json:"gas" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Gas string `json:"gas"`
 	// A hex string or null.
-	GasPrice NullableString `json:"gasPrice,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	GasPrice NullableString `json:"gasPrice,omitempty"`
 	// A hex string or null.
-	MaxPriorityFeePerGas NullableString `json:"maxPriorityFeePerGas,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	MaxPriorityFeePerGas NullableString `json:"maxPriorityFeePerGas,omitempty"`
 	// A hex string or null.
-	MaxFeePerGas NullableString `json:"maxFeePerGas,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	MaxFeePerGas NullableString `json:"maxFeePerGas,omitempty"`
 	// A hex string or null.
-	MaxFeePerBlobGas NullableString `json:"maxFeePerBlobGas,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	MaxFeePerBlobGas NullableString `json:"maxFeePerBlobGas,omitempty"`
 	// A hex string or null.
-	Value NullableString `json:"value" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Value NullableString `json:"value"`
 	// A hex string.
-	Input               string                 `json:"input" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	Input               string                 `json:"input"`
 	AccessList          []AccessTuple          `json:"accessList,omitempty"`
 	BlobVersionedHashes []string               `json:"blobVersionedHashes,omitempty"`
 	AuthorizationList   []SetCodeAuthorization `json:"authorizationList,omitempty"`
 	// A hex string.
-	V string `json:"v" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	V string `json:"v"`
 	// A hex string.
-	R string `json:"r" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	R string `json:"r"`
 	// A hex string.
-	S string `json:"s" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	S string `json:"s"`
 	// A hex string or null.
-	YParity     NullableString `json:"yParity,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
+	YParity     NullableString `json:"yParity,omitempty"`
 	Blobs       []string       `json:"blobs,omitempty"`
 	Commitments []string       `json:"commitments,omitempty"`
 	Proofs      []string       `json:"proofs,omitempty"`
 	// The keccak256 hash as a hex string of 256 bits.
-	Hash string `json:"hash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	Hash string `json:"hash"`
 }
-
-type _Transaction Transaction
 
 // NewTransaction instantiates a new Transaction object
 // This constructor will assign default values to properties that have it defined,
@@ -474,7 +470,7 @@ func (o *Transaction) GetAccessListOk() ([]AccessTuple, bool) {
 
 // HasAccessList returns a boolean if a field has been set.
 func (o *Transaction) HasAccessList() bool {
-	if o != nil && !IsNil(o.AccessList) {
+	if o != nil && IsNil(o.AccessList) {
 		return true
 	}
 
@@ -507,7 +503,7 @@ func (o *Transaction) GetBlobVersionedHashesOk() ([]string, bool) {
 
 // HasBlobVersionedHashes returns a boolean if a field has been set.
 func (o *Transaction) HasBlobVersionedHashes() bool {
-	if o != nil && !IsNil(o.BlobVersionedHashes) {
+	if o != nil && IsNil(o.BlobVersionedHashes) {
 		return true
 	}
 
@@ -540,7 +536,7 @@ func (o *Transaction) GetAuthorizationListOk() ([]SetCodeAuthorization, bool) {
 
 // HasAuthorizationList returns a boolean if a field has been set.
 func (o *Transaction) HasAuthorizationList() bool {
-	if o != nil && !IsNil(o.AuthorizationList) {
+	if o != nil && IsNil(o.AuthorizationList) {
 		return true
 	}
 
@@ -688,7 +684,7 @@ func (o *Transaction) GetBlobsOk() ([]string, bool) {
 
 // HasBlobs returns a boolean if a field has been set.
 func (o *Transaction) HasBlobs() bool {
-	if o != nil && !IsNil(o.Blobs) {
+	if o != nil && IsNil(o.Blobs) {
 		return true
 	}
 
@@ -721,7 +717,7 @@ func (o *Transaction) GetCommitmentsOk() ([]string, bool) {
 
 // HasCommitments returns a boolean if a field has been set.
 func (o *Transaction) HasCommitments() bool {
-	if o != nil && !IsNil(o.Commitments) {
+	if o != nil && IsNil(o.Commitments) {
 		return true
 	}
 
@@ -754,7 +750,7 @@ func (o *Transaction) GetProofsOk() ([]string, bool) {
 
 // HasProofs returns a boolean if a field has been set.
 func (o *Transaction) HasProofs() bool {
-	if o != nil && !IsNil(o.Proofs) {
+	if o != nil && IsNil(o.Proofs) {
 		return true
 	}
 
@@ -847,52 +843,6 @@ func (o Transaction) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["hash"] = o.Hash
 	return toSerialize, nil
-}
-
-func (o *Transaction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"nonce",
-		"to",
-		"gas",
-		"value",
-		"input",
-		"v",
-		"r",
-		"s",
-		"hash",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varTransaction := _Transaction{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTransaction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Transaction(varTransaction)
-
-	return err
 }
 
 type NullableTransaction struct {
