@@ -10,7 +10,7 @@ on:
         type: string
       openapi-generator-version:
         description: The openapi-generator version to use. '' for the version used during the last generation, 'latest' for latest, 'x.y.z' for version x.y.z.
-        default: "latest"
+        default: "7.0.1" # latest working version with our current specs
         required: true
         type: string
 
