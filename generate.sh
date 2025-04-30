@@ -20,9 +20,5 @@ npx @openapitools/openapi-generator-cli batch \
     --clean \
     openapi-generator.yaml
 
-# Workaround collision with openapi-generator APIKey struct in configuration.go
-# and `modelNameMappings` not being supported in the generator version < 7.1.0
-perl -pi -e "s/APIKey/ApiKey/g" model_api_key.go
-
 # Lint
 go run golang.org/x/tools/cmd/goimports@latest -w . && go mod tidy

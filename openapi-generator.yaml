@@ -11,3 +11,5 @@ additionalProperties:
   disallowAdditionalPropertiesIfNotPresent: true
   useOneOfDiscriminatorLookup: true
   generateInterfaces: true
+  generateMarshalJSON: false
+  generateUnmarshalJSON: false
