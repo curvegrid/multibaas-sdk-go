@@ -26,6 +26,8 @@ type GetEventQuery200Response struct {
 	Result  EventQuery `json:"result"`
 }
 
+type _GetEventQuery200Response GetEventQuery200Response
+
 // NewGetEventQuery200Response instantiates a new GetEventQuery200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *GetEventQuery200Response) GetResultOk() (*EventQuery, bool) {
 // SetResult sets field value
 func (o *GetEventQuery200Response) SetResult(v EventQuery) {
 	o.Result = v
-}
-
-func (o GetEventQuery200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o GetEventQuery200Response) ToMap() (map[string]interface{}, error) {

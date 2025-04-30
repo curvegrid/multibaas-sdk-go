@@ -26,6 +26,8 @@ type TransferEth200Response struct {
 	Result  TransactionToSign `json:"result"`
 }
 
+type _TransferEth200Response TransferEth200Response
+
 // NewTransferEth200Response instantiates a new TransferEth200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *TransferEth200Response) GetResultOk() (*TransactionToSign, bool) {
 // SetResult sets field value
 func (o *TransferEth200Response) SetResult(v TransactionToSign) {
 	o.Result = v
-}
-
-func (o TransferEth200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o TransferEth200Response) ToMap() (map[string]interface{}, error) {

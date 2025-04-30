@@ -31,6 +31,8 @@ type Group struct {
 	Roles []Role `json:"roles"`
 }
 
+type _Group Group
+
 // NewGroup instantiates a new Group object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -171,14 +173,6 @@ func (o *Group) GetRolesOk() ([]Role, bool) {
 // SetRoles sets field value
 func (o *Group) SetRoles(v []Role) {
 	o.Roles = v
-}
-
-func (o Group) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o Group) ToMap() (map[string]interface{}, error) {

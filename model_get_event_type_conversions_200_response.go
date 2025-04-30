@@ -26,6 +26,8 @@ type GetEventTypeConversions200Response struct {
 	Result  EventTypeConversionOptions `json:"result"`
 }
 
+type _GetEventTypeConversions200Response GetEventTypeConversions200Response
+
 // NewGetEventTypeConversions200Response instantiates a new GetEventTypeConversions200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *GetEventTypeConversions200Response) GetResultOk() (*EventTypeConversion
 // SetResult sets field value
 func (o *GetEventTypeConversions200Response) SetResult(v EventTypeConversionOptions) {
 	o.Result = v
-}
-
-func (o GetEventTypeConversions200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o GetEventTypeConversions200Response) ToMap() (map[string]interface{}, error) {

@@ -26,6 +26,8 @@ type ContractMethodInformation struct {
 	Inputs    []MethodArg `json:"inputs"`
 }
 
+type _ContractMethodInformation ContractMethodInformation
+
 // NewContractMethodInformation instantiates a new ContractMethodInformation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *ContractMethodInformation) GetInputsOk() ([]MethodArg, bool) {
 // SetInputs sets field value
 func (o *ContractMethodInformation) SetInputs(v []MethodArg) {
 	o.Inputs = v
-}
-
-func (o ContractMethodInformation) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractMethodInformation) ToMap() (map[string]interface{}, error) {

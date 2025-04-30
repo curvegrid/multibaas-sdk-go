@@ -26,6 +26,8 @@ type GetContractVersions200Response struct {
 	Result  []Contract `json:"result"`
 }
 
+type _GetContractVersions200Response GetContractVersions200Response
+
 // NewGetContractVersions200Response instantiates a new GetContractVersions200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *GetContractVersions200Response) GetResultOk() ([]Contract, bool) {
 // SetResult sets field value
 func (o *GetContractVersions200Response) SetResult(v []Contract) {
 	o.Result = v
-}
-
-func (o GetContractVersions200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o GetContractVersions200Response) ToMap() (map[string]interface{}, error) {

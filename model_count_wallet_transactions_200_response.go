@@ -27,6 +27,8 @@ type CountWalletTransactions200Response struct {
 	Result int64 `json:"result"`
 }
 
+type _CountWalletTransactions200Response CountWalletTransactions200Response
+
 // NewCountWalletTransactions200Response instantiates a new CountWalletTransactions200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -117,14 +119,6 @@ func (o *CountWalletTransactions200Response) GetResultOk() (*int64, bool) {
 // SetResult sets field value
 func (o *CountWalletTransactions200Response) SetResult(v int64) {
 	o.Result = v
-}
-
-func (o CountWalletTransactions200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o CountWalletTransactions200Response) ToMap() (map[string]interface{}, error) {

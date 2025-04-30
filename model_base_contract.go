@@ -20,13 +20,13 @@ var _ MappedNullable = &BaseContract{}
 // BaseContract A contract.
 type BaseContract struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
-	ContractName string `json:"contractName"`
+	ContractName string `json:"contractName" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract version.
-	Version string `json:"version"`
+	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The smart-contract bytecode.
-	Bin *string `json:"bin,omitempty"`
+	Bin *string `json:"bin,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The contract raw ABI JSON string.
 	RawAbi string `json:"rawAbi"`
 	// The user documentation JSON string.
@@ -37,6 +37,8 @@ type BaseContract struct {
 	Metadata   *string `json:"metadata,omitempty"`
 	IsFavorite *bool   `json:"isFavorite,omitempty"`
 }
+
+type _BaseContract BaseContract
 
 // NewBaseContract instantiates a new BaseContract object
 // This constructor will assign default values to properties that have it defined,
@@ -313,14 +315,6 @@ func (o *BaseContract) HasIsFavorite() bool {
 // SetIsFavorite gets a reference to the given bool and assigns it to the IsFavorite field.
 func (o *BaseContract) SetIsFavorite(v bool) {
 	o.IsFavorite = &v
-}
-
-func (o BaseContract) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o BaseContract) ToMap() (map[string]interface{}, error) {

@@ -20,16 +20,18 @@ var _ MappedNullable = &ContractOverview{}
 // ContractOverview A contract overview.
 type ContractOverview struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
-	ContractName string `json:"contractName"`
+	ContractName string `json:"contractName" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract version.
-	Version    string `json:"version"`
+	Version    string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	IsFavorite *bool  `json:"isFavorite,omitempty"`
 	Deployable bool   `json:"deployable"`
 	// List of contract instances.
 	Instances []ContractInstance `json:"instances"`
 }
+
+type _ContractOverview ContractOverview
 
 // NewContractOverview instantiates a new ContractOverview object
 // This constructor will assign default values to properties that have it defined,
@@ -203,14 +205,6 @@ func (o *ContractOverview) GetInstancesOk() ([]ContractInstance, bool) {
 // SetInstances sets field value
 func (o *ContractOverview) SetInstances(v []ContractInstance) {
 	o.Instances = v
-}
-
-func (o ContractOverview) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractOverview) ToMap() (map[string]interface{}, error) {

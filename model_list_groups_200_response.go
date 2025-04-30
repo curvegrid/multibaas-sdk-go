@@ -26,6 +26,8 @@ type ListGroups200Response struct {
 	Result  []Group `json:"result"`
 }
 
+type _ListGroups200Response ListGroups200Response
+
 // NewListGroups200Response instantiates a new ListGroups200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *ListGroups200Response) GetResultOk() ([]Group, bool) {
 // SetResult sets field value
 func (o *ListGroups200Response) SetResult(v []Group) {
 	o.Result = v
-}
-
-func (o ListGroups200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ListGroups200Response) ToMap() (map[string]interface{}, error) {

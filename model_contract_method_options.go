@@ -27,6 +27,8 @@ type ContractMethodOptions struct {
 	Outputs []ContractParameter `json:"outputs,omitempty"`
 }
 
+type _ContractMethodOptions ContractMethodOptions
+
 // NewContractMethodOptions instantiates a new ContractMethodOptions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -131,14 +133,6 @@ func (o *ContractMethodOptions) HasOutputs() bool {
 // SetOutputs gets a reference to the given []ContractParameter and assigns it to the Outputs field.
 func (o *ContractMethodOptions) SetOutputs(v []ContractParameter) {
 	o.Outputs = v
-}
-
-func (o ContractMethodOptions) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractMethodOptions) ToMap() (map[string]interface{}, error) {

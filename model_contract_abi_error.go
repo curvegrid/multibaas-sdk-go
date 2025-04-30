@@ -20,7 +20,7 @@ var _ MappedNullable = &ContractABIError{}
 // ContractABIError A contract error.
 type ContractABIError struct {
 	// The keccak256 hash as a hex string of 256 bits.
-	Id        string `json:"id"`
+	Id        string `json:"id" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	Name      string `json:"name"`
 	Signature string `json:"signature"`
 	// List of contract event's input arguments.
@@ -30,6 +30,8 @@ type ContractABIError struct {
 	// The user documentation.
 	Description *string `json:"description,omitempty"`
 }
+
+type _ContractABIError ContractABIError
 
 // NewContractABIError instantiates a new ContractABIError object
 // This constructor will assign default values to properties that have it defined,
@@ -210,14 +212,6 @@ func (o *ContractABIError) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *ContractABIError) SetDescription(v string) {
 	o.Description = &v
-}
-
-func (o ContractABIError) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractABIError) ToMap() (map[string]interface{}, error) {

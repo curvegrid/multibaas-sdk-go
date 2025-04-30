@@ -28,6 +28,8 @@ type EventQuery struct {
 	Order *string `json:"order,omitempty"`
 }
 
+type _EventQuery EventQuery
+
 // NewEventQuery instantiates a new EventQuery object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -164,14 +166,6 @@ func (o *EventQuery) HasOrder() bool {
 // SetOrder gets a reference to the given string and assigns it to the Order field.
 func (o *EventQuery) SetOrder(v string) {
 	o.Order = &v
-}
-
-func (o EventQuery) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EventQuery) ToMap() (map[string]interface{}, error) {

@@ -105,14 +105,6 @@ func (o *CORSOrigin) SetOrigin(v string) {
 	o.Origin = &v
 }
 
-func (o CORSOrigin) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
 func (o CORSOrigin) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {

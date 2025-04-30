@@ -31,6 +31,8 @@ type WebhookEvent struct {
 	DeliveredAt *time.Time `json:"deliveredAt,omitempty"`
 }
 
+type _WebhookEvent WebhookEvent
+
 // NewWebhookEvent instantiates a new WebhookEvent object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -178,14 +180,6 @@ func (o *WebhookEvent) HasDeliveredAt() bool {
 // SetDeliveredAt gets a reference to the given time.Time and assigns it to the DeliveredAt field.
 func (o *WebhookEvent) SetDeliveredAt(v time.Time) {
 	o.DeliveredAt = &v
-}
-
-func (o WebhookEvent) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o WebhookEvent) ToMap() (map[string]interface{}, error) {

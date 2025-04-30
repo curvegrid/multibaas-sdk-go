@@ -26,6 +26,8 @@ type ContractABIType struct {
 	Elem          *ContractABIType  `json:"elem,omitempty"`
 }
 
+type _ContractABIType ContractABIType
+
 // NewContractABIType instantiates a new ContractABIType object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -194,14 +196,6 @@ func (o *ContractABIType) HasElem() bool {
 // SetElem gets a reference to the given ContractABIType and assigns it to the Elem field.
 func (o *ContractABIType) SetElem(v ContractABIType) {
 	o.Elem = &v
-}
-
-func (o ContractABIType) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractABIType) ToMap() (map[string]interface{}, error) {

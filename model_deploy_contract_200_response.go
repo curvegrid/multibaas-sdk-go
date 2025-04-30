@@ -26,6 +26,8 @@ type DeployContract200Response struct {
 	Result  DeployContractTransaction `json:"result"`
 }
 
+type _DeployContract200Response DeployContract200Response
+
 // NewDeployContract200Response instantiates a new DeployContract200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *DeployContract200Response) GetResultOk() (*DeployContractTransaction, b
 // SetResult sets field value
 func (o *DeployContract200Response) SetResult(v DeployContractTransaction) {
 	o.Result = v
-}
-
-func (o DeployContract200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o DeployContract200Response) ToMap() (map[string]interface{}, error) {

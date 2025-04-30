@@ -25,6 +25,8 @@ type BaseResponse struct {
 	Message string `json:"message"`
 }
 
+type _BaseResponse BaseResponse
+
 // NewBaseResponse instantiates a new BaseResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -90,14 +92,6 @@ func (o *BaseResponse) GetMessageOk() (*string, bool) {
 // SetMessage sets field value
 func (o *BaseResponse) SetMessage(v string) {
 	o.Message = v
-}
-
-func (o BaseResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o BaseResponse) ToMap() (map[string]interface{}, error) {

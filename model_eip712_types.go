@@ -67,14 +67,6 @@ func (o *EIP712Types) SetEIP712Domain(v []EIP712TypeEntry) {
 	o.EIP712Domain = v
 }
 
-func (o EIP712Types) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
 func (o EIP712Types) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["EIP712Domain"] = o.EIP712Domain
@@ -84,27 +76,6 @@ func (o EIP712Types) ToMap() (map[string]interface{}, error) {
 	}
 
 	return toSerialize, nil
-}
-
-func (o *EIP712Types) UnmarshalJSON(bytes []byte) (err error) {
-	varEIP712Types := _EIP712Types{}
-
-	err = json.Unmarshal(bytes, &varEIP712Types)
-
-	if err != nil {
-		return err
-	}
-
-	*o = EIP712Types(varEIP712Types)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "EIP712Domain")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableEIP712Types struct {

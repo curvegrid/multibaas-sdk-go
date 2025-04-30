@@ -28,6 +28,8 @@ type ChainStatus struct {
 	BaseFee *string `json:"baseFee,omitempty"`
 }
 
+type _ChainStatus ChainStatus
+
 // NewChainStatus instantiates a new ChainStatus object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -175,14 +177,6 @@ func (o *ChainStatus) HasBaseFee() bool {
 // SetBaseFee gets a reference to the given string and assigns it to the BaseFee field.
 func (o *ChainStatus) SetBaseFee(v string) {
 	o.BaseFee = &v
-}
-
-func (o ChainStatus) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ChainStatus) ToMap() (map[string]interface{}, error) {

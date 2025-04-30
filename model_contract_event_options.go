@@ -23,6 +23,8 @@ type ContractEventOptions struct {
 	Inputs    []ContractParameter `json:"inputs"`
 }
 
+type _ContractEventOptions ContractEventOptions
+
 // NewContractEventOptions instantiates a new ContractEventOptions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -95,14 +97,6 @@ func (o *ContractEventOptions) GetInputsOk() ([]ContractParameter, bool) {
 // SetInputs sets field value
 func (o *ContractEventOptions) SetInputs(v []ContractParameter) {
 	o.Inputs = v
-}
-
-func (o ContractEventOptions) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractEventOptions) ToMap() (map[string]interface{}, error) {

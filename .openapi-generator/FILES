@@ -12,7 +12,6 @@ api_txm.go
 api_webhooks.go
 client.go
 configuration.go
-docs/APIKey.md
 docs/APIKeyWithSecret.md
 docs/AcceptInvite200Response.md
 docs/AcceptInviteRequest.md
@@ -22,6 +21,7 @@ docs/Address.md
 docs/AddressAlias.md
 docs/AddressesAPI.md
 docs/AdminAPI.md
+docs/ApiKey.md
 docs/AuditLog.md
 docs/AzureAccount.md
 docs/AzureHardwareWallet.md

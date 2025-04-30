@@ -26,6 +26,8 @@ type MethodCallPreviewResponse struct {
 	Output interface{} `json:"output"`
 }
 
+type _MethodCallPreviewResponse MethodCallPreviewResponse
+
 // NewMethodCallPreviewResponse instantiates a new MethodCallPreviewResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -94,14 +96,6 @@ func (o *MethodCallPreviewResponse) GetOutputOk() (*interface{}, bool) {
 // SetOutput sets field value
 func (o *MethodCallPreviewResponse) SetOutput(v interface{}) {
 	o.Output = v
-}
-
-func (o MethodCallPreviewResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o MethodCallPreviewResponse) ToMap() (map[string]interface{}, error) {

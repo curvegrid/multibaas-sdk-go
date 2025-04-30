@@ -26,6 +26,8 @@ type ListContractVersions200Response struct {
 	Result  ListContractVersions200ResponseAllOfResult `json:"result"`
 }
 
+type _ListContractVersions200Response ListContractVersions200Response
+
 // NewListContractVersions200Response instantiates a new ListContractVersions200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *ListContractVersions200Response) GetResultOk() (*ListContractVersions20
 // SetResult sets field value
 func (o *ListContractVersions200Response) SetResult(v ListContractVersions200ResponseAllOfResult) {
 	o.Result = v
-}
-
-func (o ListContractVersions200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ListContractVersions200Response) ToMap() (map[string]interface{}, error) {

@@ -23,6 +23,8 @@ type EventTypeConversionOptions struct {
 	Inputs []TypeConversionOptions `json:"inputs"`
 }
 
+type _EventTypeConversionOptions EventTypeConversionOptions
+
 // NewEventTypeConversionOptions instantiates a new EventTypeConversionOptions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -63,14 +65,6 @@ func (o *EventTypeConversionOptions) GetInputsOk() ([]TypeConversionOptions, boo
 // SetInputs sets field value
 func (o *EventTypeConversionOptions) SetInputs(v []TypeConversionOptions) {
 	o.Inputs = v
-}
-
-func (o EventTypeConversionOptions) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EventTypeConversionOptions) ToMap() (map[string]interface{}, error) {

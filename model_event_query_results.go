@@ -22,6 +22,8 @@ type EventQueryResults struct {
 	Rows []map[string]interface{} `json:"rows"`
 }
 
+type _EventQueryResults EventQueryResults
+
 // NewEventQueryResults instantiates a new EventQueryResults object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -62,14 +64,6 @@ func (o *EventQueryResults) GetRowsOk() ([]map[string]interface{}, bool) {
 // SetRows sets field value
 func (o *EventQueryResults) SetRows(v []map[string]interface{}) {
 	o.Rows = v
-}
-
-func (o EventQueryResults) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EventQueryResults) ToMap() (map[string]interface{}, error) {

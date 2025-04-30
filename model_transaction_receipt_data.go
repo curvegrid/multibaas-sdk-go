@@ -20,31 +20,33 @@ var _ MappedNullable = &TransactionReceiptData{}
 // TransactionReceiptData struct for TransactionReceiptData
 type TransactionReceiptData struct {
 	// A hex string.
-	Type *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	Root string `json:"root"`
+	Root string `json:"root" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	Status string `json:"status"`
+	Status string `json:"status" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	CumulativeGasUsed string `json:"cumulativeGasUsed"`
+	CumulativeGasUsed string `json:"cumulativeGasUsed" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	LogsBloom string `json:"logsBloom"`
+	LogsBloom string `json:"logsBloom" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	Logs      []Log  `json:"logs"`
 	// The keccak256 hash as a hex string of 256 bits.
-	TransactionHash string `json:"transactionHash"`
+	TransactionHash string `json:"transactionHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// An ethereum address.
-	ContractAddress string `json:"contractAddress"`
+	ContractAddress string `json:"contractAddress" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A hex string.
-	GasUsed string `json:"gasUsed"`
+	GasUsed string `json:"gasUsed" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	EffectiveGasPrice string `json:"effectiveGasPrice"`
+	EffectiveGasPrice string `json:"effectiveGasPrice" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	BlockNumber string `json:"blockNumber"`
+	BlockNumber string `json:"blockNumber" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	TransactionIndex string `json:"transactionIndex"`
+	TransactionIndex string `json:"transactionIndex" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash string `json:"blockHash"`
+	BlockHash string `json:"blockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 }
+
+type _TransactionReceiptData TransactionReceiptData
 
 // NewTransactionReceiptData instantiates a new TransactionReceiptData object
 // This constructor will assign default values to properties that have it defined,
@@ -393,14 +395,6 @@ func (o *TransactionReceiptData) GetBlockHashOk() (*string, bool) {
 // SetBlockHash sets field value
 func (o *TransactionReceiptData) SetBlockHash(v string) {
 	o.BlockHash = v
-}
-
-func (o TransactionReceiptData) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o TransactionReceiptData) ToMap() (map[string]interface{}, error) {

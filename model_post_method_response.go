@@ -23,6 +23,8 @@ type PostMethodResponse struct {
 	Kind string `json:"kind"`
 }
 
+type _PostMethodResponse PostMethodResponse
+
 // NewPostMethodResponse instantiates a new PostMethodResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -63,14 +65,6 @@ func (o *PostMethodResponse) GetKindOk() (*string, bool) {
 // SetKind sets field value
 func (o *PostMethodResponse) SetKind(v string) {
 	o.Kind = v
-}
-
-func (o PostMethodResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o PostMethodResponse) ToMap() (map[string]interface{}, error) {

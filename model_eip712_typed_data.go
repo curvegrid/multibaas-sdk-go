@@ -27,6 +27,8 @@ type EIP712TypedData struct {
 	Message map[string]interface{} `json:"message"`
 }
 
+type _EIP712TypedData EIP712TypedData
+
 // NewEIP712TypedData instantiates a new EIP712TypedData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -142,14 +144,6 @@ func (o *EIP712TypedData) GetMessageOk() (map[string]interface{}, bool) {
 // SetMessage sets field value
 func (o *EIP712TypedData) SetMessage(v map[string]interface{}) {
 	o.Message = v
-}
-
-func (o EIP712TypedData) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EIP712TypedData) ToMap() (map[string]interface{}, error) {

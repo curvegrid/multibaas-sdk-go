@@ -26,6 +26,8 @@ type SignData200Response struct {
 	Result  HSMSignResponse `json:"result"`
 }
 
+type _SignData200Response SignData200Response
+
 // NewSignData200Response instantiates a new SignData200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *SignData200Response) GetResultOk() (*HSMSignResponse, bool) {
 // SetResult sets field value
 func (o *SignData200Response) SetResult(v HSMSignResponse) {
 	o.Result = v
-}
-
-func (o SignData200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o SignData200Response) ToMap() (map[string]interface{}, error) {

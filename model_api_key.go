@@ -21,7 +21,7 @@ var _ MappedNullable = &ApiKey{}
 // ApiKey An API key.
 type ApiKey struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	Id    int64  `json:"id"`
 	// The time the API key was created.
 	CreatedAt time.Time `json:"createdAt"`
@@ -32,6 +32,8 @@ type ApiKey struct {
 	// The signature of the API key.
 	Signature string `json:"signature"`
 }
+
+type _ApiKey ApiKey
 
 // NewApiKey instantiates a new ApiKey object
 // This constructor will assign default values to properties that have it defined,
@@ -205,14 +207,6 @@ func (o *ApiKey) GetSignatureOk() (*string, bool) {
 // SetSignature sets field value
 func (o *ApiKey) SetSignature(v string) {
 	o.Signature = v
-}
-
-func (o ApiKey) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ApiKey) ToMap() (map[string]interface{}, error) {

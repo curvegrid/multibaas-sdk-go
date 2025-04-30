@@ -26,6 +26,8 @@ type EventQueryEvent struct {
 	Filter *EventQueryFilter `json:"filter,omitempty"`
 }
 
+type _EventQueryEvent EventQueryEvent
+
 // NewEventQueryEvent instantiates a new EventQueryEvent object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -123,14 +125,6 @@ func (o *EventQueryEvent) HasFilter() bool {
 // SetFilter gets a reference to the given EventQueryFilter and assigns it to the Filter field.
 func (o *EventQueryEvent) SetFilter(v EventQueryFilter) {
 	o.Filter = &v
-}
-
-func (o EventQueryEvent) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EventQueryEvent) ToMap() (map[string]interface{}, error) {

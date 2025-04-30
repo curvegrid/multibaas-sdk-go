@@ -20,12 +20,14 @@ var _ MappedNullable = &LinkAddressContractRequest{}
 // LinkAddressContractRequest struct for LinkAddressContractRequest
 type LinkAddressContractRequest struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The contract version.
-	Version *string `json:"version,omitempty"`
+	Version *string `json:"version,omitempty" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The block number from which to start syncing events. The value can be `latest` for the latest block number, an absolute block number (e.g. `123` for the block number 123), or a relative block number (e.g. `-100` for 100 blocks before the latest block). If absent, the event monitor will be disabled for this contract and events won't be synced.
 	StartingBlock *string `json:"startingBlock,omitempty"`
 }
+
+type _LinkAddressContractRequest LinkAddressContractRequest
 
 // NewLinkAddressContractRequest instantiates a new LinkAddressContractRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -131,14 +133,6 @@ func (o *LinkAddressContractRequest) HasStartingBlock() bool {
 // SetStartingBlock gets a reference to the given string and assigns it to the StartingBlock field.
 func (o *LinkAddressContractRequest) SetStartingBlock(v string) {
 	o.StartingBlock = &v
-}
-
-func (o LinkAddressContractRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o LinkAddressContractRequest) ToMap() (map[string]interface{}, error) {

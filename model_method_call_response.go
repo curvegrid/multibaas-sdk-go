@@ -24,6 +24,8 @@ type MethodCallResponse struct {
 	Output interface{} `json:"output"`
 }
 
+type _MethodCallResponse MethodCallResponse
+
 // NewMethodCallResponse instantiates a new MethodCallResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -67,14 +69,6 @@ func (o *MethodCallResponse) GetOutputOk() (*interface{}, bool) {
 // SetOutput sets field value
 func (o *MethodCallResponse) SetOutput(v interface{}) {
 	o.Output = v
-}
-
-func (o MethodCallResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o MethodCallResponse) ToMap() (map[string]interface{}, error) {

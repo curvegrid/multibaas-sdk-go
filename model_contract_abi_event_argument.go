@@ -28,6 +28,8 @@ type ContractABIEventArgument struct {
 	Notes string `json:"notes"`
 }
 
+type _ContractABIEventArgument ContractABIEventArgument
+
 // NewContractABIEventArgument instantiates a new ContractABIEventArgument object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -195,14 +197,6 @@ func (o *ContractABIEventArgument) GetNotesOk() (*string, bool) {
 // SetNotes sets field value
 func (o *ContractABIEventArgument) SetNotes(v string) {
 	o.Notes = v
-}
-
-func (o ContractABIEventArgument) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractABIEventArgument) ToMap() (map[string]interface{}, error) {

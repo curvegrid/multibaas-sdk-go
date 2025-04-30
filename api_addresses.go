@@ -289,10 +289,10 @@ func (a *AddressesAPIService) GetAddressExecute(r ApiGetAddressRequest) (*SetAdd
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				parameterAddToHeaderOrQuery(localVarQueryParams, "include", s.Index(i).Interface(), "multi")
+				parameterAddToHeaderOrQuery(localVarQueryParams, "include", s.Index(i).Interface(), "form", "multi")
 			}
 		} else {
-			parameterAddToHeaderOrQuery(localVarQueryParams, "include", t, "multi")
+			parameterAddToHeaderOrQuery(localVarQueryParams, "include", t, "form", "multi")
 		}
 	}
 	// to determine the Content-Type header

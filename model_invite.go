@@ -24,6 +24,8 @@ type Invite struct {
 	GroupIDs []int64 `json:"groupIDs,omitempty"`
 }
 
+type _Invite Invite
+
 // NewInvite instantiates a new Invite object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -96,14 +98,6 @@ func (o *Invite) HasGroupIDs() bool {
 // SetGroupIDs gets a reference to the given []int64 and assigns it to the GroupIDs field.
 func (o *Invite) SetGroupIDs(v []int64) {
 	o.GroupIDs = v
-}
-
-func (o Invite) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o Invite) ToMap() (map[string]interface{}, error) {

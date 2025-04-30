@@ -29,6 +29,8 @@ type EventField struct {
 	Type string `json:"type"`
 }
 
+type _EventField EventField
+
 // NewEventField instantiates a new EventField object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -146,14 +148,6 @@ func (o *EventField) GetTypeOk() (*string, bool) {
 // SetType sets field value
 func (o *EventField) SetType(v string) {
 	o.Type = v
-}
-
-func (o EventField) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EventField) ToMap() (map[string]interface{}, error) {

@@ -32,6 +32,8 @@ type EventInformation struct {
 	IndexInLog int64 `json:"indexInLog"`
 }
 
+type _EventInformation EventInformation
+
 // NewEventInformation instantiates a new EventInformation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -204,14 +206,6 @@ func (o *EventInformation) GetIndexInLogOk() (*int64, bool) {
 // SetIndexInLog sets field value
 func (o *EventInformation) SetIndexInLog(v int64) {
 	o.IndexInLog = v
-}
-
-func (o EventInformation) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EventInformation) ToMap() (map[string]interface{}, error) {

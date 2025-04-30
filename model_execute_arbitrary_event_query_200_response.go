@@ -26,6 +26,8 @@ type ExecuteArbitraryEventQuery200Response struct {
 	Result  EventQueryResults `json:"result"`
 }
 
+type _ExecuteArbitraryEventQuery200Response ExecuteArbitraryEventQuery200Response
+
 // NewExecuteArbitraryEventQuery200Response instantiates a new ExecuteArbitraryEventQuery200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *ExecuteArbitraryEventQuery200Response) GetResultOk() (*EventQueryResult
 // SetResult sets field value
 func (o *ExecuteArbitraryEventQuery200Response) SetResult(v EventQueryResults) {
 	o.Result = v
-}
-
-func (o ExecuteArbitraryEventQuery200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ExecuteArbitraryEventQuery200Response) ToMap() (map[string]interface{}, error) {

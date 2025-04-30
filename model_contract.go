@@ -20,13 +20,13 @@ var _ MappedNullable = &Contract{}
 // Contract A returned contract.
 type Contract struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
-	ContractName string `json:"contractName"`
+	ContractName string `json:"contractName" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract version.
-	Version string `json:"version"`
+	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The smart-contract bytecode.
-	Bin *string `json:"bin,omitempty"`
+	Bin *string `json:"bin,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The contract raw ABI JSON string.
 	RawAbi string `json:"rawAbi"`
 	// The user documentation JSON string.
@@ -40,6 +40,8 @@ type Contract struct {
 	// List of the contract instances.
 	Instances []ContractInstance `json:"instances,omitempty"`
 }
+
+type _Contract Contract
 
 // NewContract instantiates a new Contract object
 // This constructor will assign default values to properties that have it defined,
@@ -373,14 +375,6 @@ func (o *Contract) HasInstances() bool {
 // SetInstances gets a reference to the given []ContractInstance and assigns it to the Instances field.
 func (o *Contract) SetInstances(v []ContractInstance) {
 	o.Instances = v
-}
-
-func (o Contract) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o Contract) ToMap() (map[string]interface{}, error) {

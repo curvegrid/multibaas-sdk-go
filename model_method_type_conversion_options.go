@@ -23,6 +23,8 @@ type MethodTypeConversionOptions struct {
 	Outputs []TypeConversionOptions `json:"outputs"`
 }
 
+type _MethodTypeConversionOptions MethodTypeConversionOptions
+
 // NewMethodTypeConversionOptions instantiates a new MethodTypeConversionOptions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -88,14 +90,6 @@ func (o *MethodTypeConversionOptions) GetOutputsOk() ([]TypeConversionOptions, b
 // SetOutputs sets field value
 func (o *MethodTypeConversionOptions) SetOutputs(v []TypeConversionOptions) {
 	o.Outputs = v
-}
-
-func (o MethodTypeConversionOptions) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o MethodTypeConversionOptions) ToMap() (map[string]interface{}, error) {

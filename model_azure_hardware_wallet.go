@@ -24,12 +24,14 @@ type AzureHardwareWallet struct {
 	// The name given to the vault your key is stored in.
 	VaultName string `json:"vaultName"`
 	// The name of the key.
-	KeyName string `json:"keyName"`
+	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
 	// The version of the key.
-	KeyVersion string `json:"keyVersion"`
+	KeyVersion string `json:"keyVersion" validate:"regexp=^[a-zA-Z0-9]{32}$"`
 	// An ethereum address.
-	PublicAddress string `json:"publicAddress"`
+	PublicAddress string `json:"publicAddress" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 }
+
+type _AzureHardwareWallet AzureHardwareWallet
 
 // NewAzureHardwareWallet instantiates a new AzureHardwareWallet object
 // This constructor will assign default values to properties that have it defined,
@@ -196,14 +198,6 @@ func (o *AzureHardwareWallet) GetPublicAddressOk() (*string, bool) {
 // SetPublicAddress sets field value
 func (o *AzureHardwareWallet) SetPublicAddress(v string) {
 	o.PublicAddress = v
-}
-
-func (o AzureHardwareWallet) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o AzureHardwareWallet) ToMap() (map[string]interface{}, error) {

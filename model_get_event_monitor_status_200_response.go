@@ -26,6 +26,8 @@ type GetEventMonitorStatus200Response struct {
 	Result  EventMonitorStatus `json:"result"`
 }
 
+type _GetEventMonitorStatus200Response GetEventMonitorStatus200Response
+
 // NewGetEventMonitorStatus200Response instantiates a new GetEventMonitorStatus200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *GetEventMonitorStatus200Response) GetResultOk() (*EventMonitorStatus, b
 // SetResult sets field value
 func (o *GetEventMonitorStatus200Response) SetResult(v EventMonitorStatus) {
 	o.Result = v
-}
-
-func (o GetEventMonitorStatus200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o GetEventMonitorStatus200Response) ToMap() (map[string]interface{}, error) {

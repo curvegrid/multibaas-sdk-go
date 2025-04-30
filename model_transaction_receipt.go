@@ -23,6 +23,8 @@ type TransactionReceipt struct {
 	Events []EventInformation     `json:"events,omitempty"`
 }
 
+type _TransactionReceipt TransactionReceipt
+
 // NewTransactionReceipt instantiates a new TransactionReceipt object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -95,14 +97,6 @@ func (o *TransactionReceipt) HasEvents() bool {
 // SetEvents gets a reference to the given []EventInformation and assigns it to the Events field.
 func (o *TransactionReceipt) SetEvents(v []EventInformation) {
 	o.Events = v
-}
-
-func (o TransactionReceipt) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o TransactionReceipt) ToMap() (map[string]interface{}, error) {

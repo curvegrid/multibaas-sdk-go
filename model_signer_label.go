@@ -23,6 +23,8 @@ type SignerLabel struct {
 	Label string `json:"label"`
 }
 
+type _SignerLabel SignerLabel
+
 // NewSignerLabel instantiates a new SignerLabel object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -63,14 +65,6 @@ func (o *SignerLabel) GetLabelOk() (*string, bool) {
 // SetLabel sets field value
 func (o *SignerLabel) SetLabel(v string) {
 	o.Label = v
-}
-
-func (o SignerLabel) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o SignerLabel) ToMap() (map[string]interface{}, error) {

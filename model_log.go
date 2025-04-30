@@ -20,24 +20,26 @@ var _ MappedNullable = &Log{}
 // Log A contract log event.
 type Log struct {
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A list of topics provided by the contract.
 	Topics []string `json:"topics"`
 	// A hex string.
-	Data string `json:"data"`
+	Data string `json:"data" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	BlockNumber string `json:"blockNumber"`
+	BlockNumber string `json:"blockNumber" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	TransactionHash string `json:"transactionHash"`
+	TransactionHash string `json:"transactionHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// A hex string.
-	TransactionIndex string `json:"transactionIndex"`
+	TransactionIndex string `json:"transactionIndex" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash string `json:"blockHash"`
+	BlockHash string `json:"blockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// A hex string.
-	LogIndex string `json:"logIndex"`
+	LogIndex string `json:"logIndex" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// True if this log was reverted due to a chain reorganization.
 	Removed bool `json:"removed"`
 }
+
+type _Log Log
 
 // NewLog instantiates a new Log object
 // This constructor will assign default values to properties that have it defined,
@@ -279,14 +281,6 @@ func (o *Log) GetRemovedOk() (*bool, bool) {
 // SetRemoved sets field value
 func (o *Log) SetRemoved(v bool) {
 	o.Removed = v
-}
-
-func (o Log) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o Log) ToMap() (map[string]interface{}, error) {

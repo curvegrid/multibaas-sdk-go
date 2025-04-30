@@ -27,6 +27,8 @@ type User struct {
 	Id int64 `json:"id"`
 }
 
+type _User User
+
 // NewUser instantiates a new User object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -117,14 +119,6 @@ func (o *User) GetIdOk() (*int64, bool) {
 // SetId sets field value
 func (o *User) SetId(v int64) {
 	o.Id = v
-}
-
-func (o User) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o User) ToMap() (map[string]interface{}, error) {

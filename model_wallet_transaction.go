@@ -23,7 +23,7 @@ type WalletTransaction struct {
 	Tx     Transaction       `json:"tx"`
 	Status TransactionStatus `json:"status"`
 	// An ethereum address.
-	From string `json:"from"`
+	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// The total number of resubmission attempts.
 	ResubmissionAttempts int64 `json:"resubmissionAttempts"`
 	// The total number of successful resubmission (added into the transaction pool).
@@ -37,8 +37,10 @@ type WalletTransaction struct {
 	// The block number that the transaction was included in.
 	BlockNumber *int64 `json:"blockNumber,omitempty"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash *string `json:"blockHash,omitempty"`
+	BlockHash *string `json:"blockHash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 }
+
+type _WalletTransaction WalletTransaction
 
 // NewWalletTransaction instantiates a new WalletTransaction object
 // This constructor will assign default values to properties that have it defined,
@@ -326,14 +328,6 @@ func (o *WalletTransaction) HasBlockHash() bool {
 // SetBlockHash gets a reference to the given string and assigns it to the BlockHash field.
 func (o *WalletTransaction) SetBlockHash(v string) {
 	o.BlockHash = &v
-}
-
-func (o WalletTransaction) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o WalletTransaction) ToMap() (map[string]interface{}, error) {

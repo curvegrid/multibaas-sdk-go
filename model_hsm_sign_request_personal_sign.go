@@ -22,11 +22,13 @@ type HSMSignRequestPersonalSign struct {
 	// The signing method to use.
 	Method string `json:"method"`
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A hex string.
-	Data    string                             `json:"data"`
+	Data    string                             `json:"data" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	ChainId *HSMSignRequestPersonalSignChainId `json:"chainId,omitempty"`
 }
+
+type _HSMSignRequestPersonalSign HSMSignRequestPersonalSign
 
 // NewHSMSignRequestPersonalSign instantiates a new HSMSignRequestPersonalSign object
 // This constructor will assign default values to properties that have it defined,
@@ -150,14 +152,6 @@ func (o *HSMSignRequestPersonalSign) HasChainId() bool {
 // SetChainId gets a reference to the given HSMSignRequestPersonalSignChainId and assigns it to the ChainId field.
 func (o *HSMSignRequestPersonalSign) SetChainId(v HSMSignRequestPersonalSignChainId) {
 	o.ChainId = &v
-}
-
-func (o HSMSignRequestPersonalSign) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o HSMSignRequestPersonalSign) ToMap() (map[string]interface{}, error) {

@@ -434,7 +434,7 @@ func (a *ChainsAPIService) GetTransactionExecute(r ApiGetTransactionRequest) (*G
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -573,7 +573,7 @@ func (a *ChainsAPIService) GetTransactionReceiptExecute(r ApiGetTransactionRecei
 	localVarFormParams := url.Values{}
 
 	if r.include != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include", r.include, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

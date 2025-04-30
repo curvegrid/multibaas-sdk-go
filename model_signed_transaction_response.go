@@ -22,6 +22,8 @@ type SignedTransactionResponse struct {
 	Tx Transaction `json:"tx"`
 }
 
+type _SignedTransactionResponse SignedTransactionResponse
+
 // NewSignedTransactionResponse instantiates a new SignedTransactionResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -62,14 +64,6 @@ func (o *SignedTransactionResponse) GetTxOk() (*Transaction, bool) {
 // SetTx sets field value
 func (o *SignedTransactionResponse) SetTx(v Transaction) {
 	o.Tx = v
-}
-
-func (o SignedTransactionResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o SignedTransactionResponse) ToMap() (map[string]interface{}, error) {

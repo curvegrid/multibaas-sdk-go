@@ -27,6 +27,8 @@ type ContractABIErrorArgument struct {
 	Notes string `json:"notes"`
 }
 
+type _ContractABIErrorArgument ContractABIErrorArgument
+
 // NewContractABIErrorArgument instantiates a new ContractABIErrorArgument object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -167,14 +169,6 @@ func (o *ContractABIErrorArgument) GetNotesOk() (*string, bool) {
 // SetNotes sets field value
 func (o *ContractABIErrorArgument) SetNotes(v string) {
 	o.Notes = v
-}
-
-func (o ContractABIErrorArgument) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractABIErrorArgument) ToMap() (map[string]interface{}, error) {

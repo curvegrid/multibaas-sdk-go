@@ -23,7 +23,7 @@ type PostMethodArgs struct {
 	// List of the function arguments.
 	Args []interface{} `json:"args,omitempty"`
 	// An ethereum address.
-	From *string `json:"from,omitempty"`
+	From *string `json:"from,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// Nonce to use for the transaction execution.
 	Nonce *int64 `json:"nonce,omitempty"`
 	// Gas price to use for the transaction execution.
@@ -35,7 +35,7 @@ type PostMethodArgs struct {
 	// Gas limit to set for the transaction execution.
 	Gas *int64 `json:"gas,omitempty"`
 	// An ethereum address.
-	To *string `json:"to,omitempty"`
+	To *string `json:"to,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// Amount (in wei) to send with the transaction.
 	Value *string `json:"value,omitempty"`
 	// If the `from` address is an HSM address and this flag is set to `true`, the transaction will be automatically signed and submitted to the blockchain.
@@ -45,7 +45,7 @@ type PostMethodArgs struct {
 	// If set to `true`, forces a legacy type transaction. Otherwise an EIP-1559 transaction will created if the network supports it.
 	PreEIP1559 *bool `json:"preEIP1559,omitempty"`
 	// An ethereum address.
-	Signer *string `json:"signer,omitempty"`
+	Signer *string `json:"signer,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// Mode to format integer outputs in the function call's responses. There are 3 possible modes:   - `auto` (the default option), where number format is decided by its type:     - If the type has size at most 32 bits, then the number is returned verbatim.     - If the type has size larger than 32 bits, then the number is returned as a string.   - `as_numbers`, where all numbers are returned verbatim.   - `as_strings`, where all numbers are returned as strings.
 	FormatInts *string `json:"formatInts,omitempty"`
 	// Call the function at a specific timestamp. Only available for read functions calls and if the `historical_blocks_feature` is enabled (see the plan endpoint). Mutually exclusive with the `blockNumber` parameter.
@@ -696,14 +696,6 @@ func (o *PostMethodArgs) HasPreview() bool {
 // SetPreview gets a reference to the given PreviewArgs and assigns it to the Preview field.
 func (o *PostMethodArgs) SetPreview(v PreviewArgs) {
 	o.Preview = &v
-}
-
-func (o PostMethodArgs) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o PostMethodArgs) ToMap() (map[string]interface{}, error) {

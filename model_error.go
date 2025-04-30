@@ -25,6 +25,8 @@ type Error struct {
 	Message string `json:"message"`
 }
 
+type _Error Error
+
 // NewError instantiates a new Error object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -90,14 +92,6 @@ func (o *Error) GetMessageOk() (*string, bool) {
 // SetMessage sets field value
 func (o *Error) SetMessage(v string) {
 	o.Message = v
-}
-
-func (o Error) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o Error) ToMap() (map[string]interface{}, error) {

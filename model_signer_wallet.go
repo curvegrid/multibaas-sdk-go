@@ -22,12 +22,14 @@ type SignerWallet struct {
 	// The type of the signer.
 	Type string `json:"type"`
 	// An ethereum address.
-	Wallet string `json:"wallet"`
+	Wallet string `json:"wallet" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// An ethereum address.
-	Signer string `json:"signer"`
+	Signer string `json:"signer" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// The label of the signer.
 	Label string `json:"label"`
 }
+
+type _SignerWallet SignerWallet
 
 // NewSignerWallet instantiates a new SignerWallet object
 // This constructor will assign default values to properties that have it defined,
@@ -144,14 +146,6 @@ func (o *SignerWallet) GetLabelOk() (*string, bool) {
 // SetLabel sets field value
 func (o *SignerWallet) SetLabel(v string) {
 	o.Label = v
-}
-
-func (o SignerWallet) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o SignerWallet) ToMap() (map[string]interface{}, error) {

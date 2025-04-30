@@ -22,10 +22,12 @@ type BaseWebhookEndpoint struct {
 	// The URL to send the webhook to.
 	Url string `json:"url"`
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The events to subscribe to.
 	Subscriptions []WebhookEventsType `json:"subscriptions"`
 }
+
+type _BaseWebhookEndpoint BaseWebhookEndpoint
 
 // NewBaseWebhookEndpoint instantiates a new BaseWebhookEndpoint object
 // This constructor will assign default values to properties that have it defined,
@@ -117,14 +119,6 @@ func (o *BaseWebhookEndpoint) GetSubscriptionsOk() ([]WebhookEventsType, bool) {
 // SetSubscriptions sets field value
 func (o *BaseWebhookEndpoint) SetSubscriptions(v []WebhookEventsType) {
 	o.Subscriptions = v
-}
-
-func (o BaseWebhookEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o BaseWebhookEndpoint) ToMap() (map[string]interface{}, error) {

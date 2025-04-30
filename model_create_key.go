@@ -22,11 +22,13 @@ type CreateKey struct {
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The name of the key.
-	KeyName string `json:"keyName"`
+	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
 	// The name given to the vault your key is stored in.
 	VaultName         string `json:"vaultName"`
 	UseHardwareModule bool   `json:"useHardwareModule"`
 }
+
+type _CreateKey CreateKey
 
 // NewCreateKey instantiates a new CreateKey object
 // This constructor will assign default values to properties that have it defined,
@@ -143,14 +145,6 @@ func (o *CreateKey) GetUseHardwareModuleOk() (*bool, bool) {
 // SetUseHardwareModule sets field value
 func (o *CreateKey) SetUseHardwareModule(v bool) {
 	o.UseHardwareModule = v
-}
-
-func (o CreateKey) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o CreateKey) ToMap() (map[string]interface{}, error) {

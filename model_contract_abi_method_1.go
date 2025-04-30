@@ -20,7 +20,7 @@ var _ MappedNullable = &ContractABIMethod1{}
 // ContractABIMethod1 A contract function.
 type ContractABIMethod1 struct {
 	// A hex string.
-	Id string `json:"id"`
+	Id string `json:"id" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// Name of the function.
 	Name string `json:"name"`
 	// The function signature.
@@ -36,6 +36,8 @@ type ContractABIMethod1 struct {
 	// The function description.
 	Description string `json:"description"`
 }
+
+type _ContractABIMethod1 ContractABIMethod1
 
 // NewContractABIMethod1 instantiates a new ContractABIMethod1 object
 // This constructor will assign default values to properties that have it defined,
@@ -302,14 +304,6 @@ func (o *ContractABIMethod1) GetDescriptionOk() (*string, bool) {
 // SetDescription sets field value
 func (o *ContractABIMethod1) SetDescription(v string) {
 	o.Description = v
-}
-
-func (o ContractABIMethod1) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractABIMethod1) ToMap() (map[string]interface{}, error) {

@@ -25,9 +25,9 @@ type EIP712Domain struct {
 	Version *string              `json:"version,omitempty"`
 	ChainId *EIP712DomainChainId `json:"chainId,omitempty"`
 	// An ethereum address.
-	VerifyingContract *string `json:"verifyingContract,omitempty"`
+	VerifyingContract *string `json:"verifyingContract,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A hex string.
-	Salt *string `json:"salt,omitempty"`
+	Salt *string `json:"salt,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 }
 
 // NewEIP712Domain instantiates a new EIP712Domain object
@@ -205,14 +205,6 @@ func (o *EIP712Domain) HasSalt() bool {
 // SetSalt gets a reference to the given string and assigns it to the Salt field.
 func (o *EIP712Domain) SetSalt(v string) {
 	o.Salt = &v
-}
-
-func (o EIP712Domain) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EIP712Domain) ToMap() (map[string]interface{}, error) {

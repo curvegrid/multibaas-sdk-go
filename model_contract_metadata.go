@@ -20,12 +20,14 @@ var _ MappedNullable = &ContractMetadata{}
 // ContractMetadata struct for ContractMetadata
 type ContractMetadata struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
-	Name string `json:"name"`
+	Name string `json:"name" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract version.
-	Version string `json:"version"`
+	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 }
+
+type _ContractMetadata ContractMetadata
 
 // NewContractMetadata instantiates a new ContractMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -117,14 +119,6 @@ func (o *ContractMetadata) GetVersionOk() (*string, bool) {
 // SetVersion sets field value
 func (o *ContractMetadata) SetVersion(v string) {
 	o.Version = v
-}
-
-func (o ContractMetadata) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractMetadata) ToMap() (map[string]interface{}, error) {

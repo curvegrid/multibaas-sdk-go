@@ -60,7 +60,7 @@ func (o *TypeConversionOptions) GetTypesOk() ([]string, bool) {
 
 // HasTypes returns a boolean if a field has been set.
 func (o *TypeConversionOptions) HasTypes() bool {
-	if o != nil && IsNil(o.Types) {
+	if o != nil && !IsNil(o.Types) {
 		return true
 	}
 
@@ -70,14 +70,6 @@ func (o *TypeConversionOptions) HasTypes() bool {
 // SetTypes gets a reference to the given []string and assigns it to the Types field.
 func (o *TypeConversionOptions) SetTypes(v []string) {
 	o.Types = v
-}
-
-func (o TypeConversionOptions) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o TypeConversionOptions) ToMap() (map[string]interface{}, error) {

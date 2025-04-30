@@ -27,6 +27,8 @@ type CountWebhookEvents200Response struct {
 	Result int64 `json:"result"`
 }
 
+type _CountWebhookEvents200Response CountWebhookEvents200Response
+
 // NewCountWebhookEvents200Response instantiates a new CountWebhookEvents200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -117,14 +119,6 @@ func (o *CountWebhookEvents200Response) GetResultOk() (*int64, bool) {
 // SetResult sets field value
 func (o *CountWebhookEvents200Response) SetResult(v int64) {
 	o.Result = v
-}
-
-func (o CountWebhookEvents200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o CountWebhookEvents200Response) ToMap() (map[string]interface{}, error) {

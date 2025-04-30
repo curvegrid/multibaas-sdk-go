@@ -20,7 +20,7 @@ var _ MappedNullable = &AzureAccount{}
 // AzureAccount An Azure account.
 type AzureAccount struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The application’s secret key that you generate when you first register the application in Azure.
@@ -33,6 +33,8 @@ type AzureAccount struct {
 	BaseGroupName string `json:"baseGroupName"`
 	Id            int64  `json:"id"`
 }
+
+type _AzureAccount AzureAccount
 
 // NewAzureAccount instantiates a new AzureAccount object
 // This constructor will assign default values to properties that have it defined,
@@ -224,14 +226,6 @@ func (o *AzureAccount) GetIdOk() (*int64, bool) {
 // SetId sets field value
 func (o *AzureAccount) SetId(v int64) {
 	o.Id = v
-}
-
-func (o AzureAccount) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o AzureAccount) ToMap() (map[string]interface{}, error) {

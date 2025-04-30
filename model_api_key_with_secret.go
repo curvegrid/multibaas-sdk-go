@@ -21,7 +21,7 @@ var _ MappedNullable = &APIKeyWithSecret{}
 // APIKeyWithSecret A freshly created API key with its secret.
 type APIKeyWithSecret struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	Id    int64  `json:"id"`
 	// The time the API key was created.
 	CreatedAt time.Time `json:"createdAt"`
@@ -34,6 +34,8 @@ type APIKeyWithSecret struct {
 	// The secret key of the API key.
 	Key string `json:"key"`
 }
+
+type _APIKeyWithSecret APIKeyWithSecret
 
 // NewAPIKeyWithSecret instantiates a new APIKeyWithSecret object
 // This constructor will assign default values to properties that have it defined,
@@ -232,14 +234,6 @@ func (o *APIKeyWithSecret) GetKeyOk() (*string, bool) {
 // SetKey sets field value
 func (o *APIKeyWithSecret) SetKey(v string) {
 	o.Key = v
-}
-
-func (o APIKeyWithSecret) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o APIKeyWithSecret) ToMap() (map[string]interface{}, error) {

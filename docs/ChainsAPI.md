@@ -27,25 +27,25 @@ Get a block
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    block := "block_example" // string | A block number, hash or 'latest' for the latest block.
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	block := "block_example" // string | A block number, hash or 'latest' for the latest block.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChainsAPI.GetBlock(context.Background(), chain, block).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetBlock``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetBlock`: GetBlock200Response
-    fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.GetBlock`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChainsAPI.GetBlock(context.Background(), chain, block).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetBlock``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetBlock`: GetBlock200Response
+	fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.GetBlock`: %v\n", resp)
 }
 ```
 
@@ -100,24 +100,24 @@ Get chain status
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChainsAPI.GetChainStatus(context.Background(), chain).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetChainStatus``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetChainStatus`: GetChainStatus200Response
-    fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.GetChainStatus`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChainsAPI.GetChainStatus(context.Background(), chain).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetChainStatus``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetChainStatus`: GetChainStatus200Response
+	fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.GetChainStatus`: %v\n", resp)
 }
 ```
 
@@ -170,26 +170,26 @@ Get transaction
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    hash := "hash_example" // string | Transaction hash.
-    include := "include_example" // string | Include contract and method call details, if available. (optional)
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	hash := "hash_example" // string | Transaction hash.
+	include := "include_example" // string | Include contract and method call details, if available. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChainsAPI.GetTransaction(context.Background(), chain, hash).Include(include).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetTransaction``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTransaction`: GetTransaction200Response
-    fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.GetTransaction`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChainsAPI.GetTransaction(context.Background(), chain, hash).Include(include).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetTransaction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTransaction`: GetTransaction200Response
+	fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.GetTransaction`: %v\n", resp)
 }
 ```
 
@@ -245,26 +245,26 @@ Get transaction receipt
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    hash := "hash_example" // string | Transaction hash.
-    include := "include_example" // string | Include contract and event details, if available. (optional)
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	hash := "hash_example" // string | Transaction hash.
+	include := "include_example" // string | Include contract and event details, if available. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChainsAPI.GetTransactionReceipt(context.Background(), chain, hash).Include(include).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetTransactionReceipt``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTransactionReceipt`: GetTransactionReceipt200Response
-    fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.GetTransactionReceipt`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChainsAPI.GetTransactionReceipt(context.Background(), chain, hash).Include(include).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetTransactionReceipt``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTransactionReceipt`: GetTransactionReceipt200Response
+	fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.GetTransactionReceipt`: %v\n", resp)
 }
 ```
 
@@ -320,25 +320,25 @@ Submit signed transaction
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    signedTransactionSubmission := *openapiclient.NewSignedTransactionSubmission("SignedTx_example") // SignedTransactionSubmission | 
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	signedTransactionSubmission := *openapiclient.NewSignedTransactionSubmission("SignedTx_example") // SignedTransactionSubmission | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChainsAPI.SubmitSignedTransaction(context.Background(), chain).SignedTransactionSubmission(signedTransactionSubmission).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.SubmitSignedTransaction``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SubmitSignedTransaction`: SubmitSignedTransaction200Response
-    fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.SubmitSignedTransaction`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChainsAPI.SubmitSignedTransaction(context.Background(), chain).SignedTransactionSubmission(signedTransactionSubmission).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.SubmitSignedTransaction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubmitSignedTransaction`: SubmitSignedTransaction200Response
+	fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.SubmitSignedTransaction`: %v\n", resp)
 }
 ```
 
@@ -392,25 +392,25 @@ Transfer ETH
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/curvegrid/multibaas-sdk-go"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
 )
 
 func main() {
-    chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-    postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
+	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
+	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ChainsAPI.TransferEth(context.Background(), chain).PostMethodArgs(postMethodArgs).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.TransferEth``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `TransferEth`: TransferEth200Response
-    fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.TransferEth`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChainsAPI.TransferEth(context.Background(), chain).PostMethodArgs(postMethodArgs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.TransferEth``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TransferEth`: TransferEth200Response
+	fmt.Fprintf(os.Stdout, "Response from `ChainsAPI.TransferEth`: %v\n", resp)
 }
 ```
 

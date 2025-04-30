@@ -26,6 +26,8 @@ type ListCorsOrigins200Response struct {
 	Result  []CORSOrigin `json:"result"`
 }
 
+type _ListCorsOrigins200Response ListCorsOrigins200Response
+
 // NewListCorsOrigins200Response instantiates a new ListCorsOrigins200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *ListCorsOrigins200Response) GetResultOk() ([]CORSOrigin, bool) {
 // SetResult sets field value
 func (o *ListCorsOrigins200Response) SetResult(v []CORSOrigin) {
 	o.Result = v
-}
-
-func (o ListCorsOrigins200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ListCorsOrigins200Response) ToMap() (map[string]interface{}, error) {

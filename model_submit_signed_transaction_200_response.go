@@ -26,6 +26,8 @@ type SubmitSignedTransaction200Response struct {
 	Result  SignedTransactionResponse `json:"result"`
 }
 
+type _SubmitSignedTransaction200Response SubmitSignedTransaction200Response
+
 // NewSubmitSignedTransaction200Response instantiates a new SubmitSignedTransaction200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *SubmitSignedTransaction200Response) GetResultOk() (*SignedTransactionRe
 // SetResult sets field value
 func (o *SubmitSignedTransaction200Response) SetResult(v SignedTransactionResponse) {
 	o.Result = v
-}
-
-func (o SubmitSignedTransaction200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o SubmitSignedTransaction200Response) ToMap() (map[string]interface{}, error) {

@@ -36,6 +36,8 @@ type AuditLog struct {
 	ActivityData map[string]interface{} `json:"activityData"`
 }
 
+type _AuditLog AuditLog
+
 // NewAuditLog instantiates a new AuditLog object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -240,14 +242,6 @@ func (o *AuditLog) GetActivityDataOk() (map[string]interface{}, bool) {
 // SetActivityData sets field value
 func (o *AuditLog) SetActivityData(v map[string]interface{}) {
 	o.ActivityData = v
-}
-
-func (o AuditLog) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o AuditLog) ToMap() (map[string]interface{}, error) {

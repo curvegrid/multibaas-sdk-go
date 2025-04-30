@@ -24,6 +24,8 @@ type HSMData struct {
 	Wallets []AzureHardwareWallet `json:"wallets"`
 }
 
+type _HSMData HSMData
+
 // NewHSMData instantiates a new HSMData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -89,14 +91,6 @@ func (o *HSMData) GetWalletsOk() ([]AzureHardwareWallet, bool) {
 // SetWallets sets field value
 func (o *HSMData) SetWallets(v []AzureHardwareWallet) {
 	o.Wallets = v
-}
-
-func (o HSMData) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o HSMData) ToMap() (map[string]interface{}, error) {

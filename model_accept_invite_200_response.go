@@ -26,6 +26,8 @@ type AcceptInvite200Response struct {
 	Result  User   `json:"result"`
 }
 
+type _AcceptInvite200Response AcceptInvite200Response
+
 // NewAcceptInvite200Response instantiates a new AcceptInvite200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *AcceptInvite200Response) GetResultOk() (*User, bool) {
 // SetResult sets field value
 func (o *AcceptInvite200Response) SetResult(v User) {
 	o.Result = v
-}
-
-func (o AcceptInvite200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o AcceptInvite200Response) ToMap() (map[string]interface{}, error) {

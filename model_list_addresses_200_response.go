@@ -26,6 +26,8 @@ type ListAddresses200Response struct {
 	Result  []AddressAlias `json:"result"`
 }
 
+type _ListAddresses200Response ListAddresses200Response
+
 // NewListAddresses200Response instantiates a new ListAddresses200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *ListAddresses200Response) GetResultOk() ([]AddressAlias, bool) {
 // SetResult sets field value
 func (o *ListAddresses200Response) SetResult(v []AddressAlias) {
 	o.Result = v
-}
-
-func (o ListAddresses200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ListAddresses200Response) ToMap() (map[string]interface{}, error) {

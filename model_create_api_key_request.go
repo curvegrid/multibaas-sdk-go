@@ -20,9 +20,11 @@ var _ MappedNullable = &CreateApiKeyRequest{}
 // CreateApiKeyRequest struct for CreateApiKeyRequest
 type CreateApiKeyRequest struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label    string  `json:"label"`
+	Label    string  `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	GroupIDs []int64 `json:"groupIDs,omitempty"`
 }
+
+type _CreateApiKeyRequest CreateApiKeyRequest
 
 // NewCreateApiKeyRequest instantiates a new CreateApiKeyRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -96,14 +98,6 @@ func (o *CreateApiKeyRequest) HasGroupIDs() bool {
 // SetGroupIDs gets a reference to the given []int64 and assigns it to the GroupIDs field.
 func (o *CreateApiKeyRequest) SetGroupIDs(v []int64) {
 	o.GroupIDs = v
-}
-
-func (o CreateApiKeyRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o CreateApiKeyRequest) ToMap() (map[string]interface{}, error) {

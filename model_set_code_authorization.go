@@ -20,18 +20,20 @@ var _ MappedNullable = &SetCodeAuthorization{}
 // SetCodeAuthorization Authorization data for setCode operations.
 type SetCodeAuthorization struct {
 	// A hex string.
-	ChainId string `json:"chainId"`
+	ChainId string `json:"chainId" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A hex string.
-	Nonce string `json:"nonce"`
+	Nonce string `json:"nonce" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	YParity string `json:"yParity"`
+	YParity string `json:"yParity" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	R string `json:"r"`
+	R string `json:"r" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	S string `json:"s"`
+	S string `json:"s" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 }
+
+type _SetCodeAuthorization SetCodeAuthorization
 
 // NewSetCodeAuthorization instantiates a new SetCodeAuthorization object
 // This constructor will assign default values to properties that have it defined,
@@ -198,14 +200,6 @@ func (o *SetCodeAuthorization) GetSOk() (*string, bool) {
 // SetS sets field value
 func (o *SetCodeAuthorization) SetS(v string) {
 	o.S = v
-}
-
-func (o SetCodeAuthorization) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o SetCodeAuthorization) ToMap() (map[string]interface{}, error) {

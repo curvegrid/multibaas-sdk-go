@@ -20,13 +20,13 @@ var _ MappedNullable = &ContractLookup{}
 // ContractLookup The contract lookup item.
 type ContractLookup struct {
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// The name of the contract.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract ABI JSON string.
 	Abi string `json:"abi"`
 	// The smart-contract bytecode.
-	Bytecode *string `json:"bytecode,omitempty"`
+	Bytecode *string `json:"bytecode,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// The contract's source code.
 	Source *string `json:"source,omitempty"`
 	// The user documentation JSON string.
@@ -42,6 +42,8 @@ type ContractLookup struct {
 	// Indicates whether the contract is a proxy contract.
 	Proxy bool `json:"proxy"`
 }
+
+type _ContractLookup ContractLookup
 
 // NewContractLookup instantiates a new ContractLookup object
 // This constructor will assign default values to properties that have it defined,
@@ -382,14 +384,6 @@ func (o *ContractLookup) GetProxyOk() (*bool, bool) {
 // SetProxy sets field value
 func (o *ContractLookup) SetProxy(v bool) {
 	o.Proxy = v
-}
-
-func (o ContractLookup) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractLookup) ToMap() (map[string]interface{}, error) {

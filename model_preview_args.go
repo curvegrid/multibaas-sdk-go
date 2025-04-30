@@ -27,6 +27,8 @@ type PreviewArgs struct {
 	Outputs []ContractABIMethodArgument `json:"outputs"`
 }
 
+type _PreviewArgs PreviewArgs
+
 // NewPreviewArgs instantiates a new PreviewArgs object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -117,14 +119,6 @@ func (o *PreviewArgs) GetOutputsOk() ([]ContractABIMethodArgument, bool) {
 // SetOutputs sets field value
 func (o *PreviewArgs) SetOutputs(v []ContractABIMethodArgument) {
 	o.Outputs = v
-}
-
-func (o PreviewArgs) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o PreviewArgs) ToMap() (map[string]interface{}, error) {

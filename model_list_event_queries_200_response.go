@@ -26,6 +26,8 @@ type ListEventQueries200Response struct {
 	Result  []SavedEventQuery `json:"result"`
 }
 
+type _ListEventQueries200Response ListEventQueries200Response
+
 // NewListEventQueries200Response instantiates a new ListEventQueries200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *ListEventQueries200Response) GetResultOk() ([]SavedEventQuery, bool) {
 // SetResult sets field value
 func (o *ListEventQueries200Response) SetResult(v []SavedEventQuery) {
 	o.Result = v
-}
-
-func (o ListEventQueries200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ListEventQueries200Response) ToMap() (map[string]interface{}, error) {

@@ -27,6 +27,8 @@ type ContractABI struct {
 	Receive     NullableContractABIMethod    `json:"receive"`
 }
 
+type _ContractABI ContractABI
+
 // NewContractABI instantiates a new ContractABI object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -205,14 +207,6 @@ func (o *ContractABI) GetReceiveOk() (*ContractABIMethod, bool) {
 // SetReceive sets field value
 func (o *ContractABI) SetReceive(v ContractABIMethod) {
 	o.Receive.Set(&v)
-}
-
-func (o ContractABI) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractABI) ToMap() (map[string]interface{}, error) {

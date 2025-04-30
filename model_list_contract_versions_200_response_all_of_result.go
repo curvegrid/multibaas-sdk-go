@@ -20,9 +20,11 @@ var _ MappedNullable = &ListContractVersions200ResponseAllOfResult{}
 // ListContractVersions200ResponseAllOfResult struct for ListContractVersions200ResponseAllOfResult
 type ListContractVersions200ResponseAllOfResult struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label    string   `json:"label"`
+	Label    string   `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	Versions []string `json:"versions"`
 }
+
+type _ListContractVersions200ResponseAllOfResult ListContractVersions200ResponseAllOfResult
 
 // NewListContractVersions200ResponseAllOfResult instantiates a new ListContractVersions200ResponseAllOfResult object
 // This constructor will assign default values to properties that have it defined,
@@ -89,14 +91,6 @@ func (o *ListContractVersions200ResponseAllOfResult) GetVersionsOk() ([]string, 
 // SetVersions sets field value
 func (o *ListContractVersions200ResponseAllOfResult) SetVersions(v []string) {
 	o.Versions = v
-}
-
-func (o ListContractVersions200ResponseAllOfResult) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ListContractVersions200ResponseAllOfResult) ToMap() (map[string]interface{}, error) {

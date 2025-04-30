@@ -23,14 +23,16 @@ type TransactionData struct {
 	// Whether the transaction has been included yet.
 	IsPending bool `json:"isPending"`
 	// An ethereum address.
-	From string `json:"from"`
+	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// The keccak256 hash as a hex string of 256 bits.
-	BlockHash *string `json:"blockHash,omitempty"`
+	BlockHash *string `json:"blockHash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// The transaction block number.
 	BlockNumber *string                    `json:"blockNumber,omitempty"`
 	Contract    *ContractInformation       `json:"contract,omitempty"`
 	Method      *ContractMethodInformation `json:"method,omitempty"`
 }
+
+type _TransactionData TransactionData
 
 // NewTransactionData instantiates a new TransactionData object
 // This constructor will assign default values to properties that have it defined,
@@ -250,14 +252,6 @@ func (o *TransactionData) HasMethod() bool {
 // SetMethod gets a reference to the given ContractMethodInformation and assigns it to the Method field.
 func (o *TransactionData) SetMethod(v ContractMethodInformation) {
 	o.Method = &v
-}
-
-func (o TransactionData) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o TransactionData) ToMap() (map[string]interface{}, error) {

@@ -20,14 +20,16 @@ var _ MappedNullable = &ContractInformation{}
 // ContractInformation The contract information within the event or transaction.
 type ContractInformation struct {
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// An alias to easily identify and reference addresses.
-	AddressAlias string `json:"addressAlias"`
+	AddressAlias string `json:"addressAlias" validate:"regexp=^[a-z0-9_-]+$"`
 	// The name of the contract.
 	Name string `json:"name"`
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 }
+
+type _ContractInformation ContractInformation
 
 // NewContractInformation instantiates a new ContractInformation object
 // This constructor will assign default values to properties that have it defined,
@@ -144,14 +146,6 @@ func (o *ContractInformation) GetLabelOk() (*string, bool) {
 // SetLabel sets field value
 func (o *ContractInformation) SetLabel(v string) {
 	o.Label = v
-}
-
-func (o ContractInformation) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractInformation) ToMap() (map[string]interface{}, error) {

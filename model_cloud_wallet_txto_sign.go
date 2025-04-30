@@ -22,6 +22,8 @@ type CloudWalletTXToSign struct {
 	Tx CloudWalletTXToSignTx `json:"tx"`
 }
 
+type _CloudWalletTXToSign CloudWalletTXToSign
+
 // NewCloudWalletTXToSign instantiates a new CloudWalletTXToSign object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -62,14 +64,6 @@ func (o *CloudWalletTXToSign) GetTxOk() (*CloudWalletTXToSignTx, bool) {
 // SetTx sets field value
 func (o *CloudWalletTXToSign) SetTx(v CloudWalletTXToSignTx) {
 	o.Tx = v
-}
-
-func (o CloudWalletTXToSign) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o CloudWalletTXToSign) ToMap() (map[string]interface{}, error) {

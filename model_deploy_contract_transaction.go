@@ -23,8 +23,10 @@ type DeployContractTransaction struct {
 	Submitted bool                `json:"submitted"`
 	DeployAt  *string             `json:"deployAt,omitempty"`
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label *string `json:"label,omitempty"`
+	Label *string `json:"label,omitempty" validate:"regexp=^[a-z0-9_-]+$"`
 }
+
+type _DeployContractTransaction DeployContractTransaction
 
 // NewDeployContractTransaction instantiates a new DeployContractTransaction object
 // This constructor will assign default values to properties that have it defined,
@@ -155,14 +157,6 @@ func (o *DeployContractTransaction) HasLabel() bool {
 // SetLabel gets a reference to the given string and assigns it to the Label field.
 func (o *DeployContractTransaction) SetLabel(v string) {
 	o.Label = &v
-}
-
-func (o DeployContractTransaction) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o DeployContractTransaction) ToMap() (map[string]interface{}, error) {

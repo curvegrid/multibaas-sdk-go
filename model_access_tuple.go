@@ -20,9 +20,11 @@ var _ MappedNullable = &AccessTuple{}
 // AccessTuple An access tuple representing an address and its storage keys.
 type AccessTuple struct {
 	// An ethereum address.
-	Address     NullableString `json:"address"`
+	Address     NullableString `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	StorageKeys []string       `json:"storageKeys"`
 }
+
+type _AccessTuple AccessTuple
 
 // NewAccessTuple instantiates a new AccessTuple object
 // This constructor will assign default values to properties that have it defined,
@@ -91,14 +93,6 @@ func (o *AccessTuple) GetStorageKeysOk() ([]string, bool) {
 // SetStorageKeys sets field value
 func (o *AccessTuple) SetStorageKeys(v []string) {
 	o.StorageKeys = v
-}
-
-func (o AccessTuple) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o AccessTuple) ToMap() (map[string]interface{}, error) {

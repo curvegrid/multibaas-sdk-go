@@ -26,6 +26,8 @@ type Event struct {
 	Transaction TransactionInformation `json:"transaction"`
 }
 
+type _Event Event
+
 // NewEvent instantiates a new Event object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *Event) GetTransactionOk() (*TransactionInformation, bool) {
 // SetTransaction sets field value
 func (o *Event) SetTransaction(v TransactionInformation) {
 	o.Transaction = v
-}
-
-func (o Event) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o Event) ToMap() (map[string]interface{}, error) {

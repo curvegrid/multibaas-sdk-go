@@ -20,7 +20,7 @@ var _ MappedNullable = &ContractABIEvent{}
 // ContractABIEvent A contract event.
 type ContractABIEvent struct {
 	// The keccak256 hash as a hex string of 256 bits.
-	Id        string `json:"id"`
+	Id        string `json:"id" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	Name      string `json:"name"`
 	Signature string `json:"signature"`
 	Anonymous bool   `json:"anonymous"`
@@ -31,6 +31,8 @@ type ContractABIEvent struct {
 	// The user documentation.
 	Description string `json:"description"`
 }
+
+type _ContractABIEvent ContractABIEvent
 
 // NewContractABIEvent instantiates a new ContractABIEvent object
 // This constructor will assign default values to properties that have it defined,
@@ -222,14 +224,6 @@ func (o *ContractABIEvent) GetDescriptionOk() (*string, bool) {
 // SetDescription sets field value
 func (o *ContractABIEvent) SetDescription(v string) {
 	o.Description = v
-}
-
-func (o ContractABIEvent) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractABIEvent) ToMap() (map[string]interface{}, error) {

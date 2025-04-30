@@ -26,6 +26,8 @@ type ListHsm200Response struct {
 	Result  []HSMData `json:"result"`
 }
 
+type _ListHsm200Response ListHsm200Response
+
 // NewListHsm200Response instantiates a new ListHsm200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *ListHsm200Response) GetResultOk() ([]HSMData, bool) {
 // SetResult sets field value
 func (o *ListHsm200Response) SetResult(v []HSMData) {
 	o.Result = v
-}
-
-func (o ListHsm200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ListHsm200Response) ToMap() (map[string]interface{}, error) {

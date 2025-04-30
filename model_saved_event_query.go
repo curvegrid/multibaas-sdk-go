@@ -21,11 +21,13 @@ var _ MappedNullable = &SavedEventQuery{}
 type SavedEventQuery struct {
 	Id int64 `json:"id"`
 	// An event query label.
-	Label string     `json:"label"`
+	Label string     "json:\"label\" validate:\"regexp=^[^<>?&\\\\\\\"'\\\\`\\/\\\\\\\\]*$\""
 	Query EventQuery `json:"query"`
 	// Specifies if this a system-generated query which is not modifiable by the user.
 	IsSystem bool `json:"isSystem"`
 }
+
+type _SavedEventQuery SavedEventQuery
 
 // NewSavedEventQuery instantiates a new SavedEventQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -142,14 +144,6 @@ func (o *SavedEventQuery) GetIsSystemOk() (*bool, bool) {
 // SetIsSystem sets field value
 func (o *SavedEventQuery) SetIsSystem(v bool) {
 	o.IsSystem = v
-}
-
-func (o SavedEventQuery) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o SavedEventQuery) ToMap() (map[string]interface{}, error) {

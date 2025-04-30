@@ -22,12 +22,14 @@ type AddKey struct {
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The name of the key.
-	KeyName string `json:"keyName"`
+	KeyName string `json:"keyName" validate:"regexp=^[a-zA-Z0-9-]{1,127}$"`
 	// The version of the key.
-	KeyVersion string `json:"keyVersion"`
+	KeyVersion string `json:"keyVersion" validate:"regexp=^[a-zA-Z0-9]{32}$"`
 	// The name given to the vault your key is stored in.
 	VaultName string `json:"vaultName"`
 }
+
+type _AddKey AddKey
 
 // NewAddKey instantiates a new AddKey object
 // This constructor will assign default values to properties that have it defined,
@@ -144,14 +146,6 @@ func (o *AddKey) GetVaultNameOk() (*string, bool) {
 // SetVaultName sets field value
 func (o *AddKey) SetVaultName(v string) {
 	o.VaultName = v
-}
-
-func (o AddKey) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o AddKey) ToMap() (map[string]interface{}, error) {

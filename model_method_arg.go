@@ -27,6 +27,8 @@ type MethodArg struct {
 	Type string `json:"type"`
 }
 
+type _MethodArg MethodArg
+
 // NewMethodArg instantiates a new MethodArg object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -119,14 +121,6 @@ func (o *MethodArg) GetTypeOk() (*string, bool) {
 // SetType sets field value
 func (o *MethodArg) SetType(v string) {
 	o.Type = v
-}
-
-func (o MethodArg) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o MethodArg) ToMap() (map[string]interface{}, error) {

@@ -21,8 +21,10 @@ var _ MappedNullable = &ContractInstance{}
 type ContractInstance struct {
 	Alias string `json:"alias"`
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 }
+
+type _ContractInstance ContractInstance
 
 // NewContractInstance instantiates a new ContractInstance object
 // This constructor will assign default values to properties that have it defined,
@@ -89,14 +91,6 @@ func (o *ContractInstance) GetAddressOk() (*string, bool) {
 // SetAddress sets field value
 func (o *ContractInstance) SetAddress(v string) {
 	o.Address = v
-}
-
-func (o ContractInstance) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractInstance) ToMap() (map[string]interface{}, error) {

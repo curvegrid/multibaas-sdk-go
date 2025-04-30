@@ -25,12 +25,14 @@ type EventMonitorStatus struct {
 	IdealBlockRange      *int64 `json:"idealBlockRange,omitempty"`
 	LatestBlockNumber    int64  `json:"latestBlockNumber"`
 	// The keccak256 hash as a hex string of 256 bits.
-	LatestBlockHash  string `json:"latestBlockHash"`
+	LatestBlockHash  string `json:"latestBlockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	StartBlockNumber int64  `json:"startBlockNumber"`
 	// The keccak256 hash as a hex string of 256 bits.
-	StartBlockHash string `json:"startBlockHash"`
+	StartBlockHash string `json:"startBlockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	UpdatedAt      string `json:"updatedAt"`
 }
+
+type _EventMonitorStatus EventMonitorStatus
 
 // NewEventMonitorStatus instantiates a new EventMonitorStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -293,14 +295,6 @@ func (o *EventMonitorStatus) GetUpdatedAtOk() (*string, bool) {
 // SetUpdatedAt sets field value
 func (o *EventMonitorStatus) SetUpdatedAt(v string) {
 	o.UpdatedAt = v
-}
-
-func (o EventMonitorStatus) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EventMonitorStatus) ToMap() (map[string]interface{}, error) {

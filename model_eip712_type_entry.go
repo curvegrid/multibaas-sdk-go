@@ -23,6 +23,8 @@ type EIP712TypeEntry struct {
 	Type string `json:"type"`
 }
 
+type _EIP712TypeEntry EIP712TypeEntry
+
 // NewEIP712TypeEntry instantiates a new EIP712TypeEntry object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -88,14 +90,6 @@ func (o *EIP712TypeEntry) GetTypeOk() (*string, bool) {
 // SetType sets field value
 func (o *EIP712TypeEntry) SetType(v string) {
 	o.Type = v
-}
-
-func (o EIP712TypeEntry) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EIP712TypeEntry) ToMap() (map[string]interface{}, error) {

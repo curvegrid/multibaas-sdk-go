@@ -26,6 +26,8 @@ type ContractABIMethodArgument struct {
 	Notes          string                            `json:"notes"`
 }
 
+type _ContractABIMethodArgument ContractABIMethodArgument
+
 // NewContractABIMethodArgument instantiates a new ContractABIMethodArgument object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -168,14 +170,6 @@ func (o *ContractABIMethodArgument) GetNotesOk() (*string, bool) {
 // SetNotes sets field value
 func (o *ContractABIMethodArgument) SetNotes(v string) {
 	o.Notes = v
-}
-
-func (o ContractABIMethodArgument) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractABIMethodArgument) ToMap() (map[string]interface{}, error) {

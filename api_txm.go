@@ -452,22 +452,22 @@ func (a *TxmAPIService) ListWalletTransactionsExecute(r ApiListWalletTransaction
 	localVarFormParams := url.Values{}
 
 	if r.hash != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "form", "")
 	}
 	if r.nonce != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "nonce", r.nonce, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "nonce", r.nonce, "form", "")
 	}
 	if r.status != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int64 = 10
 		r.limit = &defaultValue
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

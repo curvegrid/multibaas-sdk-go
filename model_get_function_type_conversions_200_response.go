@@ -26,6 +26,8 @@ type GetFunctionTypeConversions200Response struct {
 	Result  MethodTypeConversionOptions `json:"result"`
 }
 
+type _GetFunctionTypeConversions200Response GetFunctionTypeConversions200Response
+
 // NewGetFunctionTypeConversions200Response instantiates a new GetFunctionTypeConversions200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *GetFunctionTypeConversions200Response) GetResultOk() (*MethodTypeConver
 // SetResult sets field value
 func (o *GetFunctionTypeConversions200Response) SetResult(v MethodTypeConversionOptions) {
 	o.Result = v
-}
-
-func (o GetFunctionTypeConversions200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o GetFunctionTypeConversions200Response) ToMap() (map[string]interface{}, error) {

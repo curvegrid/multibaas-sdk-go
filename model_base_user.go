@@ -25,6 +25,8 @@ type BaseUser struct {
 	Name string `json:"name"`
 }
 
+type _BaseUser BaseUser
+
 // NewBaseUser instantiates a new BaseUser object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -90,14 +92,6 @@ func (o *BaseUser) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *BaseUser) SetName(v string) {
 	o.Name = v
-}
-
-func (o BaseUser) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o BaseUser) ToMap() (map[string]interface{}, error) {

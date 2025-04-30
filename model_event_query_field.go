@@ -30,6 +30,8 @@ type EventQueryField struct {
 	Aggregator NullableString `json:"aggregator,omitempty"`
 }
 
+type _EventQueryField EventQueryField
+
 // NewEventQueryField instantiates a new EventQueryField object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -220,14 +222,6 @@ func (o *EventQueryField) SetAggregatorNil() {
 // UnsetAggregator ensures that no value is present for Aggregator, not even an explicit nil
 func (o *EventQueryField) UnsetAggregator() {
 	o.Aggregator.Unset()
-}
-
-func (o EventQueryField) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o EventQueryField) ToMap() (map[string]interface{}, error) {

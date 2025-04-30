@@ -20,9 +20,9 @@ var _ MappedNullable = &Address{}
 // Address An address details.
 type Address struct {
 	// An alias to easily identify and reference addresses.
-	Alias string `json:"alias"`
+	Alias string `json:"alias" validate:"regexp=^[a-z0-9_-]+$"`
 	// An ethereum address.
-	Address string   `json:"address"`
+	Address string   `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	Balance *string  `json:"balance,omitempty"`
 	Chain   string   `json:"chain"`
 	Modules []string `json:"modules"`
@@ -34,6 +34,8 @@ type Address struct {
 	Contracts      []ContractMetadata `json:"contracts"`
 	ContractLookup []ContractLookup   `json:"contractLookup,omitempty"`
 }
+
+type _Address Address
 
 // NewAddress instantiates a new Address object
 // This constructor will assign default values to properties that have it defined,
@@ -335,14 +337,6 @@ func (o *Address) HasContractLookup() bool {
 // SetContractLookup gets a reference to the given []ContractLookup and assigns it to the ContractLookup field.
 func (o *Address) SetContractLookup(v []ContractLookup) {
 	o.ContractLookup = v
-}
-
-func (o Address) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o Address) ToMap() (map[string]interface{}, error) {

@@ -26,6 +26,8 @@ type SetAddress201Response struct {
 	Result  Address `json:"result"`
 }
 
+type _SetAddress201Response SetAddress201Response
+
 // NewSetAddress201Response instantiates a new SetAddress201Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *SetAddress201Response) GetResultOk() (*Address, bool) {
 // SetResult sets field value
 func (o *SetAddress201Response) SetResult(v Address) {
 	o.Result = v
-}
-
-func (o SetAddress201Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o SetAddress201Response) ToMap() (map[string]interface{}, error) {

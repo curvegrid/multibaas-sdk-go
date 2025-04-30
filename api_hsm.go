@@ -789,31 +789,31 @@ func (a *HsmAPIService) ListHsmWalletsExecute(r ApiListHsmWalletsRequest) (*List
 	localVarFormParams := url.Values{}
 
 	if r.keyName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "key_name", r.keyName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "key_name", r.keyName, "form", "")
 	}
 	if r.keyVersion != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "key_version", r.keyVersion, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "key_version", r.keyVersion, "form", "")
 	}
 	if r.vaultName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "vault_name", r.vaultName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "vault_name", r.vaultName, "form", "")
 	}
 	if r.baseGroupName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "base_group_name", r.baseGroupName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base_group_name", r.baseGroupName, "form", "")
 	}
 	if r.clientId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "client_id", r.clientId, "form", "")
 	}
 	if r.publicAddress != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "public_address", r.publicAddress, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "public_address", r.publicAddress, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int64 = 10
 		r.limit = &defaultValue
 	}
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

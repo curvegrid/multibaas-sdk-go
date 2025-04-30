@@ -24,6 +24,8 @@ type TransactionToSignResponse struct {
 	Submitted bool                `json:"submitted"`
 }
 
+type _TransactionToSignResponse TransactionToSignResponse
+
 // NewTransactionToSignResponse instantiates a new TransactionToSignResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -90,14 +92,6 @@ func (o *TransactionToSignResponse) GetSubmittedOk() (*bool, bool) {
 // SetSubmitted sets field value
 func (o *TransactionToSignResponse) SetSubmitted(v bool) {
 	o.Submitted = v
-}
-
-func (o TransactionToSignResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o TransactionToSignResponse) ToMap() (map[string]interface{}, error) {

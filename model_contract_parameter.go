@@ -22,6 +22,8 @@ type ContractParameter struct {
 	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
 }
 
+type _ContractParameter ContractParameter
+
 // NewContractParameter instantiates a new ContractParameter object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -64,14 +66,6 @@ func (o *ContractParameter) GetTypeConversionOk() (*ContractABITypeConversion, b
 // SetTypeConversion sets field value
 func (o *ContractParameter) SetTypeConversion(v ContractABITypeConversion) {
 	o.TypeConversion.Set(&v)
-}
-
-func (o ContractParameter) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o ContractParameter) ToMap() (map[string]interface{}, error) {

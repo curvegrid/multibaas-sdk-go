@@ -23,7 +23,7 @@ type WebhookEndpoint struct {
 	// The URL to send the webhook to.
 	Url string `json:"url"`
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 	// The events to subscribe to.
 	Subscriptions []WebhookEventsType `json:"subscriptions"`
 	Id            int64               `json:"id"`
@@ -42,6 +42,8 @@ type WebhookEndpoint struct {
 	// The secret key used to sign the webhook.
 	Secret string `json:"secret"`
 }
+
+type _WebhookEndpoint WebhookEndpoint
 
 // NewWebhookEndpoint instantiates a new WebhookEndpoint object
 // This constructor will assign default values to properties that have it defined,
@@ -354,14 +356,6 @@ func (o *WebhookEndpoint) GetSecretOk() (*string, bool) {
 // SetSecret sets field value
 func (o *WebhookEndpoint) SetSecret(v string) {
 	o.Secret = v
-}
-
-func (o WebhookEndpoint) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o WebhookEndpoint) ToMap() (map[string]interface{}, error) {

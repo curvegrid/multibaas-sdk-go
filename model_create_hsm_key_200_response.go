@@ -26,6 +26,8 @@ type CreateHsmKey200Response struct {
 	Result  AzureWallet `json:"result"`
 }
 
+type _CreateHsmKey200Response CreateHsmKey200Response
+
 // NewCreateHsmKey200Response instantiates a new CreateHsmKey200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -116,14 +118,6 @@ func (o *CreateHsmKey200Response) GetResultOk() (*AzureWallet, bool) {
 // SetResult sets field value
 func (o *CreateHsmKey200Response) SetResult(v AzureWallet) {
 	o.Result = v
-}
-
-func (o CreateHsmKey200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o CreateHsmKey200Response) ToMap() (map[string]interface{}, error) {

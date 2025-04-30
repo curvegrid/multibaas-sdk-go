@@ -23,14 +23,16 @@ type GetApiKey200Response struct {
 	Status int64 `json:"status"`
 	// The human-readable status message.
 	Message string `json:"message"`
-	Result  APIKey `json:"result"`
+	Result  ApiKey `json:"result"`
 }
+
+type _GetApiKey200Response GetApiKey200Response
 
 // NewGetApiKey200Response instantiates a new GetApiKey200Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetApiKey200Response(status int64, message string, result APIKey) *GetApiKey200Response {
+func NewGetApiKey200Response(status int64, message string, result ApiKey) *GetApiKey200Response {
 	this := GetApiKey200Response{}
 	this.Status = status
 	this.Message = message
@@ -95,9 +97,9 @@ func (o *GetApiKey200Response) SetMessage(v string) {
 }
 
 // GetResult returns the Result field value
-func (o *GetApiKey200Response) GetResult() APIKey {
+func (o *GetApiKey200Response) GetResult() ApiKey {
 	if o == nil {
-		var ret APIKey
+		var ret ApiKey
 		return ret
 	}
 
@@ -106,7 +108,7 @@ func (o *GetApiKey200Response) GetResult() APIKey {
 
 // GetResultOk returns a tuple with the Result field value
 // and a boolean to check if the value has been set.
-func (o *GetApiKey200Response) GetResultOk() (*APIKey, bool) {
+func (o *GetApiKey200Response) GetResultOk() (*ApiKey, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,16 +116,8 @@ func (o *GetApiKey200Response) GetResultOk() (*APIKey, bool) {
 }
 
 // SetResult sets field value
-func (o *GetApiKey200Response) SetResult(v APIKey) {
+func (o *GetApiKey200Response) SetResult(v ApiKey) {
 	o.Result = v
-}
-
-func (o GetApiKey200Response) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o GetApiKey200Response) ToMap() (map[string]interface{}, error) {

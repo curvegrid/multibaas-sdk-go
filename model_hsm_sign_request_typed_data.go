@@ -22,9 +22,11 @@ type HSMSignRequestTypedData struct {
 	// The signing method to use.
 	Method string `json:"method"`
 	// An ethereum address.
-	Address string          `json:"address"`
+	Address string          `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	Data    EIP712TypedData `json:"data"`
 }
+
+type _HSMSignRequestTypedData HSMSignRequestTypedData
 
 // NewHSMSignRequestTypedData instantiates a new HSMSignRequestTypedData object
 // This constructor will assign default values to properties that have it defined,
@@ -116,14 +118,6 @@ func (o *HSMSignRequestTypedData) GetDataOk() (*EIP712TypedData, bool) {
 // SetData sets field value
 func (o *HSMSignRequestTypedData) SetData(v EIP712TypedData) {
 	o.Data = v
-}
-
-func (o HSMSignRequestTypedData) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o HSMSignRequestTypedData) ToMap() (map[string]interface{}, error) {

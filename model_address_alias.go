@@ -20,10 +20,12 @@ var _ MappedNullable = &AddressAlias{}
 // AddressAlias An address and it's alias.
 type AddressAlias struct {
 	// An alias to easily identify and reference addresses.
-	Alias string `json:"alias"`
+	Alias string `json:"alias" validate:"regexp=^[a-z0-9_-]+$"`
 	// An ethereum address.
-	Address string `json:"address"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 }
+
+type _AddressAlias AddressAlias
 
 // NewAddressAlias instantiates a new AddressAlias object
 // This constructor will assign default values to properties that have it defined,
@@ -90,14 +92,6 @@ func (o *AddressAlias) GetAddressOk() (*string, bool) {
 // SetAddress sets field value
 func (o *AddressAlias) SetAddress(v string) {
 	o.Address = v
-}
-
-func (o AddressAlias) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o AddressAlias) ToMap() (map[string]interface{}, error) {

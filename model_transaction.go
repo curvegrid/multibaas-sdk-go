@@ -20,44 +20,46 @@ var _ MappedNullable = &Transaction{}
 // Transaction A transaction from the Ethereum Blockchain.
 type Transaction struct {
 	// A hex string.
-	Type string `json:"type"`
+	Type string `json:"type" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	ChainId NullableString `json:"chainId,omitempty"`
+	ChainId NullableString `json:"chainId,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	Nonce string `json:"nonce"`
+	Nonce string `json:"nonce" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// An ethereum address.
-	To NullableString `json:"to"`
+	To NullableString `json:"to" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A hex string.
-	Gas string `json:"gas"`
+	Gas string `json:"gas" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	GasPrice NullableString `json:"gasPrice,omitempty"`
+	GasPrice NullableString `json:"gasPrice,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	MaxPriorityFeePerGas NullableString `json:"maxPriorityFeePerGas,omitempty"`
+	MaxPriorityFeePerGas NullableString `json:"maxPriorityFeePerGas,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	MaxFeePerGas NullableString `json:"maxFeePerGas,omitempty"`
+	MaxFeePerGas NullableString `json:"maxFeePerGas,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	MaxFeePerBlobGas NullableString `json:"maxFeePerBlobGas,omitempty"`
+	MaxFeePerBlobGas NullableString `json:"maxFeePerBlobGas,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	Value NullableString `json:"value"`
+	Value NullableString `json:"value" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	Input               string                 `json:"input"`
+	Input               string                 `json:"input" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	AccessList          []AccessTuple          `json:"accessList,omitempty"`
 	BlobVersionedHashes []string               `json:"blobVersionedHashes,omitempty"`
 	AuthorizationList   []SetCodeAuthorization `json:"authorizationList,omitempty"`
 	// A hex string.
-	V string `json:"v"`
+	V string `json:"v" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	R string `json:"r"`
+	R string `json:"r" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string.
-	S string `json:"s"`
+	S string `json:"s" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
-	YParity     NullableString `json:"yParity,omitempty"`
+	YParity     NullableString `json:"yParity,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	Blobs       []string       `json:"blobs,omitempty"`
 	Commitments []string       `json:"commitments,omitempty"`
 	Proofs      []string       `json:"proofs,omitempty"`
 	// The keccak256 hash as a hex string of 256 bits.
-	Hash string `json:"hash"`
+	Hash string `json:"hash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 }
+
+type _Transaction Transaction
 
 // NewTransaction instantiates a new Transaction object
 // This constructor will assign default values to properties that have it defined,
@@ -470,7 +472,7 @@ func (o *Transaction) GetAccessListOk() ([]AccessTuple, bool) {
 
 // HasAccessList returns a boolean if a field has been set.
 func (o *Transaction) HasAccessList() bool {
-	if o != nil && IsNil(o.AccessList) {
+	if o != nil && !IsNil(o.AccessList) {
 		return true
 	}
 
@@ -503,7 +505,7 @@ func (o *Transaction) GetBlobVersionedHashesOk() ([]string, bool) {
 
 // HasBlobVersionedHashes returns a boolean if a field has been set.
 func (o *Transaction) HasBlobVersionedHashes() bool {
-	if o != nil && IsNil(o.BlobVersionedHashes) {
+	if o != nil && !IsNil(o.BlobVersionedHashes) {
 		return true
 	}
 
@@ -536,7 +538,7 @@ func (o *Transaction) GetAuthorizationListOk() ([]SetCodeAuthorization, bool) {
 
 // HasAuthorizationList returns a boolean if a field has been set.
 func (o *Transaction) HasAuthorizationList() bool {
-	if o != nil && IsNil(o.AuthorizationList) {
+	if o != nil && !IsNil(o.AuthorizationList) {
 		return true
 	}
 
@@ -684,7 +686,7 @@ func (o *Transaction) GetBlobsOk() ([]string, bool) {
 
 // HasBlobs returns a boolean if a field has been set.
 func (o *Transaction) HasBlobs() bool {
-	if o != nil && IsNil(o.Blobs) {
+	if o != nil && !IsNil(o.Blobs) {
 		return true
 	}
 
@@ -717,7 +719,7 @@ func (o *Transaction) GetCommitmentsOk() ([]string, bool) {
 
 // HasCommitments returns a boolean if a field has been set.
 func (o *Transaction) HasCommitments() bool {
-	if o != nil && IsNil(o.Commitments) {
+	if o != nil && !IsNil(o.Commitments) {
 		return true
 	}
 
@@ -750,7 +752,7 @@ func (o *Transaction) GetProofsOk() ([]string, bool) {
 
 // HasProofs returns a boolean if a field has been set.
 func (o *Transaction) HasProofs() bool {
-	if o != nil && IsNil(o.Proofs) {
+	if o != nil && !IsNil(o.Proofs) {
 		return true
 	}
 
@@ -784,14 +786,6 @@ func (o *Transaction) GetHashOk() (*string, bool) {
 // SetHash sets field value
 func (o *Transaction) SetHash(v string) {
 	o.Hash = v
-}
-
-func (o Transaction) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o Transaction) ToMap() (map[string]interface{}, error) {

@@ -20,8 +20,10 @@ var _ MappedNullable = &BaseAPIKey{}
 // BaseAPIKey An API key.
 type BaseAPIKey struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label"`
+	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
 }
+
+type _BaseAPIKey BaseAPIKey
 
 // NewBaseAPIKey instantiates a new BaseAPIKey object
 // This constructor will assign default values to properties that have it defined,
@@ -63,14 +65,6 @@ func (o *BaseAPIKey) GetLabelOk() (*string, bool) {
 // SetLabel sets field value
 func (o *BaseAPIKey) SetLabel(v string) {
 	o.Label = v
-}
-
-func (o BaseAPIKey) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
 }
 
 func (o BaseAPIKey) ToMap() (map[string]interface{}, error) {
