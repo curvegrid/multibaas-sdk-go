@@ -20,7 +20,6 @@ var _ MappedNullable = &MethodCallResponse{}
 // MethodCallResponse The result of a function call.
 type MethodCallResponse struct {
 	PostMethodResponse
-	// The function call output.
 	Output interface{} `json:"output"`
 }
 

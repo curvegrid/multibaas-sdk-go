@@ -19,12 +19,12 @@ var _ MappedNullable = &ContractABI{}
 
 // ContractABI The contract ABI.
 type ContractABI struct {
-	Constructor NullableContractABIMethod1   `json:"constructor"`
+	Constructor ContractABIMethod1           `json:"constructor"`
 	Methods     map[string]ContractABIMethod `json:"methods"`
 	Events      map[string]ContractABIEvent  `json:"events"`
-	Errors      *map[string]ContractABIError `json:"errors,omitempty"`
-	Fallback    NullableContractABIMethod    `json:"fallback"`
-	Receive     NullableContractABIMethod    `json:"receive"`
+	Errors      map[string]ContractABIError  `json:"errors,omitempty"`
+	Fallback    ContractABIMethod            `json:"fallback"`
+	Receive     ContractABIMethod            `json:"receive"`
 }
 
 type _ContractABI ContractABI
@@ -33,7 +33,7 @@ type _ContractABI ContractABI
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABI(constructor NullableContractABIMethod1, methods map[string]ContractABIMethod, events map[string]ContractABIEvent, fallback NullableContractABIMethod, receive NullableContractABIMethod) *ContractABI {
+func NewContractABI(constructor ContractABIMethod1, methods map[string]ContractABIMethod, events map[string]ContractABIEvent, fallback ContractABIMethod, receive ContractABIMethod) *ContractABI {
 	this := ContractABI{}
 	this.Constructor = constructor
 	this.Methods = methods
@@ -52,29 +52,27 @@ func NewContractABIWithDefaults() *ContractABI {
 }
 
 // GetConstructor returns the Constructor field value
-// If the value is explicit nil, the zero value for ContractABIMethod1 will be returned
 func (o *ContractABI) GetConstructor() ContractABIMethod1 {
-	if o == nil || o.Constructor.Get() == nil {
+	if o == nil {
 		var ret ContractABIMethod1
 		return ret
 	}
 
-	return *o.Constructor.Get()
+	return o.Constructor
 }
 
 // GetConstructorOk returns a tuple with the Constructor field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContractABI) GetConstructorOk() (*ContractABIMethod1, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Constructor.Get(), o.Constructor.IsSet()
+	return &o.Constructor, true
 }
 
 // SetConstructor sets field value
 func (o *ContractABI) SetConstructor(v ContractABIMethod1) {
-	o.Constructor.Set(&v)
+	o.Constructor = v
 }
 
 // GetMethods returns the Methods field value
@@ -89,11 +87,11 @@ func (o *ContractABI) GetMethods() map[string]ContractABIMethod {
 
 // GetMethodsOk returns a tuple with the Methods field value
 // and a boolean to check if the value has been set.
-func (o *ContractABI) GetMethodsOk() (*map[string]ContractABIMethod, bool) {
+func (o *ContractABI) GetMethodsOk() (map[string]ContractABIMethod, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]ContractABIMethod{}, false
 	}
-	return &o.Methods, true
+	return o.Methods, true
 }
 
 // SetMethods sets field value
@@ -113,11 +111,11 @@ func (o *ContractABI) GetEvents() map[string]ContractABIEvent {
 
 // GetEventsOk returns a tuple with the Events field value
 // and a boolean to check if the value has been set.
-func (o *ContractABI) GetEventsOk() (*map[string]ContractABIEvent, bool) {
+func (o *ContractABI) GetEventsOk() (map[string]ContractABIEvent, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]ContractABIEvent{}, false
 	}
-	return &o.Events, true
+	return o.Events, true
 }
 
 // SetEvents sets field value
@@ -131,14 +129,14 @@ func (o *ContractABI) GetErrors() map[string]ContractABIError {
 		var ret map[string]ContractABIError
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ContractABI) GetErrorsOk() (*map[string]ContractABIError, bool) {
+func (o *ContractABI) GetErrorsOk() (map[string]ContractABIError, bool) {
 	if o == nil || IsNil(o.Errors) {
-		return nil, false
+		return map[string]ContractABIError{}, false
 	}
 	return o.Errors, true
 }
@@ -154,71 +152,67 @@ func (o *ContractABI) HasErrors() bool {
 
 // SetErrors gets a reference to the given map[string]ContractABIError and assigns it to the Errors field.
 func (o *ContractABI) SetErrors(v map[string]ContractABIError) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 // GetFallback returns the Fallback field value
-// If the value is explicit nil, the zero value for ContractABIMethod will be returned
 func (o *ContractABI) GetFallback() ContractABIMethod {
-	if o == nil || o.Fallback.Get() == nil {
+	if o == nil {
 		var ret ContractABIMethod
 		return ret
 	}
 
-	return *o.Fallback.Get()
+	return o.Fallback
 }
 
 // GetFallbackOk returns a tuple with the Fallback field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContractABI) GetFallbackOk() (*ContractABIMethod, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Fallback.Get(), o.Fallback.IsSet()
+	return &o.Fallback, true
 }
 
 // SetFallback sets field value
 func (o *ContractABI) SetFallback(v ContractABIMethod) {
-	o.Fallback.Set(&v)
+	o.Fallback = v
 }
 
 // GetReceive returns the Receive field value
-// If the value is explicit nil, the zero value for ContractABIMethod will be returned
 func (o *ContractABI) GetReceive() ContractABIMethod {
-	if o == nil || o.Receive.Get() == nil {
+	if o == nil {
 		var ret ContractABIMethod
 		return ret
 	}
 
-	return *o.Receive.Get()
+	return o.Receive
 }
 
 // GetReceiveOk returns a tuple with the Receive field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContractABI) GetReceiveOk() (*ContractABIMethod, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Receive.Get(), o.Receive.IsSet()
+	return &o.Receive, true
 }
 
 // SetReceive sets field value
 func (o *ContractABI) SetReceive(v ContractABIMethod) {
-	o.Receive.Set(&v)
+	o.Receive = v
 }
 
 func (o ContractABI) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["constructor"] = o.Constructor.Get()
+	toSerialize["constructor"] = o.Constructor
 	toSerialize["methods"] = o.Methods
 	toSerialize["events"] = o.Events
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
 	}
-	toSerialize["fallback"] = o.Fallback.Get()
-	toSerialize["receive"] = o.Receive.Get()
+	toSerialize["fallback"] = o.Fallback
+	toSerialize["receive"] = o.Receive
 	return toSerialize, nil
 }
 

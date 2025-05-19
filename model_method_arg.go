@@ -20,8 +20,7 @@ var _ MappedNullable = &MethodArg{}
 // MethodArg An argument passed to a method call.
 type MethodArg struct {
 	// The input name.
-	Name string `json:"name"`
-	// The input value.
+	Name  string      `json:"name"`
 	Value interface{} `json:"value"`
 	// The type of the argument.
 	Type string `json:"type"`

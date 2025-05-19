@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Output** | **interface{}** | The function call output. | 
+**Output** | **interface{}** |  | 
 
 ## Methods
 

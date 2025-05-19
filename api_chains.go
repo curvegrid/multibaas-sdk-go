@@ -59,7 +59,7 @@ type ChainsAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param chain The blockchain chain label.
-		@param hash Transaction hash.
+		@param hash A transaction hash.
 		@return ApiGetTransactionRequest
 	*/
 	GetTransaction(ctx context.Context, chain ChainName, hash string) ApiGetTransactionRequest
@@ -75,7 +75,7 @@ type ChainsAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param chain The blockchain chain label.
-		@param hash Transaction hash.
+		@param hash A transaction hash.
 		@return ApiGetTransactionReceiptRequest
 	*/
 	GetTransactionReceipt(ctx context.Context, chain ChainName, hash string) ApiGetTransactionReceiptRequest
@@ -397,7 +397,7 @@ Returns a transaction.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param chain The blockchain chain label.
-	@param hash Transaction hash.
+	@param hash A transaction hash.
 	@return ApiGetTransactionRequest
 */
 func (a *ChainsAPIService) GetTransaction(ctx context.Context, chain ChainName, hash string) ApiGetTransactionRequest {
@@ -536,7 +536,7 @@ Returns the receipt of a transaction that's been successfully added to the block
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param chain The blockchain chain label.
-	@param hash Transaction hash.
+	@param hash A transaction hash.
 	@return ApiGetTransactionReceiptRequest
 */
 func (a *ChainsAPIService) GetTransactionReceipt(ctx context.Context, chain ChainName, hash string) ApiGetTransactionReceiptRequest {

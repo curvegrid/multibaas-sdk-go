@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TypeConversion** | [**NullableContractABITypeConversion**](ContractABITypeConversion.md) |  | 
+**TypeConversion** | [**ContractABITypeConversion**](ContractABITypeConversion.md) |  | 
 
 ## Methods
 
 ### NewContractParameter
 
-`func NewContractParameter(typeConversion NullableContractABITypeConversion, ) *ContractParameter`
+`func NewContractParameter(typeConversion ContractABITypeConversion, ) *ContractParameter`
 
 NewContractParameter instantiates a new ContractParameter object
 This constructor will assign default values to properties that have it defined,
@@ -45,16 +45,6 @@ and a boolean to check if the value has been set.
 SetTypeConversion sets TypeConversion field to given value.
 
 
-### SetTypeConversionNil
-
-`func (o *ContractParameter) SetTypeConversionNil(b bool)`
-
- SetTypeConversionNil sets the value for TypeConversion to be an explicit nil
-
-### UnsetTypeConversion
-`func (o *ContractParameter) UnsetTypeConversion()`
-
-UnsetTypeConversion ensures that no value is present for TypeConversion, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

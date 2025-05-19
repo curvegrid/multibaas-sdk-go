@@ -178,7 +178,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	hash := "hash_example" // string | Transaction hash.
+	hash := "hash_example" // string | A transaction hash.
 	include := "include_example" // string | Include contract and method call details, if available. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**hash** | **string** | Transaction hash. | 
+**hash** | **string** | A transaction hash. | 
 
 ### Other Parameters
 
@@ -253,7 +253,7 @@ import (
 
 func main() {
 	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
-	hash := "hash_example" // string | Transaction hash.
+	hash := "hash_example" // string | A transaction hash.
 	include := "include_example" // string | Include contract and event details, if available. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **chain** | [**ChainName**](.md) | The blockchain chain label. | 
-**hash** | **string** | Transaction hash. | 
+**hash** | **string** | A transaction hash. | 
 
 ### Other Parameters
 

@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **Type** | [**ContractABIType**](ContractABIType.md) |  | 
 **TypeName** | **string** |  | 
 **Indexed** | **bool** |  | 
-**TypeConversion** | [**NullableContractABITypeConversion**](ContractABITypeConversion.md) |  | 
+**TypeConversion** | [**ContractABITypeConversion**](ContractABITypeConversion.md) |  | 
 **Notes** | **string** | The developer documentation. | 
 
 ## Methods
 
 ### NewContractABIEventArgument
 
-`func NewContractABIEventArgument(name string, type_ ContractABIType, typeName string, indexed bool, typeConversion NullableContractABITypeConversion, notes string, ) *ContractABIEventArgument`
+`func NewContractABIEventArgument(name string, type_ ContractABIType, typeName string, indexed bool, typeConversion ContractABITypeConversion, notes string, ) *ContractABIEventArgument`
 
 NewContractABIEventArgument instantiates a new ContractABIEventArgument object
 This constructor will assign default values to properties that have it defined,
@@ -130,16 +130,6 @@ and a boolean to check if the value has been set.
 SetTypeConversion sets TypeConversion field to given value.
 
 
-### SetTypeConversionNil
-
-`func (o *ContractABIEventArgument) SetTypeConversionNil(b bool)`
-
- SetTypeConversionNil sets the value for TypeConversion to be an explicit nil
-
-### UnsetTypeConversion
-`func (o *ContractABIEventArgument) UnsetTypeConversion()`
-
-UnsetTypeConversion ensures that no value is present for TypeConversion, not even an explicit nil
 ### GetNotes
 
 `func (o *ContractABIEventArgument) GetNotes() string`

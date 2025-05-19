@@ -19,11 +19,11 @@ var _ MappedNullable = &ContractABIMethodArgument{}
 
 // ContractABIMethodArgument A contract function argument.
 type ContractABIMethodArgument struct {
-	Name           string                            `json:"name"`
-	Type           ContractABIType                   `json:"type"`
-	TypeName       string                            `json:"typeName"`
-	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
-	Notes          string                            `json:"notes"`
+	Name           string                    `json:"name"`
+	Type           ContractABIType           `json:"type"`
+	TypeName       string                    `json:"typeName"`
+	TypeConversion ContractABITypeConversion `json:"typeConversion"`
+	Notes          string                    `json:"notes"`
 }
 
 type _ContractABIMethodArgument ContractABIMethodArgument
@@ -32,7 +32,7 @@ type _ContractABIMethodArgument ContractABIMethodArgument
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIMethodArgument(name string, type_ ContractABIType, typeName string, typeConversion NullableContractABITypeConversion, notes string) *ContractABIMethodArgument {
+func NewContractABIMethodArgument(name string, type_ ContractABIType, typeName string, typeConversion ContractABITypeConversion, notes string) *ContractABIMethodArgument {
 	this := ContractABIMethodArgument{}
 	this.Name = name
 	this.Type = type_
@@ -123,29 +123,27 @@ func (o *ContractABIMethodArgument) SetTypeName(v string) {
 }
 
 // GetTypeConversion returns the TypeConversion field value
-// If the value is explicit nil, the zero value for ContractABITypeConversion will be returned
 func (o *ContractABIMethodArgument) GetTypeConversion() ContractABITypeConversion {
-	if o == nil || o.TypeConversion.Get() == nil {
+	if o == nil {
 		var ret ContractABITypeConversion
 		return ret
 	}
 
-	return *o.TypeConversion.Get()
+	return o.TypeConversion
 }
 
 // GetTypeConversionOk returns a tuple with the TypeConversion field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContractABIMethodArgument) GetTypeConversionOk() (*ContractABITypeConversion, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.TypeConversion.Get(), o.TypeConversion.IsSet()
+	return &o.TypeConversion, true
 }
 
 // SetTypeConversion sets field value
 func (o *ContractABIMethodArgument) SetTypeConversion(v ContractABITypeConversion) {
-	o.TypeConversion.Set(&v)
+	o.TypeConversion = v
 }
 
 // GetNotes returns the Notes field value
@@ -177,7 +175,7 @@ func (o ContractABIMethodArgument) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
 	toSerialize["typeName"] = o.TypeName
-	toSerialize["typeConversion"] = o.TypeConversion.Get()
+	toSerialize["typeConversion"] = o.TypeConversion
 	toSerialize["notes"] = o.Notes
 	return toSerialize, nil
 }

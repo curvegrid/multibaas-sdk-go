@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Input** | **[]interface{}** | The function call inputs. | 
-**Output** | **interface{}** | The function call output. | 
+**Output** | **interface{}** |  | 
 
 ## Methods
 

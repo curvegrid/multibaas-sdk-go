@@ -19,11 +19,11 @@ var _ MappedNullable = &ContractABIEventArgument{}
 
 // ContractABIEventArgument A contract event argument.
 type ContractABIEventArgument struct {
-	Name           string                            `json:"name"`
-	Type           ContractABIType                   `json:"type"`
-	TypeName       string                            `json:"typeName"`
-	Indexed        bool                              `json:"indexed"`
-	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
+	Name           string                    `json:"name"`
+	Type           ContractABIType           `json:"type"`
+	TypeName       string                    `json:"typeName"`
+	Indexed        bool                      `json:"indexed"`
+	TypeConversion ContractABITypeConversion `json:"typeConversion"`
 	// The developer documentation.
 	Notes string `json:"notes"`
 }
@@ -34,7 +34,7 @@ type _ContractABIEventArgument ContractABIEventArgument
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABIEventArgument(name string, type_ ContractABIType, typeName string, indexed bool, typeConversion NullableContractABITypeConversion, notes string) *ContractABIEventArgument {
+func NewContractABIEventArgument(name string, type_ ContractABIType, typeName string, indexed bool, typeConversion ContractABITypeConversion, notes string) *ContractABIEventArgument {
 	this := ContractABIEventArgument{}
 	this.Name = name
 	this.Type = type_
@@ -150,29 +150,27 @@ func (o *ContractABIEventArgument) SetIndexed(v bool) {
 }
 
 // GetTypeConversion returns the TypeConversion field value
-// If the value is explicit nil, the zero value for ContractABITypeConversion will be returned
 func (o *ContractABIEventArgument) GetTypeConversion() ContractABITypeConversion {
-	if o == nil || o.TypeConversion.Get() == nil {
+	if o == nil {
 		var ret ContractABITypeConversion
 		return ret
 	}
 
-	return *o.TypeConversion.Get()
+	return o.TypeConversion
 }
 
 // GetTypeConversionOk returns a tuple with the TypeConversion field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContractABIEventArgument) GetTypeConversionOk() (*ContractABITypeConversion, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.TypeConversion.Get(), o.TypeConversion.IsSet()
+	return &o.TypeConversion, true
 }
 
 // SetTypeConversion sets field value
 func (o *ContractABIEventArgument) SetTypeConversion(v ContractABITypeConversion) {
-	o.TypeConversion.Set(&v)
+	o.TypeConversion = v
 }
 
 // GetNotes returns the Notes field value
@@ -205,7 +203,7 @@ func (o ContractABIEventArgument) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["typeName"] = o.TypeName
 	toSerialize["indexed"] = o.Indexed
-	toSerialize["typeConversion"] = o.TypeConversion.Get()
+	toSerialize["typeConversion"] = o.TypeConversion
 	toSerialize["notes"] = o.Notes
 	return toSerialize, nil
 }

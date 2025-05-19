@@ -27,6 +27,8 @@ type Transaction struct {
 	Nonce string `json:"nonce" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// An ethereum address.
 	To NullableString `json:"to" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	// An ethereum address.
+	From NullableString `json:"from,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// A hex string.
 	Gas string `json:"gas" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
 	// A hex string or null.
@@ -203,6 +205,49 @@ func (o *Transaction) GetToOk() (*string, bool) {
 // SetTo sets field value
 func (o *Transaction) SetTo(v string) {
 	o.To.Set(&v)
+}
+
+// GetFrom returns the From field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Transaction) GetFrom() string {
+	if o == nil || IsNil(o.From.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.From.Get()
+}
+
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Transaction) GetFromOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.From.Get(), o.From.IsSet()
+}
+
+// HasFrom returns a boolean if a field has been set.
+func (o *Transaction) HasFrom() bool {
+	if o != nil && o.From.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFrom gets a reference to the given NullableString and assigns it to the From field.
+func (o *Transaction) SetFrom(v string) {
+	o.From.Set(&v)
+}
+
+// SetFromNil sets the value for From to be an explicit nil
+func (o *Transaction) SetFromNil() {
+	o.From.Set(nil)
+}
+
+// UnsetFrom ensures that no value is present for From, not even an explicit nil
+func (o *Transaction) UnsetFrom() {
+	o.From.Unset()
 }
 
 // GetGas returns the Gas field value
@@ -796,6 +841,9 @@ func (o Transaction) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["nonce"] = o.Nonce
 	toSerialize["to"] = o.To.Get()
+	if o.From.IsSet() {
+		toSerialize["from"] = o.From.Get()
+	}
 	toSerialize["gas"] = o.Gas
 	if o.GasPrice.IsSet() {
 		toSerialize["gasPrice"] = o.GasPrice.Get()

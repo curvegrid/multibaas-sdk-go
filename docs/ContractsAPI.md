@@ -1206,7 +1206,7 @@ func main() {
 	contract := "contract_example" // string | 
 	version := "version_example" // string | Contract Version.
 	event := "event_example" // string | Contract Event.
-	contractEventOptions := *openapiclient.NewContractEventOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractEventOptions | 
+	contractEventOptions := *openapiclient.NewContractEventOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter(*openapiclient.NewContractABITypeConversion("Mode_example", NullableInt64(123), "DecimalsFunction_example"))}) // ContractEventOptions | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1284,7 +1284,7 @@ func main() {
 	contract := "contract_example" // string | 
 	version := "version_example" // string | Contract Version.
 	method := "method_example" // string | Contract function.
-	contractMethodOptions := *openapiclient.NewContractMethodOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractMethodOptions | 
+	contractMethodOptions := *openapiclient.NewContractMethodOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter(*openapiclient.NewContractABITypeConversion("Mode_example", NullableInt64(123), "DecimalsFunction_example"))}) // ContractMethodOptions | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

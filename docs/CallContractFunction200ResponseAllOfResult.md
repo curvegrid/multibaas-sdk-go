@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | **string** | The response object type (discriminator). | 
-**Output** | **interface{}** | The function call output. | 
-**Input** | **[]map[string]interface{}** | The function call inputs. | 
+**Output** | **interface{}** |  | 
+**Input** | **[]interface{}** | The function call inputs. | 
 
 ## Methods
 
 ### NewCallContractFunction200ResponseAllOfResult
 
-`func NewCallContractFunction200ResponseAllOfResult(kind string, output interface{}, input []map[string]interface{}, ) *CallContractFunction200ResponseAllOfResult`
+`func NewCallContractFunction200ResponseAllOfResult(kind string, output interface{}, input []interface{}, ) *CallContractFunction200ResponseAllOfResult`
 
 NewCallContractFunction200ResponseAllOfResult instantiates a new CallContractFunction200ResponseAllOfResult object
 This constructor will assign default values to properties that have it defined,
@@ -79,20 +79,20 @@ SetOutput sets Output field to given value.
 UnsetOutput ensures that no value is present for Output, not even an explicit nil
 ### GetInput
 
-`func (o *CallContractFunction200ResponseAllOfResult) GetInput() []map[string]interface{}`
+`func (o *CallContractFunction200ResponseAllOfResult) GetInput() []interface{}`
 
 GetInput returns the Input field if non-nil, zero value otherwise.
 
 ### GetInputOk
 
-`func (o *CallContractFunction200ResponseAllOfResult) GetInputOk() (*[]map[string]interface{}, bool)`
+`func (o *CallContractFunction200ResponseAllOfResult) GetInputOk() (*[]interface{}, bool)`
 
 GetInputOk returns a tuple with the Input field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInput
 
-`func (o *CallContractFunction200ResponseAllOfResult) SetInput(v []map[string]interface{})`
+`func (o *CallContractFunction200ResponseAllOfResult) SetInput(v []interface{})`
 
 SetInput sets Input field to given value.
 

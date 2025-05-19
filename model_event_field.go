@@ -20,8 +20,7 @@ var _ MappedNullable = &EventField{}
 // EventField Holds a field in the event's data.
 type EventField struct {
 	// The input name.
-	Name string `json:"name"`
-	// The input value.
+	Name  string      `json:"name"`
 	Value interface{} `json:"value"`
 	// Has the value been hashed into a keccak256 string?
 	Hashed bool `json:"hashed"`

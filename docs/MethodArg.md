@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The input name. | 
-**Value** | **interface{}** | The input value. | 
+**Value** | **interface{}** |  | 
 **Type** | **string** | The type of the argument. | 
 
 ## Methods

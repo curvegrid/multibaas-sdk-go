@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ChainId** | Pointer to **NullableString** | A hex string or null. | [optional] 
 **Nonce** | **string** | A hex string. | 
 **To** | **NullableString** | An ethereum address. | 
+**From** | Pointer to **NullableString** | An ethereum address. | [optional] 
 **Gas** | **string** | A hex string. | 
 **GasPrice** | Pointer to **NullableString** | A hex string or null. | [optional] 
 **MaxPriorityFeePerGas** | Pointer to **NullableString** | A hex string or null. | [optional] 
@@ -151,6 +152,41 @@ SetTo sets To field to given value.
 `func (o *Transaction) UnsetTo()`
 
 UnsetTo ensures that no value is present for To, not even an explicit nil
+### GetFrom
+
+`func (o *Transaction) GetFrom() string`
+
+GetFrom returns the From field if non-nil, zero value otherwise.
+
+### GetFromOk
+
+`func (o *Transaction) GetFromOk() (*string, bool)`
+
+GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrom
+
+`func (o *Transaction) SetFrom(v string)`
+
+SetFrom sets From field to given value.
+
+### HasFrom
+
+`func (o *Transaction) HasFrom() bool`
+
+HasFrom returns a boolean if a field has been set.
+
+### SetFromNil
+
+`func (o *Transaction) SetFromNil(b bool)`
+
+ SetFromNil sets the value for From to be an explicit nil
+
+### UnsetFrom
+`func (o *Transaction) UnsetFrom()`
+
+UnsetFrom ensures that no value is present for From, not even an explicit nil
 ### GetGas
 
 `func (o *Transaction) GetGas() string`

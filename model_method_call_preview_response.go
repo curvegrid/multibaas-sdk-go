@@ -21,9 +21,8 @@ var _ MappedNullable = &MethodCallPreviewResponse{}
 type MethodCallPreviewResponse struct {
 	PostMethodResponse
 	// The function call inputs.
-	Input []interface{} `json:"input"`
-	// The function call output.
-	Output interface{} `json:"output"`
+	Input  []interface{} `json:"input"`
+	Output interface{}   `json:"output"`
 }
 
 type _MethodCallPreviewResponse MethodCallPreviewResponse
