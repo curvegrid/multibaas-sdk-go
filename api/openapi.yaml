@@ -1,4 +1,4 @@
-openapi: 3.1.1
+openapi: 3.0.3
 info:
   contact:
     name: Curvegrid
@@ -47,9 +47,17 @@ paths:
                 $ref: '#/components/schemas/list_api_keys_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List API keys
       tags:
       - admin
@@ -70,9 +78,17 @@ paths:
                 $ref: '#/components/schemas/create_api_key_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Create API key
       tags:
       - admin
@@ -81,7 +97,14 @@ paths:
       description: Deletes an API key.
       operationId: delete-api-key
       parameters:
-      - $ref: '#/components/parameters/APIKeyID'
+      - explode: false
+        in: path
+        name: apiKeyID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -90,9 +113,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Delete API key
       tags:
       - admin
@@ -100,7 +131,14 @@ paths:
       description: Returns an API key.
       operationId: get-api-key
       parameters:
-      - $ref: '#/components/parameters/APIKeyID'
+      - explode: false
+        in: path
+        name: apiKeyID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -109,19 +147,32 @@ paths:
                 $ref: '#/components/schemas/get_api_key_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get API Key
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/APIKeyID'
     put:
       description: Updates an API key.
       operationId: update-api-key
       parameters:
-      - $ref: '#/components/parameters/APIKeyID'
+      - explode: false
+        in: path
+        name: apiKeyID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       requestBody:
         content:
           application/json:
@@ -136,9 +187,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Update API key
       tags:
       - admin
@@ -160,9 +219,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Invite user
       tags:
       - admin
@@ -171,7 +238,14 @@ paths:
       description: Checks if a user invite is valid.
       operationId: check-invite
       parameters:
-      - $ref: '#/components/parameters/InviteID'
+      - explode: false
+        in: path
+        name: inviteID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -180,20 +254,33 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       security: []
       summary: Check invite
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/InviteID'
     post:
       description: Accepts a user invite.
       operationId: accept-invite
       parameters:
-      - $ref: '#/components/parameters/InviteID'
+      - explode: false
+        in: path
+        name: inviteID
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -208,22 +295,35 @@ paths:
                 $ref: '#/components/schemas/accept_invite_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       security:
       - bearer: []
       summary: Accept invite
       tags:
       - admin
   /chains/{chain}/transfers:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
     post:
       description: Returns a transaction for sending the native token between addresses.
       operationId: transfer-eth
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -238,20 +338,33 @@ paths:
                 $ref: '#/components/schemas/transfer_eth_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Transfer ETH
       tags:
       - chains
   /chains/{chain}/transactions/submit:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
     post:
       description: Receives a pre-signed raw transaction and submits it to the blockchain.
       operationId: submit-signed-transaction
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -266,9 +379,17 @@ paths:
                 $ref: '#/components/schemas/submit_signed_transaction_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Submit signed transaction
       tags:
       - chains
@@ -277,8 +398,22 @@ paths:
       description: Returns a transaction.
       operationId: get-transaction
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/TransactionHash'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: A transaction hash.
+        explode: false
+        in: path
+        name: hash
+        required: true
+        schema:
+          $ref: '#/components/schemas/Hex'
+        style: simple
       - description: "Include contract and method call details, if available."
         explode: true
         in: query
@@ -297,33 +432,42 @@ paths:
                 $ref: '#/components/schemas/get_transaction_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get transaction
       tags:
       - chains
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/TransactionHash'
-    - description: "Include contract and method call details, if available."
-      explode: true
-      in: query
-      name: include
-      required: false
-      schema:
-        enum:
-        - contract
-        type: string
-      style: form
   /chains/{chain}/transactions/receipt/{hash}:
     get:
       description: Returns the receipt of a transaction that's been successfully added
         to the blockchain.
       operationId: get-transaction-receipt
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/TransactionHash'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: A transaction hash.
+        explode: false
+        in: path
+        name: hash
+        required: true
+        schema:
+          $ref: '#/components/schemas/Hex'
+        style: simple
       - description: "Include contract and event details, if available."
         explode: true
         in: query
@@ -342,31 +486,33 @@ paths:
                 $ref: '#/components/schemas/get_transaction_receipt_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get transaction receipt
       tags:
       - chains
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/TransactionHash'
-    - description: "Include contract and event details, if available."
-      explode: true
-      in: query
-      name: include
-      required: false
-      schema:
-        enum:
-        - contract
-        type: string
-      style: form
   /chains/{chain}/status:
     get:
       description: Returns the chain status.
       operationId: get-chain-status
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
       responses:
         "200":
           content:
@@ -375,21 +521,42 @@ paths:
                 $ref: '#/components/schemas/get_chain_status_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get chain status
       tags:
       - chains
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
   /chains/{chain}/blocks/{block}:
     get:
       description: Returns a block.
       operationId: get-block
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/BlockRef'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: "A block number, hash or 'latest' for the latest block."
+        explode: false
+        in: path
+        name: block
+        required: true
+        schema:
+          pattern: "^(0|[1-9][0-9]*|0x[0-9a-f]{64}|0X[0-9A-F]{64}|latest)$"
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -398,21 +565,33 @@ paths:
                 $ref: '#/components/schemas/get_block_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get a block
       tags:
       - chains
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/BlockRef'
   /chains/{chain}/addresses:
     get:
       description: Returns all the aliased addresses.
       operationId: list-addresses
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
       responses:
         "200":
           content:
@@ -421,19 +600,32 @@ paths:
                 $ref: '#/components/schemas/list_addresses_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List addresses
       tags:
       - addresses
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
     post:
       description: Associates an address with an alias.
       operationId: set-address
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -448,9 +640,17 @@ paths:
                 $ref: '#/components/schemas/set_address_201_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Create or update address
       tags:
       - addresses
@@ -459,8 +659,23 @@ paths:
       description: Deletes an address alias.
       operationId: delete-address
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/AddressOrAlias'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An address or the alias of an address.
+        explode: false
+        in: path
+        name: address-or-alias
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -470,9 +685,17 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Delete address
       tags:
       - addresses
@@ -480,6 +703,23 @@ paths:
       description: Returns details about an address.
       operationId: get-address
       parameters:
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An address or the alias of an address.
+        explode: false
+        in: path
+        name: address-or-alias
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       - description: |
           Optional data to fetch from the blockchain:
           - `balance` to get the balance of this address.
@@ -500,8 +740,6 @@ paths:
             type: string
           type: array
         style: form
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/AddressOrAlias'
       responses:
         "200":
           content:
@@ -510,25 +748,42 @@ paths:
                 $ref: '#/components/schemas/set_address_201_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get address
       tags:
       - addresses
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/AddressOrAlias'
   /chains/{chain}/addresses/{address-or-alias}/contracts:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/AddressOrAlias'
     post:
       description: Links an address to a contract.
       operationId: link-address-contract
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/AddressOrAlias'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An address or the alias of an address.
+        explode: false
+        in: path
+        name: address-or-alias
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -543,9 +798,17 @@ paths:
                 $ref: '#/components/schemas/set_address_201_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Link address and contract
       tags:
       - contracts
@@ -554,9 +817,30 @@ paths:
       description: Unlinks an address from a contract.
       operationId: unlink-address-contract
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/AddressOrAlias'
-      - $ref: '#/components/parameters/ContractLabel'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An address or the alias of an address.
+        explode: false
+        in: path
+        name: address-or-alias
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
       responses:
         "200":
           content:
@@ -565,24 +849,49 @@ paths:
                 $ref: '#/components/schemas/set_address_201_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Unlink address and contract
       tags:
       - contracts
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/AddressOrAlias'
-    - $ref: '#/components/parameters/ContractLabel'
   /chains/{chain}/addresses/{address-or-alias}/contracts/{contract}/status:
     get:
       description: Returns the event monitor status for a given address and contract.
       operationId: get-event-monitor-status
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/AddressOrAlias'
-      - $ref: '#/components/parameters/ContractLabel'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An address or the alias of an address.
+        explode: false
+        in: path
+        name: address-or-alias
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
       responses:
         "200":
           content:
@@ -591,32 +900,60 @@ paths:
                 $ref: '#/components/schemas/get_event_monitor_status_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get event monitor status
       tags:
       - contracts
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/AddressOrAlias'
-    - $ref: '#/components/parameters/ContractLabel'
   /chains/{chain}/addresses/{address-or-alias}/contracts/{contract}/methods/{method}:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/AddressOrAlias'
-    - $ref: '#/components/parameters/ContractLabel'
-    - $ref: '#/components/parameters/Method'
     post:
       description: Builds a transaction to call the given contract function. Returns
         a transaction to be signed and signs and submits to the blockchain it if the
         `signAndSubmit` flag is enabled.
       operationId: call-contract-function
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/AddressOrAlias'
-      - $ref: '#/components/parameters/ContractLabel'
-      - $ref: '#/components/parameters/Method'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An address or the alias of an address.
+        explode: false
+        in: path
+        name: address-or-alias
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
+      - description: Contract function.
+        explode: false
+        in: path
+        name: method
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -631,20 +968,33 @@ paths:
                 $ref: '#/components/schemas/call_contract_function_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Call a contract function
       tags:
       - contracts
   /chains/{chain}/hsm/sign:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
     post:
       description: Signs the given data using the given HSM address.
       operationId: sign-data
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -659,20 +1009,33 @@ paths:
                 $ref: '#/components/schemas/sign_data_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Sign data
       tags:
       - hsm
   /chains/{chain}/hsm/submit:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
     post:
       description: Signs and submits the given transaction using an HSM address.
       operationId: sign-and-submit-transaction
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -687,23 +1050,42 @@ paths:
                 $ref: '#/components/schemas/transfer_eth_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Sign and submit transaction
       tags:
       - hsm
   /chains/{chain}/hsm/nonce/{wallet_address}:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/ETHAddress'
     post:
       description: Sets the next transaction nonce for the given HSM address that
         will be used with the nonce management feature.
       operationId: set-local-nonce
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/ETHAddress'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -719,9 +1101,17 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Set local nonce
       tags:
       - hsm
@@ -737,9 +1127,17 @@ paths:
                 $ref: '#/components/schemas/list_contracts_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List contracts
       tags:
       - contracts
@@ -763,9 +1161,17 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Create multiple contracts
       tags:
       - contracts
@@ -774,7 +1180,13 @@ paths:
       description: Deletes a contract and all its versions.
       operationId: delete-contract
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
       responses:
         "200":
           content:
@@ -783,9 +1195,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Delete a contract
       tags:
       - contracts
@@ -793,7 +1213,13 @@ paths:
       description: Returns the given contract.
       operationId: get-contract
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
       responses:
         "200":
           content:
@@ -802,19 +1228,31 @@ paths:
                 $ref: '#/components/schemas/get_contract_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get a contract
       tags:
       - contracts
-    parameters:
-    - $ref: '#/components/parameters/ContractLabel'
     post:
       description: Adds a contract.
       operationId: create-contract
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -829,20 +1267,32 @@ paths:
                 $ref: '#/components/schemas/get_contract_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Create a contract
       tags:
       - contracts
   /contracts/{contract}/deploy:
-    parameters:
-    - $ref: '#/components/parameters/ContractLabel'
     post:
       description: Returns a transaction to deploy the given contract to the blockchain.
       operationId: deploy-contract
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -857,9 +1307,17 @@ paths:
                 $ref: '#/components/schemas/deploy_contract_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Deploy a contract
       tags:
       - contracts
@@ -868,7 +1326,13 @@ paths:
       description: Returns a list of the versions of a contract.
       operationId: list-contract-versions
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
       responses:
         "200":
           content:
@@ -877,20 +1341,32 @@ paths:
                 $ref: '#/components/schemas/list_contract_versions_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List all contract versions
       tags:
       - contracts
-    parameters:
-    - $ref: '#/components/parameters/ContractLabel'
   /contracts/{contract}/all:
     get:
       description: Returns all the versions of a contract.
       operationId: get-contract-versions
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
       responses:
         "200":
           content:
@@ -899,21 +1375,41 @@ paths:
                 $ref: '#/components/schemas/get_contract_versions_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get all contract versions
       tags:
       - contracts
-    parameters:
-    - $ref: '#/components/parameters/ContractLabel'
   /contracts/{contract}/{version}:
     delete:
       description: Deletes a specific contract version.
       operationId: delete-contract-version
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
-      - $ref: '#/components/parameters/ContractVersion'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
+      - description: Contract Version.
+        explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -922,9 +1418,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Delete a contract version
       tags:
       - contracts
@@ -932,8 +1436,22 @@ paths:
       description: Returns a specific contract version.
       operationId: get-contract-version
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
-      - $ref: '#/components/parameters/ContractVersion'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
+      - description: Contract Version.
+        explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -942,26 +1460,42 @@ paths:
                 $ref: '#/components/schemas/get_contract_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get a contract version
       tags:
       - contracts
-    parameters:
-    - $ref: '#/components/parameters/ContractLabel'
-    - $ref: '#/components/parameters/ContractVersion'
   /contracts/{contract}/{version}/deploy:
-    parameters:
-    - $ref: '#/components/parameters/ContractLabel'
-    - $ref: '#/components/parameters/ContractVersion'
     post:
       description: Returns a transaction to deploy the given contract version to the
         blockchain.
       operationId: deploy-contract-version
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
-      - $ref: '#/components/parameters/ContractVersion'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
+      - description: Contract Version.
+        explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -976,9 +1510,17 @@ paths:
                 $ref: '#/components/schemas/deploy_contract_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Deploy a contract version
       tags:
       - contracts
@@ -988,9 +1530,31 @@ paths:
         signature.
       operationId: get-function-type-conversions
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
-      - $ref: '#/components/parameters/ContractVersion'
-      - $ref: '#/components/parameters/Method'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
+      - description: Contract Version.
+        explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
+      - description: Contract function.
+        explode: false
+        in: path
+        name: method
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -999,24 +1563,50 @@ paths:
                 $ref: '#/components/schemas/get_function_type_conversions_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get function type conversions
       tags:
       - contracts
-    parameters:
-    - $ref: '#/components/parameters/ContractLabel'
-    - $ref: '#/components/parameters/ContractVersion'
-    - $ref: '#/components/parameters/Method'
     post:
       description: Sets the type conversion options for a given contract and function
         signature.
       operationId: set-function-type-conversions
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
-      - $ref: '#/components/parameters/ContractVersion'
-      - $ref: '#/components/parameters/Method'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
+      - description: Contract Version.
+        explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
+      - description: Contract function.
+        explode: false
+        in: path
+        name: method
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1031,9 +1621,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Set function type conversions
       tags:
       - contracts
@@ -1043,9 +1641,31 @@ paths:
         signature.
       operationId: get-event-type-conversions
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
-      - $ref: '#/components/parameters/ContractVersion'
-      - $ref: '#/components/parameters/Event'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
+      - description: Contract Version.
+        explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
+      - description: Contract Event.
+        explode: false
+        in: path
+        name: event
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -1054,24 +1674,50 @@ paths:
                 $ref: '#/components/schemas/get_event_type_conversions_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get event type conversions
       tags:
       - contracts
-    parameters:
-    - $ref: '#/components/parameters/ContractLabel'
-    - $ref: '#/components/parameters/ContractVersion'
-    - $ref: '#/components/parameters/Event'
     post:
       description: Sets the type conversion options for a given contract and event
         signature.
       operationId: set-event-type-conversions
       parameters:
-      - $ref: '#/components/parameters/ContractLabel'
-      - $ref: '#/components/parameters/ContractVersion'
-      - $ref: '#/components/parameters/Event'
+      - explode: false
+        in: path
+        name: contract
+        required: true
+        schema:
+          $ref: '#/components/schemas/Label'
+        style: simple
+      - description: Contract Version.
+        explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
+      - description: Contract Event.
+        explode: false
+        in: path
+        name: event
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1086,9 +1732,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Set event type conversions
       tags:
       - contracts
@@ -1104,9 +1758,17 @@ paths:
                 $ref: '#/components/schemas/list_cors_origins_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List CORS origins
       tags:
       - admin
@@ -1128,9 +1790,17 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add CORS origin
       tags:
       - admin
@@ -1139,7 +1809,14 @@ paths:
       description: Removes a CORS origin.
       operationId: remove-cors-origin
       parameters:
-      - $ref: '#/components/parameters/CORSOriginID'
+      - explode: false
+        in: path
+        name: originID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -1149,14 +1826,20 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove CORS Origin
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/CORSOriginID'
   /events:
     get:
       description: Returns all events stored in the database.
@@ -1246,8 +1929,20 @@ paths:
         schema:
           type: string
         style: form
-      - $ref: '#/components/parameters/PaginationLimit'
-      - $ref: '#/components/parameters/PaginationOffset'
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
       responses:
         "200":
           content:
@@ -1256,9 +1951,17 @@ paths:
                 $ref: '#/components/schemas/list_events_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List events
       tags:
       - events
@@ -1351,8 +2054,20 @@ paths:
         schema:
           type: string
         style: form
-      - $ref: '#/components/parameters/PaginationLimit'
-      - $ref: '#/components/parameters/PaginationOffset'
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
       responses:
         "200":
           content:
@@ -1361,9 +2076,17 @@ paths:
                 $ref: '#/components/schemas/get_event_count_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get event count
       tags:
       - events
@@ -1379,9 +2102,17 @@ paths:
                 $ref: '#/components/schemas/list_hsm_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List HSM configs and wallets
       tags:
       - hsm
@@ -1438,8 +2169,20 @@ paths:
         schema:
           $ref: '#/components/schemas/ETHAddress'
         style: form
-      - $ref: '#/components/parameters/PaginationLimit'
-      - $ref: '#/components/parameters/PaginationOffset'
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
       responses:
         "200":
           content:
@@ -1448,9 +2191,17 @@ paths:
                 $ref: '#/components/schemas/list_hsm_wallets_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List HSM wallets
       tags:
       - hsm
@@ -1473,9 +2224,17 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add HSM key
       tags:
       - hsm
@@ -1484,7 +2243,14 @@ paths:
       description: Removes the specified key configuration.
       operationId: remove-hsm-key
       parameters:
-      - $ref: '#/components/parameters/ETHAddress'
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       responses:
         "200":
           content:
@@ -1494,14 +2260,20 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove HSM key
       tags:
       - hsm
-    parameters:
-    - $ref: '#/components/parameters/ETHAddress'
   /hsm/key/new:
     post:
       description: Creates a new key in the Azure KeyVault.
@@ -1520,9 +2292,17 @@ paths:
                 $ref: '#/components/schemas/create_hsm_key_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Create HSM key
       tags:
       - hsm
@@ -1545,9 +2325,17 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add HSM config
       tags:
       - hsm
@@ -1557,7 +2345,14 @@ paths:
         keys.
       operationId: remove-hsm-config
       parameters:
-      - $ref: '#/components/parameters/ClientID'
+      - description: The HSM client ID.
+        explode: false
+        in: path
+        name: client_id
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -1567,14 +2362,20 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove HSM config
       tags:
       - hsm
-    parameters:
-    - $ref: '#/components/parameters/ClientID'
   /queries:
     get:
       description: Returns a list of saved event queries.
@@ -1587,9 +2388,17 @@ paths:
                 $ref: '#/components/schemas/list_event_queries_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List event queries
       tags:
       - event queries
@@ -1597,8 +2406,20 @@ paths:
       description: Executes an arbitrary event query.
       operationId: execute-arbitrary-event-query
       parameters:
-      - $ref: '#/components/parameters/PaginationOffset'
-      - $ref: '#/components/parameters/PaginationLimit'
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
       requestBody:
         content:
           application/json:
@@ -1613,9 +2434,17 @@ paths:
                 $ref: '#/components/schemas/execute_arbitrary_event_query_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Execute arbitrary event query
       tags:
       - event queries
@@ -1624,7 +2453,14 @@ paths:
       description: Deletes the given saved event query.
       operationId: delete-event-query
       parameters:
-      - $ref: '#/components/parameters/EventQueryLabel'
+      - description: An event query label.
+        explode: false
+        in: path
+        name: event_query
+        required: true
+        schema:
+          $ref: '#/components/schemas/EventQueryLabel'
+        style: simple
       responses:
         "200":
           content:
@@ -1634,9 +2470,17 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Delete event query
       tags:
       - event queries
@@ -1644,7 +2488,14 @@ paths:
       description: Returns the given saved event query.
       operationId: get-event-query
       parameters:
-      - $ref: '#/components/parameters/EventQueryLabel'
+      - description: An event query label.
+        explode: false
+        in: path
+        name: event_query
+        required: true
+        schema:
+          $ref: '#/components/schemas/EventQueryLabel'
+        style: simple
       responses:
         "200":
           content:
@@ -1653,19 +2504,32 @@ paths:
                 $ref: '#/components/schemas/get_event_query_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get event query
       tags:
       - event queries
-    parameters:
-    - $ref: '#/components/parameters/EventQueryLabel'
     put:
       description: Creates or updates the given saved event query.
       operationId: set-event-query
       parameters:
-      - $ref: '#/components/parameters/EventQueryLabel'
+      - description: An event query label.
+        explode: false
+        in: path
+        name: event_query
+        required: true
+        schema:
+          $ref: '#/components/schemas/EventQueryLabel'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1681,9 +2545,17 @@ paths:
                 - $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Create or update event query
       tags:
       - event queries
@@ -1692,9 +2564,28 @@ paths:
       description: Executes the given saved event query.
       operationId: execute-event-query
       parameters:
-      - $ref: '#/components/parameters/PaginationOffset'
-      - $ref: '#/components/parameters/PaginationLimit'
-      - $ref: '#/components/parameters/EventQueryLabel'
+      - description: An event query label.
+        explode: false
+        in: path
+        name: event_query
+        required: true
+        schema:
+          $ref: '#/components/schemas/EventQueryLabel'
+        style: simple
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
       responses:
         "200":
           content:
@@ -1703,20 +2594,33 @@ paths:
                 $ref: '#/components/schemas/execute_arbitrary_event_query_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Execute event query
       tags:
       - event queries
-    parameters:
-    - $ref: '#/components/parameters/EventQueryLabel'
   /queries/{event_query}/count:
     get:
       description: Returns the record count of the given saved event query.
       operationId: count-event-query-records
       parameters:
-      - $ref: '#/components/parameters/EventQueryLabel'
+      - description: An event query label.
+        explode: false
+        in: path
+        name: event_query
+        required: true
+        schema:
+          $ref: '#/components/schemas/EventQueryLabel'
+        style: simple
       responses:
         "200":
           content:
@@ -1725,21 +2629,41 @@ paths:
                 $ref: '#/components/schemas/count_event_query_records_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Count event query records
       tags:
       - event queries
-    parameters:
-    - $ref: '#/components/parameters/EventQueryLabel'
   /chains/{chain}/txm/{wallet_address}:
     get:
       description: List the transactions submitted by the given wallet address.
       operationId: list-wallet-transactions
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/ETHAddress'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       - description: "Filter transactions by transaction hash. To filter for multiple\
           \ hashes, use ampersands: `?hash=HASH1&hash=HASH2&hash=HASH3`"
         explode: true
@@ -1766,8 +2690,20 @@ paths:
         schema:
           $ref: '#/components/schemas/TransactionStatus'
         style: form
-      - $ref: '#/components/parameters/PaginationLimit'
-      - $ref: '#/components/parameters/PaginationOffset'
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
       responses:
         "200":
           content:
@@ -1776,9 +2712,17 @@ paths:
                 $ref: '#/components/schemas/list_wallet_transactions_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List transactions for a wallet
       tags:
       - txm
@@ -1787,8 +2731,22 @@ paths:
       description: Count all transactions for the given wallet address.
       operationId: count-wallet-transactions
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/ETHAddress'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       responses:
         "200":
           content:
@@ -1797,25 +2755,51 @@ paths:
                 $ref: '#/components/schemas/count_wallet_transactions_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Count all transactions for a wallet
       tags:
       - txm
   /chains/{chain}/txm/{wallet_address}/nonce/{nonce}/cancel:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/ETHAddress'
-    - $ref: '#/components/parameters/Nonce'
     post:
       description: Cancels a transaction by resubmitting it as no-op transaction and
         with a higher gas price.
       operationId: cancel-transaction
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/ETHAddress'
-      - $ref: '#/components/parameters/Nonce'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
+      - description: Transaction nonce.
+        explode: false
+        in: path
+        name: nonce
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1830,24 +2814,50 @@ paths:
                 $ref: '#/components/schemas/transfer_eth_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Cancel transaction
       tags:
       - txm
   /chains/{chain}/txm/{wallet_address}/nonce/{nonce}/speed_up:
-    parameters:
-    - $ref: '#/components/parameters/ChainParam'
-    - $ref: '#/components/parameters/ETHAddress'
-    - $ref: '#/components/parameters/Nonce'
     post:
       description: Speeds up a transaction by resubmitting it with a higher gas price.
       operationId: speed-up-transaction
       parameters:
-      - $ref: '#/components/parameters/ChainParam'
-      - $ref: '#/components/parameters/ETHAddress'
-      - $ref: '#/components/parameters/Nonce'
+      - description: The blockchain chain label.
+        explode: false
+        in: path
+        name: chain
+        required: true
+        schema:
+          $ref: '#/components/schemas/ChainName'
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
+      - description: Transaction nonce.
+        explode: false
+        in: path
+        name: nonce
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1862,9 +2872,17 @@ paths:
                 $ref: '#/components/schemas/transfer_eth_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Speed up transaction
       tags:
       - txm
@@ -1873,8 +2891,20 @@ paths:
       description: List all webhook endpoints.
       operationId: list-webhooks
       parameters:
-      - $ref: '#/components/parameters/PaginationLimit'
-      - $ref: '#/components/parameters/PaginationOffset'
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
       responses:
         "200":
           content:
@@ -1883,9 +2913,17 @@ paths:
                 $ref: '#/components/schemas/list_webhooks_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List webhooks
       tags:
       - webhooks
@@ -1906,9 +2944,17 @@ paths:
                 $ref: '#/components/schemas/create_webhook_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Create webhook
       tags:
       - webhooks
@@ -1924,9 +2970,17 @@ paths:
                 $ref: '#/components/schemas/count_webhooks_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Count webhooks
       tags:
       - webhooks
@@ -1935,7 +2989,14 @@ paths:
       description: Delete a webhook endpoint.
       operationId: delete-webhook
       parameters:
-      - $ref: '#/components/parameters/WebhookID'
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -1944,9 +3005,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Delete webhook
       tags:
       - webhooks
@@ -1954,7 +3023,14 @@ paths:
       description: Get a webhook endpoint.
       operationId: get-webhook
       parameters:
-      - $ref: '#/components/parameters/WebhookID'
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -1963,19 +3039,32 @@ paths:
                 $ref: '#/components/schemas/create_webhook_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Get webhook
       tags:
       - webhooks
-    parameters:
-    - $ref: '#/components/parameters/WebhookID'
     put:
       description: Update a webhook endpoint.
       operationId: update-webhook
       parameters:
-      - $ref: '#/components/parameters/WebhookID'
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       requestBody:
         content:
           application/json:
@@ -1990,9 +3079,17 @@ paths:
                 $ref: '#/components/schemas/create_webhook_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Update webhook
       tags:
       - webhooks
@@ -2001,9 +3098,28 @@ paths:
       description: List events for the given webhook endpoint.
       operationId: list-webhook-events
       parameters:
-      - $ref: '#/components/parameters/PaginationLimit'
-      - $ref: '#/components/parameters/PaginationOffset'
-      - $ref: '#/components/parameters/WebhookID'
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationLimit'
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaginationOffset'
+        style: form
       responses:
         "200":
           content:
@@ -2014,14 +3130,19 @@ paths:
       summary: List webhook events
       tags:
       - webhooks
-    parameters:
-    - $ref: '#/components/parameters/WebhookID'
   /webhooks/{webhookID}/events/count:
     get:
       description: Count the events for the given webhook endpoint.
       operationId: count-webhook-events
       parameters:
-      - $ref: '#/components/parameters/WebhookID'
+      - explode: false
+        in: path
+        name: webhookID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -2032,14 +3153,19 @@ paths:
       summary: Count webhook events
       tags:
       - webhooks
-    parameters:
-    - $ref: '#/components/parameters/WebhookID'
   /users:
     get:
       description: Returns all the users.
       operationId: list-users
       parameters:
-      - $ref: '#/components/parameters/GroupIDFilter'
+      - explode: true
+        in: query
+        name: groupID
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -2048,20 +3174,33 @@ paths:
                 $ref: '#/components/schemas/list_users_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List users
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/GroupIDFilter'
   /users/{userID}:
     delete:
       description: Deletes a user.
       operationId: delete-user
       parameters:
-      - $ref: '#/components/parameters/UserID'
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -2070,20 +3209,33 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Delete user
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/UserID'
   /users/{userID}/signers:
     get:
       description: Returns all the signers for a user.
       operationId: list-user-signers
       parameters:
-      - $ref: '#/components/parameters/UserID'
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -2092,21 +3244,41 @@ paths:
                 $ref: '#/components/schemas/list_user_signers_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List user signers
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/UserID'
   /users/{userID}/web3wallets/{wallet_address}:
     delete:
       description: Removes a web3 wallet signer from a user.
       operationId: remove-user-signer-web3-wallet
       parameters:
-      - $ref: '#/components/parameters/UserID'
-      - $ref: '#/components/parameters/ETHAddress'
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       responses:
         "200":
           content:
@@ -2115,21 +3287,40 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove user web3 wallet signer
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/UserID'
-    - $ref: '#/components/parameters/ETHAddress'
     put:
       description: Adds or updates a user's web3 wallet signer.
       operationId: set-user-signer-web3-wallet
       parameters:
-      - $ref: '#/components/parameters/UserID'
-      - $ref: '#/components/parameters/ETHAddress'
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2144,9 +3335,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add or update user web3 wallet signer
       tags:
       - admin
@@ -2155,8 +3354,22 @@ paths:
       description: Removes a cloud wallet signer from a user.
       operationId: remove-user-signer-cloud-wallet
       parameters:
-      - $ref: '#/components/parameters/UserID'
-      - $ref: '#/components/parameters/ETHAddress'
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       responses:
         "200":
           content:
@@ -2165,21 +3378,40 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove user cloud wallet signer
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/UserID'
-    - $ref: '#/components/parameters/ETHAddress'
     put:
       description: Adds or updates a user's cloud wallet signer.
       operationId: set-user-signer-cloud-wallet
       parameters:
-      - $ref: '#/components/parameters/UserID'
-      - $ref: '#/components/parameters/ETHAddress'
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       responses:
         "200":
           content:
@@ -2188,9 +3420,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add or update user cloud wallet signer
       tags:
       - admin
@@ -2199,8 +3439,22 @@ paths:
       description: Removes a safe account signer from a user.
       operationId: remove-user-signer-safe-account
       parameters:
-      - $ref: '#/components/parameters/UserID'
-      - $ref: '#/components/parameters/ETHAddress'
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       responses:
         "200":
           content:
@@ -2209,21 +3463,40 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove user safe account signer
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/UserID'
-    - $ref: '#/components/parameters/ETHAddress'
     put:
       description: Adds or updates a user's safe account signer.
       operationId: set-user-signer-safe-account
       parameters:
-      - $ref: '#/components/parameters/UserID'
-      - $ref: '#/components/parameters/ETHAddress'
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: An Ethereum address.
+        explode: false
+        in: path
+        name: wallet_address
+        required: true
+        schema:
+          $ref: '#/components/schemas/ETHAddress'
+        style: simple
       requestBody:
         content:
           application/json:
@@ -2238,9 +3511,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add or update user safe account signer
       tags:
       - admin
@@ -2249,9 +3530,29 @@ paths:
       description: Returns all the groups.
       operationId: list-groups
       parameters:
-      - $ref: '#/components/parameters/UserIDFilter'
-      - $ref: '#/components/parameters/ApiKeyIDFilter'
-      - $ref: '#/components/parameters/AssignableRoleFlag'
+      - explode: true
+        in: query
+        name: userID
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: apiKeyID
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: assignable
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -2260,23 +3561,40 @@ paths:
                 $ref: '#/components/schemas/list_groups_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List groups
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/UserIDFilter'
-    - $ref: '#/components/parameters/ApiKeyIDFilter'
-    - $ref: '#/components/parameters/AssignableRoleFlag'
   /groups/{groupID}/roles/{roleShortName}:
     delete:
       description: Removes a role from a group.
       operationId: remove-group-role
       parameters:
-      - $ref: '#/components/parameters/GroupID'
-      - $ref: '#/components/parameters/RoleShortName'
+      - explode: false
+        in: path
+        name: groupID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: roleShortName
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -2285,21 +3603,39 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove role from group
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/GroupID'
-    - $ref: '#/components/parameters/RoleShortName'
     put:
       description: Adds a role to a group.
       operationId: add-group-role
       parameters:
-      - $ref: '#/components/parameters/GroupID'
-      - $ref: '#/components/parameters/RoleShortName'
+      - explode: false
+        in: path
+        name: groupID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: roleShortName
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "200":
           content:
@@ -2308,9 +3644,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add role to group
       tags:
       - admin
@@ -2319,8 +3663,22 @@ paths:
       description: Removes a user from a group.
       operationId: remove-group-user
       parameters:
-      - $ref: '#/components/parameters/GroupID'
-      - $ref: '#/components/parameters/UserID'
+      - explode: false
+        in: path
+        name: groupID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -2329,21 +3687,40 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove user from group
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/GroupID'
-    - $ref: '#/components/parameters/UserID'
     put:
       description: Adds a user to a group.
       operationId: add-group-user
       parameters:
-      - $ref: '#/components/parameters/GroupID'
-      - $ref: '#/components/parameters/UserID'
+      - explode: false
+        in: path
+        name: groupID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: userID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -2352,9 +3729,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add user to group
       tags:
       - admin
@@ -2363,8 +3748,22 @@ paths:
       description: Removes an API key from a group.
       operationId: remove-group-api-key
       parameters:
-      - $ref: '#/components/parameters/GroupID'
-      - $ref: '#/components/parameters/APIKeyID'
+      - explode: false
+        in: path
+        name: groupID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: apiKeyID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -2373,21 +3772,40 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Remove API key from group
       tags:
       - admin
-    parameters:
-    - $ref: '#/components/parameters/GroupID'
-    - $ref: '#/components/parameters/APIKeyID'
     put:
       description: Adds an API key to a group.
       operationId: add-group-api-key
       parameters:
-      - $ref: '#/components/parameters/GroupID'
-      - $ref: '#/components/parameters/APIKeyID'
+      - explode: false
+        in: path
+        name: groupID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: apiKeyID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       responses:
         "200":
           content:
@@ -2396,9 +3814,17 @@ paths:
                 $ref: '#/components/schemas/BaseResponse'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: Add API key to group
       tags:
       - admin
@@ -2414,9 +3840,17 @@ paths:
                 $ref: '#/components/schemas/list_audit_logs_200_response'
           description: OK
         "4XX":
-          $ref: '#/components/responses/ClientError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Client error.
         "5XX":
-          $ref: '#/components/responses/ServerError'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Server error.
       summary: List audit logs
       tags:
       - admin
@@ -2721,6 +4155,7 @@ components:
         - chain
         - contracts
         - modules
+        type: object
       description: An address details.
       example:
         chain: chain
@@ -2784,6 +4219,7 @@ components:
       - address
       - alias
       title: AddressAlias
+      type: object
     BaseAPIKey:
       description: An API key.
       example:
@@ -2824,6 +4260,7 @@ components:
         - createdBy
         - id
         - signature
+        type: object
       description: An API key.
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -2841,6 +4278,7 @@ components:
             type: string
         required:
         - key
+        type: object
       description: A freshly created API key with its secret.
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -2899,6 +4337,7 @@ components:
       - subscriptionID
       - tenantID
       title: BaseAzureAccount
+      type: object
     AzureAccount:
       allOf:
       - $ref: '#/components/schemas/BaseAzureAccount'
@@ -2908,6 +4347,7 @@ components:
             type: integer
         required:
         - id
+        type: object
       description: An Azure account.
       example:
         baseGroupName: baseGroupName
@@ -2918,6 +4358,7 @@ components:
         id: 6
         subscriptionID: subscriptionID
       title: AzureAccount
+      type: object
     AzureHardwareWallet:
       description: An HSM Wallet
       example:
@@ -2959,10 +4400,12 @@ components:
       - publicAddress
       - vaultName
       title: AzureHardwareWallet
+      type: object
     AzureHardwareWalletSlice:
       description: An array of Azure Hardware Wallets.
       items:
         $ref: '#/components/schemas/AzureHardwareWallet'
+      title: AzureHardwareWalletSlice
       type: array
     AzureWallet:
       description: An HSM Wallet returned when a new key is created
@@ -2990,6 +4433,7 @@ components:
       - keyVersion
       - publicAddress
       title: AzureWallet
+      type: object
     StandaloneWallet:
       description: An object containing an HSM wallet's details.
       example:
@@ -3028,6 +4472,7 @@ components:
       - keyName
       - publicAddress
       title: StandaloneWallet
+      type: object
     Block:
       description: A block in the Ethereum blockchain.
       example:
@@ -3258,6 +4703,7 @@ components:
       - transactions
       - transactionsRoot
       title: Block
+      type: object
     ChainName:
       description: A blockchain chain name.
       enum:
@@ -3295,6 +4741,7 @@ components:
       - networkID
       - version
       title: ChainStatus
+      type: object
     ContractInstance:
       description: A contract instance
       example:
@@ -3312,6 +4759,7 @@ components:
       - address
       - alias
       title: ContractInstance
+      type: object
     ContractMetadata:
       example:
         name: name
@@ -3339,6 +4787,7 @@ components:
       - name
       - version
       title: ContractMetadata
+      type: object
     ContractABIType:
       description: A contract function or event argument type.
       example:
@@ -3370,6 +4819,7 @@ components:
       required:
       - type
       title: ContractABIType
+      type: object
     ContractABIMethodArgument:
       description: A contract function argument.
       example:
@@ -3408,6 +4858,7 @@ components:
       - typeConversion
       - typeName
       title: ContractABIMethodArgument
+      type: object
     ContractABIMethod:
       description: A contract function.
       example:
@@ -3489,6 +4940,7 @@ components:
         name: name
         description: description
         id: id
+      nullable: true
       properties:
         id:
           description: A hex string.
@@ -3534,6 +4986,7 @@ components:
       - payable
       - signature
       title: ContractABIMethod
+      type: object
     ContractMethodInformation:
       description: The contract method's information returned within the event or
         transaction.
@@ -3563,6 +5016,7 @@ components:
       - name
       - signature
       title: ContractMethodInformation
+      type: object
     ContractABIEventArgument:
       description: A contract event argument.
       example:
@@ -3606,6 +5060,7 @@ components:
       - typeConversion
       - typeName
       title: ContractABIEventArgument
+      type: object
     ContractABIEvent:
       description: A contract event.
       example:
@@ -3686,6 +5141,7 @@ components:
       - notes
       - signature
       title: ContractABIEvent
+      type: object
     ContractABIErrorArgument:
       description: A contract error argument.
       example:
@@ -3722,6 +5178,7 @@ components:
       - type
       - typeName
       title: ContractABIErrorArgument
+      type: object
     ContractABIError:
       description: A contract error.
       example:
@@ -3788,6 +5245,7 @@ components:
       - name
       - signature
       title: ContractABIError
+      type: object
     ContractABI:
       description: The contract ABI.
       example:
@@ -4195,12 +5653,15 @@ components:
         methods:
           additionalProperties:
             $ref: '#/components/schemas/ContractABIMethod'
+          type: object
         events:
           additionalProperties:
             $ref: '#/components/schemas/ContractABIEvent'
+          type: object
         errors:
           additionalProperties:
             $ref: '#/components/schemas/ContractABIError'
+          type: object
         fallback:
           $ref: '#/components/schemas/ContractABIMethod'
         receive:
@@ -4212,6 +5673,7 @@ components:
       - methods
       - receive
       title: ContractABI
+      type: object
     BaseContract:
       description: A contract.
       example:
@@ -4266,6 +5728,7 @@ components:
       - rawAbi
       - version
       title: BaseContract
+      type: object
     Contract:
       allOf:
       - $ref: '#/components/schemas/BaseContract'
@@ -4279,6 +5742,7 @@ components:
             type: array
         required:
         - abi
+        type: object
       description: A returned contract.
       example:
         developerDoc: developerDoc
@@ -4728,6 +6192,7 @@ components:
       - label
       - name
       title: ContractInformation
+      type: object
     ContractOverview:
       description: A contract overview.
       example:
@@ -4774,6 +6239,7 @@ components:
       - label
       - version
       title: ContractOverview
+      type: object
     ContractLookup:
       description: The contract lookup item.
       example:
@@ -4836,6 +6302,7 @@ components:
       - proxy
       - verified
       title: ContractLookup
+      type: object
     DeployContractTransaction:
       allOf:
       - $ref: '#/components/schemas/TransactionToSign'
@@ -4844,6 +6311,7 @@ components:
             type: string
           label:
             $ref: '#/components/schemas/Label'
+        type: object
       description: The transaction returned when you deploy a contracts.
       example:
         submitted: true
@@ -4916,6 +6384,7 @@ components:
       - startBlockNumber
       - updatedAt
       title: EventMonitorStatus
+      type: object
     HSMSignRequestPersonalSign:
       description: Request to sign a message using a cloud wallet.
       example:
@@ -4944,6 +6413,7 @@ components:
       - data
       - method
       title: HSMSignRequestPersonalSign
+      type: object
     HSMSignRequestTypedData:
       description: Request to sign typed data using a cloud wallet.
       properties:
@@ -4962,6 +6432,7 @@ components:
       - data
       - method
       title: HSMSignRequestTypedData
+      type: object
     HSMSignRequest:
       discriminator:
         mapping:
@@ -4985,6 +6456,7 @@ components:
       - publicKey
       - signature
       title: HSMSignResponse
+      type: object
     Event:
       description: An event returned by the API call.
       example:
@@ -5044,6 +6516,7 @@ components:
       - transaction
       - triggeredAt
       title: Event
+      type: object
     EventInformation:
       description: The event information returned as part of an event.
       example:
@@ -5094,6 +6567,7 @@ components:
       - name
       - signature
       title: EventInformation
+      type: object
     EventField:
       description: Holds a field in the event's data.
       example:
@@ -5105,7 +6579,8 @@ components:
         name:
           description: The input name.
           type: string
-        value: {}
+        value:
+          description: The input value.
         hashed:
           description: Has the value been hashed into a keccak256 string?
           type: boolean
@@ -5118,6 +6593,7 @@ components:
       - type
       - value
       title: EventField
+      type: object
     MethodArg:
       description: An argument passed to a method call.
       example:
@@ -5128,7 +6604,8 @@ components:
         name:
           description: The input name.
           type: string
-        value: {}
+        value:
+          description: The input value.
         type:
           description: The type of the argument.
           type: string
@@ -5137,6 +6614,7 @@ components:
       - type
       - value
       title: MethodArg
+      type: object
     HSMData:
       description: Response body for returning HSM Data.
       example:
@@ -5168,11 +6646,13 @@ components:
           description: An array of Azure Hardware Wallets.
           items:
             $ref: '#/components/schemas/AzureHardwareWallet'
+          title: AzureHardwareWalletSlice
           type: array
       required:
       - configuration
       - wallets
       title: HSMData
+      type: object
     AddKey:
       description: Add key request data.
       example:
@@ -5202,6 +6682,7 @@ components:
       - keyVersion
       - vaultName
       title: AddKey
+      type: object
     CreateKey:
       description: Create Key request data.
       example:
@@ -5229,12 +6710,14 @@ components:
       - useHardwareModule
       - vaultName
       title: CreateKey
+      type: object
     ContractABITypeConversion:
       description: Holds JSON-compatible type conversion information.
       example:
         mode: mode
         decimalsFunction: decimalsFunction
         decimalsAbsolute: 7
+      nullable: true
       properties:
         mode:
           type: string
@@ -5250,6 +6733,7 @@ components:
       - decimalsFunction
       - mode
       title: ContractABITypeConversion
+      type: object
     ContractParameter:
       description: Type conversion options for an input or an output of a function
         or an event.
@@ -5264,6 +6748,7 @@ components:
       required:
       - typeConversion
       title: ContractParameter
+      type: object
     ContractEventOptions:
       description: Type conversion options for an event.
       example:
@@ -5287,6 +6772,7 @@ components:
       required:
       - inputs
       title: ContractEventOptions
+      type: object
     ContractMethodOptions:
       description: Type conversion options for a function.
       example:
@@ -5326,6 +6812,7 @@ components:
       required:
       - inputs
       title: ContractMethodOptions
+      type: object
     Log:
       description: A contract log event.
       example:
@@ -5399,6 +6886,7 @@ components:
       - transactionHash
       - transactionIndex
       title: Log
+      type: object
     TypeConversionOptions:
       description: Represents the set of type conversions allowed for a particular
         input or output of a function (how it may be "cast").
@@ -5413,6 +6901,7 @@ components:
           nullable: true
           type: array
       title: TypeConversionOptions
+      type: object
     EventTypeConversionOptions:
       description: Type conversion options for each of the inputs of an event.
       example:
@@ -5432,6 +6921,7 @@ components:
       required:
       - inputs
       title: EventTypeConversionOptions
+      type: object
     MethodTypeConversionOptions:
       description: Type conversion options for each of the inputs and outputs of a
         function.
@@ -5463,6 +6953,7 @@ components:
       - inputs
       - outputs
       title: MethodTypeConversionOptions
+      type: object
     PostMethodArgs:
       description: Arguments to be passed into a contract function.
       example:
@@ -5650,6 +7141,7 @@ components:
         preview:
           $ref: '#/components/schemas/PreviewArgs'
       title: PostMethodArgs
+      type: object
     PreviewArgs:
       description: Ephemeral configuration for previewing the effect of a Type Conversion
         on a contract function call.
@@ -5752,6 +7244,7 @@ components:
       - inputsOnly
       - outputs
       title: PreviewArgs
+      type: object
     Transaction:
       description: A transaction from the Ethereum Blockchain.
       example:
@@ -5945,6 +7438,7 @@ components:
       - v
       - value
       title: Transaction
+      type: object
     SetCodeAuthorization:
       description: Authorization data for setCode operations.
       example:
@@ -5993,6 +7487,7 @@ components:
       - s
       - yParity
       title: SetCodeAuthorization
+      type: object
     AccessTuple:
       description: An access tuple representing an address and its storage keys.
       example:
@@ -6015,6 +7510,7 @@ components:
       - address
       - storageKeys
       title: AccessTuple
+      type: object
     Blob:
       description: A 4844 data blob (131072 bytes) encoded as a hex string.
       pattern: "^0x[0-9a-fA-F]{262144}$"
@@ -6043,6 +7539,7 @@ components:
       required:
       - signedTx
       title: SignedTransactionSubmission
+      type: object
     SignedTransactionResponse:
       description: A transaction that was signed externally and submitted.
       example:
@@ -6115,6 +7612,7 @@ components:
           format: int64
           type: integer
       title: SetNonceRequest
+      type: object
     TransactionData:
       description: The transaction data returned from a call to get transaction by
         hash.
@@ -6220,6 +7718,7 @@ components:
       - from
       - isPending
       title: TransactionData
+      type: object
     TransactionInformation:
       description: The transaction information returned as part of an event.
       example:
@@ -6291,6 +7790,7 @@ components:
       - txHash
       - txIndexInBlock
       title: TransactionInformation
+      type: object
     TransactionReceipt:
       description: Record of the transaction's outcome.
       example:
@@ -6377,6 +7877,7 @@ components:
       required:
       - data
       title: TransactionReceipt
+      type: object
     CORSOrigin:
       description: CORS Origin
       example:
@@ -6390,6 +7891,7 @@ components:
           description: The CORS Origin
           type: string
       title: CORSOrigin
+      type: object
     CloudWalletTXToSign:
       description: A Cloud Wallet transaction to be signed.
       example:
@@ -6411,6 +7913,7 @@ components:
       required:
       - tx
       title: CloudWalletTXToSign
+      type: object
     PostMethodResponse:
       discriminator:
         mapping:
@@ -6425,6 +7928,7 @@ components:
       required:
       - kind
       title: PostMethodResponse
+      type: object
     TransactionToSignResponse:
       allOf:
       - $ref: '#/components/schemas/PostMethodResponse'
@@ -6470,13 +7974,16 @@ components:
       - submitted
       - tx
       title: TransactionToSign
+      type: object
     MethodCallResponse:
       allOf:
       - $ref: '#/components/schemas/PostMethodResponse'
       - properties:
-          output: {}
+          output:
+            description: The function call output.
         required:
         - output
+        type: object
       description: The result of a function call.
       title: MethodCallResponse
     MethodCallPreviewResponse:
@@ -6487,10 +7994,12 @@ components:
             description: The function call inputs.
             items: {}
             type: array
-          output: {}
+          output:
+            description: The function call output.
         required:
         - input
         - output
+        type: object
       description: The result of a preview function arguments call.
       title: MethodCallPreviewResponse
     FieldType:
@@ -6547,6 +8056,7 @@ components:
       required:
       - type
       title: EventQueryField
+      type: object
     EventQueryFilter:
       description: A event query filter.
       example:
@@ -6592,6 +8102,7 @@ components:
             $ref: '#/components/schemas/EventQueryFilter'
           type: array
       title: EventQueryFilter
+      type: object
     EventQueryEvent:
       description: A query on a single event.
       example:
@@ -6632,6 +8143,7 @@ components:
       - eventName
       - select
       title: EventQueryEvent
+      type: object
     EventQuery:
       description: An event query.
       example:
@@ -6703,6 +8215,7 @@ components:
       required:
       - events
       title: EventQuery
+      type: object
     SavedEventQuery:
       description: A saved event query.
       example:
@@ -6777,21 +8290,23 @@ components:
       - label
       - query
       title: SavedEventQuery
+      type: object
     EventQueryResults:
       description: Results of an executed event query.
       example:
         rows:
-        - "{}"
-        - "{}"
+        - key: ""
+        - key: ""
       properties:
         rows:
           items:
-            additionalProperties: false
+            additionalProperties: true
             type: object
           type: array
       required:
       - rows
       title: EventQueryResults
+      type: object
     WalletTransaction:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -6905,6 +8420,7 @@ components:
       - tx
       - updatedAt
       title: WalletTransaction
+      type: object
     BaseWebhookEndpoint:
       example:
         subscriptions:
@@ -6932,6 +8448,7 @@ components:
       - subscriptions
       - url
       title: BaseWebhookEndpoint
+      type: object
     WebhookEndpoint:
       allOf:
       - $ref: '#/components/schemas/BaseWebhookEndpoint'
@@ -6972,6 +8489,7 @@ components:
         - id
         - secret
         - updatedAt
+        type: object
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
         subscriptions:
@@ -6987,6 +8505,7 @@ components:
         nextAttempt: 2000-01-23T04:56:07.000+00:00
         updatedAt: 2000-01-23T04:56:07.000+00:00
       title: WebhookEndpoint
+      type: object
     WebhookEvent:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -7018,6 +8537,7 @@ components:
       - eventType
       - id
       title: WebhookEvent
+      type: object
     WebhookEventsType:
       description: The type of the webhook event.
       enum:
@@ -7041,6 +8561,7 @@ components:
       required:
       - message
       - status
+      type: object
     Error:
       additionalProperties: false
       description: An error response.
@@ -7058,6 +8579,7 @@ components:
       required:
       - message
       - status
+      type: object
       x-tags:
       - error
     ETHAddress:
@@ -7156,6 +8678,7 @@ components:
       - email
       - name
       title: BaseUser
+      type: object
     User:
       allOf:
       - $ref: '#/components/schemas/BaseUser'
@@ -7166,6 +8689,8 @@ components:
             type: integer
         required:
         - id
+        - name
+        type: object
       description: A user.
       example:
         name: name
@@ -7194,6 +8719,7 @@ components:
         - 0
         email: email
       title: Invite
+      type: object
     SignerWallet:
       description: A signer wallet.
       example:
@@ -7282,6 +8808,7 @@ components:
       - roles
       - shortName
       title: Group
+      type: object
     Role:
       description: A role.
       example:
@@ -7309,6 +8836,7 @@ components:
       - name
       - shortName
       title: Role
+      type: object
     AuditLog:
       description: An audit log entry.
       example:
@@ -7353,6 +8881,7 @@ components:
       - createdAt
       - type
       title: AuditLog
+      type: object
     EIP712TypeEntry:
       properties:
         name:
@@ -7362,17 +8891,21 @@ components:
       required:
       - name
       - type
+      type: object
     EIP712Types:
       additionalProperties:
         items:
           $ref: '#/components/schemas/EIP712TypeEntry'
+        type: array
       description: A mapping of type names to arrays of fields.
       properties:
         EIP712Domain:
           items:
             $ref: '#/components/schemas/EIP712TypeEntry'
+          type: array
       required:
       - EIP712Domain
+      type: object
     EIP712Domain:
       description: The domain fields for EIP-712. All fields are optional per the
         specification.
@@ -7395,6 +8928,7 @@ components:
           pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
           title: Hex
           type: string
+      type: object
     EIP712TypedData:
       description: EIP-712 structured typed data object.
       properties:
@@ -7415,6 +8949,7 @@ components:
       - message
       - primaryType
       - types
+      type: object
     list_api_keys_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -8007,6 +9542,7 @@ components:
           type: string
       required:
       - label
+      type: object
     get_event_monitor_status_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -8579,6 +10115,7 @@ components:
       required:
       - label
       - versions
+      type: object
     list_contract_versions_200_response:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
@@ -9832,8 +11369,8 @@ components:
       example:
         result:
           rows:
-          - "{}"
-          - "{}"
+          - key: ""
+          - key: ""
         message: message
         status: 0
     get_event_query_200_response:
@@ -10366,6 +11903,7 @@ components:
         name: name
         description: description
         id: id
+      nullable: true
       properties:
         id:
           description: A hex string.
@@ -10411,6 +11949,7 @@ components:
       - payable
       - signature
       title: ContractABIMethod
+      type: object
     HSMSignRequestPersonalSign_chainId:
       description: Optionally lock the message to a specific chain by encoding the
         chain ID in the signature per EIP-155.
@@ -10537,6 +12076,7 @@ components:
       - status
       - transactionHash
       - transactionIndex
+      type: object
     CloudWalletTXToSign_tx:
       description: An Ethereum transaction.
       example:
@@ -10605,6 +12145,7 @@ components:
       - gas
       - type
       - value
+      type: object
     TransactionToSign_tx:
       description: An Ethereum transaction.
       example:
@@ -10674,6 +12215,7 @@ components:
       - nonce
       - type
       - value
+      type: object
     EIP712Domain_chainId:
       description: The EIP-155 chain ID of the application using the typed data.
       oneOf:

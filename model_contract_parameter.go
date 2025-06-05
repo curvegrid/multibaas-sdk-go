@@ -19,7 +19,7 @@ var _ MappedNullable = &ContractParameter{}
 
 // ContractParameter Type conversion options for an input or an output of a function or an event.
 type ContractParameter struct {
-	TypeConversion ContractABITypeConversion `json:"typeConversion"`
+	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
 }
 
 type _ContractParameter ContractParameter
@@ -28,7 +28,7 @@ type _ContractParameter ContractParameter
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractParameter(typeConversion ContractABITypeConversion) *ContractParameter {
+func NewContractParameter(typeConversion NullableContractABITypeConversion) *ContractParameter {
 	this := ContractParameter{}
 	this.TypeConversion = typeConversion
 	return &this
@@ -43,32 +43,34 @@ func NewContractParameterWithDefaults() *ContractParameter {
 }
 
 // GetTypeConversion returns the TypeConversion field value
+// If the value is explicit nil, the zero value for ContractABITypeConversion will be returned
 func (o *ContractParameter) GetTypeConversion() ContractABITypeConversion {
-	if o == nil {
+	if o == nil || o.TypeConversion.Get() == nil {
 		var ret ContractABITypeConversion
 		return ret
 	}
 
-	return o.TypeConversion
+	return *o.TypeConversion.Get()
 }
 
 // GetTypeConversionOk returns a tuple with the TypeConversion field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ContractParameter) GetTypeConversionOk() (*ContractABITypeConversion, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TypeConversion, true
+	return o.TypeConversion.Get(), o.TypeConversion.IsSet()
 }
 
 // SetTypeConversion sets field value
 func (o *ContractParameter) SetTypeConversion(v ContractABITypeConversion) {
-	o.TypeConversion = v
+	o.TypeConversion.Set(&v)
 }
 
 func (o ContractParameter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["typeConversion"] = o.TypeConversion
+	toSerialize["typeConversion"] = o.TypeConversion.Get()
 	return toSerialize, nil
 }
 

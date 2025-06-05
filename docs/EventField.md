@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The input name. | 
-**Value** | **interface{}** |  | 
+**Value** | **interface{}** | The input value. | 
 **Hashed** | **bool** | Has the value been hashed into a keccak256 string? | 
 **Type** | **string** | The type of the argument. | 
 
