@@ -4,18 +4,18 @@ All URIs are relative to *https://your_deployment.multibaas.com/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetBlock**](ChainsAPI.md#GetBlock) | **Get** /chains/{chain}/blocks/{block} | Get a block
-[**GetChainStatus**](ChainsAPI.md#GetChainStatus) | **Get** /chains/{chain}/status | Get chain status
-[**GetTransaction**](ChainsAPI.md#GetTransaction) | **Get** /chains/{chain}/transactions/{hash} | Get transaction
-[**GetTransactionReceipt**](ChainsAPI.md#GetTransactionReceipt) | **Get** /chains/{chain}/transactions/receipt/{hash} | Get transaction receipt
-[**SubmitSignedTransaction**](ChainsAPI.md#SubmitSignedTransaction) | **Post** /chains/{chain}/transactions/submit | Submit signed transaction
-[**TransferEth**](ChainsAPI.md#TransferEth) | **Post** /chains/{chain}/transfers | Transfer ETH
+[**GetBlock**](ChainsAPI.md#GetBlock) | **Get** /chains/ethereum/blocks/{block} | Get a block
+[**GetChainStatus**](ChainsAPI.md#GetChainStatus) | **Get** /chains/ethereum/status | Get chain status
+[**GetTransaction**](ChainsAPI.md#GetTransaction) | **Get** /chains/ethereum/transactions/{hash} | Get transaction
+[**GetTransactionReceipt**](ChainsAPI.md#GetTransactionReceipt) | **Get** /chains/ethereum/transactions/receipt/{hash} | Get transaction receipt
+[**SubmitSignedTransaction**](ChainsAPI.md#SubmitSignedTransaction) | **Post** /chains/ethereum/transactions/submit | Submit signed transaction
+[**TransferEth**](ChainsAPI.md#TransferEth) | **Post** /chains/ethereum/transfers | Transfer ETH
 
 
 
 ## GetBlock
 
-> GetBlock200Response GetBlock(ctx, chain, block).Execute()
+> GetBlock200Response GetBlock(ctx, block).Execute()
 
 Get a block
 
@@ -34,12 +34,11 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	block := "block_example" // string | A block number, hash or 'latest' for the latest block.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChainsAPI.GetBlock(context.Background(), chain, block).Execute()
+	resp, r, err := apiClient.ChainsAPI.GetBlock(context.Background(), block).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetBlock``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +54,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **block** | **string** | A block number, hash or &#39;latest&#39; for the latest block. | 
 
 ### Other Parameters
@@ -65,7 +63,6 @@ Other parameters are passed through a pointer to a apiGetBlockRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type
@@ -88,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## GetChainStatus
 
-> GetChainStatus200Response GetChainStatus(ctx, chain).Execute()
+> GetChainStatus200Response GetChainStatus(ctx).Execute()
 
 Get chain status
 
@@ -107,11 +104,10 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChainsAPI.GetChainStatus(context.Background(), chain).Execute()
+	resp, r, err := apiClient.ChainsAPI.GetChainStatus(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetChainStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,19 +119,11 @@ func main() {
 
 ### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetChainStatusRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
 
 
 ### Return type
@@ -158,7 +146,7 @@ Name | Type | Description  | Notes
 
 ## GetTransaction
 
-> GetTransaction200Response GetTransaction(ctx, chain, hash).Include(include).Execute()
+> GetTransaction200Response GetTransaction(ctx, hash).Include(include).Execute()
 
 Get transaction
 
@@ -177,13 +165,12 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	hash := "hash_example" // string | A transaction hash.
 	include := "include_example" // string | Include contract and method call details, if available. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChainsAPI.GetTransaction(context.Background(), chain, hash).Include(include).Execute()
+	resp, r, err := apiClient.ChainsAPI.GetTransaction(context.Background(), hash).Include(include).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetTransaction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,7 +186,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **hash** | **string** | A transaction hash. | 
 
 ### Other Parameters
@@ -209,7 +195,6 @@ Other parameters are passed through a pointer to a apiGetTransactionRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **include** | **string** | Include contract and method call details, if available. | 
 
@@ -233,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## GetTransactionReceipt
 
-> GetTransactionReceipt200Response GetTransactionReceipt(ctx, chain, hash).Include(include).Execute()
+> GetTransactionReceipt200Response GetTransactionReceipt(ctx, hash).Include(include).Execute()
 
 Get transaction receipt
 
@@ -252,13 +237,12 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	hash := "hash_example" // string | A transaction hash.
 	include := "include_example" // string | Include contract and event details, if available. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChainsAPI.GetTransactionReceipt(context.Background(), chain, hash).Include(include).Execute()
+	resp, r, err := apiClient.ChainsAPI.GetTransactionReceipt(context.Background(), hash).Include(include).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.GetTransactionReceipt``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -274,7 +258,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **hash** | **string** | A transaction hash. | 
 
 ### Other Parameters
@@ -284,7 +267,6 @@ Other parameters are passed through a pointer to a apiGetTransactionReceiptReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **include** | **string** | Include contract and event details, if available. | 
 
@@ -308,7 +290,7 @@ Name | Type | Description  | Notes
 
 ## SubmitSignedTransaction
 
-> SubmitSignedTransaction200Response SubmitSignedTransaction(ctx, chain).SignedTransactionSubmission(signedTransactionSubmission).Execute()
+> SubmitSignedTransaction200Response SubmitSignedTransaction(ctx).SignedTransactionSubmission(signedTransactionSubmission).Execute()
 
 Submit signed transaction
 
@@ -327,12 +309,11 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	signedTransactionSubmission := *openapiclient.NewSignedTransactionSubmission("SignedTx_example") // SignedTransactionSubmission | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChainsAPI.SubmitSignedTransaction(context.Background(), chain).SignedTransactionSubmission(signedTransactionSubmission).Execute()
+	resp, r, err := apiClient.ChainsAPI.SubmitSignedTransaction(context.Background()).SignedTransactionSubmission(signedTransactionSubmission).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.SubmitSignedTransaction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,10 +326,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 
 ### Other Parameters
 
@@ -357,7 +334,6 @@ Other parameters are passed through a pointer to a apiSubmitSignedTransactionReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **signedTransactionSubmission** | [**SignedTransactionSubmission**](SignedTransactionSubmission.md) |  | 
 
 ### Return type
@@ -380,7 +356,7 @@ Name | Type | Description  | Notes
 
 ## TransferEth
 
-> TransferEth200Response TransferEth(ctx, chain).PostMethodArgs(postMethodArgs).Execute()
+> TransferEth200Response TransferEth(ctx).PostMethodArgs(postMethodArgs).Execute()
 
 Transfer ETH
 
@@ -399,12 +375,11 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChainsAPI.TransferEth(context.Background(), chain).PostMethodArgs(postMethodArgs).Execute()
+	resp, r, err := apiClient.ChainsAPI.TransferEth(context.Background()).PostMethodArgs(postMethodArgs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChainsAPI.TransferEth``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -417,10 +392,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 
 ### Other Parameters
 
@@ -429,7 +400,6 @@ Other parameters are passed through a pointer to a apiTransferEthRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **postMethodArgs** | [**PostMethodArgs**](PostMethodArgs.md) |  | 
 
 ### Return type

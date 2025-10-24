@@ -23,6 +23,7 @@ docs/AddressesAPI.md
 docs/AdminAPI.md
 docs/ApiKey.md
 docs/AuditLog.md
+docs/AuthorizationExtraInfo.md
 docs/AzureAccount.md
 docs/AzureHardwareWallet.md
 docs/AzureWallet.md
@@ -36,7 +37,6 @@ docs/Block.md
 docs/CORSOrigin.md
 docs/CallContractFunction200Response.md
 docs/CallContractFunction200ResponseAllOfResult.md
-docs/ChainName.md
 docs/ChainStatus.md
 docs/ChainsAPI.md
 docs/CloudWalletTXToSign.md
@@ -48,7 +48,6 @@ docs/ContractABIErrorArgument.md
 docs/ContractABIEvent.md
 docs/ContractABIEventArgument.md
 docs/ContractABIMethod.md
-docs/ContractABIMethod1.md
 docs/ContractABIMethodArgument.md
 docs/ContractABIType.md
 docs/ContractABITypeConversion.md
@@ -81,8 +80,8 @@ docs/EIP712Types.md
 docs/Error.md
 docs/Event.md
 docs/EventField.md
+docs/EventIndexingStatus.md
 docs/EventInformation.md
-docs/EventMonitorStatus.md
 docs/EventQueriesAPI.md
 docs/EventQuery.md
 docs/EventQueryEvent.md
@@ -100,10 +99,11 @@ docs/GetChainStatus200Response.md
 docs/GetContract200Response.md
 docs/GetContractVersions200Response.md
 docs/GetEventCount200Response.md
-docs/GetEventMonitorStatus200Response.md
+docs/GetEventIndexingStatus200Response.md
 docs/GetEventQuery200Response.md
 docs/GetEventTypeConversions200Response.md
 docs/GetFunctionTypeConversions200Response.md
+docs/GetPlan200Response.md
 docs/GetTransaction200Response.md
 docs/GetTransactionReceipt200Response.md
 docs/Group.md
@@ -115,6 +115,7 @@ docs/HSMSignRequestTypedData.md
 docs/HSMSignResponse.md
 docs/HsmAPI.md
 docs/Invite.md
+docs/InviteRequest.md
 docs/LinkAddressContractRequest.md
 docs/ListAddresses200Response.md
 docs/ListApiKeys200Response.md
@@ -128,6 +129,7 @@ docs/ListEvents200Response.md
 docs/ListGroups200Response.md
 docs/ListHsm200Response.md
 docs/ListHsmWallets200Response.md
+docs/ListInvites200Response.md
 docs/ListUserSigners200Response.md
 docs/ListUsers200Response.md
 docs/ListWalletTransactions200Response.md
@@ -135,12 +137,13 @@ docs/ListWebhookEvents200Response.md
 docs/ListWebhooks200Response.md
 docs/Log.md
 docs/MethodArg.md
-docs/MethodCallPreviewResponse.md
 docs/MethodCallResponse.md
 docs/MethodTypeConversionOptions.md
+docs/Plan.md
+docs/PlanFeature.md
+docs/PlanLimit.md
 docs/PostMethodArgs.md
 docs/PostMethodResponse.md
-docs/PreviewArgs.md
 docs/Role.md
 docs/SavedEventQuery.md
 docs/SetAddress201Response.md
@@ -182,6 +185,7 @@ model_address_alias.go
 model_api_key.go
 model_api_key_with_secret.go
 model_audit_log.go
+model_authorization_extra_info.go
 model_azure_account.go
 model_azure_hardware_wallet.go
 model_azure_wallet.go
@@ -194,7 +198,6 @@ model_base_webhook_endpoint.go
 model_block.go
 model_call_contract_function_200_response.go
 model_call_contract_function_200_response_all_of_result.go
-model_chain_name.go
 model_chain_status.go
 model_cloud_wallet_txto_sign.go
 model_cloud_wallet_txto_sign_tx.go
@@ -205,7 +208,6 @@ model_contract_abi_error_argument.go
 model_contract_abi_event.go
 model_contract_abi_event_argument.go
 model_contract_abi_method.go
-model_contract_abi_method_1.go
 model_contract_abi_method_argument.go
 model_contract_abi_type.go
 model_contract_abi_type_conversion.go
@@ -238,8 +240,8 @@ model_eip712_types.go
 model_error.go
 model_event.go
 model_event_field.go
+model_event_indexing_status.go
 model_event_information.go
-model_event_monitor_status.go
 model_event_query.go
 model_event_query_event.go
 model_event_query_field.go
@@ -255,10 +257,11 @@ model_get_chain_status_200_response.go
 model_get_contract_200_response.go
 model_get_contract_versions_200_response.go
 model_get_event_count_200_response.go
-model_get_event_monitor_status_200_response.go
+model_get_event_indexing_status_200_response.go
 model_get_event_query_200_response.go
 model_get_event_type_conversions_200_response.go
 model_get_function_type_conversions_200_response.go
+model_get_plan_200_response.go
 model_get_transaction_200_response.go
 model_get_transaction_receipt_200_response.go
 model_group.go
@@ -269,6 +272,7 @@ model_hsm_sign_request_personal_sign_chain_id.go
 model_hsm_sign_request_typed_data.go
 model_hsm_sign_response.go
 model_invite.go
+model_invite_request.go
 model_link_address_contract_request.go
 model_list_addresses_200_response.go
 model_list_api_keys_200_response.go
@@ -282,6 +286,7 @@ model_list_events_200_response.go
 model_list_groups_200_response.go
 model_list_hsm_200_response.go
 model_list_hsm_wallets_200_response.go
+model_list_invites_200_response.go
 model_list_user_signers_200_response.go
 model_list_users_200_response.go
 model_list_wallet_transactions_200_response.go
@@ -289,12 +294,13 @@ model_list_webhook_events_200_response.go
 model_list_webhooks_200_response.go
 model_log.go
 model_method_arg.go
-model_method_call_preview_response.go
 model_method_call_response.go
 model_method_type_conversion_options.go
+model_plan.go
+model_plan_feature.go
+model_plan_limit.go
 model_post_method_args.go
 model_post_method_response.go
-model_preview_args.go
 model_role.go
 model_saved_event_query.go
 model_set_address_201_response.go

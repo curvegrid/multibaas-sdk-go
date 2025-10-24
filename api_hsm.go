@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -127,11 +127,10 @@ type HsmAPI interface {
 		Sets the next transaction nonce for the given HSM address that will be used with the nonce management feature.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param walletAddress An Ethereum address.
 		@return ApiSetLocalNonceRequest
 	*/
-	SetLocalNonce(ctx context.Context, chain ChainName, walletAddress string) ApiSetLocalNonceRequest
+	SetLocalNonce(ctx context.Context, walletAddress string) ApiSetLocalNonceRequest
 
 	// SetLocalNonceExecute executes the request
 	//  @return BaseResponse
@@ -143,10 +142,9 @@ type HsmAPI interface {
 		Signs and submits the given transaction using an HSM address.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@return ApiSignAndSubmitTransactionRequest
 	*/
-	SignAndSubmitTransaction(ctx context.Context, chain ChainName) ApiSignAndSubmitTransactionRequest
+	SignAndSubmitTransaction(ctx context.Context) ApiSignAndSubmitTransactionRequest
 
 	// SignAndSubmitTransactionExecute executes the request
 	//  @return TransferEth200Response
@@ -158,10 +156,9 @@ type HsmAPI interface {
 		Signs the given data using the given HSM address.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@return ApiSignDataRequest
 	*/
-	SignData(ctx context.Context, chain ChainName) ApiSignDataRequest
+	SignData(ctx context.Context) ApiSignDataRequest
 
 	// SignDataExecute executes the request
 	//  @return SignData200Response
@@ -1143,7 +1140,6 @@ func (a *HsmAPIService) RemoveHsmKeyExecute(r ApiRemoveHsmKeyRequest) (*BaseResp
 type ApiSetLocalNonceRequest struct {
 	ctx             context.Context
 	ApiService      HsmAPI
-	chain           ChainName
 	walletAddress   string
 	setNonceRequest *SetNonceRequest
 }
@@ -1163,15 +1159,13 @@ SetLocalNonce Set local nonce
 Sets the next transaction nonce for the given HSM address that will be used with the nonce management feature.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param walletAddress An Ethereum address.
 	@return ApiSetLocalNonceRequest
 */
-func (a *HsmAPIService) SetLocalNonce(ctx context.Context, chain ChainName, walletAddress string) ApiSetLocalNonceRequest {
+func (a *HsmAPIService) SetLocalNonce(ctx context.Context, walletAddress string) ApiSetLocalNonceRequest {
 	return ApiSetLocalNonceRequest{
 		ApiService:    a,
 		ctx:           ctx,
-		chain:         chain,
 		walletAddress: walletAddress,
 	}
 }
@@ -1192,8 +1186,7 @@ func (a *HsmAPIService) SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*BaseRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/hsm/nonce/{wallet_address}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/hsm/nonce/{wallet_address}"
 	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1283,7 +1276,6 @@ func (a *HsmAPIService) SetLocalNonceExecute(r ApiSetLocalNonceRequest) (*BaseRe
 type ApiSignAndSubmitTransactionRequest struct {
 	ctx                 context.Context
 	ApiService          HsmAPI
-	chain               ChainName
 	cloudWalletTXToSign *CloudWalletTXToSign
 }
 
@@ -1302,14 +1294,12 @@ SignAndSubmitTransaction Sign and submit transaction
 Signs and submits the given transaction using an HSM address.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@return ApiSignAndSubmitTransactionRequest
 */
-func (a *HsmAPIService) SignAndSubmitTransaction(ctx context.Context, chain ChainName) ApiSignAndSubmitTransactionRequest {
+func (a *HsmAPIService) SignAndSubmitTransaction(ctx context.Context) ApiSignAndSubmitTransactionRequest {
 	return ApiSignAndSubmitTransactionRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 	}
 }
 
@@ -1329,8 +1319,7 @@ func (a *HsmAPIService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransa
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/hsm/submit"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/hsm/submit"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1419,7 +1408,6 @@ func (a *HsmAPIService) SignAndSubmitTransactionExecute(r ApiSignAndSubmitTransa
 type ApiSignDataRequest struct {
 	ctx            context.Context
 	ApiService     HsmAPI
-	chain          ChainName
 	hSMSignRequest *HSMSignRequest
 }
 
@@ -1438,14 +1426,12 @@ SignData Sign data
 Signs the given data using the given HSM address.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@return ApiSignDataRequest
 */
-func (a *HsmAPIService) SignData(ctx context.Context, chain ChainName) ApiSignDataRequest {
+func (a *HsmAPIService) SignData(ctx context.Context) ApiSignDataRequest {
 	return ApiSignDataRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 	}
 }
 
@@ -1465,8 +1451,7 @@ func (a *HsmAPIService) SignDataExecute(r ApiSignDataRequest) (*SignData200Respo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/hsm/sign"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/hsm/sign"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

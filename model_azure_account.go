@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -20,7 +20,7 @@ var _ MappedNullable = &AzureAccount{}
 // AzureAccount An Azure account.
 type AzureAccount struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+	Label string `json:"label" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
 	// The Application ID that will be accessing the Key Vault.
 	ClientID string `json:"clientID"`
 	// The application’s secret key that you generate when you first register the application in Azure.

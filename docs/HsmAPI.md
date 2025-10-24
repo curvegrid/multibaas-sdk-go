@@ -11,9 +11,9 @@ Method | HTTP request | Description
 [**ListHsmWallets**](HsmAPI.md#ListHsmWallets) | **Get** /hsm/wallets | List HSM wallets
 [**RemoveHsmConfig**](HsmAPI.md#RemoveHsmConfig) | **Delete** /hsm/config/{client_id} | Remove HSM config
 [**RemoveHsmKey**](HsmAPI.md#RemoveHsmKey) | **Delete** /hsm/key/{wallet_address} | Remove HSM key
-[**SetLocalNonce**](HsmAPI.md#SetLocalNonce) | **Post** /chains/{chain}/hsm/nonce/{wallet_address} | Set local nonce
-[**SignAndSubmitTransaction**](HsmAPI.md#SignAndSubmitTransaction) | **Post** /chains/{chain}/hsm/submit | Sign and submit transaction
-[**SignData**](HsmAPI.md#SignData) | **Post** /chains/{chain}/hsm/sign | Sign data
+[**SetLocalNonce**](HsmAPI.md#SetLocalNonce) | **Post** /chains/ethereum/hsm/nonce/{wallet_address} | Set local nonce
+[**SignAndSubmitTransaction**](HsmAPI.md#SignAndSubmitTransaction) | **Post** /chains/ethereum/hsm/submit | Sign and submit transaction
+[**SignData**](HsmAPI.md#SignData) | **Post** /chains/ethereum/hsm/sign | Sign data
 
 
 
@@ -498,7 +498,7 @@ Name | Type | Description  | Notes
 
 ## SetLocalNonce
 
-> BaseResponse SetLocalNonce(ctx, chain, walletAddress).SetNonceRequest(setNonceRequest).Execute()
+> BaseResponse SetLocalNonce(ctx, walletAddress).SetNonceRequest(setNonceRequest).Execute()
 
 Set local nonce
 
@@ -517,13 +517,12 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	walletAddress := "walletAddress_example" // string | An Ethereum address.
 	setNonceRequest := *openapiclient.NewSetNonceRequest() // SetNonceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HsmAPI.SetLocalNonce(context.Background(), chain, walletAddress).SetNonceRequest(setNonceRequest).Execute()
+	resp, r, err := apiClient.HsmAPI.SetLocalNonce(context.Background(), walletAddress).SetNonceRequest(setNonceRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SetLocalNonce``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -539,7 +538,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
@@ -549,7 +547,6 @@ Other parameters are passed through a pointer to a apiSetLocalNonceRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **setNonceRequest** | [**SetNonceRequest**](SetNonceRequest.md) |  | 
 
@@ -573,7 +570,7 @@ Name | Type | Description  | Notes
 
 ## SignAndSubmitTransaction
 
-> TransferEth200Response SignAndSubmitTransaction(ctx, chain).CloudWalletTXToSign(cloudWalletTXToSign).Execute()
+> TransferEth200Response SignAndSubmitTransaction(ctx).CloudWalletTXToSign(cloudWalletTXToSign).Execute()
 
 Sign and submit transaction
 
@@ -592,12 +589,11 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	cloudWalletTXToSign := *openapiclient.NewCloudWalletTXToSign(*openapiclient.NewCloudWalletTXToSignTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))) // CloudWalletTXToSign | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HsmAPI.SignAndSubmitTransaction(context.Background(), chain).CloudWalletTXToSign(cloudWalletTXToSign).Execute()
+	resp, r, err := apiClient.HsmAPI.SignAndSubmitTransaction(context.Background()).CloudWalletTXToSign(cloudWalletTXToSign).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SignAndSubmitTransaction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -610,10 +606,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 
 ### Other Parameters
 
@@ -622,7 +614,6 @@ Other parameters are passed through a pointer to a apiSignAndSubmitTransactionRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **cloudWalletTXToSign** | [**CloudWalletTXToSign**](CloudWalletTXToSign.md) |  | 
 
 ### Return type
@@ -645,7 +636,7 @@ Name | Type | Description  | Notes
 
 ## SignData
 
-> SignData200Response SignData(ctx, chain).HSMSignRequest(hSMSignRequest).Execute()
+> SignData200Response SignData(ctx).HSMSignRequest(hSMSignRequest).Execute()
 
 Sign data
 
@@ -664,12 +655,11 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	hSMSignRequest := openapiclient.HSMSignRequest{HSMSignRequestPersonalSign: openapiclient.NewHSMSignRequestPersonalSign("Method_example", "Address_example", "Data_example")} // HSMSignRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HsmAPI.SignData(context.Background(), chain).HSMSignRequest(hSMSignRequest).Execute()
+	resp, r, err := apiClient.HsmAPI.SignData(context.Background()).HSMSignRequest(hSMSignRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HsmAPI.SignData``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -682,10 +672,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 
 ### Other Parameters
 
@@ -694,7 +680,6 @@ Other parameters are passed through a pointer to a apiSignDataRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **hSMSignRequest** | [**HSMSignRequest**](HSMSignRequest.md) |  | 
 
 ### Return type

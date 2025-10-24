@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -61,7 +61,6 @@ type ApiGetEventCountRequest struct {
 	eventIndexInLog *int64
 	txHash          *string
 	fromConstructor *bool
-	chain           *ChainName
 	contractAddress *string
 	contractLabel   *string
 	eventSignature  *string
@@ -102,12 +101,6 @@ func (r ApiGetEventCountRequest) TxHash(txHash string) ApiGetEventCountRequest {
 // Filter events by whether they were emitted from the constructor function.
 func (r ApiGetEventCountRequest) FromConstructor(fromConstructor bool) ApiGetEventCountRequest {
 	r.fromConstructor = &fromConstructor
-	return r
-}
-
-// Filter events by a chain name.
-func (r ApiGetEventCountRequest) Chain(chain ChainName) ApiGetEventCountRequest {
-	r.chain = &chain
 	return r
 }
 
@@ -197,9 +190,6 @@ func (a *EventsAPIService) GetEventCountExecute(r ApiGetEventCountRequest) (*Get
 	}
 	if r.fromConstructor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "from_constructor", r.fromConstructor, "form", "")
-	}
-	if r.chain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "form", "")
 	}
 	if r.contractAddress != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "form", "")
@@ -303,7 +293,6 @@ type ApiListEventsRequest struct {
 	eventIndexInLog *int64
 	txHash          *string
 	fromConstructor *bool
-	chain           *ChainName
 	contractAddress *string
 	contractLabel   *string
 	eventSignature  *string
@@ -344,12 +333,6 @@ func (r ApiListEventsRequest) TxHash(txHash string) ApiListEventsRequest {
 // Filter events by whether they were emitted from the constructor function.
 func (r ApiListEventsRequest) FromConstructor(fromConstructor bool) ApiListEventsRequest {
 	r.fromConstructor = &fromConstructor
-	return r
-}
-
-// Filter events by a chain name.
-func (r ApiListEventsRequest) Chain(chain ChainName) ApiListEventsRequest {
-	r.chain = &chain
 	return r
 }
 
@@ -439,9 +422,6 @@ func (a *EventsAPIService) ListEventsExecute(r ApiListEventsRequest) (*ListEvent
 	}
 	if r.fromConstructor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "from_constructor", r.fromConstructor, "form", "")
-	}
-	if r.chain != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "chain", r.chain, "form", "")
 	}
 	if r.contractAddress != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "form", "")

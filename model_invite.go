@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -12,16 +12,20 @@ package multibaas
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the Invite type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Invite{}
 
-// Invite An invite with groups.
+// Invite A user invitation to MultiBaas.
 type Invite struct {
 	// The invitee's email address.
-	Email    string  `json:"email"`
-	GroupIDs []int64 `json:"groupIDs,omitempty"`
+	Email string `json:"email"`
+	// The time the invite was created.
+	CreatedAt time.Time `json:"createdAt"`
+	// The time the invite expires.
+	ExpiresAt time.Time `json:"expiresAt"`
 }
 
 type _Invite Invite
@@ -30,9 +34,11 @@ type _Invite Invite
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvite(email string) *Invite {
+func NewInvite(email string, createdAt time.Time, expiresAt time.Time) *Invite {
 	this := Invite{}
 	this.Email = email
+	this.CreatedAt = createdAt
+	this.ExpiresAt = expiresAt
 	return &this
 }
 
@@ -68,44 +74,59 @@ func (o *Invite) SetEmail(v string) {
 	o.Email = v
 }
 
-// GetGroupIDs returns the GroupIDs field value if set, zero value otherwise.
-func (o *Invite) GetGroupIDs() []int64 {
-	if o == nil || IsNil(o.GroupIDs) {
-		var ret []int64
+// GetCreatedAt returns the CreatedAt field value
+func (o *Invite) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
 		return ret
 	}
-	return o.GroupIDs
+
+	return o.CreatedAt
 }
 
-// GetGroupIDsOk returns a tuple with the GroupIDs field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *Invite) GetGroupIDsOk() ([]int64, bool) {
-	if o == nil || IsNil(o.GroupIDs) {
+func (o *Invite) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.GroupIDs, true
+	return &o.CreatedAt, true
 }
 
-// HasGroupIDs returns a boolean if a field has been set.
-func (o *Invite) HasGroupIDs() bool {
-	if o != nil && !IsNil(o.GroupIDs) {
-		return true
+// SetCreatedAt sets field value
+func (o *Invite) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
+// GetExpiresAt returns the ExpiresAt field value
+func (o *Invite) GetExpiresAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
 	}
 
-	return false
+	return o.ExpiresAt
 }
 
-// SetGroupIDs gets a reference to the given []int64 and assigns it to the GroupIDs field.
-func (o *Invite) SetGroupIDs(v []int64) {
-	o.GroupIDs = v
+// GetExpiresAtOk returns a tuple with the ExpiresAt field value
+// and a boolean to check if the value has been set.
+func (o *Invite) GetExpiresAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiresAt, true
+}
+
+// SetExpiresAt sets field value
+func (o *Invite) SetExpiresAt(v time.Time) {
+	o.ExpiresAt = v
 }
 
 func (o Invite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["email"] = o.Email
-	if !IsNil(o.GroupIDs) {
-		toSerialize["groupIDs"] = o.GroupIDs
-	}
+	toSerialize["createdAt"] = o.CreatedAt
+	toSerialize["expiresAt"] = o.ExpiresAt
 	return toSerialize, nil
 }
 

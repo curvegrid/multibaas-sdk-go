@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -20,10 +20,10 @@ var _ MappedNullable = &LinkAddressContractRequest{}
 // LinkAddressContractRequest struct for LinkAddressContractRequest
 type LinkAddressContractRequest struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
-	Label string `json:"label" validate:"regexp=^[a-z0-9_-]+$"`
+	Label string `json:"label" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
 	// The contract version.
 	Version *string `json:"version,omitempty" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
-	// The block number from which to start syncing events. The value can be `latest` for the latest block number, an absolute block number (e.g. `123` for the block number 123), or a relative block number (e.g. `-100` for 100 blocks before the latest block). If absent, the event monitor will be disabled for this contract and events won't be synced.
+	// The block number from which to start syncing events. The value can be `latest` for the latest block number, an absolute block number (e.g. `123` for the block number 123), or a relative block number (e.g. `-100` for 100 blocks before the latest block). If absent, event indexing will be disabled for this contract and events won't be synced.
 	StartingBlock *string `json:"startingBlock,omitempty"`
 }
 

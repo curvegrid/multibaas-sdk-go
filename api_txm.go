@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -27,12 +27,11 @@ type TxmAPI interface {
 		Cancels a transaction by resubmitting it as no-op transaction and with a higher gas price.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param walletAddress An Ethereum address.
 		@param nonce Transaction nonce.
 		@return ApiCancelTransactionRequest
 	*/
-	CancelTransaction(ctx context.Context, chain ChainName, walletAddress string, nonce int64) ApiCancelTransactionRequest
+	CancelTransaction(ctx context.Context, walletAddress string, nonce int64) ApiCancelTransactionRequest
 
 	// CancelTransactionExecute executes the request
 	//  @return TransferEth200Response
@@ -44,11 +43,10 @@ type TxmAPI interface {
 		Count all transactions for the given wallet address.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param walletAddress An Ethereum address.
 		@return ApiCountWalletTransactionsRequest
 	*/
-	CountWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiCountWalletTransactionsRequest
+	CountWalletTransactions(ctx context.Context, walletAddress string) ApiCountWalletTransactionsRequest
 
 	// CountWalletTransactionsExecute executes the request
 	//  @return CountWalletTransactions200Response
@@ -60,11 +58,10 @@ type TxmAPI interface {
 		List the transactions submitted by the given wallet address.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param walletAddress An Ethereum address.
 		@return ApiListWalletTransactionsRequest
 	*/
-	ListWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiListWalletTransactionsRequest
+	ListWalletTransactions(ctx context.Context, walletAddress string) ApiListWalletTransactionsRequest
 
 	// ListWalletTransactionsExecute executes the request
 	//  @return ListWalletTransactions200Response
@@ -76,12 +73,11 @@ type TxmAPI interface {
 		Speeds up a transaction by resubmitting it with a higher gas price.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param walletAddress An Ethereum address.
 		@param nonce Transaction nonce.
 		@return ApiSpeedUpTransactionRequest
 	*/
-	SpeedUpTransaction(ctx context.Context, chain ChainName, walletAddress string, nonce int64) ApiSpeedUpTransactionRequest
+	SpeedUpTransaction(ctx context.Context, walletAddress string, nonce int64) ApiSpeedUpTransactionRequest
 
 	// SpeedUpTransactionExecute executes the request
 	//  @return TransferEth200Response
@@ -94,7 +90,6 @@ type TxmAPIService service
 type ApiCancelTransactionRequest struct {
 	ctx           context.Context
 	ApiService    TxmAPI
-	chain         ChainName
 	walletAddress string
 	nonce         int64
 	gasParams     *GasParams
@@ -115,16 +110,14 @@ CancelTransaction Cancel transaction
 Cancels a transaction by resubmitting it as no-op transaction and with a higher gas price.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param walletAddress An Ethereum address.
 	@param nonce Transaction nonce.
 	@return ApiCancelTransactionRequest
 */
-func (a *TxmAPIService) CancelTransaction(ctx context.Context, chain ChainName, walletAddress string, nonce int64) ApiCancelTransactionRequest {
+func (a *TxmAPIService) CancelTransaction(ctx context.Context, walletAddress string, nonce int64) ApiCancelTransactionRequest {
 	return ApiCancelTransactionRequest{
 		ApiService:    a,
 		ctx:           ctx,
-		chain:         chain,
 		walletAddress: walletAddress,
 		nonce:         nonce,
 	}
@@ -146,8 +139,7 @@ func (a *TxmAPIService) CancelTransactionExecute(r ApiCancelTransactionRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/txm/{wallet_address}/nonce/{nonce}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/txm/{wallet_address}/nonce/{nonce}/cancel"
 	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"nonce"+"}", url.PathEscape(parameterValueToString(r.nonce, "nonce")), -1)
 
@@ -238,7 +230,6 @@ func (a *TxmAPIService) CancelTransactionExecute(r ApiCancelTransactionRequest) 
 type ApiCountWalletTransactionsRequest struct {
 	ctx           context.Context
 	ApiService    TxmAPI
-	chain         ChainName
 	walletAddress string
 }
 
@@ -252,15 +243,13 @@ CountWalletTransactions Count all transactions for a wallet
 Count all transactions for the given wallet address.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param walletAddress An Ethereum address.
 	@return ApiCountWalletTransactionsRequest
 */
-func (a *TxmAPIService) CountWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiCountWalletTransactionsRequest {
+func (a *TxmAPIService) CountWalletTransactions(ctx context.Context, walletAddress string) ApiCountWalletTransactionsRequest {
 	return ApiCountWalletTransactionsRequest{
 		ApiService:    a,
 		ctx:           ctx,
-		chain:         chain,
 		walletAddress: walletAddress,
 	}
 }
@@ -281,8 +270,7 @@ func (a *TxmAPIService) CountWalletTransactionsExecute(r ApiCountWalletTransacti
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/txm/{wallet_address}/count"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/txm/{wallet_address}/count"
 	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -367,7 +355,6 @@ func (a *TxmAPIService) CountWalletTransactionsExecute(r ApiCountWalletTransacti
 type ApiListWalletTransactionsRequest struct {
 	ctx           context.Context
 	ApiService    TxmAPI
-	chain         ChainName
 	walletAddress string
 	hash          *string
 	nonce         *int64
@@ -414,15 +401,13 @@ ListWalletTransactions List transactions for a wallet
 List the transactions submitted by the given wallet address.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param walletAddress An Ethereum address.
 	@return ApiListWalletTransactionsRequest
 */
-func (a *TxmAPIService) ListWalletTransactions(ctx context.Context, chain ChainName, walletAddress string) ApiListWalletTransactionsRequest {
+func (a *TxmAPIService) ListWalletTransactions(ctx context.Context, walletAddress string) ApiListWalletTransactionsRequest {
 	return ApiListWalletTransactionsRequest{
 		ApiService:    a,
 		ctx:           ctx,
-		chain:         chain,
 		walletAddress: walletAddress,
 	}
 }
@@ -443,8 +428,7 @@ func (a *TxmAPIService) ListWalletTransactionsExecute(r ApiListWalletTransaction
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/txm/{wallet_address}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/txm/{wallet_address}"
 	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -547,7 +531,6 @@ func (a *TxmAPIService) ListWalletTransactionsExecute(r ApiListWalletTransaction
 type ApiSpeedUpTransactionRequest struct {
 	ctx           context.Context
 	ApiService    TxmAPI
-	chain         ChainName
 	walletAddress string
 	nonce         int64
 	gasParams     *GasParams
@@ -568,16 +551,14 @@ SpeedUpTransaction Speed up transaction
 Speeds up a transaction by resubmitting it with a higher gas price.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param walletAddress An Ethereum address.
 	@param nonce Transaction nonce.
 	@return ApiSpeedUpTransactionRequest
 */
-func (a *TxmAPIService) SpeedUpTransaction(ctx context.Context, chain ChainName, walletAddress string, nonce int64) ApiSpeedUpTransactionRequest {
+func (a *TxmAPIService) SpeedUpTransaction(ctx context.Context, walletAddress string, nonce int64) ApiSpeedUpTransactionRequest {
 	return ApiSpeedUpTransactionRequest{
 		ApiService:    a,
 		ctx:           ctx,
-		chain:         chain,
 		walletAddress: walletAddress,
 		nonce:         nonce,
 	}
@@ -599,8 +580,7 @@ func (a *TxmAPIService) SpeedUpTransactionExecute(r ApiSpeedUpTransactionRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/txm/{wallet_address}/nonce/{nonce}/speed_up"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/txm/{wallet_address}/nonce/{nonce}/speed_up"
 	localVarPath = strings.Replace(localVarPath, "{"+"wallet_address"+"}", url.PathEscape(parameterValueToString(r.walletAddress, "walletAddress")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"nonce"+"}", url.PathEscape(parameterValueToString(r.nonce, "nonce")), -1)
 

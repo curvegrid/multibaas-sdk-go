@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -17,16 +17,8 @@ import (
 
 // CallContractFunction200ResponseAllOfResult - struct for CallContractFunction200ResponseAllOfResult
 type CallContractFunction200ResponseAllOfResult struct {
-	MethodCallPreviewResponse *MethodCallPreviewResponse
 	MethodCallResponse        *MethodCallResponse
 	TransactionToSignResponse *TransactionToSignResponse
-}
-
-// MethodCallPreviewResponseAsCallContractFunction200ResponseAllOfResult is a convenience function that returns MethodCallPreviewResponse wrapped in CallContractFunction200ResponseAllOfResult
-func MethodCallPreviewResponseAsCallContractFunction200ResponseAllOfResult(v *MethodCallPreviewResponse) CallContractFunction200ResponseAllOfResult {
-	return CallContractFunction200ResponseAllOfResult{
-		MethodCallPreviewResponse: v,
-	}
 }
 
 // MethodCallResponseAsCallContractFunction200ResponseAllOfResult is a convenience function that returns MethodCallResponse wrapped in CallContractFunction200ResponseAllOfResult
@@ -51,18 +43,6 @@ func (dst *CallContractFunction200ResponseAllOfResult) UnmarshalJSON(data []byte
 	err = newStrictDecoder(data).Decode(&jsonDict)
 	if err != nil {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
-	}
-
-	// check if the discriminator value is 'MethodCallPreviewResponse'
-	if jsonDict["kind"] == "MethodCallPreviewResponse" {
-		// try to unmarshal JSON data into MethodCallPreviewResponse
-		err = json.Unmarshal(data, &dst.MethodCallPreviewResponse)
-		if err == nil {
-			return nil // data stored in dst.MethodCallPreviewResponse, return on the first match
-		} else {
-			dst.MethodCallPreviewResponse = nil
-			return fmt.Errorf("failed to unmarshal CallContractFunction200ResponseAllOfResult as MethodCallPreviewResponse: %s", err.Error())
-		}
 	}
 
 	// check if the discriminator value is 'MethodCallResponse'
@@ -94,10 +74,6 @@ func (dst *CallContractFunction200ResponseAllOfResult) UnmarshalJSON(data []byte
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src CallContractFunction200ResponseAllOfResult) MarshalJSON() ([]byte, error) {
-	if src.MethodCallPreviewResponse != nil {
-		return json.Marshal(&src.MethodCallPreviewResponse)
-	}
-
 	if src.MethodCallResponse != nil {
 		return json.Marshal(&src.MethodCallResponse)
 	}
@@ -114,10 +90,6 @@ func (obj *CallContractFunction200ResponseAllOfResult) GetActualInstance() inter
 	if obj == nil {
 		return nil
 	}
-	if obj.MethodCallPreviewResponse != nil {
-		return obj.MethodCallPreviewResponse
-	}
-
 	if obj.MethodCallResponse != nil {
 		return obj.MethodCallResponse
 	}
@@ -132,10 +104,6 @@ func (obj *CallContractFunction200ResponseAllOfResult) GetActualInstance() inter
 
 // Get the actual instance value
 func (obj CallContractFunction200ResponseAllOfResult) GetActualInstanceValue() interface{} {
-	if obj.MethodCallPreviewResponse != nil {
-		return *obj.MethodCallPreviewResponse
-	}
-
 	if obj.MethodCallResponse != nil {
 		return *obj.MethodCallResponse
 	}

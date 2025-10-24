@@ -4,7 +4,7 @@ All URIs are relative to *https://your_deployment.multibaas.com/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CallContractFunction**](ContractsAPI.md#CallContractFunction) | **Post** /chains/{chain}/addresses/{address-or-alias}/contracts/{contract}/methods/{method} | Call a contract function
+[**CallContractFunction**](ContractsAPI.md#CallContractFunction) | **Post** /chains/ethereum/addresses/{address-or-alias}/contracts/{contract}/methods/{method} | Call a contract function
 [**CreateContract**](ContractsAPI.md#CreateContract) | **Post** /contracts/{contract} | Create a contract
 [**CreateContracts**](ContractsAPI.md#CreateContracts) | **Post** /contracts | Create multiple contracts
 [**DeleteContract**](ContractsAPI.md#DeleteContract) | **Delete** /contracts/{contract} | Delete a contract
@@ -14,21 +14,21 @@ Method | HTTP request | Description
 [**GetContract**](ContractsAPI.md#GetContract) | **Get** /contracts/{contract} | Get a contract
 [**GetContractVersion**](ContractsAPI.md#GetContractVersion) | **Get** /contracts/{contract}/{version} | Get a contract version
 [**GetContractVersions**](ContractsAPI.md#GetContractVersions) | **Get** /contracts/{contract}/all | Get all contract versions
-[**GetEventMonitorStatus**](ContractsAPI.md#GetEventMonitorStatus) | **Get** /chains/{chain}/addresses/{address-or-alias}/contracts/{contract}/status | Get event monitor status
+[**GetEventIndexingStatus**](ContractsAPI.md#GetEventIndexingStatus) | **Get** /chains/ethereum/addresses/{address-or-alias}/contracts/{contract}/status | Get event indexing status
 [**GetEventTypeConversions**](ContractsAPI.md#GetEventTypeConversions) | **Get** /contracts/{contract}/{version}/events/{event} | Get event type conversions
 [**GetFunctionTypeConversions**](ContractsAPI.md#GetFunctionTypeConversions) | **Get** /contracts/{contract}/{version}/methods/{method} | Get function type conversions
-[**LinkAddressContract**](ContractsAPI.md#LinkAddressContract) | **Post** /chains/{chain}/addresses/{address-or-alias}/contracts | Link address and contract
+[**LinkAddressContract**](ContractsAPI.md#LinkAddressContract) | **Post** /chains/ethereum/addresses/{address-or-alias}/contracts | Link address and contract
 [**ListContractVersions**](ContractsAPI.md#ListContractVersions) | **Get** /contracts/{contract}/versions | List all contract versions
 [**ListContracts**](ContractsAPI.md#ListContracts) | **Get** /contracts | List contracts
 [**SetEventTypeConversions**](ContractsAPI.md#SetEventTypeConversions) | **Post** /contracts/{contract}/{version}/events/{event} | Set event type conversions
 [**SetFunctionTypeConversions**](ContractsAPI.md#SetFunctionTypeConversions) | **Post** /contracts/{contract}/{version}/methods/{method} | Set function type conversions
-[**UnlinkAddressContract**](ContractsAPI.md#UnlinkAddressContract) | **Delete** /chains/{chain}/addresses/{address-or-alias}/contracts/{contract} | Unlink address and contract
+[**UnlinkAddressContract**](ContractsAPI.md#UnlinkAddressContract) | **Delete** /chains/ethereum/addresses/{address-or-alias}/contracts/{contract} | Unlink address and contract
 
 
 
 ## CallContractFunction
 
-> CallContractFunction200Response CallContractFunction(ctx, chain, addressOrAlias, contract, method).PostMethodArgs(postMethodArgs).Execute()
+> CallContractFunction200Response CallContractFunction(ctx, addressOrAlias, contract, method).PostMethodArgs(postMethodArgs).Execute()
 
 Call a contract function
 
@@ -47,7 +47,6 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
 	contract := "contract_example" // string | 
 	method := "method_example" // string | Contract function.
@@ -55,7 +54,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContractsAPI.CallContractFunction(context.Background(), chain, addressOrAlias, contract, method).PostMethodArgs(postMethodArgs).Execute()
+	resp, r, err := apiClient.ContractsAPI.CallContractFunction(context.Background(), addressOrAlias, contract, method).PostMethodArgs(postMethodArgs).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.CallContractFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -71,7 +70,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **addressOrAlias** | **string** | An address or the alias of an address. | 
 **contract** | **string** |  | 
 **method** | **string** | Contract function. | 
@@ -83,7 +81,6 @@ Other parameters are passed through a pointer to a apiCallContractFunctionReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 
@@ -748,11 +745,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetEventMonitorStatus
+## GetEventIndexingStatus
 
-> GetEventMonitorStatus200Response GetEventMonitorStatus(ctx, chain, addressOrAlias, contract).Execute()
+> GetEventIndexingStatus200Response GetEventIndexingStatus(ctx, addressOrAlias, contract).Execute()
 
-Get event monitor status
+Get event indexing status
 
 
 
@@ -769,19 +766,18 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
 	contract := "contract_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContractsAPI.GetEventMonitorStatus(context.Background(), chain, addressOrAlias, contract).Execute()
+	resp, r, err := apiClient.ContractsAPI.GetEventIndexingStatus(context.Background(), addressOrAlias, contract).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetEventMonitorStatus``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.GetEventIndexingStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetEventMonitorStatus`: GetEventMonitorStatus200Response
-	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetEventMonitorStatus`: %v\n", resp)
+	// response from `GetEventIndexingStatus`: GetEventIndexingStatus200Response
+	fmt.Fprintf(os.Stdout, "Response from `ContractsAPI.GetEventIndexingStatus`: %v\n", resp)
 }
 ```
 
@@ -791,13 +787,12 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **addressOrAlias** | **string** | An address or the alias of an address. | 
 **contract** | **string** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetEventMonitorStatusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetEventIndexingStatusRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -805,10 +800,9 @@ Name | Type | Description  | Notes
 
 
 
-
 ### Return type
 
-[**GetEventMonitorStatus200Response**](GetEventMonitorStatus200Response.md)
+[**GetEventIndexingStatus200Response**](GetEventIndexingStatus200Response.md)
 
 ### Authorization
 
@@ -978,7 +972,7 @@ Name | Type | Description  | Notes
 
 ## LinkAddressContract
 
-> SetAddress201Response LinkAddressContract(ctx, chain, addressOrAlias).LinkAddressContractRequest(linkAddressContractRequest).Execute()
+> SetAddress201Response LinkAddressContract(ctx, addressOrAlias).LinkAddressContractRequest(linkAddressContractRequest).Execute()
 
 Link address and contract
 
@@ -997,13 +991,12 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
 	linkAddressContractRequest := *openapiclient.NewLinkAddressContractRequest("Label_example") // LinkAddressContractRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContractsAPI.LinkAddressContract(context.Background(), chain, addressOrAlias).LinkAddressContractRequest(linkAddressContractRequest).Execute()
+	resp, r, err := apiClient.ContractsAPI.LinkAddressContract(context.Background(), addressOrAlias).LinkAddressContractRequest(linkAddressContractRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.LinkAddressContract``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1019,7 +1012,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **addressOrAlias** | **string** | An address or the alias of an address. | 
 
 ### Other Parameters
@@ -1029,7 +1021,6 @@ Other parameters are passed through a pointer to a apiLinkAddressContractRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **linkAddressContractRequest** | [**LinkAddressContractRequest**](LinkAddressContractRequest.md) |  | 
 
@@ -1340,7 +1331,7 @@ Name | Type | Description  | Notes
 
 ## UnlinkAddressContract
 
-> SetAddress201Response UnlinkAddressContract(ctx, chain, addressOrAlias, contract).Execute()
+> SetAddress201Response UnlinkAddressContract(ctx, addressOrAlias, contract).Execute()
 
 Unlink address and contract
 
@@ -1359,13 +1350,12 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
 	contract := "contract_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ContractsAPI.UnlinkAddressContract(context.Background(), chain, addressOrAlias, contract).Execute()
+	resp, r, err := apiClient.ContractsAPI.UnlinkAddressContract(context.Background(), addressOrAlias, contract).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ContractsAPI.UnlinkAddressContract``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1381,7 +1371,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **addressOrAlias** | **string** | An address or the alias of an address. | 
 **contract** | **string** |  | 
 
@@ -1392,7 +1381,6 @@ Other parameters are passed through a pointer to a apiUnlinkAddressContractReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 

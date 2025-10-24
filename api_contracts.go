@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -27,13 +27,12 @@ type ContractsAPI interface {
 		Builds a transaction to call the given contract function. Returns a transaction to be signed and signs and submits to the blockchain it if the `signAndSubmit` flag is enabled.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param addressOrAlias An address or the alias of an address.
 		@param contract
 		@param method Contract function.
 		@return ApiCallContractFunctionRequest
 	*/
-	CallContractFunction(ctx context.Context, chain ChainName, addressOrAlias string, contract string, method string) ApiCallContractFunctionRequest
+	CallContractFunction(ctx context.Context, addressOrAlias string, contract string, method string) ApiCallContractFunctionRequest
 
 	// CallContractFunctionExecute executes the request
 	//  @return CallContractFunction200Response
@@ -177,21 +176,20 @@ type ContractsAPI interface {
 	GetContractVersionsExecute(r ApiGetContractVersionsRequest) (*GetContractVersions200Response, *http.Response, error)
 
 	/*
-		GetEventMonitorStatus Get event monitor status
+		GetEventIndexingStatus Get event indexing status
 
-		Returns the event monitor status for a given address and contract.
+		Returns the event indexing status for a given address and contract.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param addressOrAlias An address or the alias of an address.
 		@param contract
-		@return ApiGetEventMonitorStatusRequest
+		@return ApiGetEventIndexingStatusRequest
 	*/
-	GetEventMonitorStatus(ctx context.Context, chain ChainName, addressOrAlias string, contract string) ApiGetEventMonitorStatusRequest
+	GetEventIndexingStatus(ctx context.Context, addressOrAlias string, contract string) ApiGetEventIndexingStatusRequest
 
-	// GetEventMonitorStatusExecute executes the request
-	//  @return GetEventMonitorStatus200Response
-	GetEventMonitorStatusExecute(r ApiGetEventMonitorStatusRequest) (*GetEventMonitorStatus200Response, *http.Response, error)
+	// GetEventIndexingStatusExecute executes the request
+	//  @return GetEventIndexingStatus200Response
+	GetEventIndexingStatusExecute(r ApiGetEventIndexingStatusRequest) (*GetEventIndexingStatus200Response, *http.Response, error)
 
 	/*
 		GetEventTypeConversions Get event type conversions
@@ -233,11 +231,10 @@ type ContractsAPI interface {
 		Links an address to a contract.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param addressOrAlias An address or the alias of an address.
 		@return ApiLinkAddressContractRequest
 	*/
-	LinkAddressContract(ctx context.Context, chain ChainName, addressOrAlias string) ApiLinkAddressContractRequest
+	LinkAddressContract(ctx context.Context, addressOrAlias string) ApiLinkAddressContractRequest
 
 	// LinkAddressContractExecute executes the request
 	//  @return SetAddress201Response
@@ -312,12 +309,11 @@ type ContractsAPI interface {
 		Unlinks an address from a contract.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param addressOrAlias An address or the alias of an address.
 		@param contract
 		@return ApiUnlinkAddressContractRequest
 	*/
-	UnlinkAddressContract(ctx context.Context, chain ChainName, addressOrAlias string, contract string) ApiUnlinkAddressContractRequest
+	UnlinkAddressContract(ctx context.Context, addressOrAlias string, contract string) ApiUnlinkAddressContractRequest
 
 	// UnlinkAddressContractExecute executes the request
 	//  @return SetAddress201Response
@@ -330,7 +326,6 @@ type ContractsAPIService service
 type ApiCallContractFunctionRequest struct {
 	ctx            context.Context
 	ApiService     ContractsAPI
-	chain          ChainName
 	addressOrAlias string
 	contract       string
 	method         string
@@ -352,17 +347,15 @@ CallContractFunction Call a contract function
 Builds a transaction to call the given contract function. Returns a transaction to be signed and signs and submits to the blockchain it if the `signAndSubmit` flag is enabled.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param addressOrAlias An address or the alias of an address.
 	@param contract
 	@param method Contract function.
 	@return ApiCallContractFunctionRequest
 */
-func (a *ContractsAPIService) CallContractFunction(ctx context.Context, chain ChainName, addressOrAlias string, contract string, method string) ApiCallContractFunctionRequest {
+func (a *ContractsAPIService) CallContractFunction(ctx context.Context, addressOrAlias string, contract string, method string) ApiCallContractFunctionRequest {
 	return ApiCallContractFunctionRequest{
 		ApiService:     a,
 		ctx:            ctx,
-		chain:          chain,
 		addressOrAlias: addressOrAlias,
 		contract:       contract,
 		method:         method,
@@ -385,8 +378,7 @@ func (a *ContractsAPIService) CallContractFunctionExecute(r ApiCallContractFunct
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/addresses/{address-or-alias}/contracts/{contract}/methods/{method}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/addresses/{address-or-alias}/contracts/{contract}/methods/{method}"
 	localVarPath = strings.Replace(localVarPath, "{"+"address-or-alias"+"}", url.PathEscape(parameterValueToString(r.addressOrAlias, "addressOrAlias")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"contract"+"}", url.PathEscape(parameterValueToString(r.contract, "contract")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"method"+"}", url.PathEscape(parameterValueToString(r.method, "method")), -1)
@@ -394,9 +386,6 @@ func (a *ContractsAPIService) CallContractFunctionExecute(r ApiCallContractFunct
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.addressOrAlias) < 1 {
-		return localVarReturnValue, nil, reportError("addressOrAlias must have at least 1 elements")
-	}
 	if strlen(r.method) < 1 {
 		return localVarReturnValue, nil, reportError("method must have at least 1 elements")
 	}
@@ -1667,34 +1656,31 @@ func (a *ContractsAPIService) GetContractVersionsExecute(r ApiGetContractVersion
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetEventMonitorStatusRequest struct {
+type ApiGetEventIndexingStatusRequest struct {
 	ctx            context.Context
 	ApiService     ContractsAPI
-	chain          ChainName
 	addressOrAlias string
 	contract       string
 }
 
-func (r ApiGetEventMonitorStatusRequest) Execute() (*GetEventMonitorStatus200Response, *http.Response, error) {
-	return r.ApiService.GetEventMonitorStatusExecute(r)
+func (r ApiGetEventIndexingStatusRequest) Execute() (*GetEventIndexingStatus200Response, *http.Response, error) {
+	return r.ApiService.GetEventIndexingStatusExecute(r)
 }
 
 /*
-GetEventMonitorStatus Get event monitor status
+GetEventIndexingStatus Get event indexing status
 
-Returns the event monitor status for a given address and contract.
+Returns the event indexing status for a given address and contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param addressOrAlias An address or the alias of an address.
 	@param contract
-	@return ApiGetEventMonitorStatusRequest
+	@return ApiGetEventIndexingStatusRequest
 */
-func (a *ContractsAPIService) GetEventMonitorStatus(ctx context.Context, chain ChainName, addressOrAlias string, contract string) ApiGetEventMonitorStatusRequest {
-	return ApiGetEventMonitorStatusRequest{
+func (a *ContractsAPIService) GetEventIndexingStatus(ctx context.Context, addressOrAlias string, contract string) ApiGetEventIndexingStatusRequest {
+	return ApiGetEventIndexingStatusRequest{
 		ApiService:     a,
 		ctx:            ctx,
-		chain:          chain,
 		addressOrAlias: addressOrAlias,
 		contract:       contract,
 	}
@@ -1702,31 +1688,27 @@ func (a *ContractsAPIService) GetEventMonitorStatus(ctx context.Context, chain C
 
 // Execute executes the request
 //
-//	@return GetEventMonitorStatus200Response
-func (a *ContractsAPIService) GetEventMonitorStatusExecute(r ApiGetEventMonitorStatusRequest) (*GetEventMonitorStatus200Response, *http.Response, error) {
+//	@return GetEventIndexingStatus200Response
+func (a *ContractsAPIService) GetEventIndexingStatusExecute(r ApiGetEventIndexingStatusRequest) (*GetEventIndexingStatus200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetEventMonitorStatus200Response
+		localVarReturnValue *GetEventIndexingStatus200Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetEventMonitorStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ContractsAPIService.GetEventIndexingStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/addresses/{address-or-alias}/contracts/{contract}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/addresses/{address-or-alias}/contracts/{contract}/status"
 	localVarPath = strings.Replace(localVarPath, "{"+"address-or-alias"+"}", url.PathEscape(parameterValueToString(r.addressOrAlias, "addressOrAlias")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"contract"+"}", url.PathEscape(parameterValueToString(r.contract, "contract")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.addressOrAlias) < 1 {
-		return localVarReturnValue, nil, reportError("addressOrAlias must have at least 1 elements")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2084,7 +2066,6 @@ func (a *ContractsAPIService) GetFunctionTypeConversionsExecute(r ApiGetFunction
 type ApiLinkAddressContractRequest struct {
 	ctx                        context.Context
 	ApiService                 ContractsAPI
-	chain                      ChainName
 	addressOrAlias             string
 	linkAddressContractRequest *LinkAddressContractRequest
 }
@@ -2104,15 +2085,13 @@ LinkAddressContract Link address and contract
 Links an address to a contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param addressOrAlias An address or the alias of an address.
 	@return ApiLinkAddressContractRequest
 */
-func (a *ContractsAPIService) LinkAddressContract(ctx context.Context, chain ChainName, addressOrAlias string) ApiLinkAddressContractRequest {
+func (a *ContractsAPIService) LinkAddressContract(ctx context.Context, addressOrAlias string) ApiLinkAddressContractRequest {
 	return ApiLinkAddressContractRequest{
 		ApiService:     a,
 		ctx:            ctx,
-		chain:          chain,
 		addressOrAlias: addressOrAlias,
 	}
 }
@@ -2133,16 +2112,12 @@ func (a *ContractsAPIService) LinkAddressContractExecute(r ApiLinkAddressContrac
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/addresses/{address-or-alias}/contracts"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/addresses/{address-or-alias}/contracts"
 	localVarPath = strings.Replace(localVarPath, "{"+"address-or-alias"+"}", url.PathEscape(parameterValueToString(r.addressOrAlias, "addressOrAlias")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.addressOrAlias) < 1 {
-		return localVarReturnValue, nil, reportError("addressOrAlias must have at least 1 elements")
-	}
 	if r.linkAddressContractRequest == nil {
 		return localVarReturnValue, nil, reportError("linkAddressContractRequest is required and must be specified")
 	}
@@ -2773,7 +2748,6 @@ func (a *ContractsAPIService) SetFunctionTypeConversionsExecute(r ApiSetFunction
 type ApiUnlinkAddressContractRequest struct {
 	ctx            context.Context
 	ApiService     ContractsAPI
-	chain          ChainName
 	addressOrAlias string
 	contract       string
 }
@@ -2788,16 +2762,14 @@ UnlinkAddressContract Unlink address and contract
 Unlinks an address from a contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param addressOrAlias An address or the alias of an address.
 	@param contract
 	@return ApiUnlinkAddressContractRequest
 */
-func (a *ContractsAPIService) UnlinkAddressContract(ctx context.Context, chain ChainName, addressOrAlias string, contract string) ApiUnlinkAddressContractRequest {
+func (a *ContractsAPIService) UnlinkAddressContract(ctx context.Context, addressOrAlias string, contract string) ApiUnlinkAddressContractRequest {
 	return ApiUnlinkAddressContractRequest{
 		ApiService:     a,
 		ctx:            ctx,
-		chain:          chain,
 		addressOrAlias: addressOrAlias,
 		contract:       contract,
 	}
@@ -2819,17 +2791,13 @@ func (a *ContractsAPIService) UnlinkAddressContractExecute(r ApiUnlinkAddressCon
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/addresses/{address-or-alias}/contracts/{contract}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/addresses/{address-or-alias}/contracts/{contract}"
 	localVarPath = strings.Replace(localVarPath, "{"+"address-or-alias"+"}", url.PathEscape(parameterValueToString(r.addressOrAlias, "addressOrAlias")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"contract"+"}", url.PathEscape(parameterValueToString(r.contract, "contract")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.addressOrAlias) < 1 {
-		return localVarReturnValue, nil, reportError("addressOrAlias must have at least 1 elements")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

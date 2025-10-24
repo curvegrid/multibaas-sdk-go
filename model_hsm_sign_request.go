@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -66,30 +66,6 @@ func (dst *HSMSignRequest) UnmarshalJSON(data []byte) error {
 		} else {
 			dst.HSMSignRequestPersonalSign = nil
 			return fmt.Errorf("failed to unmarshal HSMSignRequest as HSMSignRequestPersonalSign: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'HSMSignRequestPersonalSign'
-	if jsonDict["method"] == "HSMSignRequestPersonalSign" {
-		// try to unmarshal JSON data into HSMSignRequestPersonalSign
-		err = json.Unmarshal(data, &dst.HSMSignRequestPersonalSign)
-		if err == nil {
-			return nil // data stored in dst.HSMSignRequestPersonalSign, return on the first match
-		} else {
-			dst.HSMSignRequestPersonalSign = nil
-			return fmt.Errorf("failed to unmarshal HSMSignRequest as HSMSignRequestPersonalSign: %s", err.Error())
-		}
-	}
-
-	// check if the discriminator value is 'HSMSignRequestTypedData'
-	if jsonDict["method"] == "HSMSignRequestTypedData" {
-		// try to unmarshal JSON data into HSMSignRequestTypedData
-		err = json.Unmarshal(data, &dst.HSMSignRequestTypedData)
-		if err == nil {
-			return nil // data stored in dst.HSMSignRequestTypedData, return on the first match
-		} else {
-			dst.HSMSignRequestTypedData = nil
-			return fmt.Errorf("failed to unmarshal HSMSignRequest as HSMSignRequestTypedData: %s", err.Error())
 		}
 	}
 

@@ -5,14 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | **string** | The response object type (discriminator). | 
+**Tx** | [**TransactionToSignTx**](TransactionToSignTx.md) |  | 
+**Submitted** | **bool** |  | 
 **Output** | **interface{}** | The function call output. | 
-**Input** | **[]map[string]interface{}** | The function call inputs. | 
 
 ## Methods
 
 ### NewCallContractFunction200ResponseAllOfResult
 
-`func NewCallContractFunction200ResponseAllOfResult(kind string, output interface{}, input []map[string]interface{}, ) *CallContractFunction200ResponseAllOfResult`
+`func NewCallContractFunction200ResponseAllOfResult(kind string, tx TransactionToSignTx, submitted bool, output interface{}, ) *CallContractFunction200ResponseAllOfResult`
 
 NewCallContractFunction200ResponseAllOfResult instantiates a new CallContractFunction200ResponseAllOfResult object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +48,46 @@ and a boolean to check if the value has been set.
 SetKind sets Kind field to given value.
 
 
+### GetTx
+
+`func (o *CallContractFunction200ResponseAllOfResult) GetTx() TransactionToSignTx`
+
+GetTx returns the Tx field if non-nil, zero value otherwise.
+
+### GetTxOk
+
+`func (o *CallContractFunction200ResponseAllOfResult) GetTxOk() (*TransactionToSignTx, bool)`
+
+GetTxOk returns a tuple with the Tx field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTx
+
+`func (o *CallContractFunction200ResponseAllOfResult) SetTx(v TransactionToSignTx)`
+
+SetTx sets Tx field to given value.
+
+
+### GetSubmitted
+
+`func (o *CallContractFunction200ResponseAllOfResult) GetSubmitted() bool`
+
+GetSubmitted returns the Submitted field if non-nil, zero value otherwise.
+
+### GetSubmittedOk
+
+`func (o *CallContractFunction200ResponseAllOfResult) GetSubmittedOk() (*bool, bool)`
+
+GetSubmittedOk returns a tuple with the Submitted field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubmitted
+
+`func (o *CallContractFunction200ResponseAllOfResult) SetSubmitted(v bool)`
+
+SetSubmitted sets Submitted field to given value.
+
+
 ### GetOutput
 
 `func (o *CallContractFunction200ResponseAllOfResult) GetOutput() interface{}`
@@ -77,26 +118,6 @@ SetOutput sets Output field to given value.
 `func (o *CallContractFunction200ResponseAllOfResult) UnsetOutput()`
 
 UnsetOutput ensures that no value is present for Output, not even an explicit nil
-### GetInput
-
-`func (o *CallContractFunction200ResponseAllOfResult) GetInput() []map[string]interface{}`
-
-GetInput returns the Input field if non-nil, zero value otherwise.
-
-### GetInputOk
-
-`func (o *CallContractFunction200ResponseAllOfResult) GetInputOk() (*[]map[string]interface{}, bool)`
-
-GetInputOk returns a tuple with the Input field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInput
-
-`func (o *CallContractFunction200ResponseAllOfResult) SetInput(v []map[string]interface{})`
-
-SetInput sets Input field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

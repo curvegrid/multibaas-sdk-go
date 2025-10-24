@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **BlockNumber** | Pointer to **string** | The transaction block number. | [optional] 
 **Contract** | Pointer to [**ContractInformation**](ContractInformation.md) |  | [optional] 
 **Method** | Pointer to [**ContractMethodInformation**](ContractMethodInformation.md) |  | [optional] 
+**AuthorizationExtraInfo** | Pointer to [**[]AuthorizationExtraInfo**](AuthorizationExtraInfo.md) |  | [optional] 
 
 ## Methods
 
@@ -191,6 +192,41 @@ SetMethod sets Method field to given value.
 
 HasMethod returns a boolean if a field has been set.
 
+### GetAuthorizationExtraInfo
+
+`func (o *TransactionData) GetAuthorizationExtraInfo() []AuthorizationExtraInfo`
+
+GetAuthorizationExtraInfo returns the AuthorizationExtraInfo field if non-nil, zero value otherwise.
+
+### GetAuthorizationExtraInfoOk
+
+`func (o *TransactionData) GetAuthorizationExtraInfoOk() (*[]AuthorizationExtraInfo, bool)`
+
+GetAuthorizationExtraInfoOk returns a tuple with the AuthorizationExtraInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthorizationExtraInfo
+
+`func (o *TransactionData) SetAuthorizationExtraInfo(v []AuthorizationExtraInfo)`
+
+SetAuthorizationExtraInfo sets AuthorizationExtraInfo field to given value.
+
+### HasAuthorizationExtraInfo
+
+`func (o *TransactionData) HasAuthorizationExtraInfo() bool`
+
+HasAuthorizationExtraInfo returns a boolean if a field has been set.
+
+### SetAuthorizationExtraInfoNil
+
+`func (o *TransactionData) SetAuthorizationExtraInfoNil(b bool)`
+
+ SetAuthorizationExtraInfoNil sets the value for AuthorizationExtraInfo to be an explicit nil
+
+### UnsetAuthorizationExtraInfo
+`func (o *TransactionData) UnsetAuthorizationExtraInfo()`
+
+UnsetAuthorizationExtraInfo ensures that no value is present for AuthorizationExtraInfo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

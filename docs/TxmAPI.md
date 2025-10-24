@@ -4,16 +4,16 @@ All URIs are relative to *https://your_deployment.multibaas.com/api/v0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelTransaction**](TxmAPI.md#CancelTransaction) | **Post** /chains/{chain}/txm/{wallet_address}/nonce/{nonce}/cancel | Cancel transaction
-[**CountWalletTransactions**](TxmAPI.md#CountWalletTransactions) | **Get** /chains/{chain}/txm/{wallet_address}/count | Count all transactions for a wallet
-[**ListWalletTransactions**](TxmAPI.md#ListWalletTransactions) | **Get** /chains/{chain}/txm/{wallet_address} | List transactions for a wallet
-[**SpeedUpTransaction**](TxmAPI.md#SpeedUpTransaction) | **Post** /chains/{chain}/txm/{wallet_address}/nonce/{nonce}/speed_up | Speed up transaction
+[**CancelTransaction**](TxmAPI.md#CancelTransaction) | **Post** /chains/ethereum/txm/{wallet_address}/nonce/{nonce}/cancel | Cancel transaction
+[**CountWalletTransactions**](TxmAPI.md#CountWalletTransactions) | **Get** /chains/ethereum/txm/{wallet_address}/count | Count all transactions for a wallet
+[**ListWalletTransactions**](TxmAPI.md#ListWalletTransactions) | **Get** /chains/ethereum/txm/{wallet_address} | List transactions for a wallet
+[**SpeedUpTransaction**](TxmAPI.md#SpeedUpTransaction) | **Post** /chains/ethereum/txm/{wallet_address}/nonce/{nonce}/speed_up | Speed up transaction
 
 
 
 ## CancelTransaction
 
-> TransferEth200Response CancelTransaction(ctx, chain, walletAddress, nonce).GasParams(gasParams).Execute()
+> TransferEth200Response CancelTransaction(ctx, walletAddress, nonce).GasParams(gasParams).Execute()
 
 Cancel transaction
 
@@ -32,14 +32,13 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	walletAddress := "walletAddress_example" // string | An Ethereum address.
 	nonce := int64(789) // int64 | Transaction nonce.
 	gasParams := *openapiclient.NewGasParams() // GasParams | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TxmAPI.CancelTransaction(context.Background(), chain, walletAddress, nonce).GasParams(gasParams).Execute()
+	resp, r, err := apiClient.TxmAPI.CancelTransaction(context.Background(), walletAddress, nonce).GasParams(gasParams).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.CancelTransaction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +54,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **walletAddress** | **string** | An Ethereum address. | 
 **nonce** | **int64** | Transaction nonce. | 
 
@@ -66,7 +64,6 @@ Other parameters are passed through a pointer to a apiCancelTransactionRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
  **gasParams** | [**GasParams**](GasParams.md) |  | 
@@ -91,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## CountWalletTransactions
 
-> CountWalletTransactions200Response CountWalletTransactions(ctx, chain, walletAddress).Execute()
+> CountWalletTransactions200Response CountWalletTransactions(ctx, walletAddress).Execute()
 
 Count all transactions for a wallet
 
@@ -110,12 +107,11 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	walletAddress := "walletAddress_example" // string | An Ethereum address.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TxmAPI.CountWalletTransactions(context.Background(), chain, walletAddress).Execute()
+	resp, r, err := apiClient.TxmAPI.CountWalletTransactions(context.Background(), walletAddress).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.CountWalletTransactions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +127,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
@@ -141,7 +136,6 @@ Other parameters are passed through a pointer to a apiCountWalletTransactionsReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type
@@ -164,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## ListWalletTransactions
 
-> ListWalletTransactions200Response ListWalletTransactions(ctx, chain, walletAddress).Hash(hash).Nonce(nonce).Status(status).Limit(limit).Offset(offset).Execute()
+> ListWalletTransactions200Response ListWalletTransactions(ctx, walletAddress).Hash(hash).Nonce(nonce).Status(status).Limit(limit).Offset(offset).Execute()
 
 List transactions for a wallet
 
@@ -183,7 +177,6 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	walletAddress := "walletAddress_example" // string | An Ethereum address.
 	hash := "hash_example" // string | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: `?hash=HASH1&hash=HASH2&hash=HASH3` (optional)
 	nonce := int64(789) // int64 | Filter transactions by nonce (optional)
@@ -193,7 +186,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TxmAPI.ListWalletTransactions(context.Background(), chain, walletAddress).Hash(hash).Nonce(nonce).Status(status).Limit(limit).Offset(offset).Execute()
+	resp, r, err := apiClient.TxmAPI.ListWalletTransactions(context.Background(), walletAddress).Hash(hash).Nonce(nonce).Status(status).Limit(limit).Offset(offset).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.ListWalletTransactions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,7 +202,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **walletAddress** | **string** | An Ethereum address. | 
 
 ### Other Parameters
@@ -219,7 +211,6 @@ Other parameters are passed through a pointer to a apiListWalletTransactionsRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **hash** | **string** | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: &#x60;?hash&#x3D;HASH1&amp;hash&#x3D;HASH2&amp;hash&#x3D;HASH3&#x60; | 
  **nonce** | **int64** | Filter transactions by nonce | 
@@ -247,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## SpeedUpTransaction
 
-> TransferEth200Response SpeedUpTransaction(ctx, chain, walletAddress, nonce).GasParams(gasParams).Execute()
+> TransferEth200Response SpeedUpTransaction(ctx, walletAddress, nonce).GasParams(gasParams).Execute()
 
 Speed up transaction
 
@@ -266,14 +257,13 @@ import (
 )
 
 func main() {
-	chain := openapiclient.ChainName("ethereum") // ChainName | The blockchain chain label.
 	walletAddress := "walletAddress_example" // string | An Ethereum address.
 	nonce := int64(789) // int64 | Transaction nonce.
 	gasParams := *openapiclient.NewGasParams() // GasParams | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TxmAPI.SpeedUpTransaction(context.Background(), chain, walletAddress, nonce).GasParams(gasParams).Execute()
+	resp, r, err := apiClient.TxmAPI.SpeedUpTransaction(context.Background(), walletAddress, nonce).GasParams(gasParams).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TxmAPI.SpeedUpTransaction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -289,7 +279,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**chain** | [**ChainName**](.md) | The blockchain chain label. | 
 **walletAddress** | **string** | An Ethereum address. | 
 **nonce** | **int64** | Transaction nonce. | 
 
@@ -300,7 +289,6 @@ Other parameters are passed through a pointer to a apiSpeedUpTransactionRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
  **gasParams** | [**GasParams**](GasParams.md) |  | 

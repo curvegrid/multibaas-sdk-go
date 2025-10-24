@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -28,11 +28,10 @@ type AddressesAPI interface {
 		Deletes an address alias.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param addressOrAlias An address or the alias of an address.
 		@return ApiDeleteAddressRequest
 	*/
-	DeleteAddress(ctx context.Context, chain ChainName, addressOrAlias string) ApiDeleteAddressRequest
+	DeleteAddress(ctx context.Context, addressOrAlias string) ApiDeleteAddressRequest
 
 	// DeleteAddressExecute executes the request
 	//  @return BaseResponse
@@ -44,11 +43,10 @@ type AddressesAPI interface {
 		Returns details about an address.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param addressOrAlias An address or the alias of an address.
 		@return ApiGetAddressRequest
 	*/
-	GetAddress(ctx context.Context, chain ChainName, addressOrAlias string) ApiGetAddressRequest
+	GetAddress(ctx context.Context, addressOrAlias string) ApiGetAddressRequest
 
 	// GetAddressExecute executes the request
 	//  @return SetAddress201Response
@@ -60,10 +58,9 @@ type AddressesAPI interface {
 		Returns all the aliased addresses.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@return ApiListAddressesRequest
 	*/
-	ListAddresses(ctx context.Context, chain ChainName) ApiListAddressesRequest
+	ListAddresses(ctx context.Context) ApiListAddressesRequest
 
 	// ListAddressesExecute executes the request
 	//  @return ListAddresses200Response
@@ -75,10 +72,9 @@ type AddressesAPI interface {
 		Associates an address with an alias.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@return ApiSetAddressRequest
 	*/
-	SetAddress(ctx context.Context, chain ChainName) ApiSetAddressRequest
+	SetAddress(ctx context.Context) ApiSetAddressRequest
 
 	// SetAddressExecute executes the request
 	//  @return SetAddress201Response
@@ -91,7 +87,6 @@ type AddressesAPIService service
 type ApiDeleteAddressRequest struct {
 	ctx            context.Context
 	ApiService     AddressesAPI
-	chain          ChainName
 	addressOrAlias string
 }
 
@@ -105,15 +100,13 @@ DeleteAddress Delete address
 Deletes an address alias.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param addressOrAlias An address or the alias of an address.
 	@return ApiDeleteAddressRequest
 */
-func (a *AddressesAPIService) DeleteAddress(ctx context.Context, chain ChainName, addressOrAlias string) ApiDeleteAddressRequest {
+func (a *AddressesAPIService) DeleteAddress(ctx context.Context, addressOrAlias string) ApiDeleteAddressRequest {
 	return ApiDeleteAddressRequest{
 		ApiService:     a,
 		ctx:            ctx,
-		chain:          chain,
 		addressOrAlias: addressOrAlias,
 	}
 }
@@ -134,16 +127,12 @@ func (a *AddressesAPIService) DeleteAddressExecute(r ApiDeleteAddressRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/addresses/{address-or-alias}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/addresses/{address-or-alias}"
 	localVarPath = strings.Replace(localVarPath, "{"+"address-or-alias"+"}", url.PathEscape(parameterValueToString(r.addressOrAlias, "addressOrAlias")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.addressOrAlias) < 1 {
-		return localVarReturnValue, nil, reportError("addressOrAlias must have at least 1 elements")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -223,7 +212,6 @@ func (a *AddressesAPIService) DeleteAddressExecute(r ApiDeleteAddressRequest) (*
 type ApiGetAddressRequest struct {
 	ctx            context.Context
 	ApiService     AddressesAPI
-	chain          ChainName
 	addressOrAlias string
 	include        *[]string
 }
@@ -244,15 +232,13 @@ GetAddress Get address
 Returns details about an address.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param addressOrAlias An address or the alias of an address.
 	@return ApiGetAddressRequest
 */
-func (a *AddressesAPIService) GetAddress(ctx context.Context, chain ChainName, addressOrAlias string) ApiGetAddressRequest {
+func (a *AddressesAPIService) GetAddress(ctx context.Context, addressOrAlias string) ApiGetAddressRequest {
 	return ApiGetAddressRequest{
 		ApiService:     a,
 		ctx:            ctx,
-		chain:          chain,
 		addressOrAlias: addressOrAlias,
 	}
 }
@@ -273,16 +259,12 @@ func (a *AddressesAPIService) GetAddressExecute(r ApiGetAddressRequest) (*SetAdd
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/addresses/{address-or-alias}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/addresses/{address-or-alias}"
 	localVarPath = strings.Replace(localVarPath, "{"+"address-or-alias"+"}", url.PathEscape(parameterValueToString(r.addressOrAlias, "addressOrAlias")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if strlen(r.addressOrAlias) < 1 {
-		return localVarReturnValue, nil, reportError("addressOrAlias must have at least 1 elements")
-	}
 
 	if r.include != nil {
 		t := *r.include
@@ -373,7 +355,6 @@ func (a *AddressesAPIService) GetAddressExecute(r ApiGetAddressRequest) (*SetAdd
 type ApiListAddressesRequest struct {
 	ctx        context.Context
 	ApiService AddressesAPI
-	chain      ChainName
 }
 
 func (r ApiListAddressesRequest) Execute() (*ListAddresses200Response, *http.Response, error) {
@@ -386,14 +367,12 @@ ListAddresses List addresses
 Returns all the aliased addresses.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@return ApiListAddressesRequest
 */
-func (a *AddressesAPIService) ListAddresses(ctx context.Context, chain ChainName) ApiListAddressesRequest {
+func (a *AddressesAPIService) ListAddresses(ctx context.Context) ApiListAddressesRequest {
 	return ApiListAddressesRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 	}
 }
 
@@ -413,8 +392,7 @@ func (a *AddressesAPIService) ListAddressesExecute(r ApiListAddressesRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/addresses"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/addresses"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -498,7 +476,6 @@ func (a *AddressesAPIService) ListAddressesExecute(r ApiListAddressesRequest) (*
 type ApiSetAddressRequest struct {
 	ctx          context.Context
 	ApiService   AddressesAPI
-	chain        ChainName
 	addressAlias *AddressAlias
 }
 
@@ -517,14 +494,12 @@ SetAddress Create or update address
 Associates an address with an alias.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@return ApiSetAddressRequest
 */
-func (a *AddressesAPIService) SetAddress(ctx context.Context, chain ChainName) ApiSetAddressRequest {
+func (a *AddressesAPIService) SetAddress(ctx context.Context) ApiSetAddressRequest {
 	return ApiSetAddressRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 	}
 }
 
@@ -544,8 +519,7 @@ func (a *AddressesAPIService) SetAddressExecute(r ApiSetAddressRequest) (*SetAdd
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/addresses"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/addresses"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

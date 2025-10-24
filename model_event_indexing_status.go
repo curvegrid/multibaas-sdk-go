@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the EventMonitorStatus type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &EventMonitorStatus{}
+// checks if the EventIndexingStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EventIndexingStatus{}
 
-// EventMonitorStatus Status of an Event Monitor
-type EventMonitorStatus struct {
+// EventIndexingStatus Event indexing status
+type EventIndexingStatus struct {
 	ContractId           *int64 `json:"contractId,omitempty"`
 	AddressId            *int64 `json:"addressId,omitempty"`
 	IsProcessingPastLogs bool   `json:"isProcessingPastLogs"`
@@ -32,14 +32,14 @@ type EventMonitorStatus struct {
 	UpdatedAt      string `json:"updatedAt"`
 }
 
-type _EventMonitorStatus EventMonitorStatus
+type _EventIndexingStatus EventIndexingStatus
 
-// NewEventMonitorStatus instantiates a new EventMonitorStatus object
+// NewEventIndexingStatus instantiates a new EventIndexingStatus object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventMonitorStatus(isProcessingPastLogs bool, latestBlockNumber int64, latestBlockHash string, startBlockNumber int64, startBlockHash string, updatedAt string) *EventMonitorStatus {
-	this := EventMonitorStatus{}
+func NewEventIndexingStatus(isProcessingPastLogs bool, latestBlockNumber int64, latestBlockHash string, startBlockNumber int64, startBlockHash string, updatedAt string) *EventIndexingStatus {
+	this := EventIndexingStatus{}
 	this.IsProcessingPastLogs = isProcessingPastLogs
 	this.LatestBlockNumber = latestBlockNumber
 	this.LatestBlockHash = latestBlockHash
@@ -49,16 +49,16 @@ func NewEventMonitorStatus(isProcessingPastLogs bool, latestBlockNumber int64, l
 	return &this
 }
 
-// NewEventMonitorStatusWithDefaults instantiates a new EventMonitorStatus object
+// NewEventIndexingStatusWithDefaults instantiates a new EventIndexingStatus object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewEventMonitorStatusWithDefaults() *EventMonitorStatus {
-	this := EventMonitorStatus{}
+func NewEventIndexingStatusWithDefaults() *EventIndexingStatus {
+	this := EventIndexingStatus{}
 	return &this
 }
 
 // GetContractId returns the ContractId field value if set, zero value otherwise.
-func (o *EventMonitorStatus) GetContractId() int64 {
+func (o *EventIndexingStatus) GetContractId() int64 {
 	if o == nil || IsNil(o.ContractId) {
 		var ret int64
 		return ret
@@ -68,7 +68,7 @@ func (o *EventMonitorStatus) GetContractId() int64 {
 
 // GetContractIdOk returns a tuple with the ContractId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetContractIdOk() (*int64, bool) {
+func (o *EventIndexingStatus) GetContractIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ContractId) {
 		return nil, false
 	}
@@ -76,7 +76,7 @@ func (o *EventMonitorStatus) GetContractIdOk() (*int64, bool) {
 }
 
 // HasContractId returns a boolean if a field has been set.
-func (o *EventMonitorStatus) HasContractId() bool {
+func (o *EventIndexingStatus) HasContractId() bool {
 	if o != nil && !IsNil(o.ContractId) {
 		return true
 	}
@@ -85,12 +85,12 @@ func (o *EventMonitorStatus) HasContractId() bool {
 }
 
 // SetContractId gets a reference to the given int64 and assigns it to the ContractId field.
-func (o *EventMonitorStatus) SetContractId(v int64) {
+func (o *EventIndexingStatus) SetContractId(v int64) {
 	o.ContractId = &v
 }
 
 // GetAddressId returns the AddressId field value if set, zero value otherwise.
-func (o *EventMonitorStatus) GetAddressId() int64 {
+func (o *EventIndexingStatus) GetAddressId() int64 {
 	if o == nil || IsNil(o.AddressId) {
 		var ret int64
 		return ret
@@ -100,7 +100,7 @@ func (o *EventMonitorStatus) GetAddressId() int64 {
 
 // GetAddressIdOk returns a tuple with the AddressId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetAddressIdOk() (*int64, bool) {
+func (o *EventIndexingStatus) GetAddressIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.AddressId) {
 		return nil, false
 	}
@@ -108,7 +108,7 @@ func (o *EventMonitorStatus) GetAddressIdOk() (*int64, bool) {
 }
 
 // HasAddressId returns a boolean if a field has been set.
-func (o *EventMonitorStatus) HasAddressId() bool {
+func (o *EventIndexingStatus) HasAddressId() bool {
 	if o != nil && !IsNil(o.AddressId) {
 		return true
 	}
@@ -117,12 +117,12 @@ func (o *EventMonitorStatus) HasAddressId() bool {
 }
 
 // SetAddressId gets a reference to the given int64 and assigns it to the AddressId field.
-func (o *EventMonitorStatus) SetAddressId(v int64) {
+func (o *EventIndexingStatus) SetAddressId(v int64) {
 	o.AddressId = &v
 }
 
 // GetIsProcessingPastLogs returns the IsProcessingPastLogs field value
-func (o *EventMonitorStatus) GetIsProcessingPastLogs() bool {
+func (o *EventIndexingStatus) GetIsProcessingPastLogs() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -133,7 +133,7 @@ func (o *EventMonitorStatus) GetIsProcessingPastLogs() bool {
 
 // GetIsProcessingPastLogsOk returns a tuple with the IsProcessingPastLogs field value
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetIsProcessingPastLogsOk() (*bool, bool) {
+func (o *EventIndexingStatus) GetIsProcessingPastLogsOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -141,12 +141,12 @@ func (o *EventMonitorStatus) GetIsProcessingPastLogsOk() (*bool, bool) {
 }
 
 // SetIsProcessingPastLogs sets field value
-func (o *EventMonitorStatus) SetIsProcessingPastLogs(v bool) {
+func (o *EventIndexingStatus) SetIsProcessingPastLogs(v bool) {
 	o.IsProcessingPastLogs = v
 }
 
 // GetIdealBlockRange returns the IdealBlockRange field value if set, zero value otherwise.
-func (o *EventMonitorStatus) GetIdealBlockRange() int64 {
+func (o *EventIndexingStatus) GetIdealBlockRange() int64 {
 	if o == nil || IsNil(o.IdealBlockRange) {
 		var ret int64
 		return ret
@@ -156,7 +156,7 @@ func (o *EventMonitorStatus) GetIdealBlockRange() int64 {
 
 // GetIdealBlockRangeOk returns a tuple with the IdealBlockRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetIdealBlockRangeOk() (*int64, bool) {
+func (o *EventIndexingStatus) GetIdealBlockRangeOk() (*int64, bool) {
 	if o == nil || IsNil(o.IdealBlockRange) {
 		return nil, false
 	}
@@ -164,7 +164,7 @@ func (o *EventMonitorStatus) GetIdealBlockRangeOk() (*int64, bool) {
 }
 
 // HasIdealBlockRange returns a boolean if a field has been set.
-func (o *EventMonitorStatus) HasIdealBlockRange() bool {
+func (o *EventIndexingStatus) HasIdealBlockRange() bool {
 	if o != nil && !IsNil(o.IdealBlockRange) {
 		return true
 	}
@@ -173,12 +173,12 @@ func (o *EventMonitorStatus) HasIdealBlockRange() bool {
 }
 
 // SetIdealBlockRange gets a reference to the given int64 and assigns it to the IdealBlockRange field.
-func (o *EventMonitorStatus) SetIdealBlockRange(v int64) {
+func (o *EventIndexingStatus) SetIdealBlockRange(v int64) {
 	o.IdealBlockRange = &v
 }
 
 // GetLatestBlockNumber returns the LatestBlockNumber field value
-func (o *EventMonitorStatus) GetLatestBlockNumber() int64 {
+func (o *EventIndexingStatus) GetLatestBlockNumber() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -189,7 +189,7 @@ func (o *EventMonitorStatus) GetLatestBlockNumber() int64 {
 
 // GetLatestBlockNumberOk returns a tuple with the LatestBlockNumber field value
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetLatestBlockNumberOk() (*int64, bool) {
+func (o *EventIndexingStatus) GetLatestBlockNumberOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -197,12 +197,12 @@ func (o *EventMonitorStatus) GetLatestBlockNumberOk() (*int64, bool) {
 }
 
 // SetLatestBlockNumber sets field value
-func (o *EventMonitorStatus) SetLatestBlockNumber(v int64) {
+func (o *EventIndexingStatus) SetLatestBlockNumber(v int64) {
 	o.LatestBlockNumber = v
 }
 
 // GetLatestBlockHash returns the LatestBlockHash field value
-func (o *EventMonitorStatus) GetLatestBlockHash() string {
+func (o *EventIndexingStatus) GetLatestBlockHash() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -213,7 +213,7 @@ func (o *EventMonitorStatus) GetLatestBlockHash() string {
 
 // GetLatestBlockHashOk returns a tuple with the LatestBlockHash field value
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetLatestBlockHashOk() (*string, bool) {
+func (o *EventIndexingStatus) GetLatestBlockHashOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -221,12 +221,12 @@ func (o *EventMonitorStatus) GetLatestBlockHashOk() (*string, bool) {
 }
 
 // SetLatestBlockHash sets field value
-func (o *EventMonitorStatus) SetLatestBlockHash(v string) {
+func (o *EventIndexingStatus) SetLatestBlockHash(v string) {
 	o.LatestBlockHash = v
 }
 
 // GetStartBlockNumber returns the StartBlockNumber field value
-func (o *EventMonitorStatus) GetStartBlockNumber() int64 {
+func (o *EventIndexingStatus) GetStartBlockNumber() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -237,7 +237,7 @@ func (o *EventMonitorStatus) GetStartBlockNumber() int64 {
 
 // GetStartBlockNumberOk returns a tuple with the StartBlockNumber field value
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetStartBlockNumberOk() (*int64, bool) {
+func (o *EventIndexingStatus) GetStartBlockNumberOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -245,12 +245,12 @@ func (o *EventMonitorStatus) GetStartBlockNumberOk() (*int64, bool) {
 }
 
 // SetStartBlockNumber sets field value
-func (o *EventMonitorStatus) SetStartBlockNumber(v int64) {
+func (o *EventIndexingStatus) SetStartBlockNumber(v int64) {
 	o.StartBlockNumber = v
 }
 
 // GetStartBlockHash returns the StartBlockHash field value
-func (o *EventMonitorStatus) GetStartBlockHash() string {
+func (o *EventIndexingStatus) GetStartBlockHash() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -261,7 +261,7 @@ func (o *EventMonitorStatus) GetStartBlockHash() string {
 
 // GetStartBlockHashOk returns a tuple with the StartBlockHash field value
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetStartBlockHashOk() (*string, bool) {
+func (o *EventIndexingStatus) GetStartBlockHashOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -269,12 +269,12 @@ func (o *EventMonitorStatus) GetStartBlockHashOk() (*string, bool) {
 }
 
 // SetStartBlockHash sets field value
-func (o *EventMonitorStatus) SetStartBlockHash(v string) {
+func (o *EventIndexingStatus) SetStartBlockHash(v string) {
 	o.StartBlockHash = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
-func (o *EventMonitorStatus) GetUpdatedAt() string {
+func (o *EventIndexingStatus) GetUpdatedAt() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -285,7 +285,7 @@ func (o *EventMonitorStatus) GetUpdatedAt() string {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *EventMonitorStatus) GetUpdatedAtOk() (*string, bool) {
+func (o *EventIndexingStatus) GetUpdatedAtOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -293,11 +293,11 @@ func (o *EventMonitorStatus) GetUpdatedAtOk() (*string, bool) {
 }
 
 // SetUpdatedAt sets field value
-func (o *EventMonitorStatus) SetUpdatedAt(v string) {
+func (o *EventIndexingStatus) SetUpdatedAt(v string) {
 	o.UpdatedAt = v
 }
 
-func (o EventMonitorStatus) ToMap() (map[string]interface{}, error) {
+func (o EventIndexingStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ContractId) {
 		toSerialize["contractId"] = o.ContractId
@@ -317,38 +317,38 @@ func (o EventMonitorStatus) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableEventMonitorStatus struct {
-	value *EventMonitorStatus
+type NullableEventIndexingStatus struct {
+	value *EventIndexingStatus
 	isSet bool
 }
 
-func (v NullableEventMonitorStatus) Get() *EventMonitorStatus {
+func (v NullableEventIndexingStatus) Get() *EventIndexingStatus {
 	return v.value
 }
 
-func (v *NullableEventMonitorStatus) Set(val *EventMonitorStatus) {
+func (v *NullableEventIndexingStatus) Set(val *EventIndexingStatus) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableEventMonitorStatus) IsSet() bool {
+func (v NullableEventIndexingStatus) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableEventMonitorStatus) Unset() {
+func (v *NullableEventIndexingStatus) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableEventMonitorStatus(val *EventMonitorStatus) *NullableEventMonitorStatus {
-	return &NullableEventMonitorStatus{value: val, isSet: true}
+func NewNullableEventIndexingStatus(val *EventIndexingStatus) *NullableEventIndexingStatus {
+	return &NullableEventIndexingStatus{value: val, isSet: true}
 }
 
-func (v NullableEventMonitorStatus) MarshalJSON() ([]byte, error) {
+func (v NullableEventIndexingStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableEventMonitorStatus) UnmarshalJSON(src []byte) error {
+func (v *NullableEventIndexingStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

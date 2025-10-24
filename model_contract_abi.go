@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -19,7 +19,7 @@ var _ MappedNullable = &ContractABI{}
 
 // ContractABI The contract ABI.
 type ContractABI struct {
-	Constructor NullableContractABIMethod1   `json:"constructor"`
+	Constructor NullableContractABIMethod    `json:"constructor"`
 	Methods     map[string]ContractABIMethod `json:"methods"`
 	Events      map[string]ContractABIEvent  `json:"events"`
 	Errors      *map[string]ContractABIError `json:"errors,omitempty"`
@@ -33,7 +33,7 @@ type _ContractABI ContractABI
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContractABI(constructor NullableContractABIMethod1, methods map[string]ContractABIMethod, events map[string]ContractABIEvent, fallback NullableContractABIMethod, receive NullableContractABIMethod) *ContractABI {
+func NewContractABI(constructor NullableContractABIMethod, methods map[string]ContractABIMethod, events map[string]ContractABIEvent, fallback NullableContractABIMethod, receive NullableContractABIMethod) *ContractABI {
 	this := ContractABI{}
 	this.Constructor = constructor
 	this.Methods = methods
@@ -52,10 +52,10 @@ func NewContractABIWithDefaults() *ContractABI {
 }
 
 // GetConstructor returns the Constructor field value
-// If the value is explicit nil, the zero value for ContractABIMethod1 will be returned
-func (o *ContractABI) GetConstructor() ContractABIMethod1 {
+// If the value is explicit nil, the zero value for ContractABIMethod will be returned
+func (o *ContractABI) GetConstructor() ContractABIMethod {
 	if o == nil || o.Constructor.Get() == nil {
-		var ret ContractABIMethod1
+		var ret ContractABIMethod
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *ContractABI) GetConstructor() ContractABIMethod1 {
 // GetConstructorOk returns a tuple with the Constructor field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContractABI) GetConstructorOk() (*ContractABIMethod1, bool) {
+func (o *ContractABI) GetConstructorOk() (*ContractABIMethod, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *ContractABI) GetConstructorOk() (*ContractABIMethod1, bool) {
 }
 
 // SetConstructor sets field value
-func (o *ContractABI) SetConstructor(v ContractABIMethod1) {
+func (o *ContractABI) SetConstructor(v ContractABIMethod) {
 	o.Constructor.Set(&v)
 }
 

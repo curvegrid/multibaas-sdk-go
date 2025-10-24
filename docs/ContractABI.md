@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Constructor** | [**NullableContractABIMethod1**](ContractABIMethod1.md) |  | 
+**Constructor** | [**NullableContractABIMethod**](ContractABIMethod.md) |  | 
 **Methods** | [**map[string]ContractABIMethod**](ContractABIMethod.md) |  | 
 **Events** | [**map[string]ContractABIEvent**](ContractABIEvent.md) |  | 
 **Errors** | Pointer to [**map[string]ContractABIError**](ContractABIError.md) |  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewContractABI
 
-`func NewContractABI(constructor NullableContractABIMethod1, methods map[string]ContractABIMethod, events map[string]ContractABIEvent, fallback NullableContractABIMethod, receive NullableContractABIMethod, ) *ContractABI`
+`func NewContractABI(constructor NullableContractABIMethod, methods map[string]ContractABIMethod, events map[string]ContractABIEvent, fallback NullableContractABIMethod, receive NullableContractABIMethod, ) *ContractABI`
 
 NewContractABI instantiates a new ContractABI object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetConstructor
 
-`func (o *ContractABI) GetConstructor() ContractABIMethod1`
+`func (o *ContractABI) GetConstructor() ContractABIMethod`
 
 GetConstructor returns the Constructor field if non-nil, zero value otherwise.
 
 ### GetConstructorOk
 
-`func (o *ContractABI) GetConstructorOk() (*ContractABIMethod1, bool)`
+`func (o *ContractABI) GetConstructorOk() (*ContractABIMethod, bool)`
 
 GetConstructorOk returns a tuple with the Constructor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConstructor
 
-`func (o *ContractABI) SetConstructor(v ContractABIMethod1)`
+`func (o *ContractABI) SetConstructor(v ContractABIMethod)`
 
 SetConstructor sets Constructor field to given value.
 

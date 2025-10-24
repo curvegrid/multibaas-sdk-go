@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** | The invitee&#39;s email address. | 
-**GroupIDs** | Pointer to **[]int64** |  | [optional] 
+**CreatedAt** | **time.Time** | The time the invite was created. | 
+**ExpiresAt** | **time.Time** | The time the invite expires. | 
 
 ## Methods
 
 ### NewInvite
 
-`func NewInvite(email string, ) *Invite`
+`func NewInvite(email string, createdAt time.Time, expiresAt time.Time, ) *Invite`
 
 NewInvite instantiates a new Invite object
 This constructor will assign default values to properties that have it defined,
@@ -46,30 +47,45 @@ and a boolean to check if the value has been set.
 SetEmail sets Email field to given value.
 
 
-### GetGroupIDs
+### GetCreatedAt
 
-`func (o *Invite) GetGroupIDs() []int64`
+`func (o *Invite) GetCreatedAt() time.Time`
 
-GetGroupIDs returns the GroupIDs field if non-nil, zero value otherwise.
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
-### GetGroupIDsOk
+### GetCreatedAtOk
 
-`func (o *Invite) GetGroupIDsOk() (*[]int64, bool)`
+`func (o *Invite) GetCreatedAtOk() (*time.Time, bool)`
 
-GetGroupIDsOk returns a tuple with the GroupIDs field if it's non-nil, zero value otherwise
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGroupIDs
+### SetCreatedAt
 
-`func (o *Invite) SetGroupIDs(v []int64)`
+`func (o *Invite) SetCreatedAt(v time.Time)`
 
-SetGroupIDs sets GroupIDs field to given value.
+SetCreatedAt sets CreatedAt field to given value.
 
-### HasGroupIDs
 
-`func (o *Invite) HasGroupIDs() bool`
+### GetExpiresAt
 
-HasGroupIDs returns a boolean if a field has been set.
+`func (o *Invite) GetExpiresAt() time.Time`
+
+GetExpiresAt returns the ExpiresAt field if non-nil, zero value otherwise.
+
+### GetExpiresAtOk
+
+`func (o *Invite) GetExpiresAtOk() (*time.Time, bool)`
+
+GetExpiresAtOk returns a tuple with the ExpiresAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiresAt
+
+`func (o *Invite) SetExpiresAt(v time.Time)`
+
+SetExpiresAt sets ExpiresAt field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,23 +6,22 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Signature** | Pointer to **string** |  | [optional] 
 **Args** | Pointer to **[]interface{}** | List of the function arguments. | [optional] 
-**From** | Pointer to **string** | An ethereum address. | [optional] 
+**From** | Pointer to **string** | An Ethereum address (0x prefixed hex) or an address alias. | [optional] 
 **Nonce** | Pointer to **int64** | Nonce to use for the transaction execution. | [optional] 
 **GasPrice** | Pointer to **int64** | Gas price to use for the transaction execution. | [optional] 
 **GasFeeCap** | Pointer to **int64** | Gas fee cap to use for the 1559 transaction execution. | [optional] 
 **GasTipCap** | Pointer to **int64** | Gas priority fee cap to use for the 1559 transaction execution. | [optional] 
 **Gas** | Pointer to **int64** | Gas limit to set for the transaction execution. | [optional] 
-**To** | Pointer to **string** | An ethereum address. | [optional] 
+**To** | Pointer to **string** | An Ethereum address (0x prefixed hex) or an address alias. | [optional] 
 **Value** | Pointer to **string** | Amount (in wei) to send with the transaction. | [optional] 
 **SignAndSubmit** | Pointer to **bool** | If the &#x60;from&#x60; address is an HSM address and this flag is set to &#x60;true&#x60;, the transaction will be automatically signed and submitted to the blockchain. | [optional] [default to false]
 **NonceManagement** | Pointer to **bool** | If the &#x60;from&#x60; address is an HSM address and this flag is set to &#x60;true&#x60;, MultiBaas will keep track of the nonce and set it accordingly. This is particularly useful when submitting multiple transactions concurrently or in a very short period of time. If this flag is set to &#x60;true&#x60; and a &#x60;nonce&#x60; is provided, it will reset the nonce tracker to the given nonce (useful if the nonce tracker is out of sync). | [optional] [default to false]
 **PreEIP1559** | Pointer to **bool** | If set to &#x60;true&#x60;, forces a legacy type transaction. Otherwise an EIP-1559 transaction will created if the network supports it. | [optional] [default to false]
-**Signer** | Pointer to **string** | An ethereum address. | [optional] 
+**Signer** | Pointer to **string** | An Ethereum address (0x prefixed hex) or an address alias. | [optional] 
 **FormatInts** | Pointer to **string** | Mode to format integer outputs in the function call&#39;s responses. There are 3 possible modes:   - &#x60;auto&#x60; (the default option), where number format is decided by its type:     - If the type has size at most 32 bits, then the number is returned verbatim.     - If the type has size larger than 32 bits, then the number is returned as a string.   - &#x60;as_numbers&#x60;, where all numbers are returned verbatim.   - &#x60;as_strings&#x60;, where all numbers are returned as strings.  | [optional] [default to "auto"]
 **Timestamp** | Pointer to **string** | Call the function at a specific timestamp. Only available for read functions calls and if the &#x60;historical_blocks_feature&#x60; is enabled (see the plan endpoint). Mutually exclusive with the &#x60;blockNumber&#x60; parameter. | [optional] 
 **BlockNumber** | Pointer to **string** | Call the function at a specific block. Only available for read functions calls and if the &#x60;historical_blocks_feature&#x60; is enabled (see the plan endpoint). Mutually exclusive with the &#x60;timestamp&#x60; parameter. | [optional] 
 **ContractOverride** | Pointer to **bool** | If set to true the given address and contract don&#39;t need to be linked for the function to be called. | [optional] 
-**Preview** | Pointer to [**PreviewArgs**](PreviewArgs.md) |  | [optional] 
 
 ## Methods
 
@@ -492,31 +491,6 @@ SetContractOverride sets ContractOverride field to given value.
 `func (o *PostMethodArgs) HasContractOverride() bool`
 
 HasContractOverride returns a boolean if a field has been set.
-
-### GetPreview
-
-`func (o *PostMethodArgs) GetPreview() PreviewArgs`
-
-GetPreview returns the Preview field if non-nil, zero value otherwise.
-
-### GetPreviewOk
-
-`func (o *PostMethodArgs) GetPreviewOk() (*PreviewArgs, bool)`
-
-GetPreviewOk returns a tuple with the Preview field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPreview
-
-`func (o *PostMethodArgs) SetPreview(v PreviewArgs)`
-
-SetPreview sets Preview field to given value.
-
-### HasPreview
-
-`func (o *PostMethodArgs) HasPreview() bool`
-
-HasPreview returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

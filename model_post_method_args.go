@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -22,8 +22,8 @@ type PostMethodArgs struct {
 	Signature *string `json:"signature,omitempty"`
 	// List of the function arguments.
 	Args []interface{} `json:"args,omitempty"`
-	// An ethereum address.
-	From *string `json:"from,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	// An Ethereum address (0x prefixed hex) or an address alias.
+	From *string `json:"from,omitempty" validate:"regexp=^(:?0[xX][a-fA-F0-9]{40}|[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
 	// Nonce to use for the transaction execution.
 	Nonce *int64 `json:"nonce,omitempty"`
 	// Gas price to use for the transaction execution.
@@ -34,8 +34,8 @@ type PostMethodArgs struct {
 	GasTipCap *int64 `json:"gasTipCap,omitempty"`
 	// Gas limit to set for the transaction execution.
 	Gas *int64 `json:"gas,omitempty"`
-	// An ethereum address.
-	To *string `json:"to,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	// An Ethereum address (0x prefixed hex) or an address alias.
+	To *string `json:"to,omitempty" validate:"regexp=^(:?0[xX][a-fA-F0-9]{40}|[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
 	// Amount (in wei) to send with the transaction.
 	Value *string `json:"value,omitempty"`
 	// If the `from` address is an HSM address and this flag is set to `true`, the transaction will be automatically signed and submitted to the blockchain.
@@ -44,8 +44,8 @@ type PostMethodArgs struct {
 	NonceManagement *bool `json:"nonceManagement,omitempty"`
 	// If set to `true`, forces a legacy type transaction. Otherwise an EIP-1559 transaction will created if the network supports it.
 	PreEIP1559 *bool `json:"preEIP1559,omitempty"`
-	// An ethereum address.
-	Signer *string `json:"signer,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	// An Ethereum address (0x prefixed hex) or an address alias.
+	Signer *string `json:"signer,omitempty" validate:"regexp=^(:?0[xX][a-fA-F0-9]{40}|[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
 	// Mode to format integer outputs in the function call's responses. There are 3 possible modes:   - `auto` (the default option), where number format is decided by its type:     - If the type has size at most 32 bits, then the number is returned verbatim.     - If the type has size larger than 32 bits, then the number is returned as a string.   - `as_numbers`, where all numbers are returned verbatim.   - `as_strings`, where all numbers are returned as strings.
 	FormatInts *string `json:"formatInts,omitempty"`
 	// Call the function at a specific timestamp. Only available for read functions calls and if the `historical_blocks_feature` is enabled (see the plan endpoint). Mutually exclusive with the `blockNumber` parameter.
@@ -53,8 +53,7 @@ type PostMethodArgs struct {
 	// Call the function at a specific block. Only available for read functions calls and if the `historical_blocks_feature` is enabled (see the plan endpoint). Mutually exclusive with the `timestamp` parameter.
 	BlockNumber *string `json:"blockNumber,omitempty"`
 	// If set to true the given address and contract don't need to be linked for the function to be called.
-	ContractOverride *bool        `json:"contractOverride,omitempty"`
-	Preview          *PreviewArgs `json:"preview,omitempty"`
+	ContractOverride *bool `json:"contractOverride,omitempty"`
 }
 
 // NewPostMethodArgs instantiates a new PostMethodArgs object
@@ -666,38 +665,6 @@ func (o *PostMethodArgs) SetContractOverride(v bool) {
 	o.ContractOverride = &v
 }
 
-// GetPreview returns the Preview field value if set, zero value otherwise.
-func (o *PostMethodArgs) GetPreview() PreviewArgs {
-	if o == nil || IsNil(o.Preview) {
-		var ret PreviewArgs
-		return ret
-	}
-	return *o.Preview
-}
-
-// GetPreviewOk returns a tuple with the Preview field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PostMethodArgs) GetPreviewOk() (*PreviewArgs, bool) {
-	if o == nil || IsNil(o.Preview) {
-		return nil, false
-	}
-	return o.Preview, true
-}
-
-// HasPreview returns a boolean if a field has been set.
-func (o *PostMethodArgs) HasPreview() bool {
-	if o != nil && !IsNil(o.Preview) {
-		return true
-	}
-
-	return false
-}
-
-// SetPreview gets a reference to the given PreviewArgs and assigns it to the Preview field.
-func (o *PostMethodArgs) SetPreview(v PreviewArgs) {
-	o.Preview = &v
-}
-
 func (o PostMethodArgs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Signature) {
@@ -753,9 +720,6 @@ func (o PostMethodArgs) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ContractOverride) {
 		toSerialize["contractOverride"] = o.ContractOverride
-	}
-	if !IsNil(o.Preview) {
-		toSerialize["preview"] = o.Preview
 	}
 	return toSerialize, nil
 }

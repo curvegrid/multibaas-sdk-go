@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -20,12 +20,11 @@ var _ MappedNullable = &Address{}
 // Address An address details.
 type Address struct {
 	// An alias to easily identify and reference addresses.
-	Alias string `json:"alias" validate:"regexp=^[a-z0-9_-]+$"`
+	Alias string `json:"alias" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
 	// An ethereum address.
-	Address string   `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
-	Balance *string  `json:"balance,omitempty"`
-	Chain   string   `json:"chain"`
-	Modules []string `json:"modules"`
+	Address string  `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Balance *string `json:"balance,omitempty"`
+	Chain   string  `json:"chain"`
 	// The next transaction nonce for this address (obtained from the blockchain node).
 	Nonce *int64 `json:"nonce,omitempty"`
 	// The next transaction nonce for this address when using the nonce management feature.
@@ -41,12 +40,11 @@ type _Address Address
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddress(alias string, address string, chain string, modules []string, contracts []ContractMetadata) *Address {
+func NewAddress(alias string, address string, chain string, contracts []ContractMetadata) *Address {
 	this := Address{}
 	this.Alias = alias
 	this.Address = address
 	this.Chain = chain
-	this.Modules = modules
 	this.Contracts = contracts
 	return &this
 }
@@ -161,30 +159,6 @@ func (o *Address) GetChainOk() (*string, bool) {
 // SetChain sets field value
 func (o *Address) SetChain(v string) {
 	o.Chain = v
-}
-
-// GetModules returns the Modules field value
-func (o *Address) GetModules() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Modules
-}
-
-// GetModulesOk returns a tuple with the Modules field value
-// and a boolean to check if the value has been set.
-func (o *Address) GetModulesOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Modules, true
-}
-
-// SetModules sets field value
-func (o *Address) SetModules(v []string) {
-	o.Modules = v
 }
 
 // GetNonce returns the Nonce field value if set, zero value otherwise.
@@ -347,7 +321,6 @@ func (o Address) ToMap() (map[string]interface{}, error) {
 		toSerialize["balance"] = o.Balance
 	}
 	toSerialize["chain"] = o.Chain
-	toSerialize["modules"] = o.Modules
 	if !IsNil(o.Nonce) {
 		toSerialize["nonce"] = o.Nonce
 	}

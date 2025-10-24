@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **Address** | **string** | An ethereum address. | 
 **Balance** | Pointer to **string** |  | [optional] 
 **Chain** | **string** |  | 
-**Modules** | **[]string** |  | 
 **Nonce** | Pointer to **int64** | The next transaction nonce for this address (obtained from the blockchain node). | [optional] 
 **LocalNonce** | Pointer to **int64** | The next transaction nonce for this address when using the nonce management feature. | [optional] 
 **CodeAt** | Pointer to **string** |  | [optional] 
@@ -19,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewAddress
 
-`func NewAddress(alias string, address string, chain string, modules []string, contracts []ContractMetadata, ) *Address`
+`func NewAddress(alias string, address string, chain string, contracts []ContractMetadata, ) *Address`
 
 NewAddress instantiates a new Address object
 This constructor will assign default values to properties that have it defined,
@@ -117,26 +116,6 @@ and a boolean to check if the value has been set.
 `func (o *Address) SetChain(v string)`
 
 SetChain sets Chain field to given value.
-
-
-### GetModules
-
-`func (o *Address) GetModules() []string`
-
-GetModules returns the Modules field if non-nil, zero value otherwise.
-
-### GetModulesOk
-
-`func (o *Address) GetModulesOk() (*[]string, bool)`
-
-GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModules
-
-`func (o *Address) SetModules(v []string)`
-
-SetModules sets Modules field to given value.
 
 
 ### GetNonce

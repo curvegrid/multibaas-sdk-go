@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -27,9 +27,10 @@ type TransactionData struct {
 	// The keccak256 hash as a hex string of 256 bits.
 	BlockHash *string `json:"blockHash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// The transaction block number.
-	BlockNumber *string                    `json:"blockNumber,omitempty"`
-	Contract    *ContractInformation       `json:"contract,omitempty"`
-	Method      *ContractMethodInformation `json:"method,omitempty"`
+	BlockNumber            *string                    `json:"blockNumber,omitempty"`
+	Contract               *ContractInformation       `json:"contract,omitempty"`
+	Method                 *ContractMethodInformation `json:"method,omitempty"`
+	AuthorizationExtraInfo []AuthorizationExtraInfo   `json:"authorizationExtraInfo,omitempty"`
 }
 
 type _TransactionData TransactionData
@@ -254,6 +255,39 @@ func (o *TransactionData) SetMethod(v ContractMethodInformation) {
 	o.Method = &v
 }
 
+// GetAuthorizationExtraInfo returns the AuthorizationExtraInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TransactionData) GetAuthorizationExtraInfo() []AuthorizationExtraInfo {
+	if o == nil {
+		var ret []AuthorizationExtraInfo
+		return ret
+	}
+	return o.AuthorizationExtraInfo
+}
+
+// GetAuthorizationExtraInfoOk returns a tuple with the AuthorizationExtraInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TransactionData) GetAuthorizationExtraInfoOk() ([]AuthorizationExtraInfo, bool) {
+	if o == nil || IsNil(o.AuthorizationExtraInfo) {
+		return nil, false
+	}
+	return o.AuthorizationExtraInfo, true
+}
+
+// HasAuthorizationExtraInfo returns a boolean if a field has been set.
+func (o *TransactionData) HasAuthorizationExtraInfo() bool {
+	if o != nil && !IsNil(o.AuthorizationExtraInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorizationExtraInfo gets a reference to the given []AuthorizationExtraInfo and assigns it to the AuthorizationExtraInfo field.
+func (o *TransactionData) SetAuthorizationExtraInfo(v []AuthorizationExtraInfo) {
+	o.AuthorizationExtraInfo = v
+}
+
 func (o TransactionData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
@@ -270,6 +304,9 @@ func (o TransactionData) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Method) {
 		toSerialize["method"] = o.Method
+	}
+	if o.AuthorizationExtraInfo != nil {
+		toSerialize["authorizationExtraInfo"] = o.AuthorizationExtraInfo
 	}
 	return toSerialize, nil
 }

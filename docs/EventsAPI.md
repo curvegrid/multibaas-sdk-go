@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetEventCount
 
-> GetEventCount200Response GetEventCount(ctx).BlockHash(blockHash).BlockNumber(blockNumber).TxIndexInBlock(txIndexInBlock).EventIndexInLog(eventIndexInLog).TxHash(txHash).FromConstructor(fromConstructor).Chain(chain).ContractAddress(contractAddress).ContractLabel(contractLabel).EventSignature(eventSignature).Limit(limit).Offset(offset).Execute()
+> GetEventCount200Response GetEventCount(ctx).BlockHash(blockHash).BlockNumber(blockNumber).TxIndexInBlock(txIndexInBlock).EventIndexInLog(eventIndexInLog).TxHash(txHash).FromConstructor(fromConstructor).ContractAddress(contractAddress).ContractLabel(contractLabel).EventSignature(eventSignature).Limit(limit).Offset(offset).Execute()
 
 Get event count
 
@@ -36,7 +36,6 @@ func main() {
 	eventIndexInLog := int64(789) // int64 | Filter events by index in the log. (optional)
 	txHash := "txHash_example" // string | Filter events by a transaction hash. (optional)
 	fromConstructor := true // bool | Filter events by whether they were emitted from the constructor function. (optional)
-	chain := openapiclient.ChainName("ethereum") // ChainName | Filter events by a chain name. (optional)
 	contractAddress := "contractAddress_example" // string | Filter events by a contract address. (optional)
 	contractLabel := "contractLabel_example" // string | Filter events by a contract label. (optional)
 	eventSignature := "eventSignature_example" // string | Filter events by the signature. (optional)
@@ -45,7 +44,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.GetEventCount(context.Background()).BlockHash(blockHash).BlockNumber(blockNumber).TxIndexInBlock(txIndexInBlock).EventIndexInLog(eventIndexInLog).TxHash(txHash).FromConstructor(fromConstructor).Chain(chain).ContractAddress(contractAddress).ContractLabel(contractLabel).EventSignature(eventSignature).Limit(limit).Offset(offset).Execute()
+	resp, r, err := apiClient.EventsAPI.GetEventCount(context.Background()).BlockHash(blockHash).BlockNumber(blockNumber).TxIndexInBlock(txIndexInBlock).EventIndexInLog(eventIndexInLog).TxHash(txHash).FromConstructor(fromConstructor).ContractAddress(contractAddress).ContractLabel(contractLabel).EventSignature(eventSignature).Limit(limit).Offset(offset).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.GetEventCount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,7 +71,6 @@ Name | Type | Description  | Notes
  **eventIndexInLog** | **int64** | Filter events by index in the log. | 
  **txHash** | **string** | Filter events by a transaction hash. | 
  **fromConstructor** | **bool** | Filter events by whether they were emitted from the constructor function. | 
- **chain** | [**ChainName**](ChainName.md) | Filter events by a chain name. | 
  **contractAddress** | **string** | Filter events by a contract address. | 
  **contractLabel** | **string** | Filter events by a contract label. | 
  **eventSignature** | **string** | Filter events by the signature. | 
@@ -99,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## ListEvents
 
-> ListEvents200Response ListEvents(ctx).BlockHash(blockHash).BlockNumber(blockNumber).TxIndexInBlock(txIndexInBlock).EventIndexInLog(eventIndexInLog).TxHash(txHash).FromConstructor(fromConstructor).Chain(chain).ContractAddress(contractAddress).ContractLabel(contractLabel).EventSignature(eventSignature).Limit(limit).Offset(offset).Execute()
+> ListEvents200Response ListEvents(ctx).BlockHash(blockHash).BlockNumber(blockNumber).TxIndexInBlock(txIndexInBlock).EventIndexInLog(eventIndexInLog).TxHash(txHash).FromConstructor(fromConstructor).ContractAddress(contractAddress).ContractLabel(contractLabel).EventSignature(eventSignature).Limit(limit).Offset(offset).Execute()
 
 List events
 
@@ -124,7 +122,6 @@ func main() {
 	eventIndexInLog := int64(789) // int64 | Filter events by index in the log. (optional)
 	txHash := "txHash_example" // string | Filter events by a transaction hash. (optional)
 	fromConstructor := true // bool | Filter events by whether they were emitted from the constructor function. (optional)
-	chain := openapiclient.ChainName("ethereum") // ChainName | Filter events by a chain name. (optional)
 	contractAddress := "contractAddress_example" // string | Filter events by a contract address. (optional)
 	contractLabel := "contractLabel_example" // string | Filter events by a contract label. (optional)
 	eventSignature := "eventSignature_example" // string | Filter events by the signature. (optional)
@@ -133,7 +130,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsAPI.ListEvents(context.Background()).BlockHash(blockHash).BlockNumber(blockNumber).TxIndexInBlock(txIndexInBlock).EventIndexInLog(eventIndexInLog).TxHash(txHash).FromConstructor(fromConstructor).Chain(chain).ContractAddress(contractAddress).ContractLabel(contractLabel).EventSignature(eventSignature).Limit(limit).Offset(offset).Execute()
+	resp, r, err := apiClient.EventsAPI.ListEvents(context.Background()).BlockHash(blockHash).BlockNumber(blockNumber).TxIndexInBlock(txIndexInBlock).EventIndexInLog(eventIndexInLog).TxHash(txHash).FromConstructor(fromConstructor).ContractAddress(contractAddress).ContractLabel(contractLabel).EventSignature(eventSignature).Limit(limit).Offset(offset).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.ListEvents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -160,7 +157,6 @@ Name | Type | Description  | Notes
  **eventIndexInLog** | **int64** | Filter events by index in the log. | 
  **txHash** | **string** | Filter events by a transaction hash. | 
  **fromConstructor** | **bool** | Filter events by whether they were emitted from the constructor function. | 
- **chain** | [**ChainName**](ChainName.md) | Filter events by a chain name. | 
  **contractAddress** | **string** | Filter events by a contract address. | 
  **contractLabel** | **string** | Filter events by a contract label. | 
  **eventSignature** | **string** | Filter events by the signature. | 

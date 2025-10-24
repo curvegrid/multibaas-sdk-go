@@ -1,7 +1,7 @@
 /*
 MultiBaas API
 
-MultiBaas's REST APIv0.
+MultiBaas API provides a unified interface for interacting with blockchain networks. It enables applications to deploy and manage smart contracts, call contract methods, and query blockchain data through standard REST endpoints. The API also includes features for authentication, role-based access control, and integration with existing systems, allowing developers to build blockchain-powered applications without needing deep protocol-level expertise.
 
 API version: 0.0
 */
@@ -27,11 +27,10 @@ type ChainsAPI interface {
 		Returns a block.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param block A block number, hash or 'latest' for the latest block.
 		@return ApiGetBlockRequest
 	*/
-	GetBlock(ctx context.Context, chain ChainName, block string) ApiGetBlockRequest
+	GetBlock(ctx context.Context, block string) ApiGetBlockRequest
 
 	// GetBlockExecute executes the request
 	//  @return GetBlock200Response
@@ -43,10 +42,9 @@ type ChainsAPI interface {
 		Returns the chain status.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@return ApiGetChainStatusRequest
 	*/
-	GetChainStatus(ctx context.Context, chain ChainName) ApiGetChainStatusRequest
+	GetChainStatus(ctx context.Context) ApiGetChainStatusRequest
 
 	// GetChainStatusExecute executes the request
 	//  @return GetChainStatus200Response
@@ -58,11 +56,10 @@ type ChainsAPI interface {
 		Returns a transaction.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param hash A transaction hash.
 		@return ApiGetTransactionRequest
 	*/
-	GetTransaction(ctx context.Context, chain ChainName, hash string) ApiGetTransactionRequest
+	GetTransaction(ctx context.Context, hash string) ApiGetTransactionRequest
 
 	// GetTransactionExecute executes the request
 	//  @return GetTransaction200Response
@@ -74,11 +71,10 @@ type ChainsAPI interface {
 		Returns the receipt of a transaction that's been successfully added to the blockchain.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@param hash A transaction hash.
 		@return ApiGetTransactionReceiptRequest
 	*/
-	GetTransactionReceipt(ctx context.Context, chain ChainName, hash string) ApiGetTransactionReceiptRequest
+	GetTransactionReceipt(ctx context.Context, hash string) ApiGetTransactionReceiptRequest
 
 	// GetTransactionReceiptExecute executes the request
 	//  @return GetTransactionReceipt200Response
@@ -90,10 +86,9 @@ type ChainsAPI interface {
 		Receives a pre-signed raw transaction and submits it to the blockchain.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@return ApiSubmitSignedTransactionRequest
 	*/
-	SubmitSignedTransaction(ctx context.Context, chain ChainName) ApiSubmitSignedTransactionRequest
+	SubmitSignedTransaction(ctx context.Context) ApiSubmitSignedTransactionRequest
 
 	// SubmitSignedTransactionExecute executes the request
 	//  @return SubmitSignedTransaction200Response
@@ -105,10 +100,9 @@ type ChainsAPI interface {
 		Returns a transaction for sending the native token between addresses.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param chain The blockchain chain label.
 		@return ApiTransferEthRequest
 	*/
-	TransferEth(ctx context.Context, chain ChainName) ApiTransferEthRequest
+	TransferEth(ctx context.Context) ApiTransferEthRequest
 
 	// TransferEthExecute executes the request
 	//  @return TransferEth200Response
@@ -121,7 +115,6 @@ type ChainsAPIService service
 type ApiGetBlockRequest struct {
 	ctx        context.Context
 	ApiService ChainsAPI
-	chain      ChainName
 	block      string
 }
 
@@ -135,15 +128,13 @@ GetBlock Get a block
 Returns a block.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param block A block number, hash or 'latest' for the latest block.
 	@return ApiGetBlockRequest
 */
-func (a *ChainsAPIService) GetBlock(ctx context.Context, chain ChainName, block string) ApiGetBlockRequest {
+func (a *ChainsAPIService) GetBlock(ctx context.Context, block string) ApiGetBlockRequest {
 	return ApiGetBlockRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 		block:      block,
 	}
 }
@@ -164,8 +155,7 @@ func (a *ChainsAPIService) GetBlockExecute(r ApiGetBlockRequest) (*GetBlock200Re
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/blocks/{block}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/blocks/{block}"
 	localVarPath = strings.Replace(localVarPath, "{"+"block"+"}", url.PathEscape(parameterValueToString(r.block, "block")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -250,7 +240,6 @@ func (a *ChainsAPIService) GetBlockExecute(r ApiGetBlockRequest) (*GetBlock200Re
 type ApiGetChainStatusRequest struct {
 	ctx        context.Context
 	ApiService ChainsAPI
-	chain      ChainName
 }
 
 func (r ApiGetChainStatusRequest) Execute() (*GetChainStatus200Response, *http.Response, error) {
@@ -263,14 +252,12 @@ GetChainStatus Get chain status
 Returns the chain status.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@return ApiGetChainStatusRequest
 */
-func (a *ChainsAPIService) GetChainStatus(ctx context.Context, chain ChainName) ApiGetChainStatusRequest {
+func (a *ChainsAPIService) GetChainStatus(ctx context.Context) ApiGetChainStatusRequest {
 	return ApiGetChainStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 	}
 }
 
@@ -290,8 +277,7 @@ func (a *ChainsAPIService) GetChainStatusExecute(r ApiGetChainStatusRequest) (*G
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/status"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -375,7 +361,6 @@ func (a *ChainsAPIService) GetChainStatusExecute(r ApiGetChainStatusRequest) (*G
 type ApiGetTransactionRequest struct {
 	ctx        context.Context
 	ApiService ChainsAPI
-	chain      ChainName
 	hash       string
 	include    *string
 }
@@ -396,15 +381,13 @@ GetTransaction Get transaction
 Returns a transaction.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param hash A transaction hash.
 	@return ApiGetTransactionRequest
 */
-func (a *ChainsAPIService) GetTransaction(ctx context.Context, chain ChainName, hash string) ApiGetTransactionRequest {
+func (a *ChainsAPIService) GetTransaction(ctx context.Context, hash string) ApiGetTransactionRequest {
 	return ApiGetTransactionRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 		hash:       hash,
 	}
 }
@@ -425,8 +408,7 @@ func (a *ChainsAPIService) GetTransactionExecute(r ApiGetTransactionRequest) (*G
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/transactions/{hash}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/transactions/{hash}"
 	localVarPath = strings.Replace(localVarPath, "{"+"hash"+"}", url.PathEscape(parameterValueToString(r.hash, "hash")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -514,7 +496,6 @@ func (a *ChainsAPIService) GetTransactionExecute(r ApiGetTransactionRequest) (*G
 type ApiGetTransactionReceiptRequest struct {
 	ctx        context.Context
 	ApiService ChainsAPI
-	chain      ChainName
 	hash       string
 	include    *string
 }
@@ -535,15 +516,13 @@ GetTransactionReceipt Get transaction receipt
 Returns the receipt of a transaction that's been successfully added to the blockchain.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@param hash A transaction hash.
 	@return ApiGetTransactionReceiptRequest
 */
-func (a *ChainsAPIService) GetTransactionReceipt(ctx context.Context, chain ChainName, hash string) ApiGetTransactionReceiptRequest {
+func (a *ChainsAPIService) GetTransactionReceipt(ctx context.Context, hash string) ApiGetTransactionReceiptRequest {
 	return ApiGetTransactionReceiptRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 		hash:       hash,
 	}
 }
@@ -564,8 +543,7 @@ func (a *ChainsAPIService) GetTransactionReceiptExecute(r ApiGetTransactionRecei
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/transactions/receipt/{hash}"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/transactions/receipt/{hash}"
 	localVarPath = strings.Replace(localVarPath, "{"+"hash"+"}", url.PathEscape(parameterValueToString(r.hash, "hash")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -653,7 +631,6 @@ func (a *ChainsAPIService) GetTransactionReceiptExecute(r ApiGetTransactionRecei
 type ApiSubmitSignedTransactionRequest struct {
 	ctx                         context.Context
 	ApiService                  ChainsAPI
-	chain                       ChainName
 	signedTransactionSubmission *SignedTransactionSubmission
 }
 
@@ -672,14 +649,12 @@ SubmitSignedTransaction Submit signed transaction
 Receives a pre-signed raw transaction and submits it to the blockchain.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@return ApiSubmitSignedTransactionRequest
 */
-func (a *ChainsAPIService) SubmitSignedTransaction(ctx context.Context, chain ChainName) ApiSubmitSignedTransactionRequest {
+func (a *ChainsAPIService) SubmitSignedTransaction(ctx context.Context) ApiSubmitSignedTransactionRequest {
 	return ApiSubmitSignedTransactionRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 	}
 }
 
@@ -699,8 +674,7 @@ func (a *ChainsAPIService) SubmitSignedTransactionExecute(r ApiSubmitSignedTrans
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/transactions/submit"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/transactions/submit"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -789,7 +763,6 @@ func (a *ChainsAPIService) SubmitSignedTransactionExecute(r ApiSubmitSignedTrans
 type ApiTransferEthRequest struct {
 	ctx            context.Context
 	ApiService     ChainsAPI
-	chain          ChainName
 	postMethodArgs *PostMethodArgs
 }
 
@@ -808,14 +781,12 @@ TransferEth Transfer ETH
 Returns a transaction for sending the native token between addresses.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param chain The blockchain chain label.
 	@return ApiTransferEthRequest
 */
-func (a *ChainsAPIService) TransferEth(ctx context.Context, chain ChainName) ApiTransferEthRequest {
+func (a *ChainsAPIService) TransferEth(ctx context.Context) ApiTransferEthRequest {
 	return ApiTransferEthRequest{
 		ApiService: a,
 		ctx:        ctx,
-		chain:      chain,
 	}
 }
 
@@ -835,8 +806,7 @@ func (a *ChainsAPIService) TransferEthExecute(r ApiTransferEthRequest) (*Transfe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/chains/{chain}/transfers"
-	localVarPath = strings.Replace(localVarPath, "{"+"chain"+"}", url.PathEscape(parameterValueToString(r.chain, "chain")), -1)
+	localVarPath := localBasePath + "/chains/ethereum/transfers"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

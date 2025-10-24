@@ -1,3 +1,3 @@
 module github.com/curvegrid/multibaas-sdk-go
 
-go 1.18
+go 1.23

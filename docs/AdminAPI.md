@@ -12,13 +12,16 @@ Method | HTTP request | Description
 [**CheckInvite**](AdminAPI.md#CheckInvite) | **Get** /invites/{inviteID} | Check invite
 [**CreateApiKey**](AdminAPI.md#CreateApiKey) | **Post** /api_keys | Create API key
 [**DeleteApiKey**](AdminAPI.md#DeleteApiKey) | **Delete** /api_keys/{apiKeyID} | Delete API key
+[**DeleteInvite**](AdminAPI.md#DeleteInvite) | **Delete** /invites/{email}/delete | Delete invite
 [**DeleteUser**](AdminAPI.md#DeleteUser) | **Delete** /users/{userID} | Delete user
 [**GetApiKey**](AdminAPI.md#GetApiKey) | **Get** /api_keys/{apiKeyID} | Get API Key
+[**GetPlan**](AdminAPI.md#GetPlan) | **Get** /plan | Get plan
 [**InviteUser**](AdminAPI.md#InviteUser) | **Post** /invites | Invite user
 [**ListApiKeys**](AdminAPI.md#ListApiKeys) | **Get** /api_keys | List API keys
 [**ListAuditLogs**](AdminAPI.md#ListAuditLogs) | **Get** /systemactivities | List audit logs
 [**ListCorsOrigins**](AdminAPI.md#ListCorsOrigins) | **Get** /cors | List CORS origins
 [**ListGroups**](AdminAPI.md#ListGroups) | **Get** /groups | List groups
+[**ListInvites**](AdminAPI.md#ListInvites) | **Get** /invites | List invites
 [**ListUserSigners**](AdminAPI.md#ListUserSigners) | **Get** /users/{userID}/signers | List user signers
 [**ListUsers**](AdminAPI.md#ListUsers) | **Get** /users | List users
 [**RemoveCorsOrigin**](AdminAPI.md#RemoveCorsOrigin) | **Delete** /cors/{originID} | Remove CORS Origin
@@ -598,6 +601,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteInvite
+
+> DeleteInvite(ctx, email).Execute()
+
+Delete invite
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+	email := "email_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AdminAPI.DeleteInvite(context.Background(), email).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.DeleteInvite``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**email** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteInviteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteUser
 
 > BaseResponse DeleteUser(ctx, userID).Execute()
@@ -738,9 +809,70 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetPlan
+
+> GetPlan200Response GetPlan(ctx).Execute()
+
+Get plan
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.GetPlan(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.GetPlan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPlan`: GetPlan200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.GetPlan`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPlanRequest struct via the builder pattern
+
+
+### Return type
+
+[**GetPlan200Response**](GetPlan200Response.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## InviteUser
 
-> BaseResponse InviteUser(ctx).Invite(invite).Execute()
+> BaseResponse InviteUser(ctx).InviteRequest(inviteRequest).Execute()
 
 Invite user
 
@@ -759,11 +891,11 @@ import (
 )
 
 func main() {
-	invite := *openapiclient.NewInvite("Email_example") // Invite | 
+	inviteRequest := *openapiclient.NewInviteRequest("Email_example") // InviteRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AdminAPI.InviteUser(context.Background()).Invite(invite).Execute()
+	resp, r, err := apiClient.AdminAPI.InviteUser(context.Background()).InviteRequest(inviteRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.InviteUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -784,7 +916,7 @@ Other parameters are passed through a pointer to a apiInviteUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **invite** | [**Invite**](Invite.md) |  | 
+ **inviteRequest** | [**InviteRequest**](InviteRequest.md) |  | 
 
 ### Return type
 
@@ -1047,6 +1179,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListGroups200Response**](ListGroups200Response.md)
+
+### Authorization
+
+[cookie](../README.md#cookie), [bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListInvites
+
+> ListInvites200Response ListInvites(ctx).Execute()
+
+List invites
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/curvegrid/multibaas-sdk-go"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AdminAPI.ListInvites(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AdminAPI.ListInvites``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListInvites`: ListInvites200Response
+	fmt.Fprintf(os.Stdout, "Response from `AdminAPI.ListInvites`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListInvitesRequest struct via the builder pattern
+
+
+### Return type
+
+[**ListInvites200Response**](ListInvites200Response.md)
 
 ### Authorization
 
