@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Size** | Pointer to **int64** |  | [optional] 
-**TupleElems** | Pointer to [**[]ContractABIType**](ContractABIType.md) |  | [optional] 
-**TupleRawNames** | Pointer to **[]string** |  | [optional] 
+**Type** | **string** | The type name (e.g., uint256, address, string). | 
+**Size** | Pointer to **int64** | The size of the type in bits, if applicable. | [optional] 
+**TupleElems** | Pointer to [**[]ContractABIType**](ContractABIType.md) | For tuple types, the list of element types within the tuple. | [optional] 
+**TupleRawNames** | Pointer to **[]string** | For tuple types, the original names of the tuple elements as defined in the contract. | [optional] 
 **Elem** | Pointer to [**ContractABIType**](ContractABIType.md) |  | [optional] 
 
 ## Methods

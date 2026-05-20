@@ -19,8 +19,10 @@ var _ MappedNullable = &ContractEventOptions{}
 
 // ContractEventOptions Type conversion options for an event.
 type ContractEventOptions struct {
-	Signature *string             `json:"signature,omitempty"`
-	Inputs    []ContractParameter `json:"inputs"`
+	// The event signature in the format `EventName(type1,type2,...)`, for example foo(uint32,int256).
+	Signature *string `json:"signature,omitempty"`
+	// List of type conversion configurations for each event input parameter.
+	Inputs []ContractParameter `json:"inputs"`
 }
 
 type _ContractEventOptions ContractEventOptions

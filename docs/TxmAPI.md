@@ -178,7 +178,7 @@ import (
 
 func main() {
 	walletAddress := "walletAddress_example" // string | An Ethereum address.
-	hash := "hash_example" // string | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: `?hash=HASH1&hash=HASH2&hash=HASH3` (optional)
+	hash := []string{"Inner_example"} // []string | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: `?hash=HASH1&hash=HASH2&hash=HASH3` (optional)
 	nonce := int64(789) // int64 | Filter transactions by nonce (optional)
 	status := openapiclient.TransactionStatus("pending") // TransactionStatus | Filter transactions by status (optional)
 	limit := int64(789) // int64 |  (optional) (default to 10)
@@ -212,7 +212,7 @@ Other parameters are passed through a pointer to a apiListWalletTransactionsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **hash** | **string** | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: &#x60;?hash&#x3D;HASH1&amp;hash&#x3D;HASH2&amp;hash&#x3D;HASH3&#x60; | 
+ **hash** | **[]string** | Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: &#x60;?hash&#x3D;HASH1&amp;hash&#x3D;HASH2&amp;hash&#x3D;HASH3&#x60; | 
  **nonce** | **int64** | Filter transactions by nonce | 
  **status** | [**TransactionStatus**](TransactionStatus.md) | Filter transactions by status | 
  **limit** | **int64** |  | [default to 10]

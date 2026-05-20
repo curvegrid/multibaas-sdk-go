@@ -19,7 +19,9 @@ var _ MappedNullable = &AzureHardwareWallet{}
 
 // AzureHardwareWallet An HSM Wallet
 type AzureHardwareWallet struct {
-	Id             int64 `json:"id"`
+	// The unique ID for this hardware wallet.
+	Id int64 `json:"id"`
+	// The ID of the associated Azure account configuration.
 	AzureAccountID int64 `json:"azureAccountID"`
 	// The name given to the vault your key is stored in.
 	VaultName string `json:"vaultName"`

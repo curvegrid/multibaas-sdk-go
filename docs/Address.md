@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Alias** | **string** | An alias to easily identify and reference addresses. | 
 **Address** | **string** | An ethereum address. | 
-**Balance** | Pointer to **string** |  | [optional] 
-**Chain** | **string** |  | 
+**Balance** | Pointer to **string** | The balance of the address in wei. | [optional] 
+**Chain** | **string** | The network ID. | 
 **Nonce** | Pointer to **int64** | The next transaction nonce for this address (obtained from the blockchain node). | [optional] 
 **LocalNonce** | Pointer to **int64** | The next transaction nonce for this address when using the nonce management feature. | [optional] 
-**CodeAt** | Pointer to **string** |  | [optional] 
-**Contracts** | [**[]ContractMetadata**](ContractMetadata.md) |  | 
-**ContractLookup** | Pointer to [**[]ContractLookup**](ContractLookup.md) |  | [optional] 
+**CodeAt** | Pointer to **string** | The bytecode deployed at this address. | [optional] 
+**Contracts** | [**[]ContractMetadata**](ContractMetadata.md) | The list of contracts linked to this address. | 
+**ContractLookup** | Pointer to [**[]ContractLookup**](ContractLookup.md) | The list of contracts discovered at this address. | [optional] 
 
 ## Methods
 

@@ -19,6 +19,7 @@ var _ MappedNullable = &PostMethodArgs{}
 
 // PostMethodArgs Arguments to be passed into a contract function.
 type PostMethodArgs struct {
+	// The function signature in the format `FunctionName(type1,type2,...)`, for example foo(uint32,int256).
 	Signature *string `json:"signature,omitempty"`
 	// List of the function arguments.
 	Args []interface{} `json:"args,omitempty"`

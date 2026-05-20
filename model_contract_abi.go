@@ -19,12 +19,15 @@ var _ MappedNullable = &ContractABI{}
 
 // ContractABI The contract ABI.
 type ContractABI struct {
-	Constructor NullableContractABIMethod    `json:"constructor"`
-	Methods     map[string]ContractABIMethod `json:"methods"`
-	Events      map[string]ContractABIEvent  `json:"events"`
-	Errors      *map[string]ContractABIError `json:"errors,omitempty"`
-	Fallback    NullableContractABIMethod    `json:"fallback"`
-	Receive     NullableContractABIMethod    `json:"receive"`
+	Constructor NullableContractABIMethod `json:"constructor"`
+	// A mapping of function signatures to their method definitions.
+	Methods map[string]ContractABIMethod `json:"methods"`
+	// A mapping of event signatures to their event definitions.
+	Events map[string]ContractABIEvent `json:"events"`
+	// A mapping of error signatures to their error definitions.
+	Errors   *map[string]ContractABIError `json:"errors,omitempty"`
+	Fallback NullableContractABIMethod    `json:"fallback"`
+	Receive  NullableContractABIMethod    `json:"receive"`
 }
 
 type _ContractABI ContractABI

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Signature** | Pointer to **string** |  | [optional] 
-**Inputs** | [**[]ContractParameter**](ContractParameter.md) |  | 
+**Signature** | Pointer to **string** | The event signature in the format &#x60;EventName(type1,type2,...)&#x60;, for example foo(uint32,int256). | [optional] 
+**Inputs** | [**[]ContractParameter**](ContractParameter.md) | List of type conversion configurations for each event input parameter. | 
 
 ## Methods
 

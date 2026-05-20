@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Signature** | Pointer to **string** |  | [optional] 
+**Signature** | Pointer to **string** | The function signature in the format &#x60;FunctionName(type1,type2,...)&#x60;, for example foo(uint32,int256). | [optional] 
 **Args** | Pointer to **[]interface{}** | List of the function arguments. | [optional] 
 **From** | Pointer to **string** | An Ethereum address (0x prefixed hex) or an address alias. | [optional] 
 **Nonce** | Pointer to **int64** | Nonce to use for the transaction execution. | [optional] 

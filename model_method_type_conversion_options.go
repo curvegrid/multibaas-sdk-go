@@ -19,7 +19,9 @@ var _ MappedNullable = &MethodTypeConversionOptions{}
 
 // MethodTypeConversionOptions Type conversion options for each of the inputs and outputs of a function.
 type MethodTypeConversionOptions struct {
-	Inputs  []TypeConversionOptions `json:"inputs"`
+	// Type conversion options for each input parameter of the function.
+	Inputs []TypeConversionOptions `json:"inputs"`
+	// Type conversion options for each output parameter of the function.
 	Outputs []TypeConversionOptions `json:"outputs"`
 }
 

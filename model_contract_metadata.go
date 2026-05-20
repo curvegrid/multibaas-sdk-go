@@ -17,13 +17,13 @@ import (
 // checks if the ContractMetadata type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ContractMetadata{}
 
-// ContractMetadata struct for ContractMetadata
+// ContractMetadata Lightweight reference information for a contract.
 type ContractMetadata struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
 	Label string `json:"label" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
-	// The name of the contract.
+	// The name of the contract in MultiBaas.
 	Name string `json:"name" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
-	// The contract version.
+	// The version of the contract in MultiBaas.
 	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 }
 

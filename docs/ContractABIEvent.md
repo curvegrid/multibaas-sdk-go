@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The keccak256 hash as a hex string of 256 bits. | 
-**Name** | **string** |  | 
-**Signature** | **string** |  | 
-**Anonymous** | **bool** |  | 
+**Name** | **string** | The name of the event. | 
+**Signature** | **string** | The event signature in the format EventName(type1,type2,...), for example foo(uint32,int256). | 
+**Anonymous** | **bool** | Whether this is an anonymous event (not logged with event signature). | 
 **Inputs** | [**[]ContractABIEventArgument**](ContractABIEventArgument.md) | List of contract event&#39;s input arguments. | 
 **Notes** | **string** | The developer documentation. | 
 **Description** | **string** | The user documentation. | 

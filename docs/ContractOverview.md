@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
-**ContractName** | **string** | The name of the contract. | 
-**Version** | **string** | The contract version. | 
-**IsFavorite** | Pointer to **bool** |  | [optional] 
-**Deployable** | **bool** |  | 
-**Instances** | [**[]ContractInstance**](ContractInstance.md) | List of contract instances. | 
+**ContractName** | **string** | The name of the contract in MultiBaas. | 
+**Version** | **string** | The version of the contract in MultiBaas. | 
+**IsFavorite** | Pointer to **bool** | Whether the user has marked this contract as a favorite. | [optional] 
+**Deployable** | **bool** | Whether this contract has deployable bytecode and can be deployed to the blockchain. | 
+**Instances** | [**[]ContractInstance**](ContractInstance.md) | List of addresses where this contract has been deployed and linked. | 
 
 ## Methods
 

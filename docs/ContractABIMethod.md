@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 **Id** | **string** | A hex string. | 
 **Name** | **string** | Name of the function. | 
 **Signature** | **string** | The function signature. | 
-**Const** | **bool** |  | 
-**Payable** | **bool** |  | 
+**Const** | **bool** | Indicates whether this method is read-only (constant). | 
+**Payable** | **bool** | Indicates whether this method accepts ether payments. | 
 **Inputs** | [**[]ContractABIMethodArgument**](ContractABIMethodArgument.md) | List of function arguments. | 
 **Outputs** | [**[]ContractABIMethodArgument**](ContractABIMethodArgument.md) | List of function outputs. | 
-**Author** | **string** |  | 
-**Notes** | **string** |  | 
+**Author** | **string** | The contract method author. | 
+**Notes** | **string** | The developer documentation. | 
 **Description** | **string** | The function description. | 
 
 ## Methods

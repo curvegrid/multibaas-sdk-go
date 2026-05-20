@@ -19,11 +19,14 @@ var _ MappedNullable = &ContractABIMethodArgument{}
 
 // ContractABIMethodArgument A contract function argument.
 type ContractABIMethodArgument struct {
-	Name           string                            `json:"name"`
-	Type           ContractABIType                   `json:"type"`
+	// The name of the argument.
+	Name string          `json:"name"`
+	Type ContractABIType `json:"type"`
+	// The type name (e.g., uint256, address, string).
 	TypeName       string                            `json:"typeName"`
 	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
-	Notes          string                            `json:"notes"`
+	// The developer documentation.
+	Notes string `json:"notes"`
 }
 
 type _ContractABIMethodArgument ContractABIMethodArgument

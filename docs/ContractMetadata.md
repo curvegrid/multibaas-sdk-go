@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
-**Name** | **string** | The name of the contract. | 
-**Version** | **string** | The contract version. | 
+**Name** | **string** | The name of the contract in MultiBaas. | 
+**Version** | **string** | The version of the contract in MultiBaas. | 
 
 ## Methods
 

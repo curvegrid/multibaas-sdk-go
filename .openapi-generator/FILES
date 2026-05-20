@@ -39,8 +39,10 @@ docs/CallContractFunction200Response.md
 docs/CallContractFunction200ResponseAllOfResult.md
 docs/ChainStatus.md
 docs/ChainsAPI.md
+docs/CloudWalletBaseTx.md
+docs/CloudWalletSetCodeTx.md
 docs/CloudWalletTXToSign.md
-docs/CloudWalletTXToSignTx.md
+docs/CloudWalletTx.md
 docs/Contract.md
 docs/ContractABI.md
 docs/ContractABIError.md
@@ -199,8 +201,10 @@ model_block.go
 model_call_contract_function_200_response.go
 model_call_contract_function_200_response_all_of_result.go
 model_chain_status.go
+model_cloud_wallet_base_tx.go
+model_cloud_wallet_set_code_tx.go
+model_cloud_wallet_tx.go
 model_cloud_wallet_txto_sign.go
-model_cloud_wallet_txto_sign_tx.go
 model_contract.go
 model_contract_abi.go
 model_contract_abi_error.go

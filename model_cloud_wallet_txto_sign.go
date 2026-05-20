@@ -19,7 +19,7 @@ var _ MappedNullable = &CloudWalletTXToSign{}
 
 // CloudWalletTXToSign A Cloud Wallet transaction to be signed.
 type CloudWalletTXToSign struct {
-	Tx CloudWalletTXToSignTx `json:"tx"`
+	Tx CloudWalletTx `json:"tx"`
 }
 
 type _CloudWalletTXToSign CloudWalletTXToSign
@@ -28,7 +28,7 @@ type _CloudWalletTXToSign CloudWalletTXToSign
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloudWalletTXToSign(tx CloudWalletTXToSignTx) *CloudWalletTXToSign {
+func NewCloudWalletTXToSign(tx CloudWalletTx) *CloudWalletTXToSign {
 	this := CloudWalletTXToSign{}
 	this.Tx = tx
 	return &this
@@ -43,9 +43,9 @@ func NewCloudWalletTXToSignWithDefaults() *CloudWalletTXToSign {
 }
 
 // GetTx returns the Tx field value
-func (o *CloudWalletTXToSign) GetTx() CloudWalletTXToSignTx {
+func (o *CloudWalletTXToSign) GetTx() CloudWalletTx {
 	if o == nil {
-		var ret CloudWalletTXToSignTx
+		var ret CloudWalletTx
 		return ret
 	}
 
@@ -54,7 +54,7 @@ func (o *CloudWalletTXToSign) GetTx() CloudWalletTXToSignTx {
 
 // GetTxOk returns a tuple with the Tx field value
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSign) GetTxOk() (*CloudWalletTXToSignTx, bool) {
+func (o *CloudWalletTXToSign) GetTxOk() (*CloudWalletTx, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *CloudWalletTXToSign) GetTxOk() (*CloudWalletTXToSignTx, bool) {
 }
 
 // SetTx sets field value
-func (o *CloudWalletTXToSign) SetTx(v CloudWalletTXToSignTx) {
+func (o *CloudWalletTXToSign) SetTx(v CloudWalletTx) {
 	o.Tx = v
 }
 

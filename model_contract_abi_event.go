@@ -20,10 +20,13 @@ var _ MappedNullable = &ContractABIEvent{}
 // ContractABIEvent A contract event.
 type ContractABIEvent struct {
 	// The keccak256 hash as a hex string of 256 bits.
-	Id        string `json:"id" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
-	Name      string `json:"name"`
+	Id string `json:"id" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	// The name of the event.
+	Name string `json:"name"`
+	// The event signature in the format EventName(type1,type2,...), for example foo(uint32,int256).
 	Signature string `json:"signature"`
-	Anonymous bool   `json:"anonymous"`
+	// Whether this is an anonymous event (not logged with event signature).
+	Anonymous bool `json:"anonymous"`
 	// List of contract event's input arguments.
 	Inputs []ContractABIEventArgument `json:"inputs"`
 	// The developer documentation.

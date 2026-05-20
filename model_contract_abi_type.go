@@ -19,11 +19,15 @@ var _ MappedNullable = &ContractABIType{}
 
 // ContractABIType A contract function or event argument type.
 type ContractABIType struct {
-	Type          string            `json:"type"`
-	Size          *int64            `json:"size,omitempty"`
-	TupleElems    []ContractABIType `json:"tupleElems,omitempty"`
-	TupleRawNames []string          `json:"tupleRawNames,omitempty"`
-	Elem          *ContractABIType  `json:"elem,omitempty"`
+	// The type name (e.g., uint256, address, string).
+	Type string `json:"type"`
+	// The size of the type in bits, if applicable.
+	Size *int64 `json:"size,omitempty"`
+	// For tuple types, the list of element types within the tuple.
+	TupleElems []ContractABIType `json:"tupleElems,omitempty"`
+	// For tuple types, the original names of the tuple elements as defined in the contract.
+	TupleRawNames []string         `json:"tupleRawNames,omitempty"`
+	Elem          *ContractABIType `json:"elem,omitempty"`
 }
 
 type _ContractABIType ContractABIType

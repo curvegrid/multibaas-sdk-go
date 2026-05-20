@@ -19,8 +19,9 @@ var _ MappedNullable = &TransactionToSign{}
 
 // TransactionToSign A transaction to be signed.
 type TransactionToSign struct {
-	Tx        TransactionToSignTx `json:"tx"`
-	Submitted bool                `json:"submitted"`
+	Tx TransactionToSignTx `json:"tx"`
+	// Indicates whether the transaction has been submitted to the blockchain.
+	Submitted bool `json:"submitted"`
 }
 
 type _TransactionToSign TransactionToSign

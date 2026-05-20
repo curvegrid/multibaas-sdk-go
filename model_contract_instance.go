@@ -17,8 +17,9 @@ import (
 // checks if the ContractInstance type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ContractInstance{}
 
-// ContractInstance A contract instance
+// ContractInstance A deployed instance of a contract at a specific blockchain address.
 type ContractInstance struct {
+	// The alias of the deployed instance.
 	Alias string `json:"alias"`
 	// An ethereum address.
 	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`

@@ -21,7 +21,7 @@ var _ MappedNullable = &ContractLookup{}
 type ContractLookup struct {
 	// An ethereum address.
 	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
-	// The name of the contract.
+	// The name of the contract in MultiBaas.
 	Name *string `json:"name,omitempty" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The contract ABI JSON string.
 	Abi string `json:"abi"`
@@ -33,13 +33,13 @@ type ContractLookup struct {
 	Userdoc *string `json:"userdoc,omitempty"`
 	// The developer documentation JSON string.
 	Devdoc *string `json:"devdoc,omitempty"`
-	// Indicates whether the contract has been verified.
+	// Whether the contract has been verified.
 	Verified bool `json:"verified"`
 	// The name of the service that provided the contract verification.
 	VerifiedSource *string `json:"verifiedSource,omitempty"`
 	// The URL to the contract's verification details on the verification service.
 	VerifiedLink *string `json:"verifiedLink,omitempty"`
-	// Indicates whether the contract is a proxy contract.
+	// Whether the contract is a proxy contract.
 	Proxy bool `json:"proxy"`
 }
 

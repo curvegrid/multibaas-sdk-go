@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Types** | Pointer to **[]string** |  | [optional] 
+**Types** | Pointer to **[]string** | The list of supported type conversion modes for this parameter. | [optional] 
 
 ## Methods
 

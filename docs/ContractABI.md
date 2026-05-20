@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Constructor** | [**NullableContractABIMethod**](ContractABIMethod.md) |  | 
-**Methods** | [**map[string]ContractABIMethod**](ContractABIMethod.md) |  | 
-**Events** | [**map[string]ContractABIEvent**](ContractABIEvent.md) |  | 
-**Errors** | Pointer to [**map[string]ContractABIError**](ContractABIError.md) |  | [optional] 
+**Methods** | [**map[string]ContractABIMethod**](ContractABIMethod.md) | A mapping of function signatures to their method definitions. | 
+**Events** | [**map[string]ContractABIEvent**](ContractABIEvent.md) | A mapping of event signatures to their event definitions. | 
+**Errors** | Pointer to [**map[string]ContractABIError**](ContractABIError.md) | A mapping of error signatures to their error definitions. | [optional] 
 **Fallback** | [**NullableContractABIMethod**](ContractABIMethod.md) |  | 
 **Receive** | [**NullableContractABIMethod**](ContractABIMethod.md) |  | 
 

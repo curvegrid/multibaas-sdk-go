@@ -793,7 +793,8 @@ paths:
         schema:
           $ref: "#/components/schemas/AddressOrAlias"
         style: simple
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -835,7 +836,8 @@ paths:
         schema:
           $ref: "#/components/schemas/AddressOrAlias"
         style: simple
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -879,7 +881,8 @@ paths:
         schema:
           $ref: "#/components/schemas/AddressOrAlias"
         style: simple
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -1095,7 +1098,8 @@ paths:
       description: Deletes a contract and all its versions.
       operationId: delete-contract
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -1128,7 +1132,8 @@ paths:
       description: Returns the given contract.
       operationId: get-contract
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -1161,7 +1166,8 @@ paths:
       description: Adds a contract.
       operationId: create-contract
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -1201,7 +1207,8 @@ paths:
       description: Returns a transaction to deploy the given contract to the blockchain.
       operationId: deploy-contract
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -1241,7 +1248,8 @@ paths:
       description: Returns a list of the versions of a contract.
       operationId: list-contract-versions
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -1275,7 +1283,8 @@ paths:
       description: Returns all the versions of a contract.
       operationId: get-contract-versions
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
@@ -1309,14 +1318,15 @@ paths:
       description: Deletes a specific contract version.
       operationId: delete-contract-version
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
         schema:
           $ref: "#/components/schemas/Label"
         style: simple
-      - description: Contract Version.
+      - description: The version of the contract in MultiBaas.
         explode: false
         in: path
         name: version
@@ -1351,14 +1361,15 @@ paths:
       description: Returns a specific contract version.
       operationId: get-contract-version
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
         schema:
           $ref: "#/components/schemas/Label"
         style: simple
-      - description: Contract Version.
+      - description: The version of the contract in MultiBaas.
         explode: false
         in: path
         name: version
@@ -1395,14 +1406,15 @@ paths:
         blockchain.
       operationId: deploy-contract-version
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
         schema:
           $ref: "#/components/schemas/Label"
         style: simple
-      - description: Contract Version.
+      - description: The version of the contract in MultiBaas.
         explode: false
         in: path
         name: version
@@ -1445,14 +1457,15 @@ paths:
         signature.
       operationId: get-function-type-conversions
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
         schema:
           $ref: "#/components/schemas/Label"
         style: simple
-      - description: Contract Version.
+      - description: The version of the contract in MultiBaas.
         explode: false
         in: path
         name: version
@@ -1497,14 +1510,15 @@ paths:
         signature.
       operationId: set-function-type-conversions
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
         schema:
           $ref: "#/components/schemas/Label"
         style: simple
-      - description: Contract Version.
+      - description: The version of the contract in MultiBaas.
         explode: false
         in: path
         name: version
@@ -1556,14 +1570,15 @@ paths:
         signature.
       operationId: get-event-type-conversions
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
         schema:
           $ref: "#/components/schemas/Label"
         style: simple
-      - description: Contract Version.
+      - description: The version of the contract in MultiBaas.
         explode: false
         in: path
         name: version
@@ -1608,14 +1623,15 @@ paths:
         signature.
       operationId: set-event-type-conversions
       parameters:
-      - explode: false
+      - description: The label of the contract in MultiBaas.
+        explode: false
         in: path
         name: contract
         required: true
         schema:
           $ref: "#/components/schemas/Label"
         style: simple
-      - description: Contract Version.
+      - description: The version of the contract in MultiBaas.
         explode: false
         in: path
         name: version
@@ -2562,7 +2578,9 @@ paths:
         name: hash
         required: false
         schema:
-          $ref: "#/components/schemas/Keccak256Hash"
+          items:
+            $ref: "#/components/schemas/Keccak256Hash"
+          type: array
         style: form
       - description: Filter transactions by nonce
         explode: true
@@ -3778,6 +3796,7 @@ components:
         type: string
       style: simple
     ContractLabel:
+      description: The label of the contract in MultiBaas.
       explode: false
       in: path
       name: contract
@@ -3786,7 +3805,7 @@ components:
         $ref: "#/components/schemas/Label"
       style: simple
     ContractVersion:
-      description: Contract Version.
+      description: The version of the contract in MultiBaas.
       explode: false
       in: path
       name: version
@@ -4015,8 +4034,10 @@ components:
       - $ref: "#/components/schemas/AddressAlias"
       - properties:
           balance:
+            description: The balance of the address in wei.
             type: string
           chain:
+            description: The network ID.
             type: string
           nonce:
             description: The next transaction nonce for this address (obtained from
@@ -4029,13 +4050,16 @@ components:
             format: int64
             type: integer
           codeAt:
+            description: The bytecode deployed at this address.
             format: byte
             type: string
           contracts:
+            description: The list of contracts linked to this address.
             items:
               $ref: "#/components/schemas/ContractMetadata"
             type: array
           contractLookup:
+            description: The list of contracts discovered at this address.
             items:
               $ref: "#/components/schemas/ContractLookup"
             type: array
@@ -4254,9 +4278,11 @@ components:
         id: 1
       properties:
         id:
+          description: The unique ID for this hardware wallet.
           format: int64
           type: integer
         azureAccountID:
+          description: The ID of the associated Azure account configuration.
           format: int64
           type: integer
         vaultName:
@@ -4621,12 +4647,13 @@ components:
       title: ChainStatus
       type: object
     ContractInstance:
-      description: A contract instance
+      description: A deployed instance of a contract at a specific blockchain address.
       example:
         address: address
         alias: alias
       properties:
         alias:
+          description: The alias of the deployed instance.
           type: string
         address:
           description: An ethereum address.
@@ -4639,6 +4666,7 @@ components:
       title: ContractInstance
       type: object
     ContractMetadata:
+      description: Lightweight reference information for a contract.
       example:
         name: name
         label: label
@@ -4651,12 +4679,12 @@ components:
           title: Label
           type: string
         name:
-          description: The name of the contract.
+          description: The name of the contract in MultiBaas.
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractName
           type: string
         version:
-          description: The contract version.
+          description: The version of the contract in MultiBaas.
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractVersion
           type: string
@@ -4680,15 +4708,20 @@ components:
         type: type
       properties:
         type:
+          description: "The type name (e.g., uint256, address, string)."
           type: string
         size:
+          description: "The size of the type in bits, if applicable."
           format: int64
           type: integer
         tupleElems:
+          description: "For tuple types, the list of element types within the tuple."
           items:
             $ref: "#/components/schemas/ContractABIType"
           type: array
         tupleRawNames:
+          description: "For tuple types, the original names of the tuple elements\
+            \ as defined in the contract."
           items:
             type: string
           type: array
@@ -4720,14 +4753,17 @@ components:
           type: type
       properties:
         name:
+          description: The name of the argument.
           type: string
         type:
           $ref: "#/components/schemas/ContractABIType"
         typeName:
+          description: "The type name (e.g., uint256, address, string)."
           type: string
         typeConversion:
           $ref: "#/components/schemas/ContractABITypeConversion"
         notes:
+          description: The developer documentation.
           type: string
       required:
       - name
@@ -4832,8 +4868,10 @@ components:
           description: The function signature.
           type: string
         const:
+          description: Indicates whether this method is read-only (constant).
           type: boolean
         payable:
+          description: Indicates whether this method accepts ether payments.
           type: boolean
         inputs:
           description: List of function arguments.
@@ -4846,8 +4884,10 @@ components:
             $ref: "#/components/schemas/ContractABIMethodArgument"
           type: array
         author:
+          description: The contract method author.
           type: string
         notes:
+          description: The developer documentation.
           type: string
         description:
           description: The function description.
@@ -4918,12 +4958,16 @@ components:
           type: type
       properties:
         name:
+          description: The name of the argument.
           type: string
         type:
           $ref: "#/components/schemas/ContractABIType"
         typeName:
+          description: "The type name (e.g., uint256, address, string)."
           type: string
         indexed:
+          description: Whether this argument is indexed and stored in the event log
+            topics.
           type: boolean
         typeConversion:
           $ref: "#/components/schemas/ContractABITypeConversion"
@@ -4994,10 +5038,14 @@ components:
           title: Keccak256Hash
           type: string
         name:
+          description: The name of the event.
           type: string
         signature:
+          description: "The event signature in the format EventName(type1,type2,...),\
+            \ for example foo(uint32,int256)."
           type: string
         anonymous:
+          description: Whether this is an anonymous event (not logged with event signature).
           type: boolean
         inputs:
           description: List of contract event's input arguments.
@@ -5039,12 +5087,15 @@ components:
           type: type
       properties:
         name:
+          description: The name of the argument.
           type: string
         type:
           $ref: "#/components/schemas/ContractABIType"
         typeName:
+          description: "The type name (e.g., uint256, address, string)."
           type: string
         indexed:
+          description: Whether this argument is indexed.
           type: boolean
         notes:
           description: The developer documentation.
@@ -5103,8 +5154,11 @@ components:
           title: Keccak256Hash
           type: string
         name:
+          description: The name of the error.
           type: string
         signature:
+          description: "The error signature in the format ErrorName(type1,type2,...),\
+            \ for example foo(uint32,int256)."
           type: string
         inputs:
           description: List of contract event's input arguments.
@@ -5531,14 +5585,17 @@ components:
         methods:
           additionalProperties:
             $ref: "#/components/schemas/ContractABIMethod"
+          description: A mapping of function signatures to their method definitions.
           type: object
         events:
           additionalProperties:
             $ref: "#/components/schemas/ContractABIEvent"
+          description: A mapping of event signatures to their event definitions.
           type: object
         errors:
           additionalProperties:
             $ref: "#/components/schemas/ContractABIError"
+          description: A mapping of error signatures to their error definitions.
           type: object
         fallback:
           $ref: "#/components/schemas/ContractABIMethod"
@@ -5572,12 +5629,12 @@ components:
           title: Label
           type: string
         contractName:
-          description: The name of the contract.
+          description: The name of the contract in MultiBaas.
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractName
           type: string
         version:
-          description: The contract version.
+          description: The version of the contract in MultiBaas.
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractVersion
           type: string
@@ -5599,6 +5656,7 @@ components:
           description: The contract metadata JSON string.
           type: string
         isFavorite:
+          description: Whether the user has marked this contract as a favorite.
           type: boolean
       required:
       - contractName
@@ -6092,21 +6150,25 @@ components:
           title: Label
           type: string
         contractName:
-          description: The name of the contract.
+          description: The name of the contract in MultiBaas.
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractName
           type: string
         version:
-          description: The contract version.
+          description: The version of the contract in MultiBaas.
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractVersion
           type: string
         isFavorite:
+          description: Whether the user has marked this contract as a favorite.
           type: boolean
         deployable:
+          description: Whether this contract has deployable bytecode and can be deployed
+            to the blockchain.
           type: boolean
         instances:
-          description: List of contract instances.
+          description: List of addresses where this contract has been deployed and
+            linked.
           items:
             $ref: "#/components/schemas/ContractInstance"
           type: array
@@ -6139,7 +6201,7 @@ components:
           title: ETHAddress
           type: string
         name:
-          description: The name of the contract.
+          description: The name of the contract in MultiBaas.
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractName
           type: string
@@ -6161,7 +6223,7 @@ components:
           description: The developer documentation JSON string.
           type: string
         verified:
-          description: Indicates whether the contract has been verified.
+          description: Whether the contract has been verified.
           type: boolean
         verifiedSource:
           description: The name of the service that provided the contract verification.
@@ -6172,7 +6234,7 @@ components:
           format: uri
           type: string
         proxy:
-          description: Indicates whether the contract is a proxy contract.
+          description: Whether the contract is a proxy contract.
           type: boolean
       required:
       - abi
@@ -6186,6 +6248,8 @@ components:
       - $ref: "#/components/schemas/TransactionToSign"
       - properties:
           deployAt:
+            description: The address where the contract will be deployed once the
+              transaction is confirmed.
             type: string
           label:
             $ref: "#/components/schemas/Label"
@@ -6209,30 +6273,22 @@ components:
         label: null
       title: DeployContractTransaction
     EventIndexingStatus:
-      description: Event indexing status
+      description: The status for a contract's event indexing at a specific address.
       example:
         isProcessingPastLogs: true
         latestBlockHash: latestBlockHash
         startBlockHash: startBlockHash
-        contractId: 6
-        idealBlockRange: 5
-        startBlockNumber: 2
-        latestBlockNumber: 5
-        addressId: 1
+        startBlockNumber: 1
+        latestBlockNumber: 6
         updatedAt: updatedAt
       properties:
-        contractId:
-          format: int64
-          type: integer
-        addressId:
-          format: int64
-          type: integer
         isProcessingPastLogs:
+          description: "When true, the event indexer is syncing historical events\
+            \ from past blocks in order to catch up to the current state."
           type: boolean
-        idealBlockRange:
-          format: int64
-          type: integer
         latestBlockNumber:
+          description: The most recent block number that has been processed for event
+            indexing.
           format: int64
           type: integer
         latestBlockHash:
@@ -6243,6 +6299,7 @@ components:
           title: Keccak256Hash
           type: string
         startBlockNumber:
+          description: The block number from which event indexing began.
           format: int64
           type: integer
         startBlockHash:
@@ -6253,6 +6310,7 @@ components:
           title: Keccak256Hash
           type: string
         updatedAt:
+          description: The timestamp of the last update to the indexing status.
           type: string
       required:
       - isProcessingPastLogs
@@ -6692,7 +6750,8 @@ components:
       title: CreateKey
       type: object
     ContractABITypeConversion:
-      description: Holds JSON-compatible type conversion information.
+      description: Type conversion object for an input or an output of a function
+        or an event.
       example:
         mode: mode
         decimalsFunction: decimalsFunction
@@ -6700,12 +6759,23 @@ components:
       nullable: true
       properties:
         mode:
+          description: "The type conversion mode to apply: `decimals` (for converting\
+            \ integer wei values to fixed-point decimal strings, e.g., wei to ether),\
+            \ `timestamp` (converts Unix timestamp integers to RFC 3339 formatted\
+            \ time strings), `stringBytes` (converts byte arrays to UTF-8 strings),\
+            \ `base64Bytes` (converts byte arrays to base64-encoded strings)."
           type: string
         decimalsAbsolute:
+          description: The fixed number of decimal places to use for `decimals` mode
+            conversion. Must be between 0-255.
           format: int64
           nullable: true
           type: integer
         decimalsFunction:
+          description: "The name of a contract function that dynamically determines\
+            \ decimal places for `decimals` mode conversion (e.g., `decimals()` for\
+            \ ERC-20 tokens). The function must take no parameters and return a uint\
+            \ value between 0-255. Mutually exclusive with `decimalsAbsolute`."
           nullable: true
           type: string
       required:
@@ -6744,8 +6814,12 @@ components:
             decimalsAbsolute: 1
       properties:
         signature:
+          description: "The event signature in the format `EventName(type1,type2,...)`,\
+            \ for example foo(uint32,int256)."
           type: string
         inputs:
+          description: List of type conversion configurations for each event input
+            parameter.
           items:
             $ref: "#/components/schemas/ContractParameter"
           type: array
@@ -6876,6 +6950,7 @@ components:
         - types
       properties:
         types:
+          description: The list of supported type conversion modes for this parameter.
           items:
             type: string
           nullable: true
@@ -6922,10 +6997,12 @@ components:
           - types
       properties:
         inputs:
+          description: Type conversion options for each input parameter of the function.
           items:
             $ref: "#/components/schemas/TypeConversionOptions"
           type: array
         outputs:
+          description: Type conversion options for each output parameter of the function.
           items:
             $ref: "#/components/schemas/TypeConversionOptions"
           type: array
@@ -6959,6 +7036,8 @@ components:
         timestamp: timestamp
       properties:
         signature:
+          description: "The function signature in the format `FunctionName(type1,type2,...)`,\
+            \ for example foo(uint32,int256)."
           type: string
         args:
           description: List of the function arguments.
@@ -7304,7 +7383,7 @@ components:
           title: ETHAddress
           type: string
         formatValid:
-          description: Indicates whether the format of the authorization is valid.
+          description: Whether the format of the authorization is valid.
           type: boolean
         notes:
           description: Additional notes about the validity of the authorization.
@@ -7731,6 +7810,104 @@ components:
           type: string
       title: CORSOrigin
       type: object
+    CloudWalletBaseTx:
+      description: An Ethereum transaction.
+      example:
+        data: data
+        gas: 6
+        gasTipCap: gasTipCap
+        from: from
+        to: to
+        type: 1
+        nonce: 0
+        gasFeeCap: gasFeeCap
+        value: value
+        hash: hash
+        gasPrice: gasPrice
+      properties:
+        nonce:
+          description: Sender account nonce of the transaction
+          format: int64
+          type: integer
+        gasPrice:
+          description: Gas price of the transaction
+          type: string
+        gasFeeCap:
+          description: Fee cap per gas of the transaction
+          type: string
+        gasTipCap:
+          description: GasTipCap per gas of the transaction
+          type: string
+        gas:
+          description: Gas limit of the transaction
+          format: int64
+          type: integer
+        from:
+          description: An ethereum address.
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddress
+          type: string
+        to:
+          description: An ethereum address.
+          nullable: true
+          pattern: "^0[xX][a-fA-F0-9]{40}$"
+          title: ETHAddressOrNull
+          type: string
+        value:
+          description: Amount (in wei) to send with the transaction.
+          type: string
+        data:
+          description: A hex string.
+          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
+          title: Hex
+          type: string
+        hash:
+          description: The keccak256 hash as a hex string of 256 bits.
+          maxLength: 66
+          minLength: 66
+          pattern: "^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"
+          title: Keccak256Hash
+          type: string
+        type:
+          description: Transaction type
+          format: int64
+          type: integer
+      required:
+      - data
+      - from
+      - gas
+      - type
+      - value
+      title: CloudWalletBaseTx
+      type: object
+    CloudWalletSetCodeTx:
+      allOf:
+      - $ref: "#/components/schemas/CloudWalletBaseTx"
+      - properties:
+          to:
+            $ref: "#/components/schemas/ETHAddress"
+          authorizationList:
+            description: EIP-7702 authorization list for SetCode transactions.
+            items:
+              $ref: "#/components/schemas/SetCodeAuthorization"
+            type: array
+        required:
+        - authorizationList
+        - to
+        type: object
+      description: An EIP-7702 SetCode transaction.
+      title: CloudWalletSetCodeTx
+    CloudWalletTx:
+      discriminator:
+        mapping:
+          "0": "#/components/schemas/CloudWalletBaseTx"
+          "1": "#/components/schemas/CloudWalletBaseTx"
+          "2": "#/components/schemas/CloudWalletBaseTx"
+          "4": "#/components/schemas/CloudWalletSetCodeTx"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/CloudWalletBaseTx"
+      - $ref: "#/components/schemas/CloudWalletSetCodeTx"
     CloudWalletTXToSign:
       description: A Cloud Wallet transaction to be signed.
       example:
@@ -7748,7 +7925,7 @@ components:
           gasPrice: gasPrice
       properties:
         tx:
-          $ref: "#/components/schemas/CloudWalletTXToSign_tx"
+          $ref: "#/components/schemas/CloudWalletTx"
       required:
       - tx
       title: CloudWalletTXToSign
@@ -7807,6 +7984,8 @@ components:
         tx:
           $ref: "#/components/schemas/TransactionToSign_tx"
         submitted:
+          description: Indicates whether the transaction has been submitted to the
+            blockchain.
           type: boolean
       required:
       - submitted
@@ -8460,12 +8639,12 @@ components:
       title: EventQueryLabel
       type: string
     ContractVersion:
-      description: The contract version.
+      description: The version of the contract in MultiBaas.
       pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
       title: ContractVersion
       type: string
     ContractName:
-      description: The name of the contract.
+      description: The name of the contract in MultiBaas.
       pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
       title: ContractName
       type: string
@@ -8737,6 +8916,7 @@ components:
     EIP712TypeEntry:
       properties:
         name:
+          description: The name of the entry.
           type: string
         type:
           type: string
@@ -9405,7 +9585,7 @@ components:
           title: Label
           type: string
         version:
-          description: The contract version.
+          description: The version of the contract in MultiBaas.
           pattern: "^[^\"#$%&''()*+,/:;<>?[\\\\\\]^\\x60{}~]*$"
           title: ContractVersion
           type: string
@@ -9432,11 +9612,8 @@ components:
           isProcessingPastLogs: true
           latestBlockHash: latestBlockHash
           startBlockHash: startBlockHash
-          contractId: 6
-          idealBlockRange: 5
-          startBlockNumber: 2
-          latestBlockNumber: 5
-          addressId: 1
+          startBlockNumber: 1
+          latestBlockNumber: 6
           updatedAt: updatedAt
         message: message
         status: 0
@@ -9984,6 +10161,7 @@ components:
           title: Label
           type: string
         versions:
+          description: The list of versions of the contract.
           items:
             $ref: "#/components/schemas/ContractVersion"
           type: array
@@ -11849,75 +12027,6 @@ components:
       - status
       - transactionHash
       - transactionIndex
-      type: object
-    CloudWalletTXToSign_tx:
-      description: An Ethereum transaction.
-      example:
-        data: data
-        gas: 6
-        gasTipCap: gasTipCap
-        from: from
-        to: to
-        type: 1
-        nonce: 0
-        gasFeeCap: gasFeeCap
-        value: value
-        hash: hash
-        gasPrice: gasPrice
-      properties:
-        nonce:
-          description: Sender account nonce of the transaction
-          format: int64
-          type: integer
-        gasPrice:
-          description: Gas price of the transaction
-          type: string
-        gasFeeCap:
-          description: Fee cap per gas of the transaction
-          type: string
-        gasTipCap:
-          description: GasTipCap per gas of the transaction
-          type: string
-        gas:
-          description: Gas limit of the transaction
-          format: int64
-          type: integer
-        from:
-          description: An ethereum address.
-          pattern: "^0[xX][a-fA-F0-9]{40}$"
-          title: ETHAddress
-          type: string
-        to:
-          description: An ethereum address.
-          nullable: true
-          pattern: "^0[xX][a-fA-F0-9]{40}$"
-          title: ETHAddressOrNull
-          type: string
-        value:
-          description: Amount (in wei) to send with the transaction.
-          type: string
-        data:
-          description: A hex string.
-          pattern: "^(0x[0-9a-f]*|0X[0-9A-F]*)$"
-          title: Hex
-          type: string
-        hash:
-          description: The keccak256 hash as a hex string of 256 bits.
-          maxLength: 66
-          minLength: 66
-          pattern: "^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"
-          title: Keccak256Hash
-          type: string
-        type:
-          description: Transaction type
-          format: int64
-          type: integer
-      required:
-      - data
-      - from
-      - gas
-      - type
-      - value
       type: object
     TransactionToSign_tx:
       description: An Ethereum transaction.

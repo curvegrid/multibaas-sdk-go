@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Tx** | [**TransactionToSignTx**](TransactionToSignTx.md) |  | 
-**Submitted** | **bool** |  | 
+**Submitted** | **bool** | Indicates whether the transaction has been submitted to the blockchain. | 
 
 ## Methods
 

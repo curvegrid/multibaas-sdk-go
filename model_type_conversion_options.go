@@ -19,6 +19,7 @@ var _ MappedNullable = &TypeConversionOptions{}
 
 // TypeConversionOptions Represents the set of type conversions allowed for a particular input or output of a function (how it may be \"cast\").
 type TypeConversionOptions struct {
+	// The list of supported type conversion modes for this parameter.
 	Types []string `json:"types,omitempty"`
 }
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tx** | [**CloudWalletTXToSignTx**](CloudWalletTXToSignTx.md) |  | 
+**Tx** | [**CloudWalletTx**](CloudWalletTx.md) |  | 
 
 ## Methods
 
 ### NewCloudWalletTXToSign
 
-`func NewCloudWalletTXToSign(tx CloudWalletTXToSignTx, ) *CloudWalletTXToSign`
+`func NewCloudWalletTXToSign(tx CloudWalletTx, ) *CloudWalletTXToSign`
 
 NewCloudWalletTXToSign instantiates a new CloudWalletTXToSign object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTx
 
-`func (o *CloudWalletTXToSign) GetTx() CloudWalletTXToSignTx`
+`func (o *CloudWalletTXToSign) GetTx() CloudWalletTx`
 
 GetTx returns the Tx field if non-nil, zero value otherwise.
 
 ### GetTxOk
 
-`func (o *CloudWalletTXToSign) GetTxOk() (*CloudWalletTXToSignTx, bool)`
+`func (o *CloudWalletTXToSign) GetTxOk() (*CloudWalletTx, bool)`
 
 GetTxOk returns a tuple with the Tx field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTx
 
-`func (o *CloudWalletTXToSign) SetTx(v CloudWalletTXToSignTx)`
+`func (o *CloudWalletTXToSign) SetTx(v CloudWalletTx)`
 
 SetTx sets Tx field to given value.
 

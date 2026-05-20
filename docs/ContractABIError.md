@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The keccak256 hash as a hex string of 256 bits. | 
-**Name** | **string** |  | 
-**Signature** | **string** |  | 
+**Name** | **string** | The name of the error. | 
+**Signature** | **string** | The error signature in the format ErrorName(type1,type2,...), for example foo(uint32,int256). | 
 **Inputs** | [**[]ContractABIErrorArgument**](ContractABIErrorArgument.md) | List of contract event&#39;s input arguments. | 
 **Notes** | Pointer to **string** | The developer documentation. | [optional] 
 **Description** | Pointer to **string** | The user documentation. | [optional] 

@@ -4,15 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContractId** | Pointer to **int64** |  | [optional] 
-**AddressId** | Pointer to **int64** |  | [optional] 
-**IsProcessingPastLogs** | **bool** |  | 
-**IdealBlockRange** | Pointer to **int64** |  | [optional] 
-**LatestBlockNumber** | **int64** |  | 
+**IsProcessingPastLogs** | **bool** | When true, the event indexer is syncing historical events from past blocks in order to catch up to the current state. | 
+**LatestBlockNumber** | **int64** | The most recent block number that has been processed for event indexing. | 
 **LatestBlockHash** | **string** | The keccak256 hash as a hex string of 256 bits. | 
-**StartBlockNumber** | **int64** |  | 
+**StartBlockNumber** | **int64** | The block number from which event indexing began. | 
 **StartBlockHash** | **string** | The keccak256 hash as a hex string of 256 bits. | 
-**UpdatedAt** | **string** |  | 
+**UpdatedAt** | **string** | The timestamp of the last update to the indexing status. | 
 
 ## Methods
 
@@ -33,56 +30,6 @@ NewEventIndexingStatusWithDefaults instantiates a new EventIndexingStatus object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetContractId
-
-`func (o *EventIndexingStatus) GetContractId() int64`
-
-GetContractId returns the ContractId field if non-nil, zero value otherwise.
-
-### GetContractIdOk
-
-`func (o *EventIndexingStatus) GetContractIdOk() (*int64, bool)`
-
-GetContractIdOk returns a tuple with the ContractId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContractId
-
-`func (o *EventIndexingStatus) SetContractId(v int64)`
-
-SetContractId sets ContractId field to given value.
-
-### HasContractId
-
-`func (o *EventIndexingStatus) HasContractId() bool`
-
-HasContractId returns a boolean if a field has been set.
-
-### GetAddressId
-
-`func (o *EventIndexingStatus) GetAddressId() int64`
-
-GetAddressId returns the AddressId field if non-nil, zero value otherwise.
-
-### GetAddressIdOk
-
-`func (o *EventIndexingStatus) GetAddressIdOk() (*int64, bool)`
-
-GetAddressIdOk returns a tuple with the AddressId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAddressId
-
-`func (o *EventIndexingStatus) SetAddressId(v int64)`
-
-SetAddressId sets AddressId field to given value.
-
-### HasAddressId
-
-`func (o *EventIndexingStatus) HasAddressId() bool`
-
-HasAddressId returns a boolean if a field has been set.
-
 ### GetIsProcessingPastLogs
 
 `func (o *EventIndexingStatus) GetIsProcessingPastLogs() bool`
@@ -102,31 +49,6 @@ and a boolean to check if the value has been set.
 
 SetIsProcessingPastLogs sets IsProcessingPastLogs field to given value.
 
-
-### GetIdealBlockRange
-
-`func (o *EventIndexingStatus) GetIdealBlockRange() int64`
-
-GetIdealBlockRange returns the IdealBlockRange field if non-nil, zero value otherwise.
-
-### GetIdealBlockRangeOk
-
-`func (o *EventIndexingStatus) GetIdealBlockRangeOk() (*int64, bool)`
-
-GetIdealBlockRangeOk returns a tuple with the IdealBlockRange field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIdealBlockRange
-
-`func (o *EventIndexingStatus) SetIdealBlockRange(v int64)`
-
-SetIdealBlockRange sets IdealBlockRange field to given value.
-
-### HasIdealBlockRange
-
-`func (o *EventIndexingStatus) HasIdealBlockRange() bool`
-
-HasIdealBlockRange returns a boolean if a field has been set.
 
 ### GetLatestBlockNumber
 

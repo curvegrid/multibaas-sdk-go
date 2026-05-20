@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Authority** | **string** | An ethereum address. | 
-**FormatValid** | **bool** | Indicates whether the format of the authorization is valid. | 
+**FormatValid** | **bool** | Whether the format of the authorization is valid. | 
 **Notes** | **string** | Additional notes about the validity of the authorization. | 
 
 ## Methods

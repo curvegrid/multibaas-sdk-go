@@ -22,16 +22,21 @@ type Address struct {
 	// An alias to easily identify and reference addresses.
 	Alias string `json:"alias" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
 	// An ethereum address.
-	Address string  `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	Address string `json:"address" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	// The balance of the address in wei.
 	Balance *string `json:"balance,omitempty"`
-	Chain   string  `json:"chain"`
+	// The network ID.
+	Chain string `json:"chain"`
 	// The next transaction nonce for this address (obtained from the blockchain node).
 	Nonce *int64 `json:"nonce,omitempty"`
 	// The next transaction nonce for this address when using the nonce management feature.
-	LocalNonce     *int64             `json:"localNonce,omitempty"`
-	CodeAt         *string            `json:"codeAt,omitempty"`
-	Contracts      []ContractMetadata `json:"contracts"`
-	ContractLookup []ContractLookup   `json:"contractLookup,omitempty"`
+	LocalNonce *int64 `json:"localNonce,omitempty"`
+	// The bytecode deployed at this address.
+	CodeAt *string `json:"codeAt,omitempty"`
+	// The list of contracts linked to this address.
+	Contracts []ContractMetadata `json:"contracts"`
+	// The list of contracts discovered at this address.
+	ContractLookup []ContractLookup `json:"contractLookup,omitempty"`
 }
 
 type _Address Address

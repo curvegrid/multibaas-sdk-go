@@ -28,7 +28,7 @@ type ContractsAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param addressOrAlias An address or the alias of an address.
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@param method Contract function.
 		@return ApiCallContractFunctionRequest
 	*/
@@ -44,7 +44,7 @@ type ContractsAPI interface {
 		Adds a contract.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@return ApiCreateContractRequest
 	*/
 	CreateContract(ctx context.Context, contract string) ApiCreateContractRequest
@@ -73,7 +73,7 @@ type ContractsAPI interface {
 		Deletes a contract and all its versions.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@return ApiDeleteContractRequest
 	*/
 	DeleteContract(ctx context.Context, contract string) ApiDeleteContractRequest
@@ -88,8 +88,8 @@ type ContractsAPI interface {
 		Deletes a specific contract version.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
-		@param version Contract Version.
+		@param contract The label of the contract in MultiBaas.
+		@param version The version of the contract in MultiBaas.
 		@return ApiDeleteContractVersionRequest
 	*/
 	DeleteContractVersion(ctx context.Context, contract string, version string) ApiDeleteContractVersionRequest
@@ -104,7 +104,7 @@ type ContractsAPI interface {
 		Returns a transaction to deploy the given contract to the blockchain.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@return ApiDeployContractRequest
 	*/
 	DeployContract(ctx context.Context, contract string) ApiDeployContractRequest
@@ -119,8 +119,8 @@ type ContractsAPI interface {
 		Returns a transaction to deploy the given contract version to the blockchain.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
-		@param version Contract Version.
+		@param contract The label of the contract in MultiBaas.
+		@param version The version of the contract in MultiBaas.
 		@return ApiDeployContractVersionRequest
 	*/
 	DeployContractVersion(ctx context.Context, contract string, version string) ApiDeployContractVersionRequest
@@ -135,7 +135,7 @@ type ContractsAPI interface {
 		Returns the given contract.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@return ApiGetContractRequest
 	*/
 	GetContract(ctx context.Context, contract string) ApiGetContractRequest
@@ -150,8 +150,8 @@ type ContractsAPI interface {
 		Returns a specific contract version.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
-		@param version Contract Version.
+		@param contract The label of the contract in MultiBaas.
+		@param version The version of the contract in MultiBaas.
 		@return ApiGetContractVersionRequest
 	*/
 	GetContractVersion(ctx context.Context, contract string, version string) ApiGetContractVersionRequest
@@ -166,7 +166,7 @@ type ContractsAPI interface {
 		Returns all the versions of a contract.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@return ApiGetContractVersionsRequest
 	*/
 	GetContractVersions(ctx context.Context, contract string) ApiGetContractVersionsRequest
@@ -182,7 +182,7 @@ type ContractsAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param addressOrAlias An address or the alias of an address.
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@return ApiGetEventIndexingStatusRequest
 	*/
 	GetEventIndexingStatus(ctx context.Context, addressOrAlias string, contract string) ApiGetEventIndexingStatusRequest
@@ -197,8 +197,8 @@ type ContractsAPI interface {
 		Returns the type conversion options for a given contract and event signature.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
-		@param version Contract Version.
+		@param contract The label of the contract in MultiBaas.
+		@param version The version of the contract in MultiBaas.
 		@param event Contract Event.
 		@return ApiGetEventTypeConversionsRequest
 	*/
@@ -214,8 +214,8 @@ type ContractsAPI interface {
 		Returns the type conversion options for a given contract and function signature.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
-		@param version Contract Version.
+		@param contract The label of the contract in MultiBaas.
+		@param version The version of the contract in MultiBaas.
 		@param method Contract function.
 		@return ApiGetFunctionTypeConversionsRequest
 	*/
@@ -246,7 +246,7 @@ type ContractsAPI interface {
 		Returns a list of the versions of a contract.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@return ApiListContractVersionsRequest
 	*/
 	ListContractVersions(ctx context.Context, contract string) ApiListContractVersionsRequest
@@ -275,8 +275,8 @@ type ContractsAPI interface {
 		Sets the type conversion options for a given contract and event signature.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
-		@param version Contract Version.
+		@param contract The label of the contract in MultiBaas.
+		@param version The version of the contract in MultiBaas.
 		@param event Contract Event.
 		@return ApiSetEventTypeConversionsRequest
 	*/
@@ -292,8 +292,8 @@ type ContractsAPI interface {
 		Sets the type conversion options for a given contract and function signature.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param contract
-		@param version Contract Version.
+		@param contract The label of the contract in MultiBaas.
+		@param version The version of the contract in MultiBaas.
 		@param method Contract function.
 		@return ApiSetFunctionTypeConversionsRequest
 	*/
@@ -310,7 +310,7 @@ type ContractsAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param addressOrAlias An address or the alias of an address.
-		@param contract
+		@param contract The label of the contract in MultiBaas.
 		@return ApiUnlinkAddressContractRequest
 	*/
 	UnlinkAddressContract(ctx context.Context, addressOrAlias string, contract string) ApiUnlinkAddressContractRequest
@@ -348,7 +348,7 @@ Builds a transaction to call the given contract function. Returns a transaction 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param addressOrAlias An address or the alias of an address.
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@param method Contract function.
 	@return ApiCallContractFunctionRequest
 */
@@ -492,7 +492,7 @@ CreateContract Create a contract
 Adds a contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@return ApiCreateContractRequest
 */
 func (a *ContractsAPIService) CreateContract(ctx context.Context, contract string) ApiCreateContractRequest {
@@ -754,7 +754,7 @@ DeleteContract Delete a contract
 Deletes a contract and all its versions.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@return ApiDeleteContractRequest
 */
 func (a *ContractsAPIService) DeleteContract(ctx context.Context, contract string) ApiDeleteContractRequest {
@@ -880,8 +880,8 @@ DeleteContractVersion Delete a contract version
 Deletes a specific contract version.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
-	@param version Contract Version.
+	@param contract The label of the contract in MultiBaas.
+	@param version The version of the contract in MultiBaas.
 	@return ApiDeleteContractVersionRequest
 */
 func (a *ContractsAPIService) DeleteContractVersion(ctx context.Context, contract string, version string) ApiDeleteContractVersionRequest {
@@ -1017,7 +1017,7 @@ DeployContract Deploy a contract
 Returns a transaction to deploy the given contract to the blockchain.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@return ApiDeployContractRequest
 */
 func (a *ContractsAPIService) DeployContract(ctx context.Context, contract string) ApiDeployContractRequest {
@@ -1154,8 +1154,8 @@ DeployContractVersion Deploy a contract version
 Returns a transaction to deploy the given contract version to the blockchain.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
-	@param version Contract Version.
+	@param contract The label of the contract in MultiBaas.
+	@param version The version of the contract in MultiBaas.
 	@return ApiDeployContractVersionRequest
 */
 func (a *ContractsAPIService) DeployContractVersion(ctx context.Context, contract string, version string) ApiDeployContractVersionRequest {
@@ -1290,7 +1290,7 @@ GetContract Get a contract
 Returns the given contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@return ApiGetContractRequest
 */
 func (a *ContractsAPIService) GetContract(ctx context.Context, contract string) ApiGetContractRequest {
@@ -1416,8 +1416,8 @@ GetContractVersion Get a contract version
 Returns a specific contract version.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
-	@param version Contract Version.
+	@param contract The label of the contract in MultiBaas.
+	@param version The version of the contract in MultiBaas.
 	@return ApiGetContractVersionRequest
 */
 func (a *ContractsAPIService) GetContractVersion(ctx context.Context, contract string, version string) ApiGetContractVersionRequest {
@@ -1547,7 +1547,7 @@ GetContractVersions Get all contract versions
 Returns all the versions of a contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@return ApiGetContractVersionsRequest
 */
 func (a *ContractsAPIService) GetContractVersions(ctx context.Context, contract string) ApiGetContractVersionsRequest {
@@ -1674,7 +1674,7 @@ Returns the event indexing status for a given address and contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param addressOrAlias An address or the alias of an address.
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@return ApiGetEventIndexingStatusRequest
 */
 func (a *ContractsAPIService) GetEventIndexingStatus(ctx context.Context, addressOrAlias string, contract string) ApiGetEventIndexingStatusRequest {
@@ -1803,8 +1803,8 @@ GetEventTypeConversions Get event type conversions
 Returns the type conversion options for a given contract and event signature.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
-	@param version Contract Version.
+	@param contract The label of the contract in MultiBaas.
+	@param version The version of the contract in MultiBaas.
 	@param event Contract Event.
 	@return ApiGetEventTypeConversionsRequest
 */
@@ -1942,8 +1942,8 @@ GetFunctionTypeConversions Get function type conversions
 Returns the type conversion options for a given contract and function signature.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
-	@param version Contract Version.
+	@param contract The label of the contract in MultiBaas.
+	@param version The version of the contract in MultiBaas.
 	@param method Contract function.
 	@return ApiGetFunctionTypeConversionsRequest
 */
@@ -2215,7 +2215,7 @@ ListContractVersions List all contract versions
 Returns a list of the versions of a contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@return ApiListContractVersionsRequest
 */
 func (a *ContractsAPIService) ListContractVersions(ctx context.Context, contract string) ApiListContractVersionsRequest {
@@ -2469,8 +2469,8 @@ SetEventTypeConversions Set event type conversions
 Sets the type conversion options for a given contract and event signature.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
-	@param version Contract Version.
+	@param contract The label of the contract in MultiBaas.
+	@param version The version of the contract in MultiBaas.
 	@param event Contract Event.
 	@return ApiSetEventTypeConversionsRequest
 */
@@ -2619,8 +2619,8 @@ SetFunctionTypeConversions Set function type conversions
 Sets the type conversion options for a given contract and function signature.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param contract
-	@param version Contract Version.
+	@param contract The label of the contract in MultiBaas.
+	@param version The version of the contract in MultiBaas.
 	@param method Contract function.
 	@return ApiSetFunctionTypeConversionsRequest
 */
@@ -2763,7 +2763,7 @@ Unlinks an address from a contract.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param addressOrAlias An address or the alias of an address.
-	@param contract
+	@param contract The label of the contract in MultiBaas.
 	@return ApiUnlinkAddressContractRequest
 */
 func (a *ContractsAPIService) UnlinkAddressContract(ctx context.Context, addressOrAlias string, contract string) ApiUnlinkAddressContractRequest {

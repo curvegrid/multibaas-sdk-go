@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Inputs** | [**[]TypeConversionOptions**](TypeConversionOptions.md) |  | 
-**Outputs** | [**[]TypeConversionOptions**](TypeConversionOptions.md) |  | 
+**Inputs** | [**[]TypeConversionOptions**](TypeConversionOptions.md) | Type conversion options for each input parameter of the function. | 
+**Outputs** | [**[]TypeConversionOptions**](TypeConversionOptions.md) | Type conversion options for each output parameter of the function. | 
 
 ## Methods
 

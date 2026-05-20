@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
-**ContractName** | **string** | The name of the contract. | 
-**Version** | **string** | The contract version. | 
+**ContractName** | **string** | The name of the contract in MultiBaas. | 
+**Version** | **string** | The version of the contract in MultiBaas. | 
 **Bin** | Pointer to **string** | The smart-contract bytecode. | [optional] 
 **RawAbi** | **string** | The contract raw ABI JSON string. | 
 **UserDoc** | Pointer to **string** | The user documentation JSON string. | [optional] 
 **DeveloperDoc** | Pointer to **string** | The developer documentation JSON string. | [optional] 
 **Metadata** | Pointer to **string** | The contract metadata JSON string. | [optional] 
-**IsFavorite** | Pointer to **bool** |  | [optional] 
+**IsFavorite** | Pointer to **bool** | Whether the user has marked this contract as a favorite. | [optional] 
 **Abi** | [**ContractABI**](ContractABI.md) |  | 
 **Instances** | Pointer to [**[]ContractInstance**](ContractInstance.md) | List of the contract instances. | [optional] 
 

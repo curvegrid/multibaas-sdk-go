@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the CloudWalletTXToSignTx type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CloudWalletTXToSignTx{}
+// checks if the CloudWalletSetCodeTx type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CloudWalletSetCodeTx{}
 
-// CloudWalletTXToSignTx An Ethereum transaction.
-type CloudWalletTXToSignTx struct {
+// CloudWalletSetCodeTx An EIP-7702 SetCode transaction.
+type CloudWalletSetCodeTx struct {
 	// Sender account nonce of the transaction
 	Nonce *int64 `json:"nonce,omitempty"`
 	// Gas price of the transaction
@@ -32,7 +32,7 @@ type CloudWalletTXToSignTx struct {
 	// An ethereum address.
 	From string `json:"from" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// An ethereum address.
-	To NullableString `json:"to,omitempty" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
+	To string `json:"to" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
 	// Amount (in wei) to send with the transaction.
 	Value string `json:"value"`
 	// A hex string.
@@ -41,34 +41,38 @@ type CloudWalletTXToSignTx struct {
 	Hash *string `json:"hash,omitempty" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
 	// Transaction type
 	Type int64 `json:"type"`
+	// EIP-7702 authorization list for SetCode transactions.
+	AuthorizationList []SetCodeAuthorization `json:"authorizationList"`
 }
 
-type _CloudWalletTXToSignTx CloudWalletTXToSignTx
+type _CloudWalletSetCodeTx CloudWalletSetCodeTx
 
-// NewCloudWalletTXToSignTx instantiates a new CloudWalletTXToSignTx object
+// NewCloudWalletSetCodeTx instantiates a new CloudWalletSetCodeTx object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloudWalletTXToSignTx(gas int64, from string, value string, data string, type_ int64) *CloudWalletTXToSignTx {
-	this := CloudWalletTXToSignTx{}
+func NewCloudWalletSetCodeTx(gas int64, from string, to string, value string, data string, type_ int64, authorizationList []SetCodeAuthorization) *CloudWalletSetCodeTx {
+	this := CloudWalletSetCodeTx{}
 	this.Gas = gas
 	this.From = from
+	this.To = to
 	this.Value = value
 	this.Data = data
 	this.Type = type_
+	this.AuthorizationList = authorizationList
 	return &this
 }
 
-// NewCloudWalletTXToSignTxWithDefaults instantiates a new CloudWalletTXToSignTx object
+// NewCloudWalletSetCodeTxWithDefaults instantiates a new CloudWalletSetCodeTx object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCloudWalletTXToSignTxWithDefaults() *CloudWalletTXToSignTx {
-	this := CloudWalletTXToSignTx{}
+func NewCloudWalletSetCodeTxWithDefaults() *CloudWalletSetCodeTx {
+	this := CloudWalletSetCodeTx{}
 	return &this
 }
 
 // GetNonce returns the Nonce field value if set, zero value otherwise.
-func (o *CloudWalletTXToSignTx) GetNonce() int64 {
+func (o *CloudWalletSetCodeTx) GetNonce() int64 {
 	if o == nil || IsNil(o.Nonce) {
 		var ret int64
 		return ret
@@ -78,7 +82,7 @@ func (o *CloudWalletTXToSignTx) GetNonce() int64 {
 
 // GetNonceOk returns a tuple with the Nonce field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetNonceOk() (*int64, bool) {
+func (o *CloudWalletSetCodeTx) GetNonceOk() (*int64, bool) {
 	if o == nil || IsNil(o.Nonce) {
 		return nil, false
 	}
@@ -86,7 +90,7 @@ func (o *CloudWalletTXToSignTx) GetNonceOk() (*int64, bool) {
 }
 
 // HasNonce returns a boolean if a field has been set.
-func (o *CloudWalletTXToSignTx) HasNonce() bool {
+func (o *CloudWalletSetCodeTx) HasNonce() bool {
 	if o != nil && !IsNil(o.Nonce) {
 		return true
 	}
@@ -95,12 +99,12 @@ func (o *CloudWalletTXToSignTx) HasNonce() bool {
 }
 
 // SetNonce gets a reference to the given int64 and assigns it to the Nonce field.
-func (o *CloudWalletTXToSignTx) SetNonce(v int64) {
+func (o *CloudWalletSetCodeTx) SetNonce(v int64) {
 	o.Nonce = &v
 }
 
 // GetGasPrice returns the GasPrice field value if set, zero value otherwise.
-func (o *CloudWalletTXToSignTx) GetGasPrice() string {
+func (o *CloudWalletSetCodeTx) GetGasPrice() string {
 	if o == nil || IsNil(o.GasPrice) {
 		var ret string
 		return ret
@@ -110,7 +114,7 @@ func (o *CloudWalletTXToSignTx) GetGasPrice() string {
 
 // GetGasPriceOk returns a tuple with the GasPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetGasPriceOk() (*string, bool) {
+func (o *CloudWalletSetCodeTx) GetGasPriceOk() (*string, bool) {
 	if o == nil || IsNil(o.GasPrice) {
 		return nil, false
 	}
@@ -118,7 +122,7 @@ func (o *CloudWalletTXToSignTx) GetGasPriceOk() (*string, bool) {
 }
 
 // HasGasPrice returns a boolean if a field has been set.
-func (o *CloudWalletTXToSignTx) HasGasPrice() bool {
+func (o *CloudWalletSetCodeTx) HasGasPrice() bool {
 	if o != nil && !IsNil(o.GasPrice) {
 		return true
 	}
@@ -127,12 +131,12 @@ func (o *CloudWalletTXToSignTx) HasGasPrice() bool {
 }
 
 // SetGasPrice gets a reference to the given string and assigns it to the GasPrice field.
-func (o *CloudWalletTXToSignTx) SetGasPrice(v string) {
+func (o *CloudWalletSetCodeTx) SetGasPrice(v string) {
 	o.GasPrice = &v
 }
 
 // GetGasFeeCap returns the GasFeeCap field value if set, zero value otherwise.
-func (o *CloudWalletTXToSignTx) GetGasFeeCap() string {
+func (o *CloudWalletSetCodeTx) GetGasFeeCap() string {
 	if o == nil || IsNil(o.GasFeeCap) {
 		var ret string
 		return ret
@@ -142,7 +146,7 @@ func (o *CloudWalletTXToSignTx) GetGasFeeCap() string {
 
 // GetGasFeeCapOk returns a tuple with the GasFeeCap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetGasFeeCapOk() (*string, bool) {
+func (o *CloudWalletSetCodeTx) GetGasFeeCapOk() (*string, bool) {
 	if o == nil || IsNil(o.GasFeeCap) {
 		return nil, false
 	}
@@ -150,7 +154,7 @@ func (o *CloudWalletTXToSignTx) GetGasFeeCapOk() (*string, bool) {
 }
 
 // HasGasFeeCap returns a boolean if a field has been set.
-func (o *CloudWalletTXToSignTx) HasGasFeeCap() bool {
+func (o *CloudWalletSetCodeTx) HasGasFeeCap() bool {
 	if o != nil && !IsNil(o.GasFeeCap) {
 		return true
 	}
@@ -159,12 +163,12 @@ func (o *CloudWalletTXToSignTx) HasGasFeeCap() bool {
 }
 
 // SetGasFeeCap gets a reference to the given string and assigns it to the GasFeeCap field.
-func (o *CloudWalletTXToSignTx) SetGasFeeCap(v string) {
+func (o *CloudWalletSetCodeTx) SetGasFeeCap(v string) {
 	o.GasFeeCap = &v
 }
 
 // GetGasTipCap returns the GasTipCap field value if set, zero value otherwise.
-func (o *CloudWalletTXToSignTx) GetGasTipCap() string {
+func (o *CloudWalletSetCodeTx) GetGasTipCap() string {
 	if o == nil || IsNil(o.GasTipCap) {
 		var ret string
 		return ret
@@ -174,7 +178,7 @@ func (o *CloudWalletTXToSignTx) GetGasTipCap() string {
 
 // GetGasTipCapOk returns a tuple with the GasTipCap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetGasTipCapOk() (*string, bool) {
+func (o *CloudWalletSetCodeTx) GetGasTipCapOk() (*string, bool) {
 	if o == nil || IsNil(o.GasTipCap) {
 		return nil, false
 	}
@@ -182,7 +186,7 @@ func (o *CloudWalletTXToSignTx) GetGasTipCapOk() (*string, bool) {
 }
 
 // HasGasTipCap returns a boolean if a field has been set.
-func (o *CloudWalletTXToSignTx) HasGasTipCap() bool {
+func (o *CloudWalletSetCodeTx) HasGasTipCap() bool {
 	if o != nil && !IsNil(o.GasTipCap) {
 		return true
 	}
@@ -191,12 +195,12 @@ func (o *CloudWalletTXToSignTx) HasGasTipCap() bool {
 }
 
 // SetGasTipCap gets a reference to the given string and assigns it to the GasTipCap field.
-func (o *CloudWalletTXToSignTx) SetGasTipCap(v string) {
+func (o *CloudWalletSetCodeTx) SetGasTipCap(v string) {
 	o.GasTipCap = &v
 }
 
 // GetGas returns the Gas field value
-func (o *CloudWalletTXToSignTx) GetGas() int64 {
+func (o *CloudWalletSetCodeTx) GetGas() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -207,7 +211,7 @@ func (o *CloudWalletTXToSignTx) GetGas() int64 {
 
 // GetGasOk returns a tuple with the Gas field value
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetGasOk() (*int64, bool) {
+func (o *CloudWalletSetCodeTx) GetGasOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -215,12 +219,12 @@ func (o *CloudWalletTXToSignTx) GetGasOk() (*int64, bool) {
 }
 
 // SetGas sets field value
-func (o *CloudWalletTXToSignTx) SetGas(v int64) {
+func (o *CloudWalletSetCodeTx) SetGas(v int64) {
 	o.Gas = v
 }
 
 // GetFrom returns the From field value
-func (o *CloudWalletTXToSignTx) GetFrom() string {
+func (o *CloudWalletSetCodeTx) GetFrom() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -231,7 +235,7 @@ func (o *CloudWalletTXToSignTx) GetFrom() string {
 
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetFromOk() (*string, bool) {
+func (o *CloudWalletSetCodeTx) GetFromOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -239,55 +243,36 @@ func (o *CloudWalletTXToSignTx) GetFromOk() (*string, bool) {
 }
 
 // SetFrom sets field value
-func (o *CloudWalletTXToSignTx) SetFrom(v string) {
+func (o *CloudWalletSetCodeTx) SetFrom(v string) {
 	o.From = v
 }
 
-// GetTo returns the To field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CloudWalletTXToSignTx) GetTo() string {
-	if o == nil || IsNil(o.To.Get()) {
+// GetTo returns the To field value
+func (o *CloudWalletSetCodeTx) GetTo() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.To.Get()
+
+	return o.To
 }
 
-// GetToOk returns a tuple with the To field value if set, nil otherwise
+// GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CloudWalletTXToSignTx) GetToOk() (*string, bool) {
+func (o *CloudWalletSetCodeTx) GetToOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.To.Get(), o.To.IsSet()
+	return &o.To, true
 }
 
-// HasTo returns a boolean if a field has been set.
-func (o *CloudWalletTXToSignTx) HasTo() bool {
-	if o != nil && o.To.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTo gets a reference to the given NullableString and assigns it to the To field.
-func (o *CloudWalletTXToSignTx) SetTo(v string) {
-	o.To.Set(&v)
-}
-
-// SetToNil sets the value for To to be an explicit nil
-func (o *CloudWalletTXToSignTx) SetToNil() {
-	o.To.Set(nil)
-}
-
-// UnsetTo ensures that no value is present for To, not even an explicit nil
-func (o *CloudWalletTXToSignTx) UnsetTo() {
-	o.To.Unset()
+// SetTo sets field value
+func (o *CloudWalletSetCodeTx) SetTo(v string) {
+	o.To = v
 }
 
 // GetValue returns the Value field value
-func (o *CloudWalletTXToSignTx) GetValue() string {
+func (o *CloudWalletSetCodeTx) GetValue() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -298,7 +283,7 @@ func (o *CloudWalletTXToSignTx) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetValueOk() (*string, bool) {
+func (o *CloudWalletSetCodeTx) GetValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -306,12 +291,12 @@ func (o *CloudWalletTXToSignTx) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value
-func (o *CloudWalletTXToSignTx) SetValue(v string) {
+func (o *CloudWalletSetCodeTx) SetValue(v string) {
 	o.Value = v
 }
 
 // GetData returns the Data field value
-func (o *CloudWalletTXToSignTx) GetData() string {
+func (o *CloudWalletSetCodeTx) GetData() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -322,7 +307,7 @@ func (o *CloudWalletTXToSignTx) GetData() string {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetDataOk() (*string, bool) {
+func (o *CloudWalletSetCodeTx) GetDataOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -330,12 +315,12 @@ func (o *CloudWalletTXToSignTx) GetDataOk() (*string, bool) {
 }
 
 // SetData sets field value
-func (o *CloudWalletTXToSignTx) SetData(v string) {
+func (o *CloudWalletSetCodeTx) SetData(v string) {
 	o.Data = v
 }
 
 // GetHash returns the Hash field value if set, zero value otherwise.
-func (o *CloudWalletTXToSignTx) GetHash() string {
+func (o *CloudWalletSetCodeTx) GetHash() string {
 	if o == nil || IsNil(o.Hash) {
 		var ret string
 		return ret
@@ -345,7 +330,7 @@ func (o *CloudWalletTXToSignTx) GetHash() string {
 
 // GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetHashOk() (*string, bool) {
+func (o *CloudWalletSetCodeTx) GetHashOk() (*string, bool) {
 	if o == nil || IsNil(o.Hash) {
 		return nil, false
 	}
@@ -353,7 +338,7 @@ func (o *CloudWalletTXToSignTx) GetHashOk() (*string, bool) {
 }
 
 // HasHash returns a boolean if a field has been set.
-func (o *CloudWalletTXToSignTx) HasHash() bool {
+func (o *CloudWalletSetCodeTx) HasHash() bool {
 	if o != nil && !IsNil(o.Hash) {
 		return true
 	}
@@ -362,12 +347,12 @@ func (o *CloudWalletTXToSignTx) HasHash() bool {
 }
 
 // SetHash gets a reference to the given string and assigns it to the Hash field.
-func (o *CloudWalletTXToSignTx) SetHash(v string) {
+func (o *CloudWalletSetCodeTx) SetHash(v string) {
 	o.Hash = &v
 }
 
 // GetType returns the Type field value
-func (o *CloudWalletTXToSignTx) GetType() int64 {
+func (o *CloudWalletSetCodeTx) GetType() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -378,7 +363,7 @@ func (o *CloudWalletTXToSignTx) GetType() int64 {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *CloudWalletTXToSignTx) GetTypeOk() (*int64, bool) {
+func (o *CloudWalletSetCodeTx) GetTypeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -386,11 +371,35 @@ func (o *CloudWalletTXToSignTx) GetTypeOk() (*int64, bool) {
 }
 
 // SetType sets field value
-func (o *CloudWalletTXToSignTx) SetType(v int64) {
+func (o *CloudWalletSetCodeTx) SetType(v int64) {
 	o.Type = v
 }
 
-func (o CloudWalletTXToSignTx) ToMap() (map[string]interface{}, error) {
+// GetAuthorizationList returns the AuthorizationList field value
+func (o *CloudWalletSetCodeTx) GetAuthorizationList() []SetCodeAuthorization {
+	if o == nil {
+		var ret []SetCodeAuthorization
+		return ret
+	}
+
+	return o.AuthorizationList
+}
+
+// GetAuthorizationListOk returns a tuple with the AuthorizationList field value
+// and a boolean to check if the value has been set.
+func (o *CloudWalletSetCodeTx) GetAuthorizationListOk() ([]SetCodeAuthorization, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AuthorizationList, true
+}
+
+// SetAuthorizationList sets field value
+func (o *CloudWalletSetCodeTx) SetAuthorizationList(v []SetCodeAuthorization) {
+	o.AuthorizationList = v
+}
+
+func (o CloudWalletSetCodeTx) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Nonce) {
 		toSerialize["nonce"] = o.Nonce
@@ -406,50 +415,49 @@ func (o CloudWalletTXToSignTx) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["gas"] = o.Gas
 	toSerialize["from"] = o.From
-	if o.To.IsSet() {
-		toSerialize["to"] = o.To.Get()
-	}
+	toSerialize["to"] = o.To
 	toSerialize["value"] = o.Value
 	toSerialize["data"] = o.Data
 	if !IsNil(o.Hash) {
 		toSerialize["hash"] = o.Hash
 	}
 	toSerialize["type"] = o.Type
+	toSerialize["authorizationList"] = o.AuthorizationList
 	return toSerialize, nil
 }
 
-type NullableCloudWalletTXToSignTx struct {
-	value *CloudWalletTXToSignTx
+type NullableCloudWalletSetCodeTx struct {
+	value *CloudWalletSetCodeTx
 	isSet bool
 }
 
-func (v NullableCloudWalletTXToSignTx) Get() *CloudWalletTXToSignTx {
+func (v NullableCloudWalletSetCodeTx) Get() *CloudWalletSetCodeTx {
 	return v.value
 }
 
-func (v *NullableCloudWalletTXToSignTx) Set(val *CloudWalletTXToSignTx) {
+func (v *NullableCloudWalletSetCodeTx) Set(val *CloudWalletSetCodeTx) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCloudWalletTXToSignTx) IsSet() bool {
+func (v NullableCloudWalletSetCodeTx) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCloudWalletTXToSignTx) Unset() {
+func (v *NullableCloudWalletSetCodeTx) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCloudWalletTXToSignTx(val *CloudWalletTXToSignTx) *NullableCloudWalletTXToSignTx {
-	return &NullableCloudWalletTXToSignTx{value: val, isSet: true}
+func NewNullableCloudWalletSetCodeTx(val *CloudWalletSetCodeTx) *NullableCloudWalletSetCodeTx {
+	return &NullableCloudWalletSetCodeTx{value: val, isSet: true}
 }
 
-func (v NullableCloudWalletTXToSignTx) MarshalJSON() ([]byte, error) {
+func (v NullableCloudWalletSetCodeTx) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCloudWalletTXToSignTx) UnmarshalJSON(src []byte) error {
+func (v *NullableCloudWalletSetCodeTx) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

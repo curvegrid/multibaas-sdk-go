@@ -17,10 +17,13 @@ import (
 // checks if the ContractABITypeConversion type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ContractABITypeConversion{}
 
-// ContractABITypeConversion Holds JSON-compatible type conversion information.
+// ContractABITypeConversion Type conversion object for an input or an output of a function or an event.
 type ContractABITypeConversion struct {
-	Mode             string         `json:"mode"`
-	DecimalsAbsolute NullableInt64  `json:"decimalsAbsolute"`
+	// The type conversion mode to apply: `decimals` (for converting integer wei values to fixed-point decimal strings, e.g., wei to ether), `timestamp` (converts Unix timestamp integers to RFC 3339 formatted time strings), `stringBytes` (converts byte arrays to UTF-8 strings), `base64Bytes` (converts byte arrays to base64-encoded strings).
+	Mode string `json:"mode"`
+	// The fixed number of decimal places to use for `decimals` mode conversion. Must be between 0-255.
+	DecimalsAbsolute NullableInt64 `json:"decimalsAbsolute"`
+	// The name of a contract function that dynamically determines decimal places for `decimals` mode conversion (e.g., `decimals()` for ERC-20 tokens). The function must take no parameters and return a uint value between 0-255. Mutually exclusive with `decimalsAbsolute`.
 	DecimalsFunction NullableString `json:"decimalsFunction"`
 }
 

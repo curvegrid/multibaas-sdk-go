@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
-**Version** | Pointer to **string** | The contract version. | [optional] 
+**Version** | Pointer to **string** | The version of the contract in MultiBaas. | [optional] 
 **StartingBlock** | Pointer to **string** | The block number from which to start syncing events. The value can be &#x60;latest&#x60; for the latest block number, an absolute block number (e.g. &#x60;123&#x60; for the block number 123), or a relative block number (e.g. &#x60;-100&#x60; for 100 blocks before the latest block). If absent, event indexing will be disabled for this contract and events won&#39;t be synced. | [optional] 
 
 ## Methods

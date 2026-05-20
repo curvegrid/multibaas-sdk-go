@@ -21,7 +21,7 @@ var _ MappedNullable = &AuthorizationExtraInfo{}
 type AuthorizationExtraInfo struct {
 	// An ethereum address.
 	Authority string `json:"authority" validate:"regexp=^0[xX][a-fA-F0-9]{40}$"`
-	// Indicates whether the format of the authorization is valid.
+	// Whether the format of the authorization is valid.
 	FormatValid bool `json:"formatValid"`
 	// Additional notes about the validity of the authorization.
 	Notes string `json:"notes"`

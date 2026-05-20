@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Alias** | **string** |  | 
+**Alias** | **string** | The alias of the deployed instance. | 
 **Address** | **string** | An ethereum address. | 
 
 ## Methods

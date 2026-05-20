@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
+**Name** | **string** | The name of the entry. | 
 **Type** | **string** |  | 
 
 ## Methods

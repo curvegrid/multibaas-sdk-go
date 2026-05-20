@@ -48,7 +48,7 @@ import (
 
 func main() {
 	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 	method := "method_example" // string | Contract function.
 	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **addressOrAlias** | **string** | An address or the alias of an address. | 
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 **method** | **string** | Contract function. | 
 
 ### Other Parameters
@@ -125,7 +125,7 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 	baseContract := *openapiclient.NewBaseContract("Label_example", "ContractName_example", "Version_example", "RawAbi_example") // BaseContract | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -146,7 +146,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -263,7 +263,7 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -283,7 +283,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -333,8 +333,8 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
-	version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
+	version := "version_example" // string | The version of the contract in MultiBaas.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -354,8 +354,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
-**version** | **string** | Contract Version. | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
+**version** | **string** | The version of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -406,7 +406,7 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -427,7 +427,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -478,8 +478,8 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
-	version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
+	version := "version_example" // string | The version of the contract in MultiBaas.
 	postMethodArgs := *openapiclient.NewPostMethodArgs() // PostMethodArgs | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -500,8 +500,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
-**version** | **string** | Contract Version. | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
+**version** | **string** | The version of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -553,7 +553,7 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -573,7 +573,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -623,8 +623,8 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
-	version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
+	version := "version_example" // string | The version of the contract in MultiBaas.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -644,8 +644,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
-**version** | **string** | Contract Version. | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
+**version** | **string** | The version of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -696,7 +696,7 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -716,7 +716,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -767,7 +767,7 @@ import (
 
 func main() {
 	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -788,7 +788,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **addressOrAlias** | **string** | An address or the alias of an address. | 
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -839,8 +839,8 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
-	version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
+	version := "version_example" // string | The version of the contract in MultiBaas.
 	event := "event_example" // string | Contract Event.
 
 	configuration := openapiclient.NewConfiguration()
@@ -861,8 +861,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
-**version** | **string** | Contract Version. | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
+**version** | **string** | The version of the contract in MultiBaas. | 
 **event** | **string** | Contract Event. | 
 
 ### Other Parameters
@@ -915,8 +915,8 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
-	version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
+	version := "version_example" // string | The version of the contract in MultiBaas.
 	method := "method_example" // string | Contract function.
 
 	configuration := openapiclient.NewConfiguration()
@@ -937,8 +937,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
-**version** | **string** | Contract Version. | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
+**version** | **string** | The version of the contract in MultiBaas. | 
 **method** | **string** | Contract function. | 
 
 ### Other Parameters
@@ -1063,7 +1063,7 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1083,7 +1083,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 
 ### Other Parameters
 
@@ -1194,8 +1194,8 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
-	version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
+	version := "version_example" // string | The version of the contract in MultiBaas.
 	event := "event_example" // string | Contract Event.
 	contractEventOptions := *openapiclient.NewContractEventOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractEventOptions | 
 
@@ -1217,8 +1217,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
-**version** | **string** | Contract Version. | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
+**version** | **string** | The version of the contract in MultiBaas. | 
 **event** | **string** | Contract Event. | 
 
 ### Other Parameters
@@ -1272,8 +1272,8 @@ import (
 )
 
 func main() {
-	contract := "contract_example" // string | 
-	version := "version_example" // string | Contract Version.
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
+	version := "version_example" // string | The version of the contract in MultiBaas.
 	method := "method_example" // string | Contract function.
 	contractMethodOptions := *openapiclient.NewContractMethodOptions([]openapiclient.ContractParameter{*openapiclient.NewContractParameter("TODO")}) // ContractMethodOptions | 
 
@@ -1295,8 +1295,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contract** | **string** |  | 
-**version** | **string** | Contract Version. | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
+**version** | **string** | The version of the contract in MultiBaas. | 
 **method** | **string** | Contract function. | 
 
 ### Other Parameters
@@ -1351,7 +1351,7 @@ import (
 
 func main() {
 	addressOrAlias := "addressOrAlias_example" // string | An address or the alias of an address.
-	contract := "contract_example" // string | 
+	contract := "contract_example" // string | The label of the contract in MultiBaas.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1372,7 +1372,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **addressOrAlias** | **string** | An address or the alias of an address. | 
-**contract** | **string** |  | 
+**contract** | **string** | The label of the contract in MultiBaas. | 
 
 ### Other Parameters
 

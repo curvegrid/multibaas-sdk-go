@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
+**Name** | **string** | The name of the argument. | 
 **Type** | [**ContractABIType**](ContractABIType.md) |  | 
-**TypeName** | **string** |  | 
-**Indexed** | **bool** |  | 
+**TypeName** | **string** | The type name (e.g., uint256, address, string). | 
+**Indexed** | **bool** | Whether this argument is indexed and stored in the event log topics. | 
 **TypeConversion** | [**NullableContractABITypeConversion**](ContractABITypeConversion.md) |  | 
 **Notes** | **string** | The developer documentation. | 
 

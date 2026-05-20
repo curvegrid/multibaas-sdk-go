@@ -21,7 +21,7 @@ var _ MappedNullable = &LinkAddressContractRequest{}
 type LinkAddressContractRequest struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
 	Label string `json:"label" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
-	// The contract version.
+	// The version of the contract in MultiBaas.
 	Version *string `json:"version,omitempty" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The block number from which to start syncing events. The value can be `latest` for the latest block number, an absolute block number (e.g. `123` for the block number 123), or a relative block number (e.g. `-100` for 100 blocks before the latest block). If absent, event indexing will be disabled for this contract and events won't be synced.
 	StartingBlock *string `json:"startingBlock,omitempty"`

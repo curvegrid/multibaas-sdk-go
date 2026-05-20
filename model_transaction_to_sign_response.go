@@ -20,8 +20,9 @@ var _ MappedNullable = &TransactionToSignResponse{}
 // TransactionToSignResponse struct for TransactionToSignResponse
 type TransactionToSignResponse struct {
 	PostMethodResponse
-	Tx        TransactionToSignTx `json:"tx"`
-	Submitted bool                `json:"submitted"`
+	Tx TransactionToSignTx `json:"tx"`
+	// Indicates whether the transaction has been submitted to the blockchain.
+	Submitted bool `json:"submitted"`
 }
 
 type _TransactionToSignResponse TransactionToSignResponse

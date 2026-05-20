@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Tx** | [**TransactionToSignTx**](TransactionToSignTx.md) |  | 
-**Submitted** | **bool** |  | 
-**DeployAt** | Pointer to **string** |  | [optional] 
+**Submitted** | **bool** | Indicates whether the transaction has been submitted to the blockchain. | 
+**DeployAt** | Pointer to **string** | The address where the contract will be deployed once the transaction is confirmed. | [optional] 
 **Label** | Pointer to **string** | An alias to easily identify and reference the entity in subsequent requests. | [optional] 
 
 ## Methods

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
-**AzureAccountID** | **int64** |  | 
+**Id** | **int64** | The unique ID for this hardware wallet. | 
+**AzureAccountID** | **int64** | The ID of the associated Azure account configuration. | 
 **VaultName** | **string** | The name given to the vault your key is stored in. | 
 **KeyName** | **string** | The name of the key. | 
 **KeyVersion** | **string** | The version of the key. | 

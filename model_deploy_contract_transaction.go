@@ -19,9 +19,11 @@ var _ MappedNullable = &DeployContractTransaction{}
 
 // DeployContractTransaction The transaction returned when you deploy a contracts.
 type DeployContractTransaction struct {
-	Tx        TransactionToSignTx `json:"tx"`
-	Submitted bool                `json:"submitted"`
-	DeployAt  *string             `json:"deployAt,omitempty"`
+	Tx TransactionToSignTx `json:"tx"`
+	// Indicates whether the transaction has been submitted to the blockchain.
+	Submitted bool `json:"submitted"`
+	// The address where the contract will be deployed once the transaction is confirmed.
+	DeployAt *string `json:"deployAt,omitempty"`
 	// An alias to easily identify and reference the entity in subsequent requests.
 	Label *string `json:"label,omitempty" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
 }

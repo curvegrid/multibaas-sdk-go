@@ -17,19 +17,20 @@ import (
 // checks if the EventIndexingStatus type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &EventIndexingStatus{}
 
-// EventIndexingStatus Event indexing status
+// EventIndexingStatus The status for a contract's event indexing at a specific address.
 type EventIndexingStatus struct {
-	ContractId           *int64 `json:"contractId,omitempty"`
-	AddressId            *int64 `json:"addressId,omitempty"`
-	IsProcessingPastLogs bool   `json:"isProcessingPastLogs"`
-	IdealBlockRange      *int64 `json:"idealBlockRange,omitempty"`
-	LatestBlockNumber    int64  `json:"latestBlockNumber"`
+	// When true, the event indexer is syncing historical events from past blocks in order to catch up to the current state.
+	IsProcessingPastLogs bool `json:"isProcessingPastLogs"`
+	// The most recent block number that has been processed for event indexing.
+	LatestBlockNumber int64 `json:"latestBlockNumber"`
 	// The keccak256 hash as a hex string of 256 bits.
-	LatestBlockHash  string `json:"latestBlockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
-	StartBlockNumber int64  `json:"startBlockNumber"`
+	LatestBlockHash string `json:"latestBlockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
+	// The block number from which event indexing began.
+	StartBlockNumber int64 `json:"startBlockNumber"`
 	// The keccak256 hash as a hex string of 256 bits.
 	StartBlockHash string `json:"startBlockHash" validate:"regexp=^(0x[0-9a-f]{64}|0X[0-9A-F]{64})$"`
-	UpdatedAt      string `json:"updatedAt"`
+	// The timestamp of the last update to the indexing status.
+	UpdatedAt string `json:"updatedAt"`
 }
 
 type _EventIndexingStatus EventIndexingStatus
@@ -57,70 +58,6 @@ func NewEventIndexingStatusWithDefaults() *EventIndexingStatus {
 	return &this
 }
 
-// GetContractId returns the ContractId field value if set, zero value otherwise.
-func (o *EventIndexingStatus) GetContractId() int64 {
-	if o == nil || IsNil(o.ContractId) {
-		var ret int64
-		return ret
-	}
-	return *o.ContractId
-}
-
-// GetContractIdOk returns a tuple with the ContractId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventIndexingStatus) GetContractIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.ContractId) {
-		return nil, false
-	}
-	return o.ContractId, true
-}
-
-// HasContractId returns a boolean if a field has been set.
-func (o *EventIndexingStatus) HasContractId() bool {
-	if o != nil && !IsNil(o.ContractId) {
-		return true
-	}
-
-	return false
-}
-
-// SetContractId gets a reference to the given int64 and assigns it to the ContractId field.
-func (o *EventIndexingStatus) SetContractId(v int64) {
-	o.ContractId = &v
-}
-
-// GetAddressId returns the AddressId field value if set, zero value otherwise.
-func (o *EventIndexingStatus) GetAddressId() int64 {
-	if o == nil || IsNil(o.AddressId) {
-		var ret int64
-		return ret
-	}
-	return *o.AddressId
-}
-
-// GetAddressIdOk returns a tuple with the AddressId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventIndexingStatus) GetAddressIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.AddressId) {
-		return nil, false
-	}
-	return o.AddressId, true
-}
-
-// HasAddressId returns a boolean if a field has been set.
-func (o *EventIndexingStatus) HasAddressId() bool {
-	if o != nil && !IsNil(o.AddressId) {
-		return true
-	}
-
-	return false
-}
-
-// SetAddressId gets a reference to the given int64 and assigns it to the AddressId field.
-func (o *EventIndexingStatus) SetAddressId(v int64) {
-	o.AddressId = &v
-}
-
 // GetIsProcessingPastLogs returns the IsProcessingPastLogs field value
 func (o *EventIndexingStatus) GetIsProcessingPastLogs() bool {
 	if o == nil {
@@ -143,38 +80,6 @@ func (o *EventIndexingStatus) GetIsProcessingPastLogsOk() (*bool, bool) {
 // SetIsProcessingPastLogs sets field value
 func (o *EventIndexingStatus) SetIsProcessingPastLogs(v bool) {
 	o.IsProcessingPastLogs = v
-}
-
-// GetIdealBlockRange returns the IdealBlockRange field value if set, zero value otherwise.
-func (o *EventIndexingStatus) GetIdealBlockRange() int64 {
-	if o == nil || IsNil(o.IdealBlockRange) {
-		var ret int64
-		return ret
-	}
-	return *o.IdealBlockRange
-}
-
-// GetIdealBlockRangeOk returns a tuple with the IdealBlockRange field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventIndexingStatus) GetIdealBlockRangeOk() (*int64, bool) {
-	if o == nil || IsNil(o.IdealBlockRange) {
-		return nil, false
-	}
-	return o.IdealBlockRange, true
-}
-
-// HasIdealBlockRange returns a boolean if a field has been set.
-func (o *EventIndexingStatus) HasIdealBlockRange() bool {
-	if o != nil && !IsNil(o.IdealBlockRange) {
-		return true
-	}
-
-	return false
-}
-
-// SetIdealBlockRange gets a reference to the given int64 and assigns it to the IdealBlockRange field.
-func (o *EventIndexingStatus) SetIdealBlockRange(v int64) {
-	o.IdealBlockRange = &v
 }
 
 // GetLatestBlockNumber returns the LatestBlockNumber field value
@@ -299,16 +204,7 @@ func (o *EventIndexingStatus) SetUpdatedAt(v string) {
 
 func (o EventIndexingStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ContractId) {
-		toSerialize["contractId"] = o.ContractId
-	}
-	if !IsNil(o.AddressId) {
-		toSerialize["addressId"] = o.AddressId
-	}
 	toSerialize["isProcessingPastLogs"] = o.IsProcessingPastLogs
-	if !IsNil(o.IdealBlockRange) {
-		toSerialize["idealBlockRange"] = o.IdealBlockRange
-	}
 	toSerialize["latestBlockNumber"] = o.LatestBlockNumber
 	toSerialize["latestBlockHash"] = o.LatestBlockHash
 	toSerialize["startBlockNumber"] = o.StartBlockNumber

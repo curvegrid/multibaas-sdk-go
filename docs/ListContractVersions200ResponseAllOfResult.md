@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Label** | **string** | An alias to easily identify and reference the entity in subsequent requests. | 
-**Versions** | **[]string** |  | 
+**Versions** | **[]string** | The list of versions of the contract. | 
 
 ## Methods
 

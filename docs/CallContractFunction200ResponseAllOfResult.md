@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Kind** | **string** | The response object type (discriminator). | 
 **Tx** | [**TransactionToSignTx**](TransactionToSignTx.md) |  | 
-**Submitted** | **bool** |  | 
+**Submitted** | **bool** | Indicates whether the transaction has been submitted to the blockchain. | 
 **Output** | **interface{}** | The function call output. | 
 
 ## Methods

@@ -21,9 +21,9 @@ var _ MappedNullable = &Contract{}
 type Contract struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
 	Label string `json:"label" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
-	// The name of the contract.
+	// The name of the contract in MultiBaas.
 	ContractName string `json:"contractName" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
-	// The contract version.
+	// The version of the contract in MultiBaas.
 	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
 	// The smart-contract bytecode.
 	Bin *string `json:"bin,omitempty" validate:"regexp=^(0x[0-9a-f]*|0X[0-9A-F]*)$"`
@@ -34,7 +34,8 @@ type Contract struct {
 	// The developer documentation JSON string.
 	DeveloperDoc *string `json:"developerDoc,omitempty"`
 	// The contract metadata JSON string.
-	Metadata   *string     `json:"metadata,omitempty"`
+	Metadata *string `json:"metadata,omitempty"`
+	// Whether the user has marked this contract as a favorite.
 	IsFavorite *bool       `json:"isFavorite,omitempty"`
 	Abi        ContractABI `json:"abi"`
 	// List of the contract instances.

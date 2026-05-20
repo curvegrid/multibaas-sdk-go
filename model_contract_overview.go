@@ -21,13 +21,15 @@ var _ MappedNullable = &ContractOverview{}
 type ContractOverview struct {
 	// An alias to easily identify and reference the entity in subsequent requests.
 	Label string `json:"label" validate:"regexp=^(?:[a-z1-9_-][a-z0-9_-]*|0(?:[a-wyz0-9_-][a-z0-9_-]*)?)$"`
-	// The name of the contract.
+	// The name of the contract in MultiBaas.
 	ContractName string `json:"contractName" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
-	// The contract version.
-	Version    string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
-	IsFavorite *bool  `json:"isFavorite,omitempty"`
-	Deployable bool   `json:"deployable"`
-	// List of contract instances.
+	// The version of the contract in MultiBaas.
+	Version string `json:"version" validate:"regexp=^[^\\"#$%&''()*+,\\/:;<>?[\\\\\\\\\\\\]^\\\\x60{}~]*$"`
+	// Whether the user has marked this contract as a favorite.
+	IsFavorite *bool `json:"isFavorite,omitempty"`
+	// Whether this contract has deployable bytecode and can be deployed to the blockchain.
+	Deployable bool `json:"deployable"`
+	// List of addresses where this contract has been deployed and linked.
 	Instances []ContractInstance `json:"instances"`
 }
 

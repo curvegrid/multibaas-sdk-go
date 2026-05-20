@@ -589,7 +589,7 @@ import (
 )
 
 func main() {
-	cloudWalletTXToSign := *openapiclient.NewCloudWalletTXToSign(*openapiclient.NewCloudWalletTXToSignTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))) // CloudWalletTXToSign | 
+	cloudWalletTXToSign := *openapiclient.NewCloudWalletTXToSign(openapiclient.CloudWalletTx{CloudWalletBaseTx: openapiclient.NewCloudWalletBaseTx(int64(123), "From_example", "Value_example", "Data_example", int64(123))}) // CloudWalletTXToSign | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

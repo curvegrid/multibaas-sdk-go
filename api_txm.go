@@ -16,6 +16,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 )
 
@@ -356,7 +357,7 @@ type ApiListWalletTransactionsRequest struct {
 	ctx           context.Context
 	ApiService    TxmAPI
 	walletAddress string
-	hash          *string
+	hash          *[]string
 	nonce         *int64
 	status        *TransactionStatus
 	limit         *int64
@@ -364,7 +365,7 @@ type ApiListWalletTransactionsRequest struct {
 }
 
 // Filter transactions by transaction hash. To filter for multiple hashes, use ampersands: &#x60;?hash&#x3D;HASH1&amp;hash&#x3D;HASH2&amp;hash&#x3D;HASH3&#x60;
-func (r ApiListWalletTransactionsRequest) Hash(hash string) ApiListWalletTransactionsRequest {
+func (r ApiListWalletTransactionsRequest) Hash(hash []string) ApiListWalletTransactionsRequest {
 	r.hash = &hash
 	return r
 }
@@ -436,7 +437,15 @@ func (a *TxmAPIService) ListWalletTransactionsExecute(r ApiListWalletTransaction
 	localVarFormParams := url.Values{}
 
 	if r.hash != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "form", "")
+		t := *r.hash
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "hash", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "hash", t, "form", "multi")
+		}
 	}
 	if r.nonce != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "nonce", r.nonce, "form", "")

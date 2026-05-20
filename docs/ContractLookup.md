@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** | An ethereum address. | 
-**Name** | Pointer to **string** | The name of the contract. | [optional] 
+**Name** | Pointer to **string** | The name of the contract in MultiBaas. | [optional] 
 **Abi** | **string** | The contract ABI JSON string. | 
 **Bytecode** | Pointer to **string** | The smart-contract bytecode. | [optional] 
 **Source** | Pointer to **string** | The contract&#39;s source code. | [optional] 
 **Userdoc** | Pointer to **string** | The user documentation JSON string. | [optional] 
 **Devdoc** | Pointer to **string** | The developer documentation JSON string. | [optional] 
-**Verified** | **bool** | Indicates whether the contract has been verified. | 
+**Verified** | **bool** | Whether the contract has been verified. | 
 **VerifiedSource** | Pointer to **string** | The name of the service that provided the contract verification. | [optional] 
 **VerifiedLink** | Pointer to **string** | The URL to the contract&#39;s verification details on the verification service. | [optional] 
-**Proxy** | **bool** | Indicates whether the contract is a proxy contract. | 
+**Proxy** | **bool** | Whether the contract is a proxy contract. | 
 
 ## Methods
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
+**Name** | **string** | The name of the argument. | 
 **Type** | [**ContractABIType**](ContractABIType.md) |  | 
-**TypeName** | **string** |  | 
+**TypeName** | **string** | The type name (e.g., uint256, address, string). | 
 **TypeConversion** | [**NullableContractABITypeConversion**](ContractABITypeConversion.md) |  | 
-**Notes** | **string** |  | 
+**Notes** | **string** | The developer documentation. | 
 
 ## Methods
 

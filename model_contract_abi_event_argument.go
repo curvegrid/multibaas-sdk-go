@@ -19,9 +19,12 @@ var _ MappedNullable = &ContractABIEventArgument{}
 
 // ContractABIEventArgument A contract event argument.
 type ContractABIEventArgument struct {
-	Name           string                            `json:"name"`
-	Type           ContractABIType                   `json:"type"`
-	TypeName       string                            `json:"typeName"`
+	// The name of the argument.
+	Name string          `json:"name"`
+	Type ContractABIType `json:"type"`
+	// The type name (e.g., uint256, address, string).
+	TypeName string `json:"typeName"`
+	// Whether this argument is indexed and stored in the event log topics.
 	Indexed        bool                              `json:"indexed"`
 	TypeConversion NullableContractABITypeConversion `json:"typeConversion"`
 	// The developer documentation.

@@ -19,10 +19,13 @@ var _ MappedNullable = &ContractABIErrorArgument{}
 
 // ContractABIErrorArgument A contract error argument.
 type ContractABIErrorArgument struct {
-	Name     string          `json:"name"`
-	Type     ContractABIType `json:"type"`
-	TypeName string          `json:"typeName"`
-	Indexed  bool            `json:"indexed"`
+	// The name of the argument.
+	Name string          `json:"name"`
+	Type ContractABIType `json:"type"`
+	// The type name (e.g., uint256, address, string).
+	TypeName string `json:"typeName"`
+	// Whether this argument is indexed.
+	Indexed bool `json:"indexed"`
 	// The developer documentation.
 	Notes string `json:"notes"`
 }

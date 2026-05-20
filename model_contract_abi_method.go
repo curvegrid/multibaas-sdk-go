@@ -25,14 +25,18 @@ type ContractABIMethod struct {
 	Name string `json:"name"`
 	// The function signature.
 	Signature string `json:"signature"`
-	Const     bool   `json:"const"`
-	Payable   bool   `json:"payable"`
+	// Indicates whether this method is read-only (constant).
+	Const bool `json:"const"`
+	// Indicates whether this method accepts ether payments.
+	Payable bool `json:"payable"`
 	// List of function arguments.
 	Inputs []ContractABIMethodArgument `json:"inputs"`
 	// List of function outputs.
 	Outputs []ContractABIMethodArgument `json:"outputs"`
-	Author  string                      `json:"author"`
-	Notes   string                      `json:"notes"`
+	// The contract method author.
+	Author string `json:"author"`
+	// The developer documentation.
+	Notes string `json:"notes"`
 	// The function description.
 	Description string `json:"description"`
 }

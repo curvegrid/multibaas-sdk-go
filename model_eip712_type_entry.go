@@ -19,6 +19,7 @@ var _ MappedNullable = &EIP712TypeEntry{}
 
 // EIP712TypeEntry struct for EIP712TypeEntry
 type EIP712TypeEntry struct {
+	// The name of the entry.
 	Name string `json:"name"`
 	Type string `json:"type"`
 }
